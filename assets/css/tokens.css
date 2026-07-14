@@ -1,0 +1,275 @@
+/* ==========================================================================
+   Cloud Quiz Arena — Design Tokens
+   Single source of truth for colors, spacing, typography, radii, shadows.
+   Dark is the default theme (:root); other presets override color tokens
+   under [data-theme="azure" | "aws" | "gcp" | "k8s" | "slate" | "amber" |
+   "light"], set on <html> by render.js via the header theme picker.
+   The four ecosystem presets (azure/aws/gcp/k8s) are color-direction
+   inspired by their namesakes' public brand palettes — not literal
+   reproductions — filtered through this app's own token structure so
+   every theme still shares one visual language (same spacing, radii,
+   shadows, component shapes).
+   ========================================================================== */
+
+:root {
+  /* ----- Color: surfaces ----- */
+  --color-bg:            #0f1420;   /* page background */
+  --color-surface:       #1a2130;   /* panels, cards */
+  --color-surface-raised:#232c3f;   /* hovered / elevated cards */
+  --color-border:        #2e3950;
+
+  /* ----- Color: text ----- */
+  --color-text:          #e8ecf4;
+  --color-text-muted:    #9aa5bb;
+  --color-text-faint:    #67718a;
+
+  /* ----- Color: brand & accents ----- */
+  --color-accent:        #4f8cff;   /* primary actions */
+  --color-accent-hover:  #6ea1ff;
+  --color-accent-contrast: #0b1020; /* text on accent */
+  --color-accent-soft:   rgba(79, 140, 255, 0.14);
+
+  /* ----- Color: semantic feedback ----- */
+  --color-correct:       #3ecf8e;
+  --color-correct-bg:    rgba(62, 207, 142, 0.12);
+  --color-incorrect:     #ff6b6b;
+  --color-incorrect-bg:  rgba(255, 107, 107, 0.12);
+  --color-warning:       #ffc857;
+  --color-warning-soft:  rgba(255, 200, 87, 0.14);
+
+  /* ----- Color: provider identities ----- */
+  --color-azure:         #338fef;
+  --color-aws:           #ff9900;
+  --color-gcp:           #34a853;
+  --color-neutral:       #94a3b8;   /* provider-neutral fundamentals */
+
+  /* ----- Typography ----- */
+  --font-family-base:    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family-mono:    ui-monospace, "Cascadia Code", Consolas, monospace;
+  --font-size-xs:        0.75rem;
+  --font-size-sm:        0.85rem;
+  --font-size-base:      1rem;
+  --font-size-lg:        1.25rem;
+  --font-size-xl:        1.6rem;
+  --font-size-2xl:       2rem;
+  --line-height-base:    1.6;
+
+  /* ----- Spacing scale ----- */
+  --space-xs:            0.25rem;
+  --space-sm:            0.5rem;
+  --space-md:            1rem;
+  --space-lg:            1.5rem;
+  --space-xl:            2.5rem;
+
+  /* ----- Radii & shadows ----- */
+  --radius-sm:           6px;
+  --radius-md:           10px;
+  --radius-lg:           16px;
+  --radius-pill:         999px;
+  --shadow-panel:        0 4px 18px rgba(0, 0, 0, 0.35);
+  --shadow-focus:        0 0 0 3px rgba(79, 140, 255, 0.4);
+
+  /* ----- Motion ----- */
+  --transition-fast:     120ms ease;
+  --transition-base:     200ms ease;
+
+  /* ----- Layout ----- */
+  --content-max-width:   1200px;
+  --sidebar-width:       340px;
+
+  /* ----- Stacking order ----- */
+  --z-tooltip:           900;
+  --z-modal:             1000;
+}
+
+/* ----- Azure Blue: deep blue-navy base, bright confident enterprise-blue accent ----- */
+[data-theme="azure"] {
+  --color-bg:            #0c1a2e;
+  --color-surface:       #122544;
+  --color-surface-raised:#1a3358;
+  --color-border:        #2c4b74;
+
+  --color-text:          #e7edf7;
+  --color-text-muted:    #9db4d4;
+  --color-text-faint:    #6d84a8;
+
+  --color-accent:        #3aa0ff;
+  --color-accent-hover:  #62b4ff;
+  --color-accent-contrast: #06111f;
+  --color-accent-soft:   rgba(58, 160, 255, 0.16);
+
+  --color-correct:       #3ecf8e;
+  --color-correct-bg:    rgba(62, 207, 142, 0.13);
+  --color-incorrect:     #ff7a70;
+  --color-incorrect-bg:  rgba(255, 122, 112, 0.13);
+  --color-warning:       #f5c04a;
+  --color-warning-soft:  rgba(245, 192, 74, 0.15);
+
+  --shadow-panel:        0 4px 18px rgba(0, 0, 0, 0.4);
+  --shadow-focus:        0 0 0 3px rgba(58, 160, 255, 0.4);
+}
+
+/* ----- AWS Ember: deep charcoal/graphite base, restrained orange accent ----- */
+[data-theme="aws"] {
+  --color-bg:            #15181c;
+  --color-surface:       #1d2126;
+  --color-surface-raised:#272c32;
+  --color-border:        #3c434b;
+
+  --color-text:          #ece9e3;
+  --color-text-muted:    #aba497;
+  --color-text-faint:    #7a7468;
+
+  --color-accent:        #e8890c;
+  --color-accent-hover:  #f5a233;
+  --color-accent-contrast: #1c1206;
+  --color-accent-soft:   rgba(232, 137, 12, 0.15);
+
+  --color-correct:       #4bc98f;
+  --color-correct-bg:    rgba(75, 201, 143, 0.13);
+  --color-incorrect:     #e2685a;
+  --color-incorrect-bg:  rgba(226, 104, 90, 0.13);
+  --color-warning:       #e8c25a;
+  --color-warning-soft:  rgba(232, 194, 90, 0.15);
+
+  --shadow-panel:        0 4px 18px rgba(0, 0, 0, 0.45);
+  --shadow-focus:        0 0 0 3px rgba(232, 137, 12, 0.35);
+}
+
+/* ----- GCP Spectrum: balanced dark-neutral base, controlled blue accent with
+   Google's red/green/yellow reserved for semantic feedback (correct/incorrect/
+   warning) rather than decoration — restrained, not a rainbow ----- */
+[data-theme="gcp"] {
+  --color-bg:            #14171c;
+  --color-surface:       #1b1f26;
+  --color-surface-raised:#242a33;
+  --color-border:        #383f4a;
+
+  --color-text:          #e9ebef;
+  --color-text-muted:    #a7aebb;
+  --color-text-faint:    #757c88;
+
+  --color-accent:        #4285f4;
+  --color-accent-hover:  #669df6;
+  --color-accent-contrast: #0c1420;
+  --color-accent-soft:   rgba(66, 133, 244, 0.16);
+
+  --color-correct:       #34a853;
+  --color-correct-bg:    rgba(52, 168, 83, 0.14);
+  --color-incorrect:     #ea4335;
+  --color-incorrect-bg:  rgba(234, 67, 53, 0.14);
+  --color-warning:       #fbbc05;
+  --color-warning-soft:  rgba(251, 188, 5, 0.16);
+
+  --shadow-panel:        0 4px 18px rgba(0, 0, 0, 0.42);
+  --shadow-focus:        0 0 0 3px rgba(66, 133, 244, 0.38);
+}
+
+/* ----- K8s Blue: cool dark infra base, Kubernetes-blue accent — a platform/
+   control-plane feel distinct from Azure Blue's brighter sky tone ----- */
+[data-theme="k8s"] {
+  --color-bg:            #0f1720;
+  --color-surface:       #16202b;
+  --color-surface-raised:#1f2c39;
+  --color-border:        #2e3d4d;
+
+  --color-text:          #e4ecf3;
+  --color-text-muted:    #98abbe;
+  --color-text-faint:    #67798c;
+
+  --color-accent:        #326ce5;
+  --color-accent-hover:  #5789ec;
+  --color-accent-contrast: #07101d;
+  --color-accent-soft:   rgba(50, 108, 229, 0.16);
+
+  --color-correct:       #3fcf95;
+  --color-correct-bg:    rgba(63, 207, 149, 0.13);
+  --color-incorrect:     #ef6a63;
+  --color-incorrect-bg:  rgba(239, 106, 99, 0.13);
+  --color-warning:       #e0b64c;
+  --color-warning-soft:  rgba(224, 182, 76, 0.15);
+
+  --shadow-panel:        0 4px 18px rgba(0, 0, 0, 0.42);
+  --shadow-focus:        0 0 0 3px rgba(50, 108, 229, 0.4);
+}
+
+/* ----- Slate Blue: dark slate surfaces, restrained steel-blue accent ----- */
+[data-theme="slate"] {
+  --color-bg:            #151a22;
+  --color-surface:       #1d242f;
+  --color-surface-raised:#27303d;
+  --color-border:        #364152;
+
+  --color-text:          #e3e9f2;
+  --color-text-muted:    #9aa8bc;
+  --color-text-faint:    #6b7789;
+
+  --color-accent:        #7aa2d4;
+  --color-accent-hover:  #93b5e0;
+  --color-accent-contrast: #0e1521;
+  --color-accent-soft:   rgba(122, 162, 212, 0.14);
+
+  --color-correct:       #4cc38a;
+  --color-correct-bg:    rgba(76, 195, 138, 0.12);
+  --color-incorrect:     #e5735f;
+  --color-incorrect-bg:  rgba(229, 115, 95, 0.12);
+  --color-warning:       #d9b45b;
+  --color-warning-soft:  rgba(217, 180, 91, 0.14);
+
+  --shadow-panel:        0 4px 18px rgba(0, 0, 0, 0.4);
+  --shadow-focus:        0 0 0 3px rgba(122, 162, 212, 0.35);
+}
+
+/* ----- Amber Graphite: warm neutral graphite, subtle amber accent ----- */
+[data-theme="amber"] {
+  --color-bg:            #171511;
+  --color-surface:       #201d18;
+  --color-surface-raised:#2a2620;
+  --color-border:        #3b352b;
+
+  --color-text:          #ece7dd;
+  --color-text-muted:    #ada590;
+  --color-text-faint:    #7d7663;
+
+  --color-accent:        #d9a441;
+  --color-accent-hover:  #e5b55e;
+  --color-accent-contrast: #201a0c;
+  --color-accent-soft:   rgba(217, 164, 65, 0.13);
+
+  --color-correct:       #6fbf73;
+  --color-correct-bg:    rgba(111, 191, 115, 0.12);
+  --color-incorrect:     #e07856;
+  --color-incorrect-bg:  rgba(224, 120, 86, 0.12);
+  --color-warning:       #e8c268;
+  --color-warning-soft:  rgba(232, 194, 104, 0.15);
+
+  --shadow-panel:        0 4px 18px rgba(0, 0, 0, 0.42);
+  --shadow-focus:        0 0 0 3px rgba(217, 164, 65, 0.35);
+}
+
+/* ----- Soft Light: warm off-white surfaces, no pure white, no glare ----- */
+[data-theme="light"] {
+  --color-bg:            #eceae4;
+  --color-surface:       #f6f4ee;
+  --color-surface-raised:#eeebe3;
+  --color-border:        #d8d3c6;
+
+  --color-text:          #2b2822;
+  --color-text-muted:    #5f594c;
+  --color-text-faint:    #8d8778;
+
+  --color-accent:        #2a5fc4;   /* deeper so it doesn't wash out on light */
+  --color-accent-hover:  #1f4fae;
+  --color-accent-contrast: #ffffff;
+  --color-accent-soft:   rgba(42, 95, 196, 0.10);
+
+  --color-correct:       #1e7d55;
+  --color-correct-bg:    rgba(30, 125, 85, 0.10);
+  --color-incorrect:     #bd4040;
+  --color-incorrect-bg:  rgba(189, 64, 64, 0.10);
+  --color-warning:       #9a6b0a;   /* darkened for readable text on light */
+  --color-warning-soft:  rgba(154, 107, 10, 0.12);
+
+  --shadow-panel:        0 3px 12px rgba(60, 52, 38, 0.10);
+  --shadow-focus:        0 0 0 3px rgba(42, 95, 196, 0.30);
+}

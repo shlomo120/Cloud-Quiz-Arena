@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloud Quiz Arena</title>
+  <meta name="description" content="A static, client-side quiz platform for cloud technologies (Azure, AWS, GCP)." />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+
+  <!-- ============ Header ============ -->
+  <header class="app-header">
+    <div class="header-brand">
+      <h1 class="app-title" data-i18n="app.title">☁️ Cloud Quiz Arena</h1>
+      <p class="app-subtitle" data-i18n="app.subtitle">Test your cloud knowledge — Azure, AWS &amp; GCP</p>
+    </div>
+    <div class="header-actions">
+      <span class="badge badge-mode" data-i18n-title="badge.mode.title" title="Runs entirely in your browser — no backend, no login">
+        <span class="badge-dot" aria-hidden="true"></span>
+        <span data-i18n="badge.mode.text">Static / Local mode</span>
+      </span>
+      <button type="button" class="btn btn-compact" id="glossary-btn"
+              data-i18n="nav.glossary" data-i18n-title="nav.glossary.title"
+              title="Browse all cloud terms">📖 Glossary</button>
+      <select id="lang-select" class="select select-compact"
+              data-i18n-aria-label="lang.label" data-i18n-title="lang.label"
+              aria-label="Language" title="Language">
+        <option value="en">English</option>
+        <option value="he">עברית</option>
+      </select>
+      <div class="theme-picker" id="theme-picker">
+        <button type="button" class="theme-picker-toggle" id="theme-picker-toggle"
+                aria-haspopup="listbox" aria-expanded="false" aria-controls="theme-picker-menu"
+                data-i18n-title="theme.label.title" data-i18n-aria-label="theme.select.aria"
+                title="Choose color theme" aria-label="Color theme">
+          <span class="theme-swatch" id="theme-picker-swatch" data-swatch-theme="dark" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          <span class="theme-picker-label" id="theme-picker-label">Dark</span>
+          <span class="theme-picker-caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="theme-picker-menu is-hidden" id="theme-picker-menu" role="listbox"
+             data-i18n-aria-label="theme.select.aria" aria-label="Color theme">
+          <button type="button" class="theme-option" role="option" data-theme="azure" aria-selected="false">
+            <span class="theme-swatch" data-swatch-theme="azure" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="theme-option-label" data-i18n="theme.azure">Azure Blue</span>
+            <span class="theme-option-check" aria-hidden="true">✓</span>
+          </button>
+          <button type="button" class="theme-option" role="option" data-theme="aws" aria-selected="false">
+            <span class="theme-swatch" data-swatch-theme="aws" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="theme-option-label" data-i18n="theme.aws">AWS Ember</span>
+            <span class="theme-option-check" aria-hidden="true">✓</span>
+          </button>
+          <button type="button" class="theme-option" role="option" data-theme="gcp" aria-selected="false">
+            <span class="theme-swatch" data-swatch-theme="gcp" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="theme-option-label" data-i18n="theme.gcp">GCP Spectrum</span>
+            <span class="theme-option-check" aria-hidden="true">✓</span>
+          </button>
+          <button type="button" class="theme-option" role="option" data-theme="k8s" aria-selected="false">
+            <span class="theme-swatch" data-swatch-theme="k8s" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="theme-option-label" data-i18n="theme.k8s">K8s Blue</span>
+            <span class="theme-option-check" aria-hidden="true">✓</span>
+          </button>
+          <div class="theme-picker-divider" role="separator"></div>
+          <button type="button" class="theme-option" role="option" data-theme="dark" aria-selected="true">
+            <span class="theme-swatch" data-swatch-theme="dark" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="theme-option-label" data-i18n="theme.dark">Dark</span>
+            <span class="theme-option-check" aria-hidden="true">✓</span>
+          </button>
+          <button type="button" class="theme-option" role="option" data-theme="slate" aria-selected="false">
+            <span class="theme-swatch" data-swatch-theme="slate" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="theme-option-label" data-i18n="theme.slate">Slate Blue</span>
+            <span class="theme-option-check" aria-hidden="true">✓</span>
+          </button>
+          <button type="button" class="theme-option" role="option" data-theme="amber" aria-selected="false">
+            <span class="theme-swatch" data-swatch-theme="amber" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="theme-option-label" data-i18n="theme.amber">Amber Graphite</span>
+            <span class="theme-option-check" aria-hidden="true">✓</span>
+          </button>
+          <button type="button" class="theme-option" role="option" data-theme="light" aria-selected="false">
+            <span class="theme-swatch" data-swatch-theme="light" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="theme-option-label" data-i18n="theme.light">Soft Light</span>
+            <span class="theme-option-check" aria-hidden="true">✓</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <div class="layout">
+
+      <!-- ============ Left column: setup, controls, score ============ -->
+      <div class="layout-side">
+
+        <!-- Topic selection panel -->
+        <section class="panel" id="setup-panel" aria-labelledby="setup-title">
+          <div class="panel-header">
+            <h2 class="panel-title" id="setup-title" data-i18n="setup.title">Quiz setup</h2>
+            <button type="button" class="btn btn-compact setup-toggle" id="setup-toggle"
+                    data-i18n="setup.hide"
+                    aria-expanded="true" aria-controls="setup-body">Hide setup</button>
+          </div>
+          <div class="setup-summary is-hidden" id="setup-summary" aria-live="polite"></div>
+          <div id="setup-body">
+
+          <!-- Step 1 — Track -->
+          <fieldset class="setup-step" id="step-track">
+            <legend class="step-title" data-i18n="step.track">1 · Track</legend>
+            <div class="segmented" id="track-group" role="radiogroup" data-i18n-aria-label="track.aria" aria-label="Track">
+              <label class="segment"><input type="radio" name="track" value="cloud" /><span data-i18n="track.cloud">☁ Cloud</span></label>
+              <label class="segment"><input type="radio" name="track" value="noncloud" /><span data-i18n="track.noncloud">🛠 Non-Cloud</span></label>
+              <label class="segment"><input type="radio" name="track" value="mixed" /><span data-i18n="track.mixed">🔀 Mixed</span></label>
+            </div>
+            <span class="field-hint" id="track-hint" data-i18n="track.hint">Choose a track to narrow the quiz setup.</span>
+          </fieldset>
+
+          <!-- Step 2 — Scope (rendered per track) -->
+          <fieldset class="setup-step is-hidden" id="step-scope">
+            <legend class="step-title" data-i18n="step.scope">2 · Scope</legend>
+            <div class="scope-block is-hidden" id="scope-cloud">
+              <span class="scope-block-label" data-i18n="scope.cloudProviders">Cloud providers</span>
+              <div class="chip-group" id="provider-list"></div>
+            </div>
+            <div class="scope-block is-hidden" id="scope-topics">
+              <span class="scope-block-label" data-i18n="scope.nonCloudTopics">Non-cloud topics</span>
+              <div class="chip-group" id="topic-list"></div>
+              <span class="field-hint" id="topics-hint" data-i18n="scope.topicsHint">Pick at least one topic to continue.</span>
+            </div>
+          </fieldset>
+
+          <!-- Step 3 — Focus areas (data-aware) -->
+          <fieldset class="setup-step is-hidden" id="step-domains">
+            <legend class="step-title" data-i18n="step.domains">3 · Focus areas</legend>
+            <span class="field-hint" id="domains-hint"></span>
+            <div id="domain-list"></div>
+          </fieldset>
+
+          <!-- Step 4 — Quiz options -->
+          <div class="setup-step is-hidden" id="step-options">
+            <span class="step-title" data-i18n="step.options">4 · Quiz options</span>
+
+            <fieldset class="field-group">
+              <legend class="field-label" data-i18n="field.questionTypes">Question types</legend>
+              <div class="chip-group" id="question-type-list"></div>
+            </fieldset>
+
+            <fieldset class="field-group">
+              <legend class="field-label" data-i18n="field.difficulty">Difficulty</legend>
+              <div class="segmented" id="difficulty-group" role="radiogroup" data-i18n-aria-label="field.difficulty.aria" aria-label="Difficulty"></div>
+            </fieldset>
+
+            <fieldset class="field-group">
+              <legend class="field-label" data-i18n="field.mode">Mode</legend>
+              <div class="segmented" id="mode-group" role="radiogroup" data-i18n-aria-label="field.mode.aria" aria-label="Quiz mode">
+                <label class="segment">
+                  <input type="radio" name="mode" value="study" checked />
+                  <span data-i18n="mode.study">Study</span>
+                </label>
+                <label class="segment">
+                  <input type="radio" name="mode" value="exam" />
+                  <span data-i18n="mode.exam">Exam</span>
+                </label>
+              </div>
+              <span class="field-hint" data-i18n="mode.hint">Study shows feedback instantly; Exam reveals results at the end.</span>
+            </fieldset>
+
+            <div class="field-group field-row">
+              <label class="field-label" for="question-count" data-i18n="field.questionCount">Number of questions</label>
+              <select id="question-count" class="select">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+              </select>
+            </div>
+
+            <div class="field-group field-row is-hidden" id="mixed-row">
+              <label class="field-label" for="mixed-toggle">
+                <span data-i18n="field.mixedQuestions">Mixed questions</span>
+                <span class="field-hint" data-i18n="field.mixedQuestions.hint">Allow cross-provider comparison questions</span>
+              </label>
+              <input type="checkbox" id="mixed-toggle" class="switch" role="switch" />
+            </div>
+
+            <div class="field-group field-row">
+              <label class="field-label" for="adaptive-toggle">
+                <span data-i18n="field.adaptiveFocus">Adaptive focus</span>
+                <span class="field-hint" data-i18n="field.adaptiveFocus.hint">Ask more from domains you get wrong</span>
+              </label>
+              <input type="checkbox" id="adaptive-toggle" class="switch" role="switch" checked />
+            </div>
+          </div>
+
+          <p class="setup-warning is-hidden" id="setup-warning" role="alert"></p>
+
+          </div><!-- /#setup-body -->
+        </section>
+
+        <!-- Quiz control bar -->
+        <section class="panel control-bar" aria-label="Quiz controls">
+          <button type="button" class="btn btn-primary" id="btn-start" data-i18n="control.start">Start Quiz</button>
+          <button type="button" class="btn" id="btn-daily"
+                  data-i18n="control.daily" data-i18n-title="control.daily.title"
+                  title="A deterministic 10-question quiz seeded by today's date — same set for everyone">🗓 Daily Challenge</button>
+          <button type="button" class="btn" id="btn-reset" data-i18n="control.reset">Reset Session</button>
+          <button type="button" class="btn" id="btn-review" disabled
+                  data-i18n="control.review"
+                  title="Available after you answer some questions">Review Mistakes</button>
+        </section>
+
+        <!-- Live score panel -->
+        <aside class="panel" id="scoreboard-panel" aria-labelledby="scoreboard-title">
+          <h2 class="panel-title" id="scoreboard-title" data-i18n="board.title">Session stats</h2>
+          <div id="scoreboard-container" class="stats-grid">
+            <!-- Stat tiles injected by render.js -->
+          </div>
+          <div class="stats-providers">
+            <span class="field-label" data-i18n="board.activeProviders">Active providers</span>
+            <div id="active-providers" class="provider-tags">
+              <!-- Active provider tags injected by render.js -->
+            </div>
+          </div>
+          <div class="stats-progress is-hidden" id="progress-container">
+            <!-- Lifetime (this visit) accuracy bars injected by render.js -->
+          </div>
+        </aside>
+
+      </div>
+
+      <!-- ============ Right column: quiz area ============ -->
+      <section class="panel quiz-area" id="quiz-panel" data-i18n-aria-label="quiz.aria" aria-label="Quiz" aria-live="polite">
+
+        <!-- Placeholder shown before a quiz starts -->
+        <div class="quiz-placeholder" id="quiz-placeholder">
+          <div class="quiz-placeholder-icon" aria-hidden="true">🎯</div>
+          <h2 class="quiz-placeholder-title" data-i18n="placeholder.title">Ready when you are</h2>
+          <p class="quiz-placeholder-text">
+            <span data-i18n="placeholder.instructionPrefix">Pick your track, scope and difficulty on the left, then press</span>
+            <strong data-i18n="control.start">Start Quiz</strong><span data-i18n="placeholder.instructionSuffix">.</span>
+          </p>
+          <p class="quiz-placeholder-summary is-hidden" id="quiz-placeholder-summary">
+            <!-- Compact current-setup recap injected by render.js -->
+          </p>
+          <button type="button" class="btn btn-primary quiz-placeholder-start" id="btn-start-panel"
+                  data-i18n="control.start">Start Quiz</button>
+          <p class="quiz-placeholder-note is-hidden" id="quiz-placeholder-note">
+            <!-- Status message injected by render.js -->
+          </p>
+        </div>
+
+        <!-- Active question (hidden until the engine phase) -->
+        <article class="question-card is-hidden" id="question-container">
+          <header class="question-meta">
+            <span class="badge" id="question-provider-badge"></span>
+            <span class="question-meta-end">
+              <button type="button" class="question-id" id="question-id-badge" data-i18n-title="question.id.copy">
+                <span data-i18n="question.id.label">ID</span>
+                <span class="question-id-value" id="question-id-value"></span>
+              </button>
+              <span class="question-progress" id="question-progress"></span>
+            </span>
+          </header>
+          <h2 class="question-prompt" id="question-prompt" tabindex="-1"></h2>
+          <p class="question-instruction" id="question-instruction"></p>
+          <div class="answer-options" id="answer-options">
+            <!-- Answer controls injected by render.js -->
+          </div>
+          <div class="feedback is-hidden" id="feedback-area">
+            <p class="feedback-verdict" id="feedback-verdict"></p>
+            <p class="feedback-explanation" id="feedback-explanation"></p>
+            <p class="feedback-reference" id="feedback-reference">
+              <!-- Documentation link injected by render.js -->
+            </p>
+          </div>
+          <div class="question-actions">
+            <label class="chip not-sure-chip" data-i18n-title="question.notSure.title" title="Flag this answer as a guess — tracked in your summary">
+              <input type="checkbox" id="not-sure-toggle" />
+              <span data-i18n="question.notSure">🤔 Not sure</span>
+            </label>
+            <button type="button" class="btn btn-primary" id="btn-submit" disabled data-i18n="answer.submit">Submit Answer</button>
+            <button type="button" class="btn btn-primary is-hidden" id="btn-next" data-i18n="answer.next">Next Question</button>
+          </div>
+        </article>
+
+        <!-- End-of-session summary (rendered by render.js) -->
+        <div class="quiz-summary is-hidden" id="summary-container">
+          <!-- Summary stats and breakdowns injected by render.js -->
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <p data-i18n="footer.text">Runs 100% in your browser — no backend, no login, no tracking.</p>
+  </footer>
+
+  <!-- ============ Review Mistakes modal (populated by render.js) ============ -->
+  <div class="review-overlay is-hidden" id="review-overlay">
+    <div class="review-modal panel" role="dialog" aria-modal="true" aria-labelledby="review-title">
+      <div class="review-header">
+        <h2 class="review-title" id="review-title" data-i18n="review.title">Review Mistakes</h2>
+        <button type="button" class="btn btn-icon" id="review-close" data-i18n-aria-label="review.close" aria-label="Close review">✕</button>
+      </div>
+      <div class="review-filters">
+        <label class="review-filter">
+          <span class="field-label" data-i18n="review.filter.provider">Provider</span>
+          <select id="review-filter-provider" class="select"></select>
+        </label>
+        <label class="review-filter">
+          <span class="field-label" data-i18n="review.filter.domain">Domain</span>
+          <select id="review-filter-domain" class="select"></select>
+        </label>
+      </div>
+      <div class="review-list" id="review-list">
+        <!-- Mistake cards injected by render.js -->
+      </div>
+      <div class="review-footer">
+        <button type="button" class="btn btn-primary" id="btn-retry" data-i18n="review.retryButton">Retry Wrong Answers</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Modules (classic scripts, shared CQA namespace, load order matters) ============ -->
+  <!-- i18n loads first: every other module reads through CQA.i18n -->
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/i18n-strings.js"></script>
+  <script src="assets/js/data.js"></script>
+  <!-- Quiz packs & tooltip dictionary (data only, must load after data.js) -->
+  <script src="assets/data/questions-azure.js"></script>
+  <script src="assets/data/questions-azure-2.js"></script>
+  <script src="assets/data/questions-aws.js"></script>
+  <script src="assets/data/questions-aws-2.js"></script>
+  <script src="assets/data/questions-gcp.js"></script>
+  <script src="assets/data/questions-gcp-2.js"></script>
+  <script src="assets/data/questions-mixed.js"></script>
+  <script src="assets/data/questions-mixed-2.js"></script>
+  <script src="assets/data/questions-kubernetes.js"></script>
+  <script src="assets/data/questions-networking.js"></script>
+  <script src="assets/data/questions-netsec.js"></script>
+  <script src="assets/data/questions-dns-lb.js"></script>
+  <script src="assets/data/questions-containers.js"></script>
+  <script src="assets/data/questions-federation.js"></script>
+  <script src="assets/data/questions-hybrid.js"></script>
+  <script src="assets/data/questions-siem.js"></script>
+  <script src="assets/data/questions-topup-core.js"></script>
+  <script src="assets/data/questions-topup-ops.js"></script>
+  <script src="assets/data/questions-topup-platform.js"></script>
+  <script src="assets/data/questions-topup-security.js"></script>
+  <script src="assets/data/tooltips.js"></script>
+  <script src="assets/js/state.js"></script>
+  <script src="assets/js/quiz-engine.js"></script>
+  <script src="assets/js/tooltip-manager.js"></script>
+  <script src="assets/js/certificate.js"></script>
+  <script src="assets/js/render.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
