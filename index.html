@@ -263,6 +263,19 @@
               <span class="question-progress" id="question-progress"></span>
             </span>
           </header>
+          <div class="question-timers" id="question-timers">
+            <span class="timer-chip" id="session-timer">
+              <span class="timer-chip-label" data-i18n="timer.session.label">Session time</span>
+              <span class="timer-chip-value" id="session-timer-value">00:00</span>
+            </span>
+            <span class="timer-chip" id="question-timer">
+              <span class="timer-chip-label" data-i18n="timer.question.label">Time remaining</span>
+              <span class="timer-chip-value" id="question-timer-value">01:00</span>
+            </span>
+          </div>
+          <p class="question-timeout-note is-hidden" id="question-timeout-note">
+            <!-- Timeout status injected by render.js -->
+          </p>
           <h2 class="question-prompt" id="question-prompt" tabindex="-1"></h2>
           <p class="question-instruction" id="question-instruction"></p>
           <div class="answer-options" id="answer-options">
@@ -270,6 +283,7 @@
           </div>
           <div class="feedback is-hidden" id="feedback-area">
             <p class="feedback-verdict" id="feedback-verdict"></p>
+            <p class="feedback-late-note is-hidden" id="feedback-late-note"></p>
             <p class="feedback-explanation" id="feedback-explanation"></p>
             <p class="feedback-reference" id="feedback-reference">
               <!-- Documentation link injected by render.js -->
@@ -351,9 +365,36 @@
   <script src="assets/data/questions-topup-ops.js"></script>
   <script src="assets/data/questions-topup-platform.js"></script>
   <script src="assets/data/questions-topup-security.js"></script>
+  <!-- Phase 20 — AI & Agents -->
+  <script src="assets/data/questions-ai-fundamentals.js"></script>
+  <script src="assets/data/questions-claude.js"></script>
+  <script src="assets/data/questions-mcp.js"></script>
+  <script src="assets/data/questions-ai-security.js"></script>
+  <script src="assets/data/questions-copilot.js"></script>
+  <script src="assets/data/questions-local-agents.js"></script>
+  <script src="assets/data/questions-scripts-secrets.js"></script>
+  <script src="assets/data/questions-hooks.js"></script>
+  <script src="assets/data/questions-ai-mixed.js"></script>
+  <!-- Phase 21 — coverage top-ups (fix thin filtered pools) -->
+  <script src="assets/data/questions-topup-netsec-p21.js"></script>
+  <script src="assets/data/questions-topup-kubernetes-p21.js"></script>
+  <script src="assets/data/questions-topup-containers-p21.js"></script>
+  <script src="assets/data/questions-topup-dns-lb-p21.js"></script>
+  <script src="assets/data/questions-topup-hybrid-p21.js"></script>
+  <script src="assets/data/questions-topup-federation-p21.js"></script>
+  <script src="assets/data/questions-topup-siem-p21.js"></script>
+  <script src="assets/data/questions-topup-ai-fundamentals-p21.js"></script>
+  <script src="assets/data/questions-topup-claude-p21.js"></script>
+  <script src="assets/data/questions-topup-mcp-p21.js"></script>
+  <script src="assets/data/questions-topup-ai-security-p21.js"></script>
+  <script src="assets/data/questions-topup-copilot-p21.js"></script>
+  <script src="assets/data/questions-topup-local-agents-p21.js"></script>
+  <script src="assets/data/questions-topup-scripts-secrets-p21.js"></script>
+  <script src="assets/data/questions-topup-hooks-p21.js"></script>
   <script src="assets/data/tooltips.js"></script>
   <script src="assets/js/state.js"></script>
   <script src="assets/js/quiz-engine.js"></script>
+  <script src="assets/js/timer.js"></script>
   <script src="assets/js/tooltip-manager.js"></script>
   <script src="assets/js/certificate.js"></script>
   <script src="assets/js/render.js"></script>

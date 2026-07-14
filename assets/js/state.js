@@ -44,6 +44,7 @@ CQA.state = (function () {
         isRetry: false,
         isDaily: false,
         notSureActive: false, // "Not sure" flag for the current question
+        questionTimedOut: false, // per-question 60s timer expired for the current question
         optionOrders: {},    // { questionId: [displayPos → original option index] }
         mistakes: [],        // [{ question, selectedIndices, correctIndices, wasUnsure }]
       },

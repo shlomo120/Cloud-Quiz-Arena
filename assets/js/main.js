@@ -156,6 +156,20 @@
      Quiz flow
      ====================================================================== */
 
+  // Short pause before auto-advancing an Exam-mode question the per-question
+  // timer locked with no answer — long enough to read "time expired", short
+  // enough to match Exam mode's existing "submit and move on" pace (Exam
+  // mode never otherwise pauses for feedback; see submitAnswer()).
+  const EXAM_TIMEOUT_ADVANCE_DELAY_MS = 1500;
+  let examTimeoutAdvanceId = null;
+
+  function clearExamTimeoutAdvance() {
+    if (examTimeoutAdvanceId !== null) {
+      clearTimeout(examTimeoutAdvanceId);
+      examTimeoutAdvanceId = null;
+    }
+  }
+
   function startQuiz() {
     if (!CQA.state.get().settings.track) {
       CQA.render.showPlaceholder(CQA.i18n.t("placeholder.needTrack"));
@@ -166,6 +180,7 @@
       CQA.render.showPlaceholder(outcome.reason);
       return;
     }
+    CQA.timer.startSessionTimer(CQA.render.renderSessionTimer);
     CQA.render.renderScoreboard();
     CQA.render.updateReviewButton();
     CQA.render.collapseSetupOnMobile();
@@ -176,6 +191,7 @@
     const outcome = CQA.engine.startRetrySession();
     if (!outcome.ok) return;
     if (CQA.render.isReviewOpen()) CQA.render.closeReview();
+    CQA.timer.startSessionTimer(CQA.render.renderSessionTimer);
     CQA.render.renderScoreboard();
     CQA.render.updateReviewButton();
     CQA.render.collapseSetupOnMobile();
@@ -188,6 +204,7 @@
       CQA.render.showPlaceholder(outcome.reason);
       return;
     }
+    CQA.timer.startSessionTimer(CQA.render.renderSessionTimer);
     CQA.render.renderScoreboard();
     CQA.render.updateReviewButton();
     CQA.render.collapseSetupOnMobile();
@@ -201,12 +218,52 @@
       session.currentIndex,
       session.questions.length
     );
+    // Starts fresh every render — including the language-switch refresh
+    // path, which is an accepted, already-documented edge case (see
+    // onLanguageChange: an in-flight question is deliberately reset there).
+    CQA.timer.startQuestionTimer(CQA.render.renderQuestionTimer, handleQuestionTimeout);
+  }
+
+  /**
+   * The 60s per-question timer reached zero. Practice mode just shows an
+   * inline note and leaves every control active — the user can still
+   * submit normally afterward (submitAnswer() below flags it as late).
+   * Exam mode locks the question and records it as unanswered (empty
+   * selection — the existing scoring path already treats that as
+   * incorrect), then auto-advances after a short pause.
+   */
+  function handleQuestionTimeout() {
+    const session = CQA.state.get().session;
+    if (!session.active || session.awaitingNext) return; // already answered/moved on
+    session.questionTimedOut = true;
+
+    if (CQA.state.get().settings.mode !== "exam") {
+      CQA.render.showQuestionTimeout("practice");
+      return;
+    }
+
+    CQA.render.showQuestionTimeout("exam");
+    const result = CQA.engine.submitAnswer([], false); // unanswered — never the transient unsubmitted selection
+    if (!result) return;
+    CQA.render.renderScoreboard(); // masked, only "Answered" ticks up
+    CQA.render.updateReviewButton();
+
+    clearExamTimeoutAdvance();
+    examTimeoutAdvanceId = setTimeout(function () {
+      examTimeoutAdvanceId = null;
+      // Guard: the session may have been reset/ended during the pause.
+      if (CQA.state.get().session.active && CQA.state.get().session.awaitingNext) {
+        nextQuestion();
+      }
+    }, EXAM_TIMEOUT_ADVANCE_DELAY_MS);
   }
 
   function submitAnswer() {
     const selected = CQA.render.readSelectedAnswers();
     if (selected.length === 0) return;
 
+    const wasLate = CQA.state.get().session.questionTimedOut === true;
+    CQA.timer.stopQuestionTimer(); // answered — the countdown no longer applies
     const result = CQA.engine.submitAnswer(
       selected,
       CQA.state.get().session.notSureActive === true
@@ -220,24 +277,29 @@
       return;
     }
 
-    CQA.render.renderFeedback(CQA.engine.getCurrentQuestion(), result);
+    CQA.render.renderFeedback(CQA.engine.getCurrentQuestion(), result, wasLate);
     CQA.render.renderScoreboard();
     CQA.render.updateReviewButton();
   }
 
   function nextQuestion() {
+    CQA.timer.stopQuestionTimer(); // defensive — already stopped on submit/timeout, never two live intervals
+    clearExamTimeoutAdvance();
     const question = CQA.engine.advance();
     if (question) {
       showCurrentQuestion();
       return;
     }
-    // Session over: render the summary and unmask exam results.
+    // Session over: stop the session clock, render the summary, unmask exam results.
+    CQA.timer.stopSessionTimer();
     CQA.render.renderSummary(CQA.engine.getSummary());
     CQA.render.renderScoreboard();
     CQA.render.updateReviewButton();
   }
 
   function resetSession() {
+    CQA.timer.stopAll();
+    clearExamTimeoutAdvance();
     CQA.state.resetSession();
     CQA.render.renderScoreboard();
     CQA.render.updateReviewButton();

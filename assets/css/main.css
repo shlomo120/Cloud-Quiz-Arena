@@ -758,6 +758,63 @@ button {
   color: var(--color-correct);
 }
 
+/* ----- Question/session timers ----- */
+.question-timers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.timer-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.2rem var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.timer-chip-label {
+  color: var(--color-text-faint);
+}
+
+.timer-chip-value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Last 10 seconds of the per-question timer: color AND a text change
+   (a prefixed warning icon), never color alone. */
+.timer-chip.is-critical {
+  border-color: var(--color-incorrect);
+  background: var(--color-incorrect-bg);
+}
+
+.timer-chip.is-critical .timer-chip-label,
+.timer-chip.is-critical .timer-chip-value {
+  color: var(--color-incorrect);
+}
+
+.question-timeout-note {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-warning);
+}
+
+/* Exam mode: the question is locked, not just "time's up" — a firmer color. */
+.question-timeout-note.is-locked-note {
+  color: var(--color-incorrect);
+}
+
+.feedback-late-note {
+  font-size: var(--font-size-sm);
+  color: var(--color-warning);
+}
+
 .question-prompt {
   font-size: var(--font-size-lg);
   line-height: 1.4;

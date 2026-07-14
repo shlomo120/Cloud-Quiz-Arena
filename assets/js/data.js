@@ -58,11 +58,13 @@
  *   (["azure","aws"], shown only with the Mixed toggle), or neutral
  *   (["neutral"]).
  *
- * Domains (16), grouped for the setup UI via the `group` field:
- *   core:     identity, compute, networking, storage
- *   ops:      governance, monitoring, cost, resiliency
- *   platform: kubernetes, containers, dns-lb, hybrid
- *   security: security, netsec, federation, siem
+ * Domains (24), grouped for the setup UI via the `group` field:
+ *   core:      identity, compute, networking, storage
+ *   ops:       governance, monitoring, cost, resiliency
+ *   platform:  kubernetes, containers, dns-lb, hybrid
+ *   security:  security, netsec, federation, siem
+ *   ai-agents: ai-fundamentals, claude, mcp, ai-security, copilot,
+ *              local-agents, scripts-secrets, hooks (Phase 20)
  *
  * Question totals by pack:
  *   azure-core 12 + azure-extended 25 = 37   aws:  12 + 25 = 37
@@ -70,21 +72,46 @@
  *   kubernetes 20 · networking-fundamentals 20 · firewall-netsec 20
  *   dns-lb 12 · containers-registries 12 · identity-federation 10
  *   hybrid-connectivity 10 · observability-siem 10
- *   Grand total: 254 questions (416 after the Phase 14 coverage expansion,
- *   which added 4 topup-* packs so every domain reaches 30 questions with
- *   10+ at each difficulty). Tooltip dictionary: ~78 terms.
+ *   Cloud/platform/security subtotal: 254 questions (416 after the
+ *   Phase 14 coverage expansion, which added 4 topup-* packs so every
+ *   domain reaches 30 questions with 10+ at each difficulty).
  *
- * Phase 15 — bilingual content: all 78 tooltip terms now carry a Hebrew
+ *   Phase 20 — AI & Agents (all fully bilingual, see below):
+ *   ai-fundamentals-practitioner 22 · claude-usage-patterns 22
+ *   mcp-concepts 22 · ai-security 24 · copilot-workflows 22
+ *   local-agents 22 · scripts-and-secrets 22 · hooks-and-automation 22
+ *   ai-agents-mixed 12 (cross-domain, tagged with exactly 2 of the
+ *   domains above) = 190 questions.
+ *
+ *   Phase 21 — coverage top-ups (all fully bilingual): fixed thin
+ *   filtered pools (e.g. Non-Cloud/Net Security/Advanced was ~11
+ *   questions) by deepening the weakest domains rather than adding new
+ *   ones. 15 topup-*-p21 packs, +150 questions total:
+ *   netsec +16 (priority — the flagged example) · kubernetes +9 ·
+ *   containers +10 · dns-lb +8 · hybrid +10 · federation +7 · siem +6 ·
+ *   ai-fundamentals +12 · claude +12 · mcp +10 · ai-security +5 ·
+ *   copilot +12 · local-agents +12 · scripts-secrets +10 · hooks +11.
+ *   Every one of these 15 domains now clears 12+ questions per
+ *   difficulty tier in its realistic Non-Cloud/single-domain filtered
+ *   view (up from as few as 7-11). Cloud-native domains (identity,
+ *   compute, storage, governance, monitoring, cost, resiliency) already
+ *   cleared the 30-total/10-per-difficulty targets and were left as-is.
+ *
+ *   Grand total: 756 questions. Tooltip dictionary: ~99 terms.
+ *
+ * Phase 15 — bilingual content: all tooltip terms carry a Hebrew
  * shortDefinition_he. Full question translation (question_he/options_he/
  * explanation_he) is applied to the foundational core packs — azure-core,
  * aws-core, gcp-core, mixed-cross-provider (45 questions, the set every
  * learner sees regardless of which providers/domains they filter to) —
- * as a complete, production-quality example of the pattern. The other
- * ~371 questions (extended and topup packs) remain English-only for now
- * and automatically fall back to English text when Hebrew is active
- * (see localizeQuestion) rather than showing anything broken or blank;
- * extending translation to the rest of the bank means adding the same
- * three `_he` fields to more question objects, no code changes required.
+ * as a complete, production-quality example of the pattern, and to every
+ * Phase 20/21 AI & Agents and coverage-topup question (340 questions,
+ * 100% bilingual). The remaining ~371 cloud/platform/security extended
+ * questions remain English-only for now and automatically fall back to
+ * English text when Hebrew is active (see localizeQuestion) rather than
+ * showing anything broken or blank; extending translation to the rest
+ * of the bank means adding the same three `_he` fields to more question
+ * objects, no code changes required.
  */
 
 window.CQA = window.CQA || {};
@@ -105,10 +132,11 @@ CQA.data = (function () {
 
   /** Display groups for the domain chips in the setup panel. */
   const domainGroups = [
-    { id: "core",     label: "Core cloud" },
-    { id: "ops",      label: "Operations" },
-    { id: "platform", label: "Platform & connectivity" },
-    { id: "security", label: "Security & identity" },
+    { id: "core",      label: "Core cloud" },
+    { id: "ops",       label: "Operations" },
+    { id: "platform",  label: "Platform & connectivity" },
+    { id: "security",  label: "Security & identity" },
+    { id: "ai-agents", label: "AI & Agents" },
   ];
 
   /** Knowledge domains a question can belong to (grouped for the UI). */
@@ -129,6 +157,16 @@ CQA.data = (function () {
     { id: "netsec",     label: "Net Security", group: "security" },
     { id: "federation", label: "Federation",   group: "security" },
     { id: "siem",       label: "SIEM",         group: "security" },
+    // Phase 20 — AI & Agents: practical, technical AI/agent/security topics.
+    // Provider-neutral like the platform/security non-cloud families above.
+    { id: "ai-fundamentals", label: "AI Fundamentals",  group: "ai-agents" },
+    { id: "claude",          label: "Claude",           group: "ai-agents" },
+    { id: "mcp",             label: "MCP",              group: "ai-agents" },
+    { id: "ai-security",     label: "AI Security",      group: "ai-agents" },
+    { id: "copilot",         label: "Copilot",          group: "ai-agents" },
+    { id: "local-agents",    label: "Local Agents",     group: "ai-agents" },
+    { id: "scripts-secrets", label: "Scripts & Secrets", group: "ai-agents" },
+    { id: "hooks",           label: "Hooks",            group: "ai-agents" },
   ];
 
   /** Question modes supported by the quiz engine. */
@@ -153,6 +191,9 @@ CQA.data = (function () {
   const nonCloudTopicIds = [
     "kubernetes", "networking", "netsec", "dns-lb",
     "containers", "federation", "hybrid", "siem",
+    // Phase 20 — AI & Agents topics, same non-cloud/neutral-provider treatment.
+    "ai-fundamentals", "claude", "mcp", "ai-security",
+    "copilot", "local-agents", "scripts-secrets", "hooks",
   ];
 
   /** Difficulty levels. */

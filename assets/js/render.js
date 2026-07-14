@@ -48,8 +48,10 @@ CQA.render = (function () {
       "quiz-placeholder", "quiz-placeholder-note", "quiz-placeholder-summary", "btn-start-panel",
       "question-container", "question-provider-badge", "question-progress",
       "question-id-badge", "question-id-value",
+      "question-timers", "session-timer", "session-timer-value",
+      "question-timer", "question-timer-value", "question-timeout-note",
       "question-prompt", "question-instruction", "answer-options",
-      "feedback-area", "feedback-verdict", "feedback-explanation", "feedback-reference",
+      "feedback-area", "feedback-verdict", "feedback-late-note", "feedback-explanation", "feedback-reference",
       "btn-submit", "btn-next", "summary-container",
       "review-overlay", "review-title", "review-close",
       "review-filter-provider", "review-filter-domain", "review-list", "btn-retry",
@@ -651,6 +653,65 @@ CQA.render = (function () {
     }).catch(function () { /* clipboard unavailable — silently ignore */ });
   }
 
+  /* ======================================================================
+     Timers (Phase 19B)
+     ====================================================================== */
+
+  const TIMER_CRITICAL_THRESHOLD = 10; // seconds
+
+  /** MM:SS, e.g. 59 → "00:59", 754 → "12:34". */
+  function formatClock(totalSeconds) {
+    const s = Math.max(0, Math.floor(totalSeconds));
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return String(m).padStart(2, "0") + ":" + String(sec).padStart(2, "0");
+  }
+
+  /** Count-up full-session timer — plain elapsed time, no critical state. */
+  function renderSessionTimer(elapsedSeconds) {
+    el["session-timer-value"].textContent = formatClock(elapsedSeconds);
+  }
+
+  /**
+   * Count-down per-question timer. In its last 10 seconds it changes both
+   * color (via .is-critical) AND the text itself (a prefixed ⚠), so the
+   * warning never relies on color alone.
+   */
+  function renderQuestionTimer(remainingSeconds) {
+    const chip = el["question-timer"];
+    const critical = remainingSeconds > 0 && remainingSeconds <= TIMER_CRITICAL_THRESHOLD;
+    chip.classList.toggle("is-critical", critical);
+    el["question-timer-value"].textContent = (critical ? "⚠ " : "") + formatClock(remainingSeconds);
+  }
+
+  /** Disable every answer input + Submit — used when Exam mode times out. */
+  function lockAnswerControlsForTimeout() {
+    el["answer-options"].querySelectorAll(".answer-option").forEach(function (option) {
+      option.classList.add("is-locked");
+      const input = option.querySelector("input");
+      if (input) input.disabled = true;
+    });
+    el["btn-submit"].disabled = true;
+  }
+
+  /**
+   * Show the per-question timeout state. Practice mode just displays an
+   * inline note — the question stays fully answerable. Exam mode also
+   * locks every answer control so nothing can be submitted after the fact.
+   */
+  function showQuestionTimeout(mode) {
+    const note = el["question-timeout-note"];
+    note.classList.remove("is-hidden");
+    if (mode === "exam") {
+      note.textContent = CQA.i18n.t("timer.expired.exam");
+      note.classList.add("is-locked-note");
+      lockAnswerControlsForTimeout();
+    } else {
+      note.textContent = CQA.i18n.t("timer.expired.practice");
+      note.classList.remove("is-locked-note");
+    }
+  }
+
   /** Build one selectable answer option row. */
   function buildAnswerOption(question, optionText, index) {
     const isMulti = question.type === CQA.data.questionModes.MULTI_SELECT;
@@ -679,6 +740,16 @@ CQA.render = (function () {
     renderProviderBadge(question);
     renderQuestionId(question);
     el["question-progress"].textContent = CQA.i18n.t("question.progress", { index: index + 1, total: total });
+
+    // Fresh per-question timer display; main.js starts the actual countdown
+    // right after this render call. The timeout note/lock from a previous
+    // question never leaks in — answer-options below is rebuilt from
+    // scratch with fresh, enabled inputs regardless.
+    el["question-timer"].classList.remove("is-critical");
+    el["question-timer-value"].textContent = formatClock(CQA.timer.QUESTION_SECONDS);
+    el["question-timeout-note"].classList.add("is-hidden");
+    el["question-timeout-note"].classList.remove("is-locked-note");
+    el["question-timeout-note"].textContent = "";
 
     const localized = CQA.data.localizeQuestion(question, CQA.i18n.getLang());
     el["question-prompt"].textContent = localized.question;
@@ -745,9 +816,16 @@ CQA.render = (function () {
   /**
    * Mark the options, lock the inputs, and show verdict + explanation +
    * resource reference. `result` comes from CQA.engine.submitAnswer().
+   * `wasLate` (Practice mode only) flags that the per-question timer had
+   * already expired when the user submitted — scoring is unaffected, this
+   * is purely an inline visual note.
    */
-  function renderFeedback(question, result) {
+  function renderFeedback(question, result, wasLate) {
     const localized = CQA.data.localizeQuestion(question, CQA.i18n.getLang());
+
+    const lateNote = el["feedback-late-note"];
+    lateNote.classList.toggle("is-hidden", !wasLate);
+    if (wasLate) lateNote.textContent = CQA.i18n.t("timer.answeredLate");
 
     const options = Array.from(el["answer-options"].querySelectorAll(".answer-option"));
     options.forEach(function (option) {
@@ -1164,6 +1242,9 @@ CQA.render = (function () {
     showPlaceholder,
     renderQuestion,
     copyQuestionId,
+    renderSessionTimer,
+    renderQuestionTimer,
+    showQuestionTimeout,
     readSelectedAnswers,
     syncNotSureChip,
     syncSubmitEnabled,

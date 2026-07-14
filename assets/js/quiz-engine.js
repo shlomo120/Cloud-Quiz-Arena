@@ -369,6 +369,7 @@ CQA.engine = (function () {
     if (!session.active) return null;
     session.awaitingNext = false;
     session.notSureActive = false; // confidence flag resets per question
+    session.questionTimedOut = false; // per-question timer flag resets per question
 
     if (isLastQuestion()) {
       session.finished = true;
