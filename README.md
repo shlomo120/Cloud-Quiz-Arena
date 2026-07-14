@@ -30,6 +30,9 @@ sign-up: open `index.html` in a browser and start quizzing.
 
 No install, no dependencies. Either:
 
+Open https://shlomo120.github.io/Cloud-Quiz-Arena/ 
+
+or download this repo and
 - Open [`index.html`](index.html) directly in a browser, **or**
 - Serve the folder with any static file server, e.g.:
 
