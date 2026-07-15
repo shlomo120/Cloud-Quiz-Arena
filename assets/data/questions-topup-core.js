@@ -15,15 +15,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does multi-factor authentication (MFA) require beyond a password?",
+      question_he: "מה נדרש באימות רב-גורמי (MFA) מעבר לסיסמה?",
       options: [
         "A second, independent proof of identity — a code, device prompt or biometric",
         "A longer password",
         "A second username",
         "Nothing — a strong password already counts as MFA",
       ],
+      options_he: [
+        "הוכחת זהות שנייה ובלתי תלויה — קוד, אישור במכשיר או ביומטריה",
+        "סיסמה ארוכה יותר",
+        "שם משתמש נוסף",
+        "שום דבר — סיסמה חזקה כבר נחשבת ל-MFA",
+      ],
       correctAnswer: 0,
       explanation:
         "MFA combines at least two independent factors — something you know (password), something you have (a device or token) or something you are (biometric). A leaked password alone is no longer enough to sign in, which is why MFA blocks the overwhelming majority of credential-based account takeovers.",
+      explanation_he:
+        "MFA משלב לפחות שני גורמים בלתי תלויים — משהו שאתה יודע (סיסמה), משהו שיש לך (מכשיר או טוקן) או משהו שאתה (ביומטריה). סיסמה שדלפה לבדה כבר לא מספיקה כדי להתחבר, וזו הסיבה ש-MFA חוסם את הרוב המכריע של השתלטויות על חשבונות המבוססות על פרטי גישה.",
       resourceTitle: "Multi-factor authentication (Microsoft Entra)",
       resourceUrl: "https://learn.microsoft.com/entra/identity/authentication/concept-mfa-howitworks",
       keywords: ["mfa", "multi-factor", "authentication factors"],
@@ -36,15 +45,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What three things make up an Azure RBAC role assignment?",
+      question_he: "מהם שלושת המרכיבים של הקצאת תפקיד (role assignment) ב-Azure RBAC?",
       options: [
         "A security identity, a role definition, and a scope",
         "A username, a password, and an email address",
         "A resource group, a region, and a subscription only",
         "A VM, a disk, and a network interface",
       ],
+      options_he: [
+        "זהות אבטחה, הגדרת תפקיד (role definition), והיקף (scope)",
+        "שם משתמש, סיסמה, וכתובת אימייל",
+        "קבוצת משאבים, אזור, ומנוי בלבד",
+        "VM, דיסק, וממשק רשת",
+      ],
       correctAnswer: 0,
       explanation:
         "RBAC grants access by binding three things together: who (a user, group, or service principal), what (a role definition — a bundle of permissions), and where (the scope — management group, subscription, resource group or resource). Change any one of the three and it's a different assignment.",
+      explanation_he:
+        "RBAC מעניק גישה על ידי חיבור שלושה מרכיבים יחד: מי (משתמש, קבוצה, או service principal), מה (הגדרת תפקיד — צרור הרשאות), והיכן (ה-scope — management group, מנוי, קבוצת משאבים או משאב ספציפי). שינוי של אחד משלושת אלה יוצר הקצאה אחרת לגמרי.",
       resourceTitle: "Azure RBAC core concepts",
       resourceUrl: "https://learn.microsoft.com/azure/role-based-access-control/overview",
       keywords: ["rbac", "role assignment", "scope"],
@@ -57,10 +75,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "Which AWS IAM entity is meant for a human who needs long-term console or CLI access?",
+      question_he: "איזו ישות IAM ב-AWS מיועדת לבן אדם שזקוק לגישה ארוכת טווח לקונסולה או ל-CLI?",
       options: ["An IAM role", "An IAM user", "A service-linked role", "An Availability Zone"],
+      options_he: ["IAM Role", "IAM User", "Service-linked role", "Availability Zone"],
       correctAnswer: 1,
       explanation:
         "An IAM user holds durable credentials (a password and/or access keys) for a specific person. Roles, by contrast, are assumed temporarily and issue short-lived credentials — the preferred pattern for workloads and increasingly for humans too, via IAM Identity Center federation.",
+      explanation_he:
+        "IAM User מחזיק פרטי גישה קבועים (סיסמה ו/או access keys) עבור אדם ספציפי. לעומת זאת, Role מונח באופן זמני ומנפיק פרטי גישה קצרי טווח — התבנית המועדפת עבור עומסי עבודה, וכיום יותר ויותר גם עבור בני אדם, דרך הזדהות מאוחדת של IAM Identity Center.",
       resourceTitle: "IAM users",
       resourceUrl: "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html",
       keywords: ["iam user", "iam role", "credentials"],
@@ -73,10 +95,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "The principle of least privilege means granting the smallest set of permissions needed to do a job, nothing more.",
+      question_he: "עקרון ההרשאה המינימלית (least privilege) אומר להעניק את מערך ההרשאות הקטן ביותר הדרוש לביצוע העבודה, ולא יותר.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "In GCP this is why predefined roles (scoped to one service and task, like roles/storage.objectViewer) are recommended over broad basic roles like Editor. The narrower the grant, the smaller the damage if that identity is ever phished, leaked or misused.",
+      explanation_he:
+        "ב-GCP זו הסיבה שתפקידים מוגדרים מראש (predefined roles), הממוקדים בשירות ומשימה אחת בלבד, כמו roles/storage.objectViewer, מומלצים על פני תפקידי בסיס רחבים כמו Editor. ככל שההרשאה צרה יותר, כך הנזק קטן יותר אם הזהות הזו אי פעם תיפרץ בפישינג, תדלוף, או תנוצל לרעה.",
       resourceTitle: "IAM roles overview",
       resourceUrl: "https://cloud.google.com/iam/docs/roles-overview",
       keywords: ["least privilege", "predefined roles", "basic roles"],
@@ -89,15 +115,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "In access management, what is a \"policy\"?",
+      question_he: "מהי \"מדיניות\" (policy) בניהול גישה?",
       options: [
         "A document that defines what actions are allowed or denied for an identity or resource",
         "A list of employee names",
         "A firewall rule for network traffic only",
         "A backup schedule",
       ],
+      options_he: [
+        "מסמך המגדיר אילו פעולות מותרות או אסורות עבור זהות או משאב",
+        "רשימה של שמות עובדים",
+        "כלל firewall לתעבורת רשת בלבד",
+        "לוח זמנים לגיבויים",
+      ],
       correctAnswer: 0,
       explanation:
         "A policy is the unit of authorization: it states which actions on which resources are allowed (or denied) and under what conditions. Every cloud's access model — AWS IAM policies, Azure RBAC role definitions, GCP IAM roles — is a variation on this same idea.",
+      explanation_he:
+        "Policy הוא יחידת ההרשאה הבסיסית: הוא קובע אילו פעולות, על אילו משאבים, מותרות (או אסורות) ובאילו תנאים. כל מודל הגישה בענן — IAM Policies ב-AWS, הגדרות תפקיד (role definitions) ב-Azure RBAC, ו-IAM Roles ב-GCP — הוא וריאציה על אותו רעיון בדיוק.",
       resourceTitle: "IAM policy evaluation logic (AWS)",
       resourceUrl: "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html",
       keywords: ["policy", "allow deny", "authorization"],
@@ -110,15 +145,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a service principal in Microsoft Entra ID?",
+      question_he: "מהו service principal ב-Microsoft Entra ID?",
       options: [
         "The identity an application or service uses to access resources, distinct from a human user account",
         "The most senior IT administrator in a tenant",
         "A hardware security key",
         "A billing account owner",
       ],
+      options_he: [
+        "הזהות שאפליקציה או שירות משתמשים בה כדי לגשת למשאבים, בנפרד מחשבון משתמש אנושי",
+        "מנהל ה-IT הבכיר ביותר בטננט (tenant)",
+        "מפתח אבטחה פיזי (hardware security key)",
+        "בעל חשבון החיוב",
+      ],
       correctAnswer: 0,
       explanation:
         "Registering an application creates a service principal — the local representation of that app's identity in a tenant, which RBAC roles can be assigned to. Managed identities are a special, credential-free flavor of service principal that Azure creates and rotates for you.",
+      explanation_he:
+        "רישום אפליקציה יוצר service principal — הייצוג המקומי של זהות האפליקציה בטננט (tenant), אליו ניתן להקצות תפקידי RBAC. Managed Identity הוא סוג מיוחד וללא פרטי גישה של service principal, ש-Azure יוצר ומחליף עבורך באופן אוטומטי.",
       resourceTitle: "Application and service principal objects",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/app-objects-and-service-principals",
       keywords: ["service principal", "entra id", "app identity"],
@@ -132,15 +176,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Why do well-designed EC2 Spot Fleets diversify across multiple instance types and Availability Zones?",
+      question_he: "מדוע Spot Fleets מתוכננים היטב מפזרים בין כמה סוגי instance ו-Availability Zones?",
       options: [
         "It reduces the odds that many instances are reclaimed at the same moment, since spare-capacity pools vary independently",
         "It is required by AWS for all Spot usage",
         "It guarantees Spot instances will never be interrupted",
         "It lowers the On-Demand price automatically",
       ],
+      options_he: [
+        "זה מקטין את הסיכוי שהרבה instances יילקחו בחזרה באותו רגע, מכיוון שמאגרי הקיבולת הפנויה משתנים באופן בלתי תלוי זה בזה",
+        "AWS מחייבת זאת עבור כל שימוש ב-Spot",
+        "זה מבטיח ש-Spot instances לעולם לא יופרעו",
+        "זה מוריד אוטומטית את מחיר ה-On-Demand",
+      ],
       correctAnswer: 0,
       explanation:
         "Spot capacity and pricing move independently per instance type and AZ, so a fleet spread across several pools rarely loses all of them together — one pool tightening doesn't touch the others. Diversification is a resilience strategy against interruption, not a discount mechanism, and interruption can still happen in any given pool.",
+      explanation_he:
+        "הקיבולת והמחיר של Spot נעים באופן בלתי תלוי לפי סוג instance ו-Availability Zone, כך ש-fleet המפוזר על פני כמה מאגרים לעיתים רחוקות מאבד את כולם יחד — הידוק במאגר אחד לא משפיע על האחרים. גיוון הוא אסטרטגיית חוסן מול הפרעות (interruption), לא מנגנון הנחה, וההפרעה עדיין יכולה לקרות בכל מאגר נתון.",
       resourceTitle: "Spot Fleet allocation strategies",
       resourceUrl: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-allocation-strategy.html",
       keywords: ["spot fleet", "diversification", "interruption"],
@@ -153,15 +206,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What problem do Azure proximity placement groups solve?",
+      question_he: "איזו בעיה פותרים proximity placement groups ב-Azure?",
       options: [
         "They colocate VMs physically close together to minimize inter-VM network latency",
         "They automatically back up VMs nightly",
         "They enforce a naming convention for resource groups",
         "They replicate VMs to a paired region",
       ],
+      options_he: [
+        "הם ממקמים VMs פיזית קרוב זה לזה כדי לצמצם את זמן ההשהיה (latency) ברשת ביניהם",
+        "הם מגבים VMs אוטומטית מדי לילה",
+        "הם אוכפים מוסכמת שמות עבור קבוצות משאבים (resource groups)",
+        "הם משכפלים VMs לאזור מזווג (paired region)",
+      ],
       correctAnswer: 0,
       explanation:
         "Availability sets and zones deliberately spread VMs apart for resilience — which can add latency between them. A proximity placement group pulls VMs back together into the same datacenter for latency-sensitive tightly-coupled workloads, trading some fault isolation for speed. It's a narrow tool for a specific tradeoff, not a general-purpose setting.",
+      explanation_he:
+        "Availability Sets ו-Availability Zones מפזרים VMs במכוון לצורך חוסן — מה שעלול להוסיף זמן השהיה ביניהם. Proximity Placement Group מחזיר את ה-VMs להיות קרובים באותו datacenter, עבור עומסי עבודה רגישי-השהיה וצמודים זה לזה, במחיר של פחות בידוד תקלות תמורת מהירות. זהו כלי ממוקד לפשרה ספציפית, לא הגדרה כללית לשימוש שגרתי.",
       resourceTitle: "Proximity placement groups",
       resourceUrl: "https://learn.microsoft.com/azure/virtual-machines/co-location",
       keywords: ["proximity placement group", "latency", "colocation"],
@@ -174,15 +236,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is the purpose of Compute Engine custom machine types?",
+      question_he: "מהי מטרתם של custom machine types ב-Compute Engine?",
       options: [
         "They let you specify an exact vCPU-to-memory ratio instead of a fixed predefined shape, avoiding paying for unused capacity",
         "They are free VMs offered for testing only",
         "They replace the need for persistent disks",
         "They automatically migrate workloads between projects",
       ],
+      options_he: [
+        "הם מאפשרים לקבוע יחס מדויק של vCPU לזיכרון במקום צורה קבועה מוגדרת מראש, ובכך למנוע תשלום עבור קיבולת שאינה בשימוש",
+        "אלו VMs חינמיים המוצעים לבדיקות בלבד",
+        "הם מחליפים את הצורך בדיסקים מתמידים (persistent disks)",
+        "הם מהגרים אוטומטית עומסי עבודה בין פרויקטים",
+      ],
       correctAnswer: 0,
       explanation:
         "Predefined machine types bundle fixed vCPU/memory ratios that rarely match a specific workload exactly — a memory-light, CPU-heavy batch job ends up paying for RAM it never uses. Custom shapes let you dial in just the resources the workload needs, which is a direct cost lever alongside sizing decisions like committed use discounts.",
+      explanation_he:
+        "סוגי מכונה מוגדרים מראש (predefined machine types) מגיעים עם יחסי vCPU/זיכרון קבועים שלעיתים רחוקות מתאימים בדיוק לעומס עבודה ספציפי — עבודת batch עתירת CPU ודלת זיכרון תשלם בסוף על RAM שהיא לעולם לא תנצל. צורות מותאמות אישית (custom shapes) מאפשרות לכוון בדיוק את המשאבים שהעומס באמת צריך, וזהו מנוף חיסכון ישיר לצד החלטות תמחור נוספות כמו committed use discounts.",
       resourceTitle: "Custom machine types",
       resourceUrl: "https://cloud.google.com/compute/docs/general-purpose-machines#custom_machine_types",
       keywords: ["custom machine type", "right-sizing", "vcpu memory ratio"],
@@ -195,10 +266,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "true-false",
       question: "A golden image (a hardened, pre-configured base VM image) helps ensure every new VM starts from a consistent, known-secure baseline.",
+      question_he: "תמונת בסיס מוקשחת (golden image) — תמונת VM בסיסית מוקשחת ומוגדרת מראש — מסייעת להבטיח שכל VM חדש יתחיל מבסיס עקבי וידוע כמאובטח.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Building a custom image once — patched, agents installed, CIS-hardened — and deploying every VM from it (via Azure Compute Gallery or an equivalent) removes configuration drift and repeated manual hardening. Combined with an image pipeline, updates roll out by publishing a new image version rather than patching servers ad hoc.",
+      explanation_he:
+        "בניית תמונה מותאמת אישית פעם אחת — מעודכנת, עם סוכנים (agents) מותקנים ומוקשחת לפי CIS — ופריסת כל VM ממנה (דרך Azure Compute Gallery או מקבילתו) מבטלת סחיפת תצורה (configuration drift) והקשחה ידנית חוזרת. בשילוב עם צינור תמונות (image pipeline), עדכונים יוצאים לדרך על ידי פרסום גרסת תמונה חדשה במקום הקשחת שרתים אד-הוק.",
       resourceTitle: "Azure Compute Gallery (image versioning)",
       resourceUrl: "https://learn.microsoft.com/azure/virtual-machines/azure-compute-gallery",
       keywords: ["golden image", "image pipeline", "configuration drift"],
@@ -211,15 +286,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "How do burstable performance instances (like AWS T-family) manage CPU?",
+      question_he: "כיצד instances מסוג burstable performance (כמו משפחת T של AWS) מנהלים CPU?",
       options: [
         "They accumulate CPU credits during low usage and spend them during short bursts of higher demand",
         "They always run at maximum CPU regardless of load",
         "They double their vCPU count automatically under load",
         "They cannot be used for production workloads under any circumstances",
       ],
+      options_he: [
+        "הם צוברים קרדיטים של CPU בזמן שימוש נמוך ומוציאים אותם בפרצי ביקוש קצרים וגבוהים יותר",
+        "הם תמיד רצים ב-CPU מקסימלי ללא קשר לעומס",
+        "הם מכפילים אוטומטית את מספר ה-vCPU תחת עומס",
+        "אין להשתמש בהם לעומסי production בשום מקרה",
+      ],
       correctAnswer: 0,
       explanation:
         "Burstable instances are priced for a modest CPU baseline and earn credits while idle, which they draw down to burst above baseline briefly — ideal for spiky, low-average workloads like small web servers. Sustained high CPU exhausts credits and throttles performance (or bills extra in unlimited mode), so they're a poor fit for constantly CPU-heavy workloads.",
+      explanation_he:
+        "Instances מסוג burstable מתומחרים על בסיס baseline צנוע של CPU, וצוברים קרדיטים בזמן חוסר פעילות שאותם הם מוציאים כדי לפרוץ מעל ה-baseline לזמן קצר — אידיאלי לעומסים תנודתיים בעלי ממוצע נמוך, כמו שרתי אינטרנט קטנים. שימוש ממושך בעוצמת CPU גבוהה מרוקן את הקרדיטים ומאט את הביצועים (או מחייב תוספת תשלום במצב unlimited), ולכן הם מתאימים פחות לעומסים הדורשים CPU גבוה באופן קבוע.",
       resourceTitle: "Burstable performance instances",
       resourceUrl: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html",
       keywords: ["burstable instances", "cpu credits", "t-family"],
@@ -233,10 +317,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "Which storage type is used to hold a virtual machine's boot disk?",
+      question_he: "איזה סוג אחסון משמש להחזקת דיסק האתחול (boot disk) של מכונה וירטואלית?",
       options: ["Object storage", "Block storage", "Archive storage", "DNS storage"],
+      options_he: ["אחסון אובייקטים (Object Storage)", "אחסון בלוקים (Block Storage)", "אחסון ארכיון (Archive Storage)", "אחסון DNS"],
       correctAnswer: 1,
       explanation:
         "Boot and data disks need to behave like a raw drive an OS can format and write to at the byte level — that's block storage (EBS, Azure Disk, Persistent Disk). Object storage serves whole files over HTTP and can't be mounted as a bootable filesystem, which is why the two are never interchangeable for this job.",
+      explanation_he:
+        "דיסקי אתחול ודיסקי נתונים צריכים להתנהג כמו כונן גולמי שמערכת ההפעלה יכולה לפרמט ולכתוב אליו ברמת הבייט — וזה אחסון בלוקים (EBS, Azure Disk, Persistent Disk). אחסון אובייקטים מגיש קבצים שלמים דרך HTTP ולא ניתן להעלות אותו כמערכת קבצים ניתנת לאתחול, ולכן השניים לעולם אינם ניתנים להחלפה עבור המשימה הזו.",
       resourceTitle: "What is Amazon EBS?",
       resourceUrl: "https://docs.aws.amazon.com/ebs/latest/userguide/what-is-ebs.html",
       keywords: ["block storage", "boot disk", "object vs block"],
@@ -249,10 +337,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "\"Durability\" describes the probability that stored data survives without being lost, separate from how quickly it can be read.",
+      question_he: "\"עמידות\" (Durability) מתארת את ההסתברות שנתונים מאוחסנים ישרדו מבלי לאבוד, בנפרד ממהירות הקריאה שלהם.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Durability (often quoted as a number of \"nines\", e.g. 99.999999999%) is about data survival — redundancy against disk, rack or datacenter failure. Availability and latency are different measures entirely: a tier can be extremely durable yet slow to access (like Archive), or fast yet less redundant (a single-zone tier). Don't conflate the three.",
+      explanation_he:
+        "עמידות (Durability), המצוינת לרוב כמספר \"תשיעיות\" (nines), למשל 99.999999999%, עוסקת בשרידות הנתונים — יתירות (redundancy) מול כשל דיסק, מתלה (rack) או datacenter. זמינות (Availability) וזמן השהיה (latency) הם מדדים שונים לחלוטין: שכבת אחסון (tier) יכולה להיות עמידה ביותר אך איטית לגישה (כמו Archive), או מהירה אך פחות יתירה (שכבת single-zone). אין לערבב בין השלושה.",
       resourceTitle: "Durability and availability (Azure Storage)",
       resourceUrl: "https://learn.microsoft.com/azure/storage/common/storage-redundancy",
       keywords: ["durability", "nines", "redundancy vs latency"],
@@ -265,15 +357,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is the benefit of choosing a multi-region location for a Cloud Storage bucket?",
+      question_he: "מהי התועלת בבחירת מיקום multi-region עבור bucket ב-Cloud Storage?",
       options: [
         "Objects are replicated across multiple regions, surviving the loss of any single region",
         "It makes the bucket free to use",
         "It disables versioning automatically",
         "It is required for every bucket by default",
       ],
+      options_he: [
+        "אובייקטים משוכפלים על פני כמה regions, כך שהם שורדים את אובדנו של כל region בודד",
+        "זה הופך את השימוש ב-bucket לחינמי",
+        "זה מבטל אוטומטית versioning",
+        "זה נדרש כברירת מחדל עבור כל bucket",
+      ],
       correctAnswer: 0,
       explanation:
         "A multi-region bucket spreads redundant copies across a large geographic area, so serving continues even if an entire region has an outage — at a higher storage cost than a single-region bucket. Choosing bucket location is a real availability-versus-cost-versus-latency decision made once at creation time, not something to default without thinking.",
+      explanation_he:
+        "bucket מסוג multi-region מפזר עותקים יתירים על פני שטח גיאוגרפי נרחב, כך שהשירות ממשיך גם אם region שלם חווה תקלה — במחיר אחסון גבוה יותר מ-bucket מסוג single-region. בחירת מיקום ה-bucket היא החלטה אמיתית של זמינות מול עלות מול זמן השהיה, הנעשית פעם אחת ביצירה, ולא משהו שכדאי להשאיר כברירת מחדל ללא מחשבה.",
       resourceTitle: "Bucket locations",
       resourceUrl: "https://cloud.google.com/storage/docs/locations",
       keywords: ["multi-region bucket", "location", "redundancy"],
@@ -286,15 +387,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does enabling versioning on an S3 bucket protect against?",
+      question_he: "מפני מה מגן הפעלת versioning על bucket ב-S3?",
       options: [
         "Accidental overwrites and deletions — prior versions of an object remain recoverable",
         "Slow upload speeds",
         "Unauthorized public access",
         "High storage costs",
       ],
+      options_he: [
+        "דריסות ומחיקות בטעות — גרסאות קודמות של אובייקט נשארות ניתנות לשחזור",
+        "מהירויות העלאה איטיות",
+        "גישה ציבורית לא מורשית",
+        "עלויות אחסון גבוהות",
+      ],
       correctAnswer: 0,
       explanation:
         "With versioning on, a PUT or DELETE doesn't erase history — it adds a new version (or a delete marker) while older versions stay retrievable. It's a safety net against human error and buggy scripts, not an access-control or cost feature; pairing it with a lifecycle rule to expire old versions keeps that safety net from growing storage costs unbounded.",
+      explanation_he:
+        "כאשר versioning פעיל, פעולת PUT או DELETE לא מוחקת היסטוריה — היא מוסיפה גרסה חדשה (או delete marker) בעוד גרסאות ישנות יותר נשארות ניתנות לאחזור. זו רשת ביטחון מפני טעות אנוש וסקריפטים באגיים, לא תכונת בקרת גישה או חיסכון בעלויות; שילובה עם כלל lifecycle שמפקיע גרסאות ישנות שומר על כך שרשת הביטחון הזו לא תגדיל את עלויות האחסון ללא גבול.",
       resourceTitle: "Using versioning in S3 buckets",
       resourceUrl: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html",
       keywords: ["versioning", "accidental deletion", "recovery"],
@@ -307,15 +417,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does Zone-Redundant Storage (ZRS) provide that Locally Redundant Storage (LRS) does not?",
+      question_he: "מה מספק Zone-Redundant Storage (ZRS) שאין ב-Locally Redundant Storage (LRS)?",
       options: [
         "Synchronous replication across multiple Availability Zones within the same region",
         "Replication to a different country",
         "Free egress bandwidth",
         "Automatic content delivery network caching",
       ],
+      options_he: [
+        "שכפול סינכרוני על פני כמה Availability Zones באותו region",
+        "שכפול למדינה אחרת",
+        "רוחב פס יוצא (egress) חינמי",
+        "מטמון (caching) אוטומטי של רשת הפצת תוכן",
+      ],
       correctAnswer: 0,
       explanation:
         "LRS keeps three copies in one datacenter — safe against disk/rack failure but not a datacenter outage. ZRS synchronously replicates across separate Availability Zones in the same region, surviving the loss of one zone with no data loss, at a cost between LRS and the cross-region GRS tier. Picking a redundancy option means matching it to the specific failure you're defending against.",
+      explanation_he:
+        "LRS שומר שלושה עותקים ב-datacenter אחד — בטוח מפני כשל דיסק או מתלה, אך לא מפני תקלה כוללת ב-datacenter. ZRS משכפל באופן סינכרוני על פני Availability Zones נפרדים באותו region, ושורד את אובדנו של zone אחד ללא אובדן נתונים, במחיר שבין LRS לבין שכבת ה-GRS הבין-אזורית. בחירת אפשרות יתירות (redundancy) פירושה התאמתה לכשל הספציפי שמפניו רוצים להתגונן.",
       resourceTitle: "Azure Storage redundancy",
       resourceUrl: "https://learn.microsoft.com/azure/storage/common/storage-redundancy",
       keywords: ["zrs", "lrs", "zone redundancy"],
@@ -328,15 +447,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does the Cloud Storage Autoclass feature do?",
+      question_he: "מה עושה תכונת Autoclass ב-Cloud Storage?",
       options: [
         "Automatically moves objects between storage classes based on their actual access patterns, without lifecycle rules to maintain",
         "Automatically classifies the content type of uploaded files",
         "Encrypts objects with a random key per upload",
         "Deletes objects after exactly 30 days",
       ],
+      options_he: [
+        "מעביר אובייקטים אוטומטית בין storage classes בהתאם לדפוסי הגישה בפועל שלהם, ללא צורך לתחזק כללי lifecycle",
+        "מסווג אוטומטית את סוג התוכן של קבצים שהועלו",
+        "מצפין אובייקטים במפתח אקראי לכל העלאה",
+        "מוחק אובייקטים בדיוק לאחר 30 יום",
+      ],
       correctAnswer: 0,
       explanation:
         "Ordinary lifecycle rules require you to predict access patterns in advance (\"30 days old → Nearline\"). Autoclass instead watches real per-object access and transitions storage class automatically — cheaper for data whose access pattern is unpredictable, at a small per-object monitoring fee. It's a different tool from lifecycle management, not a replacement in every case.",
+      explanation_he:
+        "כללי lifecycle רגילים מחייבים אותך לנבא מראש את דפוסי הגישה (\"בגיל 30 יום → Nearline\"). לעומת זאת, Autoclass עוקב אחר גישה בפועל לכל אובייקט ומעביר את storage class באופן אוטומטי — זול יותר עבור נתונים שדפוס הגישה שלהם בלתי צפוי, תמורת עמלת ניטור קטנה לכל אובייקט. זהו כלי שונה מניהול lifecycle, ולא תחליף לו בכל מקרה.",
       resourceTitle: "Autoclass",
       resourceUrl: "https://cloud.google.com/storage/docs/autoclass",
       keywords: ["autoclass", "storage class", "access pattern"],
@@ -349,15 +477,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is the difference between encryption at rest and encryption in transit?",
+      question_he: "מה ההבדל בין הצפנה במנוחה (encryption at rest) להצפנה במעבר (encryption in transit)?",
       options: [
         "At rest protects stored data on disk; in transit protects data moving over a network — both are usually needed together",
         "They are two names for the same protection",
         "In transit only applies to email",
         "At rest means the data cannot ever be read again",
       ],
+      options_he: [
+        "הצפנה במנוחה מגנה על נתונים מאוחסנים על דיסק; הצפנה במעבר מגנה על נתונים הנעים ברשת — בדרך כלל יש צורך בשתיהן יחד",
+        "אלו שני שמות לאותה הגנה",
+        "הצפנה במעבר חלה רק על דואר אלקטרוני",
+        "הצפנה במנוחה משמעה שהנתונים לעולם לא יהיו קריאים שוב",
+      ],
       correctAnswer: 0,
       explanation:
         "Data has two exposure windows: sitting on storage media (protected by encryption at rest, e.g. AES-256 with a KMS-managed key) and moving across a network (protected by TLS in transit). Encrypting one without the other leaves a real gap — plaintext on the wire, or plaintext on a stolen disk — so cloud services default to enabling both.",
+      explanation_he:
+        "לנתונים יש שני חלונות חשיפה: כאשר הם יושבים על מדיית אחסון (מוגנים על ידי הצפנה במנוחה, למשל AES-256 עם מפתח המנוהל ב-KMS) וכאשר הם נעים ברשת (מוגנים על ידי TLS במעבר). הצפנת אחד מהם בלבד משאירה פער אמיתי — טקסט גלוי בתעבורה, או טקסט גלוי על דיסק גנוב — ולכן שירותי ענן מפעילים כברירת מחדל את שניהם.",
       resourceTitle: "Default encryption at rest (GCP)",
       resourceUrl: "https://cloud.google.com/docs/security/encryption/default-encryption",
       keywords: ["encryption at rest", "encryption in transit", "tls"],
@@ -370,10 +507,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "An S3 bucket policy and a user's IAM policy are evaluated together — access is only granted if neither one denies it and at least one allows it.",
+      question_he: "S3 bucket policy ומדיניות IAM של משתמש מוערכים יחד — הגישה מוענקת רק אם אף אחד מהם לא אוסר אותה ולפחות אחד מהם מתיר אותה.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Bucket policies (resource-based) and IAM policies (identity-based) are two independent voices in the same evaluation: an explicit deny in either one wins, and access requires an allow from at least one applicable policy. This is exactly what makes bucket policies useful for cross-account grants — the account boundary means the identity's own policies alone can never be enough.",
+      explanation_he:
+        "Bucket policies (מבוססות משאב) ו-IAM policies (מבוססות זהות) הן שני קולות בלתי תלויים באותה הערכה: איסור מפורש (deny) בכל אחת מהן מנצח, וגישה דורשת התר (allow) מלפחות מדיניות אחת רלוונטית. זה בדיוק מה שהופך את bucket policies לשימושיות עבור הענקות בין חשבונות (cross-account) — גבול החשבון אומר שהמדיניות של הזהות עצמה לעולם לא יכולה להספיק לבדה.",
       resourceTitle: "Bucket policies for S3",
       resourceUrl: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-policies.html",
       keywords: ["bucket policy", "iam policy", "cross-account"],
@@ -386,15 +527,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does an Azure Storage Shared Access Signature (SAS) provide?",
+      question_he: "מה מספק Shared Access Signature (SAS) של Azure Storage?",
       options: [
         "A time-limited, scoped URL that grants specific permissions to a storage resource without sharing the account key",
         "A permanent admin password for the storage account",
         "A free tier of storage capacity",
         "A DNS alias for the storage account",
       ],
+      options_he: [
+        "כתובת URL מוגבלת בזמן ובהיקף, המעניקה הרשאות ספציפיות למשאב אחסון מבלי לשתף את מפתח החשבון",
+        "סיסמת מנהל קבועה עבור חשבון האחסון",
+        "שכבת אחסון חינמית",
+        "כינוי DNS עבור חשבון האחסון",
+      ],
       correctAnswer: 0,
       explanation:
         "A SAS token encodes permissions (read/write/list…), a resource scope and an expiry into a signed query string — hand it to a client and they get exactly that access for exactly that window, with the account key never leaving your control. It's the standard way to let an untrusted client (a browser upload, a partner) touch one blob without becoming a storage account admin.",
+      explanation_he:
+        "טוקן SAS מקודד הרשאות (קריאה/כתיבה/רשימה...), היקף משאב (scope) ותוקף לתוך מחרוזת שאילתה חתומה — מוסרים אותה ללקוח והוא מקבל בדיוק את הגישה הזו לחלון הזמן הזה בלבד, כאשר מפתח החשבון לעולם לא יוצא מהשליטה שלך. זו הדרך הסטנדרטית לאפשר ללקוח לא מהימן (העלאה מדפדפן, שותף עסקי) לגעת ב-blob בודד מבלי להפוך למנהל חשבון האחסון.",
       resourceTitle: "Shared access signatures (SAS)",
       resourceUrl: "https://learn.microsoft.com/azure/storage/common/storage-sas-overview",
       keywords: ["sas token", "scoped access", "account key"],

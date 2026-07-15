@@ -15,15 +15,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does a SIEM do?",
+      question_he: "מה תפקידו של SIEM?",
       options: [
         "Aggregates security-relevant logs from many sources, correlates events across them, and raises alerts on suspicious patterns",
         "Blocks malicious traffic at the network edge",
         "Encrypts log files",
         "Manages employee passwords",
       ],
+      options_he: [
+        "מרכז לוגים רלוונטיים לאבטחה ממקורות רבים, מקשר בין אירועים שביניהם, ומעלה התראות על דפוסים חשודים",
+        "חוסם תעבורה זדונית בקצה הרשת",
+        "מצפין קבצי לוג",
+        "מנהל סיסמאות עובדים",
+      ],
       correctAnswer: 0,
       explanation:
         "Security Information and Event Management is the analysis brain, not an enforcement point: firewall denies, sign-in logs, API audit trails and endpoint events land in one place where correlation rules and analytics find the patterns no single source shows — the same IP failing logins here and succeeding there. Blocking is what firewalls and EDR do, often triggered BY what the SIEM finds.",
+      explanation_he:
+        "SIEM (Security Information and Event Management) הוא מוח הניתוח, לא נקודת אכיפה: חסימות של פיירוול, לוגי כניסה, יומני ביקורת של API ואירועי endpoint מגיעים כולם למקום אחד, שבו כללי קורלציה וניתוחים מזהים דפוסים שאף מקור בודד לא חושף בעצמו — למשל אותה כתובת IP שנכשלת בהתחברות במקום אחד ומצליחה במקום אחר. את החסימה בפועל מבצעים פיירוול ו-EDR, לרוב בעקבות ממצא שה-SIEM זיהה.",
       resourceTitle: "What is SIEM? (Microsoft Security)",
       resourceUrl: "https://www.microsoft.com/security/business/security-101/what-is-siem",
       keywords: ["siem", "correlation", "aggregation", "alerts"],
@@ -36,15 +45,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What are the three classic pillars of observability?",
+      question_he: "מהם שלושת עמודי התווך הקלאסיים של observability?",
       options: [
         "Metrics, logs and traces",
         "Dashboards, emails and meetings",
         "CPU, RAM and disk",
         "Alerts, tickets and postmortems",
       ],
+      options_he: [
+        "Metrics, logs ו-traces",
+        "דשבורדים, מיילים ופגישות",
+        "CPU, RAM ודיסק",
+        "התראות, קריאות שירות ופוסטמורטמים",
+      ],
       correctAnswer: 0,
       explanation:
         "Each pillar answers a different question: metrics (numeric time series) show that something is wrong, logs (discrete events) show what happened, traces follow one request across services to show where it went wrong. Cloud stacks map directly — Azure Monitor/CloudWatch/Cloud Monitoring for metrics, their logging siblings for logs, Application Insights/X-Ray/Cloud Trace for traces.",
+      explanation_he:
+        "כל עמוד תווך עונה על שאלה אחרת: metrics (סדרות זמן מספריות) מראים שמשהו לא בסדר, logs (אירועים בדידים) מראים מה בדיוק קרה, ו-traces עוקבים אחר בקשה בודדת לאורך שירותים ומראים איפה היא נכשלה. מיפוי ישיר לענן: Azure Monitor/CloudWatch/Cloud Monitoring עבור metrics, שירותי הלוגים המקבילים שלהם עבור logs, ו-Application Insights/X-Ray/Cloud Trace עבור traces.",
       resourceTitle: "Observability (Azure Well-Architected)",
       resourceUrl: "https://learn.microsoft.com/azure/well-architected/operational-excellence/observability",
       keywords: ["observability", "metrics logs traces", "pillars"],
@@ -57,7 +75,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Which service is Azure's cloud-native SIEM?",
+      question_he: "איזה שירות הוא ה-SIEM הענני-טבעי של Azure?",
       options: [
+        "Microsoft Sentinel",
+        "Azure Monitor",
+        "Microsoft Defender for Cloud",
+        "Azure Advisor",
+      ],
+      options_he: [
         "Microsoft Sentinel",
         "Azure Monitor",
         "Microsoft Defender for Cloud",
@@ -66,6 +91,8 @@ CQA.data.registerPack({
       correctAnswer: 0,
       explanation:
         "Sentinel is the SIEM (and SOAR): built on Log Analytics, it ingests connectors from Azure, Microsoft 365 and third parties, runs KQL-based analytics rules, and automates response via playbooks. The distractors divide the labor: Azure Monitor is operational telemetry, Defender for Cloud is posture and workload protection (a log SOURCE for Sentinel), Advisor is recommendations. Google's counterpart is Chronicle/SecOps; AWS pairs Security Hub with partner SIEMs.",
+      explanation_he:
+        "Sentinel הוא ה-SIEM (וגם SOAR): הוא בנוי על Log Analytics, קולט מחברים (connectors) מ-Azure, Microsoft 365 וגורמים חיצוניים, מריץ כללי ניתוח מבוססי KQL, ומאטמט תגובה באמצעות playbooks. שאר האפשרויות מחלקות ביניהן תפקידים אחרים: Azure Monitor הוא טלמטריה תפעולית, Defender for Cloud עוסק ביציבה (posture) והגנת עומסי עבודה (ובעצמו מהווה מקור לוגים עבור Sentinel), ו-Advisor מספק המלצות. המקבילה אצל Google היא Chronicle/SecOps, ואילו AWS משלבת את Security Hub עם SIEM-ים חיצוניים.",
       resourceTitle: "What is Microsoft Sentinel?",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/overview",
       keywords: ["sentinel", "cloud siem", "kql", "soar"],
@@ -78,15 +105,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multi-select",
       question: "Which cloud log sources belong in a SIEM pipeline first? (Select all that apply.)",
+      question_he: "אילו מקורות לוגים בענן צריכים להיכנס ל-pipeline של SIEM ראשונים? (בחר את כל האפשרויות הרלוונטיות.)",
       options: [
         "Control-plane audit logs (CloudTrail, Azure Activity Log, Cloud Audit Logs)",
         "Identity sign-in and audit logs from the IdP",
         "Network flow logs",
         "Raw CPU utilization metrics from every VM",
       ],
+      options_he: [
+        "יומני ביקורת של control-plane (CloudTrail, Azure Activity Log, Cloud Audit Logs)",
+        "לוגי כניסה וביקורת זהות מה-IdP",
+        "לוגי flow של רשת",
+        "מדדי ניצול CPU גולמיים מכל VM",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Prioritize by attack visibility per gigabyte: audit logs expose control-plane abuse (new users, disabled logging, role grants), identity logs expose the credential attacks that start most breaches, and flow logs expose lateral movement and exfiltration. CPU metrics are ops telemetry — a miner might spike CPU, but you'd catch it far earlier and cheaper in the other three. SIEM ingestion costs money; signal density decides what goes in.",
+      explanation_he:
+        "יש לתעדף לפי כמות הנראות ההתקפית לכל ג'יגה-בייט: יומני ביקורת חושפים ניצול לרעה של control-plane (משתמשים חדשים, ביטול לוגים, הענקת הרשאות), לוגי זהות חושפים את התקפות ההרשאות שמהן מתחילות רוב הפריצות, ולוגי flow חושפים תנועה לרוחב (lateral movement) והדלפת מידע. מדדי CPU הם טלמטריה תפעולית — כורה מטבעות עלול להעלות ניצול CPU, אבל תגלו זאת מוקדם וזול הרבה יותר דרך שלושת המקורות האחרים. קליטת נתונים ל-SIEM עולה כסף, וצפיפות האות (signal density) קובעת מה שווה לכלול.",
       resourceTitle: "Microsoft Sentinel data connectors",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/connect-data-sources",
       keywords: ["log sources", "audit logs", "identity logs", "flow logs"],
@@ -99,15 +135,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Why do security logs need retention policies and tamper protection?",
+      question_he: "מדוע לוגי אבטחה זקוקים למדיניות שימור (retention) ולהגנה מפני שיבוש?",
       options: [
         "Investigations reconstruct events weeks or months later, and attackers actively delete logs to cover tracks — immutable, retained logs defeat both problems",
         "Logs are only useful on the day they are written",
         "Retention makes queries run faster",
         "Compliance never cares about logs",
       ],
+      options_he: [
+        "חקירות משחזרות אירועים שבועות או חודשים אחר כך, ותוקפים מוחקים לוגים באופן פעיל כדי לטשטש עקבות — לוגים בלתי-ניתנים-לשינוי ושמורים פותרים את שתי הבעיות",
+        "לוגים שימושיים רק ביום שבו נכתבו",
+        "שימור גורם לשאילתות לרוץ מהר יותר",
+        "רגולציה ותאימות (compliance) לעולם לא מתייחסות ללוגים",
+      ],
       correctAnswer: 0,
       explanation:
         "Median breach discovery lags intrusion by weeks, so the evidence you'll need is by definition old — and deleting logs is a standard attacker step (there are MITRE techniques for it). Hence: retention windows matched to compliance (often 90 days hot, a year or more archived), export to storage the compromised account can't purge, and immutability/WORM where required. Logs you can't trust are worse than no logs.",
+      explanation_he:
+        "בממוצע, גילוי פריצה מתרחש שבועות אחרי החדירה בפועל, כך שהראיות שתזדקקו להן הן מטבען ישנות — ומחיקת לוגים היא צעד סטנדרטי אצל תוקפים (יש טכניקות MITRE שמתעדות זאת). לכן נדרשים: חלונות שימור שתואמים לדרישות רגולציה (לרוב 90 יום ב'חם' ושנה או יותר בארכיון), ייצוא לאחסון שהחשבון הפרוץ לא יכול למחוק ממנו, ו-immutability/WORM היכן שנדרש. לוגים שאי אפשר לסמוך עליהם גרועים מאשר אין לוגים כלל.",
       resourceTitle: "Log retention in Microsoft Sentinel",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/log-plans",
       keywords: ["retention", "immutability", "forensics", "anti-tampering"],
@@ -120,10 +165,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "Collecting logs into a central store is sufficient for threat detection, even without analytics or alert rules.",
+      question_he: "איסוף לוגים למאגר מרכזי מספיק כשלעצמו לזיהוי איומים, גם ללא ניתוחים או כללי התראה.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: false,
       explanation:
         "Storage is not detection: a terabyte of unwatched logs detects exactly nothing in real time — it only helps the post-incident autopsy. Detection requires content running over the data: correlation rules, anomaly analytics, threat-intel matching, and a human process behind the alerts. 'We ship everything to the SIEM' without rule coverage is one of the most common false senses of security in cloud environments.",
+      explanation_he:
+        "אחסון אינו זיהוי: טרה-בייט של לוגים שאף אחד לא צופה בהם לא מזהה דבר בזמן אמת — הוא רק מסייע ב'נתיחה שלאחר מקרה'. זיהוי דורש לוגיקה שרצה על הנתונים: כללי קורלציה, ניתוח אנומליות, התאמה למודיעין איומים, ותהליך אנושי מאחורי ההתראות. 'אנחנו שולחים הכול ל-SIEM' בלי כיסוי כללים הולם הוא אחת התחושות השגויות הנפוצות ביותר של ביטחון בסביבות ענן.",
       resourceTitle: "Analytics rules in Microsoft Sentinel",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/detect-threats-built-in",
       keywords: ["detection rules", "analytics", "collection vs detection"],
@@ -136,15 +185,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is an \"impossible travel\" detection?",
+      question_he: "מהו זיהוי \"impossible travel\" (נסיעה בלתי אפשרית)?",
       options: [
         "Correlating sign-ins by the same account from locations too far apart to travel between in the elapsed time — a classic credential-compromise signal",
         "An alert about employees exceeding travel budgets",
         "Detecting VMs migrating between regions",
         "A network latency measurement",
       ],
+      options_he: [
+        "קורלציה בין כניסות של אותו חשבון ממיקומים שרחוקים מדי זה מזה מכדי לנסוע ביניהם בפרק הזמן שחלף — סימן קלאסי לפגיעה בהרשאות",
+        "התראה על עובדים שחורגים מתקציבי נסיעות",
+        "זיהוי VMs שעוברים בין אזורים (regions)",
+        "מדידת השהיה (latency) ברשת",
+      ],
       correctAnswer: 0,
       explanation:
         "One account, London at 09:00 and Singapore at 09:45 — no plane does that, so either a VPN artifact or two different people hold the credential. It's the textbook correlation detection: no single sign-in event is suspicious, the PATTERN across events is. Identity-analytics engines ship it out of the box; response typically means step-up MFA or session revocation while a human verifies.",
+      explanation_he:
+        "חשבון אחד מתחבר מלונדון בשעה 09:00 ומסינגפור בשעה 09:45 — שום טיסה לא עושה את זה, כך שמדובר או בארטיפקט של VPN או בשני אנשים שונים המחזיקים באותה הרשאה. זהו זיהוי הקורלציה הקלאסי: אף אירוע כניסה בודד אינו חשוד כשלעצמו, אלא הדפוס לאורך כמה אירועים. מנועי ניתוח זהויות מספקים זאת מובנה מהקופסה; התגובה בדרך כלל כוללת דרישת MFA מוגברת (step-up) או ביטול הסשן עד לאימות אנושי.",
       resourceTitle: "Anomaly detections (Microsoft Entra ID Protection)",
       resourceUrl: "https://learn.microsoft.com/entra/id-protection/concept-identity-protection-risks",
       keywords: ["impossible travel", "correlation", "credential compromise"],
@@ -157,15 +215,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "How does SOAR relate to SIEM?",
+      question_he: "כיצד SOAR קשור ל-SIEM?",
       options: [
         "SIEM detects and alerts; SOAR automates the response — enrichment, containment playbooks, ticketing — triggered by those alerts",
         "SOAR is a cheaper replacement for SIEM",
         "SOAR only produces compliance reports",
         "They are competing standards for log formats",
       ],
+      options_he: [
+        "SIEM מזהה ומתריע; SOAR מאטמט את התגובה — העשרת מידע, playbooks להכלה, ופתיחת קריאות שירות — בעקבות אותן התראות",
+        "SOAR הוא תחליף זול יותר ל-SIEM",
+        "SOAR מפיק אך ורק דוחות תאימות (compliance)",
+        "אלה תקנים מתחרים לפורמטים של לוגים",
+      ],
       correctAnswer: 0,
       explanation:
         "Security Orchestration, Automation and Response picks up where detection ends: an alert fires and the playbook enriches the entities (IP reputation, user context), takes containment steps (disable account, isolate VM, block IP) and files the incident — in seconds, not the hours a queue takes. Modern platforms bundle both (Sentinel playbooks are SOAR). Automation quality inherits detection quality: automate on top of noisy rules and you industrialize false positives.",
+      explanation_he:
+        "SOAR (Security Orchestration, Automation and Response) ממשיך בדיוק מהנקודה שבה הזיהוי מסתיים: התראה מופעלת וה-playbook מעשיר את הישויות (מוניטין IP, הקשר משתמש), נוקט צעדי הכלה (השבתת חשבון, בידוד VM, חסימת IP) ופותח את התקרית — תוך שניות, לא בתוך השעות שלוקח לתור קריאות טיפול רגיל. פלטפורמות מודרניות משלבות את שתי היכולות (playbooks של Sentinel הם למעשה SOAR). איכות האוטומציה יורשת את איכות הזיהוי: אוטומציה מעל כללים רועשים רק מתעשת את ההתראות השווא.",
       resourceTitle: "Automation in Microsoft Sentinel (SOAR)",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/automation/automation",
       keywords: ["soar", "playbooks", "automated response"],
@@ -178,15 +245,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Why is alert tuning critical for a SOC's effectiveness?",
+      question_he: "מדוע כיוונון (tuning) של התראות קריטי לאפקטיביות של SOC?",
       options: [
         "Untuned rules flood analysts with false positives, causing alert fatigue — real incidents drown in noise and get missed",
         "More alerts always mean better security",
         "Tuning is only about reducing storage costs",
         "Alerts cannot be tuned once created",
       ],
+      options_he: [
+        "כללים לא מכוונים מציפים אנליסטים בהתראות שווא ויוצרים 'עייפות התראות' — תקריות אמיתיות טובעות ברעש ומוחמצות",
+        "יותר התראות תמיד אומר אבטחה טובה יותר",
+        "כיוונון עוסק אך ורק בהקטנת עלויות אחסון",
+        "אי אפשר לכוונן התראות אחרי שנוצרו",
+      ],
       correctAnswer: 0,
       explanation:
         "Detection value is signal-to-noise, not volume: an analyst who closes 300 false positives a day will eventually close the real one on autopilot — the failure mode behind several famous breaches that were 'alerted on' but never acted upon. Tuning means suppressing known-benign patterns, adding context thresholds, and measuring precision per rule as an ongoing engineering discipline. Fewer, truer alerts beat more alerts every time.",
+      explanation_he:
+        "הערך של זיהוי נמדד ביחס אות-לרעש, לא בכמות: אנליסט שסוגר 300 התראות שווא ביום יגיע בסופו של דבר לסגור גם את ההתראה האמיתית על טייס אוטומטי — זהו דפוס הכשל שעומד מאחורי כמה פריצות מפורסמות ש'עלו כהתראה' אך מעולם לא טופלו. כיוונון פירושו השתקת דפוסים ידועים כלא-מזיקים, הוספת ספי הקשר, ומדידת דיוק (precision) עבור כל כלל כתחום הנדסי מתמשך. פחות התראות אמיתיות עדיפות על פני יותר התראות, תמיד.",
       resourceTitle: "Reduce alert fatigue (Microsoft Sentinel best practices)",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/best-practices",
       keywords: ["alert fatigue", "false positives", "tuning", "soc"],
@@ -199,15 +275,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "How does operational monitoring differ from security monitoring?",
+      question_he: "כיצד ניטור תפעולי שונה מניטור אבטחתי?",
       options: [
         "Operational monitoring asks 'is it healthy and fast?'; security monitoring asks 'is someone doing something they shouldn't?' — same telemetry, different questions and consumers",
         "They are identical activities",
         "Security monitoring only looks at firewalls",
         "Operational monitoring is done exclusively by auditors",
       ],
+      options_he: [
+        "ניטור תפעולי שואל 'האם המערכת בריאה ומהירה?'; ניטור אבטחתי שואל 'האם מישהו עושה משהו שאסור לו?' — אותה טלמטריה, שאלות וצרכנים שונים",
+        "מדובר בפעילויות זהות",
+        "ניטור אבטחתי בוחן רק פיירוולים",
+        "ניטור תפעולי מתבצע אך ורק על ידי מבקרים (auditors)",
+      ],
       correctAnswer: 0,
       explanation:
         "The same flow log serves both: ops reads it for latency and dropped connections, security reads it for scan patterns and odd egress. The disciplines diverge in rules (SLO thresholds vs attack signatures), destinations (APM dashboards vs SIEM) and responders (SRE vs SOC). Mature teams share the pipeline and split the analytics — collecting twice is the expensive way to do it.",
+      explanation_he:
+        "אותו לוג flow משרת את שני הצדדים: הצוות התפעולי קורא בו השהיה וחיבורים שנופלים, וצוות האבטחה קורא בו דפוסי סריקה ותעבורת יציאה (egress) חריגה. התחומים נבדלים בכללים (ספי SLO מול חתימות התקפה), ביעדים (דשבורדי APM מול SIEM), ובגורמים המגיבים (SRE מול SOC). צוותים בשלים חולקים את ה-pipeline ומפצלים רק את הניתוח — לאסוף פעמיים זו הדרך היקרה לעשות זאת.",
       resourceTitle: "Monitoring strategies (Azure Well-Architected)",
       resourceUrl: "https://learn.microsoft.com/azure/well-architected/operational-excellence/observability",
       keywords: ["ops vs security monitoring", "telemetry", "soc sre"],

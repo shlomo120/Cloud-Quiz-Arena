@@ -16,15 +16,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a Kubernetes ConfigMap used for?",
+      question_he: "למה משמש ConfigMap ב-Kubernetes?",
       options: [
         "Injecting non-sensitive configuration data into Pods, separate from the container image",
         "Storing encrypted passwords",
         "Defining network routing rules",
         "Scheduling Pods onto specific nodes",
       ],
+      options_he: [
+        "הזרקת נתוני קונפיגורציה שאינם רגישים לתוך Pods, בנפרד מה-image של הקונטיינר",
+        "אחסון סיסמאות מוצפנות",
+        "הגדרת כללי ניתוב רשת",
+        "תזמון Pods על nodes מסוימים",
+      ],
       correctAnswer: 0,
       explanation:
         "A ConfigMap holds key-value configuration (URLs, feature flags, config files) that Pods read as environment variables or mounted files — letting the same image run in dev, staging and prod by swapping only the ConfigMap, never rebuilding. Sensitive values belong in a Secret instead, which is handled and stored differently.",
+      explanation_he:
+        "ConfigMap מחזיק קונפיגורציה בפורמט מפתח-ערך (כתובות URL, feature flags, קבצי קונפיגורציה) ש-Pods קוראים כמשתני סביבה או כקבצים מותקנים (mounted files) — כך אותו image יכול לרוץ ב-dev, staging ו-prod תוך החלפת ה-ConfigMap בלבד, ללא צורך ב-rebuild. ערכים רגישים שייכים ל-Secret במקום זאת, שמטופל ומאוחסן בצורה שונה.",
       resourceTitle: "ConfigMaps",
       resourceUrl: "https://kubernetes.io/docs/concepts/configuration/configmap/",
       keywords: ["configmap", "configuration injection", "externalized config"],
@@ -37,15 +46,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What are labels and selectors used for in Kubernetes?",
+      question_he: "למה משמשים labels ו-selectors ב-Kubernetes?",
       options: [
         "Labels tag objects with key-value metadata; selectors query for objects matching those labels, which is how Services and controllers find their Pods",
         "Labels encrypt Pod traffic",
         "Selectors delete unused resources automatically",
         "Labels are only used for billing purposes",
       ],
+      options_he: [
+        "Labels מתייגים אובייקטים במטא-דאטה מסוג מפתח-ערך; selectors שואלים אחר אובייקטים התואמים ל-labels האלה, וכך Services ו-controllers מוצאים את ה-Pods שלהם",
+        "Labels מצפינים את התעבורה של ה-Pod",
+        "Selectors מוחקים משאבים לא בשימוש באופן אוטומטי",
+        "Labels משמשים אך ורק לצורכי חיוב",
+      ],
       correctAnswer: 0,
       explanation:
         "A Deployment's Pods get a label like app=checkout; the matching Service uses a selector for app=checkout to know which Pods to route traffic to. This loose, label-based coupling is exactly what lets Pods come and go (rescheduled, replaced, scaled) while Services keep working without any hardcoded reference.",
+      explanation_he:
+        "ל-Pods של Deployment ניתן label כמו app=checkout; ה-Service המתאים משתמש ב-selector עבור app=checkout כדי לדעת לאילו Pods לנתב תעבורה. הצימוד הרופף המבוסס על labels הוא בדיוק מה שמאפשר ל-Pods להיווצר ולהיעלם (להיות מתוזמנים מחדש, מוחלפים, מוגדלים בכמות) בעוד ה-Services ממשיכים לעבוד ללא כל הפניה קשיחה.",
       resourceTitle: "Labels and Selectors",
       resourceUrl: "https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
       keywords: ["labels", "selectors", "service discovery"],
@@ -58,15 +76,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a Kubernetes Job used for?",
+      question_he: "למה משמש Job ב-Kubernetes?",
       options: [
         "Running a task to completion (like a batch process) rather than keeping a Pod running indefinitely",
         "Continuously serving HTTP traffic",
         "Scheduling recurring backups only",
         "Load-balancing across nodes",
       ],
+      options_he: [
+        "הרצת משימה עד להשלמתה (כמו תהליך batch) במקום לשמור Pod רץ ללא הגבלת זמן",
+        "הגשת תעבורת HTTP באופן רציף",
+        "תזמון גיבויים חוזרים בלבד",
+        "איזון עומסים (load balancing) בין nodes",
+      ],
       correctAnswer: 0,
       explanation:
         "Unlike a Deployment, which restarts Pods forever to keep a service always running, a Job creates Pods that run once until they finish successfully — the right tool for a data migration, report generation, or one-off batch task. A CronJob layers a schedule on top of the same idea for recurring tasks.",
+      explanation_he:
+        "בניגוד ל-Deployment, שמפעיל מחדש Pods לנצח כדי לשמור שירות פעיל תמיד, Job יוצר Pods שרצים פעם אחת עד שהם מסתיימים בהצלחה — הכלי הנכון למיגרציית נתונים, הפקת דוח, או משימת batch חד-פעמית. CronJob מוסיף שכבת תזמון על אותו רעיון עבור משימות חוזרות.",
       resourceTitle: "Jobs",
       resourceUrl: "https://kubernetes.io/docs/concepts/workloads/controllers/job/",
       keywords: ["job", "run to completion", "batch task"],
@@ -79,15 +106,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is kubectl?",
+      question_he: "מה זה kubectl?",
       options: [
         "The command-line tool used to interact with a Kubernetes cluster's API server",
         "The Kubernetes container runtime",
         "A monitoring dashboard",
         "A cloud provider's billing tool",
       ],
+      options_he: [
+        "כלי שורת הפקודה (CLI) שמשמש לתקשורת עם ה-API server של Cluster ב-Kubernetes",
+        "ה-container runtime של Kubernetes",
+        "לוח בקרה (dashboard) לניטור",
+        "כלי חיוב של ספק הענן",
+      ],
       correctAnswer: 0,
       explanation:
         "kubectl is the standard client: every kubectl get, apply or delete command is really just an authenticated HTTP request to the API server. It's the primary hands-on tool for inspecting and changing cluster state, whether the cluster is self-managed or a provider's AKS/EKS/GKE.",
+      explanation_he:
+        "kubectl הוא הלקוח הסטנדרטי: כל פקודת kubectl get, apply או delete היא בעצם בקשת HTTP מאומתת אל ה-API server. זהו הכלי המעשי העיקרי לבדיקה ולשינוי של מצב ה-Cluster, בין אם ה-Cluster מנוהל עצמאית ובין אם הוא AKS/EKS/GKE של ספק ענן.",
       resourceTitle: "Command line tool (kubectl)",
       resourceUrl: "https://kubernetes.io/docs/reference/kubectl/",
       keywords: ["kubectl", "cli", "api server"],
@@ -100,15 +136,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "When would you use a StatefulSet instead of a Deployment?",
+      question_he: "מתי כדאי להשתמש ב-StatefulSet במקום ב-Deployment?",
       options: [
         "When Pods need stable, unique network identities and stable storage that persists across rescheduling — like a database cluster",
         "When you need Pods to run only once and then stop",
         "When you need the fastest possible Pod startup with no persistence",
         "StatefulSets and Deployments are interchangeable in every case",
       ],
+      options_he: [
+        "כאשר ה-Pods זקוקים לזהויות רשת יציבות וייחודיות ולאחסון יציב ששורד תזמון מחדש — כמו Cluster של בסיס נתונים",
+        "כאשר צריך שה-Pods ירוצו פעם אחת בלבד ואז ייעצרו",
+        "כאשר צריך את זמן ההפעלה המהיר ביותר עבור Pod ללא persistence",
+        "StatefulSet ו-Deployment ניתנים להחלפה זה בזה בכל מקרה",
+      ],
       correctAnswer: 0,
       explanation:
         "A Deployment's Pods are interchangeable — any replica can be replaced by an identical one. A StatefulSet gives each Pod a stable name and its own persistent volume that follows it across rescheduling (pod-0 always gets its own disk), which is exactly what a distributed database or message queue needs to keep its identity and data straight.",
+      explanation_he:
+        "ה-Pods של Deployment ניתנים להחלפה זה בזה — כל replica אפשר להחליף בעותק זהה. StatefulSet נותן לכל Pod שם יציב ו-volume פרסיסטנטי משלו שנשאר איתו גם אחרי תזמון מחדש (ל-pod-0 תמיד יהיה הדיסק שלו) — בדיוק מה שבסיס נתונים מבוזר או תור הודעות צריכים כדי לשמור על הזהות והנתונים שלהם מסודרים.",
       resourceTitle: "StatefulSets",
       resourceUrl: "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/",
       keywords: ["statefulset", "stable identity", "persistent storage"],
@@ -121,15 +166,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "How does a Horizontal Pod Autoscaler (HPA) decide to scale a Deployment?",
+      question_he: "איך Horizontal Pod Autoscaler (HPA) מחליט להגדיל או להקטין Deployment?",
       options: [
         "It continuously compares observed metrics (like CPU or custom metrics) against a target and adjusts replica count to match",
         "It scales based solely on the time of day",
         "It replaces unhealthy nodes automatically",
         "It only scales down, never up",
       ],
+      options_he: [
+        "הוא משווה ברציפות מדדים נצפים (כמו CPU או מדדים מותאמים אישית) ליעד, ומתאים את מספר ה-replicas בהתאם",
+        "הוא מגדיל/מקטין אך ורק בהתאם לשעה ביום",
+        "הוא מחליף nodes לא תקינים באופן אוטומטי",
+        "הוא רק מקטין, לעולם לא מגדיל",
+      ],
       correctAnswer: 0,
       explanation:
         "The HPA polls metrics (from the metrics server or a custom/external metrics API) on an interval and computes how many replicas would bring the observed value to the target — e.g. average CPU 80% with a 50% target roughly doubles replica count. It changes replica count only; a separate cluster autoscaler is responsible for adding nodes if there's no room to schedule the new Pods.",
+      explanation_he:
+        "ה-HPA שולף מדדים (מה-metrics server או מ-API של מדדים מותאמים/חיצוניים) במרווחי זמן, ומחשב כמה replicas יביאו את הערך הנצפה ליעד — למשל CPU ממוצע של 80% מול יעד של 50% בערך מכפיל את מספר ה-replicas. הוא משנה רק את מספר ה-replicas; cluster autoscaler נפרד אחראי להוסיף nodes אם אין מקום לתזמן את ה-Pods החדשים.",
       resourceTitle: "Horizontal Pod Autoscaling",
       resourceUrl: "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/",
       keywords: ["hpa", "autoscaling", "replica count"],
@@ -142,15 +196,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is the purpose of a Kubernetes admission controller?",
+      question_he: "מה תפקידו של admission controller ב-Kubernetes?",
       options: [
         "It intercepts API requests after authentication/authorization to validate or mutate objects before they're persisted — enforcing policies like required labels or disallowed privileged Pods",
         "It authenticates users logging into the cluster",
         "It compresses container images before storage",
         "It only logs requests with no effect on them",
       ],
+      options_he: [
+        "הוא מיירט בקשות API אחרי האימות וההרשאה, כדי לוודא תקינות או לשנות אובייקטים לפני ששומרים אותם — ואוכף מדיניות כמו labels חובה או איסור על Pods בעלי הרשאות privileged",
+        "הוא מאמת משתמשים שמתחברים ל-Cluster",
+        "הוא דוחס images של קונטיינרים לפני האחסון",
+        "הוא רק מתעד בקשות ביומן ללא כל השפעה עליהן",
+      ],
       correctAnswer: 0,
       explanation:
         "Admission control is the last gate before an object is written to etcd: validating webhooks can reject a Pod spec that violates policy (no privileged containers), and mutating webhooks can inject defaults (a sidecar, resource limits) automatically. It's how organization-wide guardrails — the Kubernetes analog of Azure Policy or SCPs — actually get enforced.",
+      explanation_he:
+        "admission control הוא השער האחרון לפני שאובייקט נכתב ל-etcd: webhooks של validation יכולים לדחות מפרט Pod שמפר מדיניות (למשל איסור על קונטיינרים privileged), ו-webhooks של mutation יכולים להזריק ברירות מחדל (Sidecar, מגבלות משאבים) באופן אוטומטי. כך אוכפים בפועל guardrails ברמת הארגון — המקבילה ב-Kubernetes ל-Azure Policy או ל-SCP.",
       resourceTitle: "Dynamic Admission Control",
       resourceUrl: "https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/",
       keywords: ["admission controller", "policy enforcement", "webhook"],
@@ -164,15 +227,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a Dockerfile?",
+      question_he: "מה זה Dockerfile?",
       options: [
         "A text file of instructions describing how to build a container image, step by step",
         "A running container instance",
         "A network configuration file for Kubernetes",
         "A compressed backup of a container",
       ],
+      options_he: [
+        "קובץ טקסט של הוראות המתאר כיצד לבנות image של קונטיינר, שלב אחר שלב",
+        "מופע קונטיינר שרץ בפועל",
+        "קובץ קונפיגורציית רשת עבור Kubernetes",
+        "גיבוי דחוס של קונטיינר",
+      ],
       correctAnswer: 0,
       explanation:
         "Each line (FROM, COPY, RUN, CMD…) adds a layer to the resulting image — starting from a base image, copying in code, installing dependencies, and defining the startup command. Because it's a text file, it can be version-controlled and reviewed just like application code, making image builds reproducible.",
+      explanation_he:
+        "כל שורה (FROM, COPY, RUN, CMD...) מוסיפה layer ל-image הסופי — החל מ-image בסיס, העתקת קוד, התקנת תלויות, והגדרת פקודת ההפעלה. מכיוון שמדובר בקובץ טקסט, ניתן לנהל אותו בבקרת גרסאות ולסקור אותו בדיוק כמו קוד אפליקציה, מה שהופך את בניית ה-images לשחזורה (reproducible).",
       resourceTitle: "Dockerfile reference",
       resourceUrl: "https://docs.docker.com/reference/dockerfile/",
       keywords: ["dockerfile", "image build", "build instructions"],
@@ -185,15 +257,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a container runtime (such as containerd or CRI-O)?",
+      question_he: "מה זה container runtime (כמו containerd או CRI-O)?",
       options: [
         "The software on a node that actually pulls images and starts/stops containers",
         "A cloud billing dashboard",
         "A tool for writing Dockerfiles",
         "A DNS resolution service",
       ],
+      options_he: [
+        "התוכנה על ה-node שמושכת בפועל images ומפעילה/עוצרת קונטיינרים",
+        "לוח בקרה לחיוב בענן",
+        "כלי לכתיבת Dockerfiles",
+        "שירות resolution של DNS",
+      ],
       correctAnswer: 0,
       explanation:
         "The runtime does the low-level work of unpacking an image and creating an isolated process (namespaces, cgroups) from it. Kubernetes talks to whichever runtime a node uses through a standard interface (CRI), which is why clusters can swap Docker/containerd/CRI-O without changing how you write Pod specs.",
+      explanation_he:
+        "ה-runtime מבצע את העבודה ברמה הנמוכה של פריסת ה-image ויצירת תהליך מבודד (namespaces, cgroups) ממנו. Kubernetes מדבר עם כל runtime שה-node משתמש בו דרך ממשק סטנדרטי (CRI), וזו הסיבה שבגללה clusters יכולים להחליף בין Docker/containerd/CRI-O בלי לשנות איך כותבים מפרטי Pod.",
       resourceTitle: "Container Runtimes",
       resourceUrl: "https://kubernetes.io/docs/setup/production-environment/container-runtimes/",
       keywords: ["container runtime", "containerd", "cri"],
@@ -206,10 +287,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "Container images are built from stacked, cacheable layers — unchanged layers are reused instead of rebuilt.",
+      question_he: "images של קונטיינרים נבנים משכבות (layers) מוערמות שניתן לשמור במטמון — layers שלא השתנו נעשה בהם שימוש חוזר במקום לבנות אותם מחדש.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Each Dockerfile instruction produces a layer, and Docker caches them: if you change only your application code near the end of the file, earlier layers (base OS, installed dependencies) are reused unchanged, making rebuilds fast. Ordering instructions from least-to-most frequently changed is a common optimization that relies directly on this caching behavior.",
+      explanation_he:
+        "כל הוראה ב-Dockerfile יוצרת layer, ו-Docker שומר אותם במטמון: אם משנים רק את קוד האפליקציה קרוב לסוף הקובץ, ה-layers הקודמים (מערכת הפעלה בסיסית, תלויות מותקנות) נעשה בהם שימוש חוזר ללא שינוי, מה שהופך את ה-rebuild למהיר. סידור ההוראות מהפחות-משתנה אל היותר-משתנה הוא אופטימיזציה נפוצה שמתבססת ישירות על התנהגות המטמון הזו.",
       resourceTitle: "Image layers and build cache",
       resourceUrl: "https://docs.docker.com/build/cache/",
       keywords: ["image layers", "build cache", "layer caching"],
@@ -222,15 +307,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is the standard way to pass configuration into a running container without rebuilding its image?",
+      question_he: "מהי הדרך הסטנדרטית להעביר קונפיגורציה לקונטיינר שרץ מבלי לבנות מחדש את ה-image שלו?",
       options: [
         "Environment variables or mounted configuration files/volumes",
         "Editing the Dockerfile and rebuilding every time",
         "Configuration cannot be changed after an image is built",
         "SSHing into the container to edit files by hand",
       ],
+      options_he: [
+        "משתני סביבה או קבצי/volumes קונפיגורציה מותקנים (mounted)",
+        "עריכת ה-Dockerfile ובנייה מחדש בכל פעם",
+        "לא ניתן לשנות קונפיגורציה אחרי שה-image נבנה",
+        "התחברות ב-SSH לקונטיינר ועריכת קבצים ידנית",
+      ],
       correctAnswer: 0,
       explanation:
         "Environment variables and mounted files let the exact same immutable image behave differently per environment — a database URL for dev versus prod, say — without touching the image itself. This separation of build-time image and runtime configuration is central to why containers are portable across environments.",
+      explanation_he:
+        "משתני סביבה וקבצים מותקנים מאפשרים לאותו image בלתי משתנה (immutable) בדיוק להתנהג אחרת בכל סביבה — למשל כתובת URL של בסיס נתונים ל-dev לעומת prod — מבלי לגעת ב-image עצמו. ההפרדה הזו בין ה-image בזמן הבנייה לבין הקונפיגורציה בזמן ריצה היא הבסיס לכך שקונטיינרים ניידים (portable) בין סביבות.",
       resourceTitle: "Environment variables (Docker)",
       resourceUrl: "https://docs.docker.com/compose/environment-variables/",
       keywords: ["environment variables", "runtime config", "immutable image"],
@@ -243,15 +337,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does \"publishing\" or mapping a container port do?",
+      question_he: "מה עושה \"publishing\" (פרסום) או מיפוי (mapping) של port בקונטיינר?",
       options: [
         "Exposes a port inside the container to the host (or network), so traffic can reach the process listening on it",
         "Encrypts all traffic on that port",
         "Automatically opens that port in every firewall",
         "Deletes the container after use",
       ],
+      options_he: [
+        "חושף port בתוך הקונטיינר אל ה-host (או הרשת), כך שתעבורה יכולה להגיע לתהליך שמאזין עליו",
+        "מצפין את כל התעבורה על אותו port",
+        "פותח אוטומטית את אותו port בכל firewall",
+        "מוחק את הקונטיינר לאחר השימוש",
+      ],
       correctAnswer: 0,
       explanation:
         "A container's network is isolated by default; publishing a port (e.g. host 8080 → container 80) creates the mapping that lets outside traffic reach the process inside. It does nothing about firewalling or encryption — those remain separate concerns layered on top by the surrounding infrastructure.",
+      explanation_he:
+        "הרשת של קונטיינר מבודדת כברירת מחדל; פרסום port (למשל host 8080 → container 80) יוצר את המיפוי שמאפשר לתעבורה חיצונית להגיע לתהליך שבפנים. הפעולה הזו לא עושה דבר לגבי firewalling או הצפנה — אלה נשארים עניינים נפרדים שמתווספים מעל על ידי התשתית שמסביב.",
       resourceTitle: "Networking overview (Docker)",
       resourceUrl: "https://docs.docker.com/engine/network/",
       keywords: ["port mapping", "port publishing", "container networking"],
@@ -264,10 +367,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "Minimizing what gets copied into a container image (via a small build context and a .dockerignore file) helps keep images smaller and builds faster.",
+      question_he: "צמצום מה שמועתק ל-image של קונטיינר (באמצעות build context קטן וקובץ .dockerignore) עוזר לשמור על images קטנים יותר ובניות מהירות יותר.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Everything in the build context gets sent to the builder and is a candidate for ending up in a layer — including local .git folders, node_modules, or test fixtures if you're not careful. A .dockerignore file (like .gitignore) excludes those from the build, keeping images smaller, builds faster, and reducing what could accidentally leak into a shipped image.",
+      explanation_he:
+        "כל מה שנמצא ב-build context נשלח אל ה-builder ומהווה מועמד להיכלל ב-layer — כולל תיקיות .git מקומיות, node_modules, או קבצי בדיקה אם לא נזהרים. קובץ .dockerignore (בדומה ל-.gitignore) מוציא אותם מהבנייה, ובכך שומר על images קטנים יותר, בניות מהירות יותר, ומצמצם מה שעלול לדלוף בטעות אל image שנשלח לייצור.",
       resourceTitle: ".dockerignore file",
       resourceUrl: "https://docs.docker.com/build/concepts/context/#dockerignore-files",
       keywords: ["dockerignore", "build context", "image size"],
@@ -280,15 +387,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "Why are containers typically designed to be stateless, storing data outside the container itself?",
+      question_he: "למה קונטיינרים מתוכננים בדרך כלל להיות stateless, כשהם מאחסנים נתונים מחוץ לקונטיינר עצמו?",
       options: [
         "Because containers are ephemeral and can be destroyed and replaced at any time — anything written only inside them is lost when that happens",
         "Because containers cannot write to disk at all",
         "Because stateless containers run faster on every hardware type",
         "Because orchestrators refuse to schedule stateful containers",
       ],
+      options_he: [
+        "מכיוון שקונטיינרים הם ephemeral (בני חלוף) וניתן להשמיד ולהחליף אותם בכל רגע — כל מה שנכתב רק בפנים הולך לאיבוד כשזה קורה",
+        "מכיוון שקונטיינרים לא יכולים לכתוב לדיסק בכלל",
+        "מכיוון שקונטיינרים stateless רצים מהר יותר על כל סוג חומרה",
+        "מכיוון שה-orchestrators מסרבים לתזמן קונטיינרים stateful",
+      ],
       correctAnswer: 0,
       explanation:
         "Orchestrators reschedule, restart and replace containers routinely as part of normal operation (deployments, node failures, scaling) — anything written only to the container's own writable layer disappears the moment it's replaced. Designing for statelessness (state lives in a database, object store, or an explicitly mounted persistent volume) is what makes that churn safe.",
+      explanation_he:
+        "Orchestrators מתזמנים מחדש, מפעילים מחדש ומחליפים קונטיינרים באופן שגרתי כחלק מפעילות רגילה (deployments, כשלי nodes, הגדלת קיבולת) — כל מה שנכתב רק ל-writable layer של הקונטיינר עצמו נעלם ברגע שהוא מוחלף. תכנון ל-statelessness (המצב נשמר במסד נתונים, object store, או volume פרסיסטנטי שמורכב במפורש) הוא מה שהופך את התחלופה הזו לבטוחה.",
       resourceTitle: "Twelve-Factor App: processes",
       resourceUrl: "https://12factor.net/processes",
       keywords: ["stateless", "ephemeral containers", "persistent volume"],
@@ -301,15 +417,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What problem do multi-stage Docker builds solve?",
+      question_he: "איזו בעיה פותרים multi-stage builds ב-Docker?",
       options: [
         "They let you use a full build environment (compilers, SDKs) in an early stage, then copy only the compiled output into a minimal final image",
         "They allow one Dockerfile to build for multiple unrelated projects",
         "They are required for any image to run in Kubernetes",
         "They automatically fix security vulnerabilities",
       ],
+      options_he: [
+        "הם מאפשרים שימוש בסביבת build מלאה (מהדרים, SDKs) בשלב מוקדם, ואז העתקת פלט ה-compile בלבד ל-image סופי מינימלי",
+        "הם מאפשרים ל-Dockerfile אחד לבנות עבור מספר פרויקטים לא קשורים",
+        "הם נדרשים בשביל שכל image יוכל לרוץ ב-Kubernetes",
+        "הם מתקנים באופן אוטומטי פרצות אבטחה",
+      ],
       correctAnswer: 0,
       explanation:
         "Without multi-stage builds, the final image often ships the entire build toolchain — compilers, package managers, source code — alongside the app, bloating the image and widening the attack surface. A multi-stage build compiles in one throwaway stage and copies just the binary or built assets into a clean, minimal final stage, shrinking both size and CVE exposure.",
+      explanation_he:
+        "ללא multi-stage builds, ה-image הסופי לעיתים קרובות נושא איתו את כל שרשרת כלי הבנייה — מהדרים, מנהלי חבילות, קוד מקור — לצד האפליקציה, מה שמנפח את ה-image ומרחיב את משטח התקיפה. multi-stage build מבצע compile בשלב חד-פעמי לזריקה, ומעתיק רק את ה-binary או קבצי הבנייה אל שלב סופי נקי ומינימלי, מה שמקטין גם את הגודל וגם את החשיפה ל-CVE.",
       resourceTitle: "Multi-stage builds",
       resourceUrl: "https://docs.docker.com/build/building/multi-stage/",
       keywords: ["multi-stage build", "image size", "attack surface"],
@@ -322,15 +447,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is the purpose of a container HEALTHCHECK instruction?",
+      question_he: "מה מטרתה של הוראת HEALTHCHECK בקונטיינר?",
       options: [
         "It defines a command the platform can run periodically to determine if the container is actually working, not just running",
         "It automatically restarts the host machine",
         "It scans the image for vulnerabilities",
         "It is required for a container to start at all",
       ],
+      options_he: [
+        "היא מגדירה פקודה שהפלטפורמה יכולה להריץ מעת לעת כדי לקבוע אם הקונטיינר באמת עובד, ולא רק רץ",
+        "היא מפעילה מחדש באופן אוטומטי את מכונת ה-host",
+        "היא סורקת את ה-image אחר פרצות אבטחה",
+        "היא נדרשת בשביל שקונטיינר יוכל להתחיל לרוץ בכלל",
+      ],
       correctAnswer: 0,
       explanation:
         "A process can be running (the container is 'up') while being completely unresponsive — deadlocked, out of connections, stuck. A health check command lets the orchestrator distinguish 'running' from 'actually healthy', feeding the same kind of decision Kubernetes liveness/readiness probes make at a higher level.",
+      explanation_he:
+        "תהליך יכול להיות רץ (הקונטיינר 'up') בעוד שהוא לגמרי לא מגיב — תקוע ב-deadlock, ללא חיבורים פנויים, נתקע. פקודת health check מאפשרת ל-orchestrator להבחין בין 'רץ' לבין 'באמת תקין', ומזינה את אותו סוג החלטה ש-liveness/readiness probes של Kubernetes מקבלים ברמה גבוהה יותר.",
       resourceTitle: "HEALTHCHECK instruction",
       resourceUrl: "https://docs.docker.com/reference/dockerfile/#healthcheck",
       keywords: ["healthcheck", "liveness", "container health"],
@@ -343,15 +477,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Why set CPU and memory limits/requests on containers?",
+      question_he: "למה כדאי להגדיר limits/requests של CPU וזיכרון עבור קונטיינרים?",
       options: [
         "Requests help the scheduler place Pods appropriately; limits prevent one container from starving others sharing the same node",
         "They are purely cosmetic and have no runtime effect",
         "They only affect billing, not behavior",
         "Only memory can be limited, never CPU",
       ],
+      options_he: [
+        "requests עוזרים ל-scheduler למקם Pods בהתאם; limits מונעים מקונטיינר אחד להרעיב אחרים ששותפים לאותו node",
+        "הם קוסמטיים בלבד וללא השפעה בזמן ריצה",
+        "הם משפיעים רק על החיוב, לא על ההתנהגות",
+        "ניתן להגביל רק זיכרון, לעולם לא CPU",
+      ],
       correctAnswer: 0,
       explanation:
         "A request is what the scheduler reserves for a container when deciding which node it fits on; a limit is the hard ceiling enforced at runtime — exceed the memory limit and the container gets killed (OOMKilled), exceed the CPU limit and it gets throttled. Without limits, one runaway container can consume all of a shared node's resources and starve its neighbors — a classic 'noisy neighbor' problem.",
+      explanation_he:
+        "request הוא מה שה-scheduler שומר עבור קונטיינר כשהוא מחליט לאיזה node הוא מתאים; limit הוא התקרה הקשיחה שנאכפת בזמן ריצה — חריגה ממגבלת הזיכרון גורמת לקונטיינר להיהרג (OOMKilled), וחריגה ממגבלת ה-CPU גורמת ל-throttling. ללא limits, קונטיינר יוצא משליטה יכול לצרוך את כל המשאבים של node משותף ולהרעיב את שכניו — בעיית 'noisy neighbor' קלאסית.",
       resourceTitle: "Resource Management for Pods and Containers",
       resourceUrl: "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
       keywords: ["resource limits", "resource requests", "noisy neighbor"],
@@ -364,10 +507,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "Using an image pull policy of \"Always\" forces the runtime to check the registry for a newer image every time a Pod starts, even if a local copy exists.",
+      question_he: "שימוש במדיניות משיכת image של \"Always\" מכריח את ה-runtime לבדוק אצל ה-Registry אם קיים image חדש יותר בכל הפעלה של Pod, גם אם קיים עותק מקומי.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "\"Always\" re-verifies against the registry on every Pod start — useful in combination with a mutable tag like :latest, but it adds a registry dependency and latency at every restart. \"IfNotPresent\" is faster and more resilient to registry outages but risks running a stale cached image if you expected an update. This is exactly the tag-mutability problem that pinning by digest avoids entirely.",
+      explanation_he:
+        "\"Always\" מוודא מחדש מול ה-Registry בכל הפעלה של Pod — שימושי בשילוב עם tag משתנה כמו :latest, אך זה מוסיף תלות ב-Registry וזמן השהיה בכל הפעלה מחדש. \"IfNotPresent\" מהיר יותר ועמיד יותר לתקלות ב-Registry, אך יש סיכון להריץ image ישן שנשמר במטמון אם ציפית לעדכון. זו בדיוק בעיית ה-tag המשתנה שנעילה לפי Image Digest נמנעת ממנה לגמרי.",
       resourceTitle: "Updating Images (image pull policy)",
       resourceUrl: "https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy",
       keywords: ["image pull policy", "always", "ifnotpresent"],
@@ -380,15 +527,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What security benefit do rootless containers (or user namespace remapping) provide?",
+      question_he: "איזה יתרון אבטחתי מספקים קונטיינרים rootless (או user namespace remapping)?",
       options: [
         "Even if a process appears to run as root inside the container, it maps to an unprivileged user on the host — limiting damage from a container escape",
         "They make containers start faster",
         "They eliminate the need for image scanning",
         "They are only relevant for Windows containers",
       ],
+      options_he: [
+        "גם אם נראה שתהליך רץ כ-root בתוך הקונטיינר, הוא ממופה למשתמש ללא הרשאות מיוחדות ב-host — מה שמגביל את הנזק ממקרה של container escape",
+        "הם גורמים לקונטיינרים להתחיל לרוץ מהר יותר",
+        "הם מבטלים את הצורך בסריקת images",
+        "הם רלוונטיים רק לקונטיינרים של Windows",
+      ],
       correctAnswer: 0,
       explanation:
         "Traditionally, root inside a container is the same UID 0 as root on the host — if an attacker escapes the container, they land as host root. User namespace remapping maps container root to an unprivileged host UID, so the same escape lands as a low-privilege user instead of root, substantially reducing the blast radius of an otherwise severe class of vulnerability.",
+      explanation_he:
+        "באופן מסורתי, root בתוך קונטיינר הוא אותו UID 0 כמו root ב-host — אם תוקף בורח מהקונטיינר, הוא נוחת כ-root ב-host. user namespace remapping ממפה את ה-root של הקונטיינר ל-UID ב-host ללא הרשאות מיוחדות, כך שאותה בריחה נוחתת כמשתמש בעל הרשאות נמוכות במקום root, מה שמצמצם משמעותית את רדיוס הנזק של קטגוריית פגיעות שבדרך כלל חמורה מאוד.",
       resourceTitle: "Isolate containers with a user namespace",
       resourceUrl: "https://docs.docker.com/engine/security/userns-remap/",
       keywords: ["rootless containers", "user namespace", "container escape"],
@@ -401,10 +557,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "true-false",
       question: "Running a container with a read-only root filesystem limits an attacker's ability to persist malware or modify application files at runtime.",
+      question_he: "הרצת קונטיינר עם root filesystem לקריאה בלבד (read-only) מגבילה את יכולתו של תוקף להשאיר תוכנה זדונית לצמיתות או לשנות קבצי אפליקציה בזמן ריצה.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "If the container filesystem can't be written to (aside from explicitly mounted, narrowly-scoped writable volumes for logs or temp files), a compromised process has nowhere to drop a persistent payload or tamper with the application binary — any change it makes disappears when the container restarts from its immutable image. It's a cheap, high-value hardening step for any container that doesn't genuinely need to write to its own filesystem.",
+      explanation_he:
+        "אם לא ניתן לכתוב ל-filesystem של הקונטיינר (מלבד volumes ספציפיים וממוקדים שמורכבים במפורש לכתיבה, עבור לוגים או קבצים זמניים), לתהליך שנפרץ אין איפה להשאיר payload קבוע או לשבש את ה-binary של האפליקציה — כל שינוי שהוא עושה נעלם כשהקונטיינר מופעל מחדש מה-image הבלתי משתנה שלו. זהו צעד hardening זול ובעל ערך גבוה עבור כל קונטיינר שלא באמת צריך לכתוב ל-filesystem שלו.",
       resourceTitle: "Pod Security Standards",
       resourceUrl: "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
       keywords: ["read-only root filesystem", "hardening", "immutability"],
@@ -417,15 +577,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What does a seccomp profile restrict for a container?",
+      question_he: "מה מגביל profile של seccomp עבור קונטיינר?",
       options: [
         "Which Linux system calls the container's processes are allowed to make to the kernel",
         "Which network ports the container can open",
         "Which container images can be pulled",
         "How much CPU the container can use",
       ],
+      options_he: [
+        "אילו קריאות מערכת (system calls) של Linux מותר לתהליכי הקונטיינר לבצע אל ה-kernel",
+        "אילו network ports הקונטיינר יכול לפתוח",
+        "אילו images של קונטיינרים ניתן למשוך",
+        "כמה CPU הקונטיינר יכול לצרוך",
+      ],
       correctAnswer: 0,
       explanation:
         "Seccomp (secure computing mode) filters the syscall interface between a container and the host kernel — denying syscalls a normal application never needs (like mounting filesystems or loading kernel modules) shrinks the kernel attack surface available to an exploited process, which matters because container isolation ultimately runs on a shared kernel.",
+      explanation_he:
+        "Seccomp (secure computing mode) מסנן את ממשק ה-syscalls בין הקונטיינר לבין ה-kernel של ה-host — חסימת syscalls שאפליקציה רגילה אף פעם לא צריכה (כמו mount של filesystems או טעינת מודולי kernel) מצמצמת את משטח התקיפה של ה-kernel הזמין לתהליך שנוצל, וזה משנה כי בידוד קונטיינרים בסופו של דבר רץ על kernel משותף.",
       resourceTitle: "Seccomp security profiles",
       resourceUrl: "https://kubernetes.io/docs/tutorials/security/seccomp/",
       keywords: ["seccomp", "syscall filtering", "kernel attack surface"],
@@ -438,15 +607,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is a Software Bill of Materials (SBOM) used for in container security?",
+      question_he: "למה משמש Software Bill of Materials (SBOM) באבטחת קונטיינרים?",
       options: [
         "It lists every component and dependency inside an image, so known vulnerabilities in any of them can be identified quickly",
         "It records the container's CPU usage history",
         "It is a legal document for open-source licensing only, with no security use",
         "It replaces the need for vulnerability scanning entirely",
       ],
+      options_he: [
+        "הוא מפרט כל רכיב ותלות בתוך image, כך שניתן לזהות במהירות פרצות ידועות בכל אחד מהם",
+        "הוא מתעד את היסטוריית צריכת ה-CPU של הקונטיינר",
+        "הוא מסמך משפטי לרישוי קוד פתוח בלבד, ללא שימוש אבטחתי",
+        "הוא מחליף לחלוטין את הצורך בסריקת פרצות",
+      ],
       correctAnswer: 0,
       explanation:
         "An SBOM is essentially an ingredient list for software — every library, package and version baked into an image. When a new CVE is disclosed (like Log4Shell), an SBOM lets you instantly query which of your images contain the affected component, instead of scrambling to manually inspect every image from scratch. It complements, rather than replaces, ongoing vulnerability scanning.",
+      explanation_he:
+        "SBOM הוא בעצם רשימת מרכיבים לתוכנה — כל ספרייה, חבילה וגרסה שנארזו לתוך image. כשמתגלה CVE חדש (כמו Log4Shell), SBOM מאפשר לשאול מיידית אילו מה-images שלך מכילים את הרכיב הפגיע, במקום לבדוק ידנית כל image מאפס בבהילות. הוא משלים, ולא מחליף, סריקת פרצות שוטפת.",
       resourceTitle: "Software Bill of Materials (CISA)",
       resourceUrl: "https://www.cisa.gov/sbom",
       keywords: ["sbom", "supply chain", "vulnerability response"],
@@ -459,10 +637,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "true-false",
       question: "Because containers share the host kernel, a container escape vulnerability can potentially compromise the host and other containers on it — a risk a VM's hardware-enforced boundary doesn't share.",
+      question_he: "מכיוון שקונטיינרים חולקים את ה-kernel של ה-host, פרצת container escape עלולה לפגוע ב-host ובקונטיינרים אחרים עליו — סיכון שלא קיים בגבול המאוכף בחומרה של VM.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Container isolation (namespaces, cgroups) is a kernel feature, not a hardware boundary — a sufficiently severe kernel exploit can break out of that isolation entirely. A VM's isolation is enforced by the hypervisor and CPU virtualization extensions, a fundamentally stronger boundary. This is exactly why hostile multi-tenant workloads (running untrusted third-party code) often still reach for VM-level or sandboxed-runtime isolation instead of containers alone.",
+      explanation_he:
+        "בידוד קונטיינרים (namespaces, cgroups) הוא תכונה של ה-kernel, לא גבול בחומרה — ניצול kernel חמור מספיק יכול לפרוץ החוצה מהבידוד הזה לחלוטין. הבידוד של VM נאכף על ידי ה-hypervisor והרחבות וירטואליזציה של המעבד, גבול חזק בהרבה מבחינה עקרונית. זו בדיוק הסיבה שעומסי עבודה עוינים ורב-דיירים (multi-tenant, המריצים קוד צד שלישי לא מהימן) לרוב עדיין פונים לבידוד ברמת VM או runtime מבודד (sandboxed) במקום להסתמך על קונטיינרים בלבד.",
       resourceTitle: "Container isolation and security",
       resourceUrl: "https://kubernetes.io/docs/concepts/security/overview/",
       keywords: ["container escape", "kernel isolation", "vm boundary"],
@@ -475,15 +657,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What do build attestations / SLSA provenance aim to prove about a container image?",
+      question_he: "מה מטרתם של build attestations / SLSA provenance להוכיח לגבי image של קונטיינר?",
       options: [
         "That the image was built by a specific, trusted pipeline from a specific source commit — not tampered with or substituted along the way",
         "That the image contains no bugs",
         "That the image is compatible with every operating system",
         "That the image was scanned for viruses on the developer's laptop",
       ],
+      options_he: [
+        "שה-image נבנה על ידי pipeline מסוים ומהימן, מ-commit מקור מסוים — ולא שובש או הוחלף בדרך",
+        "שה-image לא מכיל באגים",
+        "שה-image תואם לכל מערכת הפעלה",
+        "שה-image נסרק אחר וירוסים על המחשב הנייד של המפתח",
+      ],
       correctAnswer: 0,
       explanation:
         "A signed digest alone proves 'these exact bytes' but not where they came from. Provenance attestations (following frameworks like SLSA) cryptographically record which pipeline, which source revision and which build steps produced the image, so an admission controller can enforce 'only run images built by our verified CI, from our verified repo' — closing off attacks where a malicious actor pushes a well-formed image straight to the registry.",
+      explanation_he:
+        "Image Digest חתום לבדו מוכיח 'אלה בדיוק הבייטים' אבל לא מאיפה הם הגיעו. attestations של provenance (בהתאם למסגרות כמו SLSA) מתעדים בצורה קריפטוגרפית איזה pipeline, איזו גרסת מקור ואילו שלבי בנייה הפיקו את ה-image, כך ש-admission controller יכול לאכוף 'הרץ רק images שנבנו ב-CI המאומת שלנו, מה-repo המאומת שלנו' — וסוגר פרצות שבהן תוקף דוחף image תקין-מבנה ישירות אל ה-Registry.",
       resourceTitle: "SLSA — Supply-chain Levels for Software Artifacts",
       resourceUrl: "https://slsa.dev/",
       keywords: ["slsa", "provenance", "build attestation", "supply chain"],
@@ -497,15 +688,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does \"DNS resolution\" mean?",
+      question_he: "מה המשמעות של \"DNS resolution\"?",
       options: [
         "Translating a human-readable domain name into the IP address a computer uses to connect",
         "Encrypting web traffic",
         "Compressing a webpage for faster loading",
         "Blocking malicious websites",
       ],
+      options_he: [
+        "תרגום שם domain קריא לבני אדם לכתובת IP שהמחשב משתמש בה כדי להתחבר",
+        "הצפנת תעבורת אינטרנט",
+        "דחיסת דף אינטרנט לטעינה מהירה יותר",
+        "חסימת אתרים זדוניים",
+      ],
       correctAnswer: 0,
       explanation:
         "Every domain name is really a friendly alias for one or more IP addresses. Resolution is the lookup process — your resolver asks (possibly through several hops) until it gets back the current IP, which is then what your connection actually targets.",
+      explanation_he:
+        "כל שם domain הוא בעצם כינוי ידידותי לכתובת IP אחת או יותר. resolution הוא תהליך הבירור — ה-resolver שלך שואל (אולי דרך כמה קפיצות) עד שהוא מקבל בחזרה את ה-IP הנוכחי, וזו הכתובת שאליה החיבור שלך פועל בפועל.",
       resourceTitle: "How DNS works (Cloudflare Learning)",
       resourceUrl: "https://www.cloudflare.com/learning/dns/what-is-dns/",
       keywords: ["dns resolution", "name to ip", "lookup"],
@@ -518,15 +718,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a subdomain?",
+      question_he: "מה זה subdomain?",
       options: [
         "A domain that is part of a larger parent domain, such as api.example.com under example.com",
         "A backup copy of a domain name",
         "A domain name that has expired",
         "A type of load balancer",
       ],
+      options_he: [
+        "domain שהוא חלק מ-domain אב גדול יותר, כמו api.example.com תחת example.com",
+        "עותק גיבוי של שם domain",
+        "שם domain שפג תוקפו",
+        "סוג של Load Balancer",
+      ],
       correctAnswer: 0,
       explanation:
         "Subdomains let one registered domain host many independently-addressable services — api.example.com, app.example.com, blog.example.com — each with its own DNS records, often pointing at completely different infrastructure, without needing a separate domain registration for each.",
+      explanation_he:
+        "subdomains מאפשרים ל-domain רשום אחד לארח שירותים רבים בעלי כתובות עצמאיות — api.example.com, app.example.com, blog.example.com — כל אחד עם רשומות DNS משלו, לעיתים קרובות מפנה לתשתית שונה לגמרי, מבלי לדרוש רישום domain נפרד לכל אחד.",
       resourceTitle: "DNS records (Cloudflare Learning)",
       resourceUrl: "https://www.cloudflare.com/learning/dns/dns-records/",
       keywords: ["subdomain", "parent domain", "dns hierarchy"],
@@ -539,15 +748,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does an NS (nameserver) record specify?",
+      question_he: "מה מציינת רשומת NS (nameserver)?",
       options: [
         "Which nameservers are authoritative for a domain — the servers that answer DNS queries for it",
         "The IP address of a web server",
         "The mail server for a domain",
         "An alias for another hostname",
       ],
+      options_he: [
+        "אילו nameservers הם authoritative עבור domain — השרתים שעונים לשאילתות DNS עבורו",
+        "כתובת ה-IP של שרת אינטרנט",
+        "שרת הדוא\"ל של domain",
+        "כינוי (alias) עבור hostname אחר",
+      ],
       correctAnswer: 0,
       explanation:
         "NS records point to the authoritative nameservers that hold the actual DNS zone for a domain — when you delegate a domain to a cloud DNS provider, you're pointing the registrar's NS records at that provider's nameservers. It's the record type that makes delegation of a zone to a different provider possible.",
+      explanation_he:
+        "רשומות NS מצביעות על ה-nameservers ה-authoritative שמחזיקים את אזור ה-DNS בפועל עבור domain — כשמאצילים (delegate) domain לספק Cloud DNS, מפנים את רשומות ה-NS של הרשם אל ה-nameservers של אותו ספק. זהו סוג הרשומה שמאפשר האצלה של zone לספק אחר.",
       resourceTitle: "NS record (Cloudflare Learning)",
       resourceUrl: "https://www.cloudflare.com/learning/dns/dns-records/dns-ns-record/",
       keywords: ["ns record", "authoritative nameserver", "delegation"],
@@ -560,15 +778,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a listener on a load balancer?",
+      question_he: "מה זה listener ב-Load Balancer?",
       options: [
         "A configuration that checks for connection requests on a specific protocol and port, and defines how to route them",
         "A tool for reading application logs",
         "A user who monitors the dashboard",
         "A DNS record type",
       ],
+      options_he: [
+        "קונפיגורציה שבודקת בקשות חיבור על פרוטוקול ו-port מסוימים, ומגדירה כיצד לנתב אותם",
+        "כלי לקריאת לוגים של אפליקציה",
+        "משתמש שמנטר את לוח הבקרה",
+        "סוג רשומת DNS",
+      ],
       correctAnswer: 0,
       explanation:
         "A listener says \"watch port 443 for HTTPS\" (or port 80, or a TCP port) and defines what happens next — which backend target group receives the traffic, whether TLS is terminated here, and what rules apply. A load balancer can have multiple listeners handling different ports and protocols simultaneously.",
+      explanation_he:
+        "listener אומר \"עקוב אחר port 443 עבור HTTPS\" (או port 80, או port של TCP) ומגדיר מה קורה בהמשך — איזו קבוצת יעד (target group) בקצה האחורי מקבלת את התעבורה, האם ה-TLS Termination מתבצע כאן, ואילו כללים חלים. ל-Load Balancer יכולים להיות מספר listeners המטפלים ב-ports ופרוטוקולים שונים בו-זמנית.",
       resourceTitle: "Application Load Balancer listeners",
       resourceUrl: "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancer-listeners.html",
       keywords: ["listener", "load balancer", "port and protocol"],
@@ -581,10 +808,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "DNS-based health checks can automatically stop directing traffic to an endpoint that stops responding, redirecting users to a healthy alternative.",
+      question_he: "בדיקות תקינות (health checks) מבוססות DNS יכולות להפסיק אוטומטית לנתב תעבורה לנקודת קצה שמפסיקה להגיב, ולהפנות משתמשים לחלופה תקינה.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Services like Route 53 or Azure Traffic Manager continuously probe each configured endpoint; if one fails its health check, DNS answers stop including it (or shift to a designated failover target) until it recovers. This is DNS acting as a coarse-grained, TTL-bound failover mechanism — distinct from a load balancer's much faster, connection-level health checking.",
+      explanation_he:
+        "שירותים כמו Route 53 או Azure Traffic Manager בודקים ברציפות כל נקודת קצה שהוגדרה; אם אחת נכשלת בבדיקת התקינות שלה, תשובות ה-DNS מפסיקות לכלול אותה (או עוברות ליעד failover ייעודי) עד שהיא מתאוששת. זהו DNS הפועל כמנגנון failover גס-גרגר (coarse-grained) הכפוף ל-TTL — בשונה מבדיקת התקינות המהירה בהרבה, ברמת החיבור, של Load Balancer.",
       resourceTitle: "DNS failover (Route 53)",
       resourceUrl: "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html",
       keywords: ["dns health check", "failover", "route 53"],
@@ -597,15 +828,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does a weighted DNS routing policy allow you to do?",
+      question_he: "מה מאפשרת מדיניות ניתוב DNS מבוססת משקלים (weighted)?",
       options: [
         "Split traffic between multiple endpoints by percentage — useful for canary releases or gradual migrations",
         "Guarantee the lowest possible latency for every user",
         "Encrypt DNS queries",
         "Block traffic from specific countries",
       ],
+      options_he: [
+        "לפצל תעבורה בין מספר נקודות קצה לפי אחוזים — שימושי ל-canary releases או למעברים הדרגתיים",
+        "להבטיח את זמן ההשהיה הנמוך ביותר האפשרי לכל משתמש",
+        "להצפין שאילתות DNS",
+        "לחסום תעבורה ממדינות מסוימות",
+      ],
       correctAnswer: 0,
       explanation:
         "Assigning weights (like 90/10) lets you send a small slice of real traffic to a new version or new environment while the bulk still goes to the proven one — a DNS-layer way to do canary testing or a gradual cutover, though it's coarser-grained and slower to adjust than an application load balancer's traffic splitting.",
+      explanation_he:
+        "הקצאת משקלים (כמו 90/10) מאפשרת לשלוח פלח קטן מהתעבורה האמיתית לגרסה חדשה או לסביבה חדשה, בעוד הרוב עדיין הולך לגרסה המוכחת — דרך ברמת ה-DNS לבצע canary testing או מעבר הדרגתי, אם כי היא גסה יותר ואיטית יותר לכוונון מפיצול התעבורה של Load Balancer ברמת האפליקציה.",
       resourceTitle: "Weighted routing (Route 53)",
       resourceUrl: "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-weighted.html",
       keywords: ["weighted routing", "canary", "traffic splitting"],
@@ -618,15 +858,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is the purpose of connection draining (deregistration delay) when removing a backend from a load balancer?",
+      question_he: "מה מטרתו של connection draining (deregistration delay) בעת הסרת backend מ-Load Balancer?",
       options: [
         "It lets in-flight requests to that backend finish before it's fully removed, instead of abruptly cutting them off",
         "It permanently blocks the backend from ever rejoining",
         "It speeds up the removal process",
         "It only applies to DNS records, not load balancers",
       ],
+      options_he: [
+        "הוא מאפשר לבקשות שכבר בתהליך (in-flight) אל אותו backend להסתיים לפני ההסרה המלאה שלו, במקום לנתק אותן באופן פתאומי",
+        "הוא חוסם לצמיתות את אותו backend מלהצטרף שוב אי פעם",
+        "הוא מזרז את תהליך ההסרה",
+        "הוא חל רק על רשומות DNS, לא על load balancers",
+      ],
       correctAnswer: 0,
       explanation:
         "The moment you scale in or replace an unhealthy instance, any request already in flight to it would otherwise be dropped mid-response. A deregistration delay stops sending NEW connections to that target immediately, while giving existing connections a grace period to complete — a small setting that avoids a steady trickle of user-visible errors during routine scaling events.",
+      explanation_he:
+        "ברגע שמקטינים קיבולת (scale in) או מחליפים instance לא תקין, כל בקשה שכבר בתהליך אליו הייתה נחתכת באמצע המענה. deregistration delay מפסיק לשלוח חיבורים חדשים ליעד הזה מיידית, אך נותן לחיבורים קיימים תקופת חסד להשלים — הגדרה קטנה שמונעת זרם קבוע של שגיאות גלויות למשתמש בזמן אירועי scaling שגרתיים.",
       resourceTitle: "Deregistration delay",
       resourceUrl: "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-connection-draining.html",
       keywords: ["connection draining", "deregistration delay", "graceful removal"],
@@ -639,10 +888,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "Cross-zone load balancing distributes traffic evenly across targets in all enabled Availability Zones, not just the zone the request arrived in.",
+      question_he: "Cross-zone load balancing מפזר תעבורה באופן שווה בין יעדים בכל ה-Availability Zones המופעלים, ולא רק ב-Zone שבו הבקשה הגיעה.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Without cross-zone balancing, a request landing at a load balancer node in zone A only gets distributed among the (possibly few) targets in zone A — an imbalance if targets aren't spread evenly. Enabling cross-zone balancing spreads every request across all healthy targets in every zone, evening out load at the cost of some inter-zone data transfer.",
+      explanation_he:
+        "ללא cross-zone balancing, בקשה שמגיעה ל-node של Load Balancer ב-zone A תחולק רק בין היעדים (אולי מעטים) שב-zone A — חוסר איזון אם היעדים לא פרוסים באופן שווה. הפעלת cross-zone balancing מפזרת כל בקשה בין כל היעדים התקינים בכל ה-zones, ומאזנת את העומס במחיר של העברת נתונים מסוימת בין zones.",
       resourceTitle: "Cross-zone load balancing",
       resourceUrl: "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#cross-zone-load-balancing",
       keywords: ["cross-zone load balancing", "even distribution", "availability zones"],
@@ -655,15 +908,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What problem does DNSSEC address?",
+      question_he: "איזו בעיה פותר DNSSEC?",
       options: [
         "It cryptographically signs DNS records so resolvers can verify responses haven't been tampered with or spoofed",
         "It encrypts the content of DNS queries",
         "It speeds up DNS resolution",
         "It replaces the need for a domain registrar",
       ],
+      options_he: [
+        "הוא חותם קריפטוגרפית על רשומות DNS כך ש-resolvers יכולים לוודא שתשובות לא שובשו או זויפו",
+        "הוא מצפין את תוכן שאילתות ה-DNS",
+        "הוא מזרז את ה-DNS resolution",
+        "הוא מבטל את הצורך ברשם domain (registrar)",
+      ],
       correctAnswer: 0,
       explanation:
         "Plain DNS has no integrity protection — a response can be forged (cache poisoning) to redirect users to a malicious server, and the resolver has no way to know. DNSSEC adds a chain of cryptographic signatures from the root down to your zone, letting a validating resolver detect a tampered or spoofed answer and reject it. It's about authenticity, not confidentiality — the query content itself is still visible in transit.",
+      explanation_he:
+        "DNS רגיל אין לו הגנת שלמות (integrity) — תשובה יכולה להיות מזויפת (cache poisoning) כדי להפנות משתמשים לשרת זדוני, ול-resolver אין דרך לדעת. DNSSEC מוסיף שרשרת חתימות קריפטוגרפיות מה-root ועד ה-zone שלך, ומאפשר ל-resolver מאמת לזהות תשובה מזויפת או משובשת ולדחות אותה. מדובר באותנטיות, לא בסודיות — תוכן השאילתה עצמו עדיין גלוי במעבר.",
       resourceTitle: "DNSSEC (Cloudflare Learning)",
       resourceUrl: "https://www.cloudflare.com/learning/dns/dnssec/how-dnssec-works/",
       keywords: ["dnssec", "cache poisoning", "response integrity"],
@@ -676,15 +938,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "How does anycast addressing differ from traditional unicast addressing?",
+      question_he: "במה שונה כתובת anycast מכתובת unicast מסורתית?",
       options: [
         "The same anycast IP is announced from many locations, and network routing delivers each user to the nearest one; unicast delivers to one specific destination",
         "Anycast requires every user to configure a special DNS resolver",
         "Anycast only works for UDP traffic",
         "Unicast automatically load-balances across regions",
       ],
+      options_he: [
+        "אותה כתובת anycast מוכרזת ממספר מיקומים, וניתוב הרשת מעביר כל משתמש למיקום הקרוב ביותר; unicast מעביר ליעד ספציפי אחד",
+        "anycast דורש מכל משתמש להגדיר resolver DNS מיוחד",
+        "anycast עובד רק עבור תעבורת UDP",
+        "unicast מבצע load balancing אוטומטי בין regions",
+      ],
       correctAnswer: 0,
       explanation:
         "With anycast, the same IP address is advertised via BGP from many edge locations worldwide; standard internet routing (not DNS) automatically sends each user's packets to the topologically nearest announcing location. This is what gives services like Cloudflare, Google's global load balancer, or Azure Front Door low-latency, automatically-failing-over global endpoints from a single IP — very different from a unicast address that always resolves to one place.",
+      explanation_he:
+        "ב-anycast, אותה כתובת IP מוכרזת דרך BGP ממספר מיקומי edge ברחבי העולם; ניתוב אינטרנט סטנדרטי (לא DNS) שולח אוטומטית את החבילות של כל משתמש למיקום המכריז הקרוב ביותר מבחינה טופולוגית. זה מה שנותן לשירותים כמו Cloudflare, ה-load balancer הגלובלי של Google, או Azure Front Door נקודות קצה גלובליות עם השהיה נמוכה ו-failover אוטומטי מכתובת אחת בלבד — שונה מאוד מכתובת unicast שתמיד מתפענחת (resolves) למקום אחד.",
       resourceTitle: "What is anycast? (Cloudflare Learning)",
       resourceUrl: "https://www.cloudflare.com/learning/cdn/glossary/anycast-network/",
       keywords: ["anycast", "unicast", "bgp routing"],
@@ -697,10 +968,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "true-false",
       question: "Because DNS-based global server load balancing (GSLB) depends on caching and TTLs, its failover is generally slower than an anycast-based or load-balancer-level failover.",
+      question_he: "מכיוון ש-global server load balancing (GSLB) מבוסס DNS תלוי ב-caching וב-TTL, ה-failover שלו לרוב איטי יותר מ-failover מבוסס anycast או ברמת Load Balancer.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "DNS answers get cached by resolvers and clients for the record's TTL — even a fast health check and instant DNS update won't reach clients holding a cached answer until it expires. Anycast (routing-based) and in-region load balancer failover aren't subject to that caching delay at all, which is why latency-critical global failover designs often prefer anycast entry points over relying on DNS TTL alone.",
+      explanation_he:
+        "תשובות DNS נשמרות במטמון על ידי resolvers ולקוחות למשך ה-TTL של הרשומה — אפילו בדיקת תקינות מהירה ועדכון DNS מיידי לא יגיעו ללקוחות שמחזיקים תשובה שמורה במטמון עד שהיא פגה. failover מבוסס anycast (מבוסס ניתוב) ו-failover ברמת Load Balancer באזור אינם כפופים לעיכוב ה-caching הזה כלל, ולכן עיצובי failover גלובליים קריטיים להשהיה מעדיפים לרוב נקודות כניסה מבוססות anycast על פני הסתמכות על TTL של DNS בלבד.",
       resourceTitle: "DNS TTL and failover speed",
       resourceUrl: "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-values-basic.html",
       keywords: ["gslb", "ttl caching", "failover speed"],
@@ -713,15 +988,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What does a latency-based DNS routing policy optimize for?",
+      question_he: "למה מיועדת מדיניות ניתוב DNS מבוססת latency (השהיה) לייעל?",
       options: [
         "Directing each user to the region/endpoint that historically provides the lowest network latency for them, based on measured round-trip data",
         "The cheapest region to run compute in",
         "Always the geographically nearest region regardless of actual network performance",
         "A random region chosen each time to spread load evenly",
       ],
+      options_he: [
+        "הפניית כל משתמש ל-region/endpoint שהיסטורית מספק לו את ה-latency הרשתי הנמוך ביותר, בהתבסס על נתוני round-trip נמדדים",
+        "ה-region הזול ביותר להרצת compute",
+        "תמיד ה-region הקרוב ביותר מבחינה גיאוגרפית, ללא קשר לביצועי הרשת בפועל",
+        "region אקראי שנבחר בכל פעם כדי לפזר עומס באופן שווה",
+      ],
       correctAnswer: 0,
       explanation:
         "Latency-based routing uses actual measured network latency data between resolver locations and each region — not simple geographic distance, which doesn't always correlate with network path quality (peering, undersea cable routes, congestion). It optimizes user experience directly, whereas geolocation routing optimizes for compliance/content-localization reasons instead.",
+      explanation_he:
+        "ניתוב מבוסס latency משתמש בנתוני latency רשתי נמדדים בפועל בין מיקומי resolvers לבין כל region — לא במרחק גיאוגרפי פשוט, שלא תמיד מתואם עם איכות מסלול הרשת (peering, מסלולי כבלים תת-ימיים, עומס). הוא מייעל ישירות את חוויית המשתמש, בעוד ניתוב geolocation מייעל מסיבות של תאימות רגולטורית או התאמת תוכן מקומי במקום זאת.",
       resourceTitle: "Latency routing policy (Route 53)",
       resourceUrl: "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-latency.html",
       keywords: ["latency-based routing", "network performance", "geolocation vs latency"],
@@ -735,15 +1019,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a hybrid cloud?",
+      question_he: "מה זה hybrid cloud?",
       options: [
         "An architecture that combines on-premises infrastructure with public cloud services, connected and often working together",
         "A cloud that uses two different regions",
         "A cloud environment with no internet access",
         "A term for using two cloud providers with no connection between them",
       ],
+      options_he: [
+        "ארכיטקטורה המשלבת תשתית on-premises עם שירותי ענן ציבורי, מחוברים ולעיתים קרובות פועלים יחד",
+        "ענן שמשתמש בשני regions שונים",
+        "סביבת ענן ללא גישה לאינטרנט",
+        "מונח לשימוש בשני ספקי ענן ללא כל חיבור ביניהם",
+      ],
       correctAnswer: 0,
       explanation:
         "Hybrid cloud keeps some workloads on-premises (for latency, compliance, or legacy reasons) while extending others to the public cloud, connected via VPN or a dedicated circuit so they can interoperate — sharing identity, data, or network reachability. It's a deliberate middle ground, not just \"using two environments that happen to coexist\".",
+      explanation_he:
+        "hybrid cloud משאיר חלק מעומסי העבודה on-premises (מסיבות של latency, תאימות רגולטורית, או מערכות legacy) בעוד הוא מרחיב אחרים לענן הציבורי, מחוברים דרך VPN או מעגל ייעודי (dedicated circuit) כך שהם יכולים לפעול יחד — לחלוק זהות, נתונים, או נגישות רשתית. זהו פתרון ביניים מכוון, לא סתם \"שימוש בשתי סביבות שבמקרה קיימות זו לצד זו\".",
       resourceTitle: "What is hybrid cloud?",
       resourceUrl: "https://learn.microsoft.com/azure/architecture/guide/technology-choices/hybrid-considerations",
       keywords: ["hybrid cloud", "on-premises", "interoperability"],
@@ -756,15 +1049,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a colocation (colo) facility?",
+      question_he: "מה זה מתקן colocation (colo)?",
       options: [
         "A datacenter where an organization rents space to house its own physical servers, often used as a hop point for dedicated cloud circuits",
         "A cloud region operated jointly by two providers",
         "A backup site with no active equipment",
         "A software tool for managing hybrid identities",
       ],
+      options_he: [
+        "datacenter שבו ארגון שוכר שטח כדי לאחסן בו שרתים פיזיים משלו, המשמש לעיתים קרובות כנקודת מעבר עבור מעגלי ענן ייעודיים",
+        "region ענן המופעל במשותף על ידי שני ספקים",
+        "אתר גיבוי ללא ציוד פעיל",
+        "כלי תוכנה לניהול זהויות היברידיות",
+      ],
       correctAnswer: 0,
       explanation:
         "Colocation facilities provide power, cooling and physical security for equipment you own — and many sit at network exchange points where cloud providers have a presence, which is exactly why they're the common physical meeting point for ExpressRoute, Direct Connect and Cloud Interconnect circuits between an enterprise and a cloud provider.",
+      explanation_he:
+        "מתקני colocation מספקים חשמל, קירור ואבטחה פיזית לציוד שבבעלותך — ורבים מהם ממוקמים בנקודות חילופי רשת שבהן לספקי ענן יש נוכחות, וזו בדיוק הסיבה שהם נקודת המפגש הפיזית הנפוצה עבור מעגלי ExpressRoute, Direct Connect ו-Cloud Interconnect בין ארגון לבין ספק ענן.",
       resourceTitle: "ExpressRoute connectivity models",
       resourceUrl: "https://learn.microsoft.com/azure/expressroute/expressroute-locations-providers",
       keywords: ["colocation", "colo", "circuit meet point"],
@@ -777,15 +1079,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "Which of these is a common reason an enterprise chooses hybrid cloud over a full migration?",
+      question_he: "מה מבין אלה היא סיבה נפוצה שארגון בוחר ב-hybrid cloud במקום מיגרציה מלאה?",
       options: [
         "Regulatory or data-residency requirements, legacy systems that are impractical to migrate, or latency-sensitive on-premises equipment",
         "Hybrid cloud is always cheaper than any other option",
         "Public cloud providers require hybrid cloud by law",
         "It eliminates the need for any network security",
       ],
+      options_he: [
+        "דרישות רגולטוריות או data-residency, מערכות legacy שלא מעשי להעביר, או ציוד on-premises הרגיש ל-latency",
+        "hybrid cloud תמיד זול יותר מכל אפשרות אחרת",
+        "ספקי ענן ציבורי מחייבים hybrid cloud על פי חוק",
+        "הוא מבטל את הצורך בכל אבטחת רשת",
+      ],
       correctAnswer: 0,
       explanation:
         "Full migration isn't always possible or wise: some data must legally stay in a specific location, some legacy systems are too costly or risky to re-platform, and some equipment (a factory floor sensor network) needs to be physically on-site. Hybrid cloud is usually a pragmatic response to real constraints, not a permanent architectural preference on its own.",
+      explanation_he:
+        "מיגרציה מלאה לא תמיד אפשרית או נבונה: חלק מהנתונים חייבים על פי חוק להישאר במיקום מסוים, חלק ממערכות ה-legacy יקר מדי או מסוכן מדי לבצע עבורן re-platform, וחלק מהציוד (רשת חיישנים ברצפת מפעל) צריך להיות פיזית באתר. hybrid cloud הוא בדרך כלל תגובה פרגמטית לאילוצים אמיתיים, לא העדפה ארכיטקטונית קבועה בפני עצמה.",
       resourceTitle: "Hybrid cloud considerations",
       resourceUrl: "https://learn.microsoft.com/azure/architecture/guide/technology-choices/hybrid-considerations",
       keywords: ["hybrid cloud drivers", "data residency", "legacy systems"],
@@ -798,10 +1109,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "An on-premises datacenter is infrastructure that an organization owns and operates itself, as opposed to renting capacity from a public cloud provider.",
+      question_he: "datacenter on-premises הוא תשתית שארגון מחזיק ומפעיל בעצמו, בניגוד לשכירת קיבולת מספק ענן ציבורי.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "\"On-premises\" (or \"on-prem\") means the organization owns the hardware, the building, and the operational responsibility — the opposite end of the spectrum from public cloud, where the provider owns and operates the physical infrastructure. Hybrid architectures deliberately bridge these two ownership models rather than picking one exclusively.",
+      explanation_he:
+        "\"on-premises\" (או \"on-prem\") פירושו שהארגון מחזיק בבעלותו את החומרה, הבניין, ואת האחריות התפעולית — הקצה הנגדי של הספקטרום מול ענן ציבורי, שבו הספק מחזיק בבעלותו ומפעיל את התשתית הפיזית. ארכיטקטורות היברידיות מגשרות בכוונה בין שני מודלי הבעלות האלה במקום לבחור באחד מהם באופן בלעדי.",
       resourceTitle: "Hybrid cloud considerations",
       resourceUrl: "https://learn.microsoft.com/azure/architecture/guide/technology-choices/hybrid-considerations",
       keywords: ["on-premises", "owned infrastructure", "hybrid bridge"],
@@ -814,15 +1129,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What role does a customer gateway device play in a site-to-site VPN?",
+      question_he: "איזה תפקיד ממלא device של customer gateway בחיבור VPN מסוג site-to-site?",
       options: [
         "It is the on-premises endpoint that establishes and maintains the encrypted tunnel to the cloud VPN gateway",
         "It is a cloud-hosted virtual machine only",
         "It replaces the need for a firewall on-premises",
         "It only handles DNS queries",
       ],
+      options_he: [
+        "הוא נקודת הקצה ה-on-premises שמקימה ומתחזקת את המנהרה (tunnel) המוצפנת אל VPN Gateway בענן",
+        "הוא מכונה וירטואלית המתארחת בענן בלבד",
+        "הוא מבטל את הצורך ב-firewall בסביבת on-premises",
+        "הוא מטפל רק בשאילתות DNS",
+      ],
       correctAnswer: 0,
       explanation:
         "The customer gateway is the physical or virtual device (a router or firewall appliance) on the on-premises side that negotiates IPsec with the cloud's VPN gateway — the two ends of the tunnel. Its configuration (pre-shared keys, IP addresses, routing) has to match what's configured on the cloud side for the tunnel to come up at all.",
+      explanation_he:
+        "customer gateway הוא ה-device הפיזי או הווירטואלי (נתב או התקן firewall) בצד ה-on-premises שמנהל משא ומתן IPsec מול ה-VPN Gateway של הענן — שני הקצוות של המנהרה. הקונפיגורציה שלו (מפתחות pre-shared, כתובות IP, ניתוב) חייבת להתאים למה שמוגדר בצד הענן כדי שהמנהרה תעלה בכלל.",
       resourceTitle: "Customer gateways (AWS)",
       resourceUrl: "https://docs.aws.amazon.com/vpn/latest/s2svpn/VPCConnectionsCustomerGateway.html",
       keywords: ["customer gateway", "site-to-site vpn", "on-premises endpoint"],
@@ -835,15 +1159,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "In the context of a hybrid connection, what does \"bandwidth\" refer to?",
+      question_he: "בהקשר של חיבור היברידי, למה מתייחס \"bandwidth\"?",
       options: [
         "The maximum data transfer capacity of the connection, typically measured in Mbps or Gbps",
         "The physical distance between two sites",
         "The number of VPN tunnels configured",
         "The encryption strength used",
       ],
+      options_he: [
+        "קיבולת העברת הנתונים המרבית של החיבור, הנמדדת בדרך כלל ב-Mbps או Gbps",
+        "המרחק הפיזי בין שני אתרים",
+        "מספר מנהרות ה-VPN שהוגדרו",
+        "עוצמת ההצפנה שבשימוש",
+      ],
       correctAnswer: 0,
       explanation:
         "Bandwidth is the ceiling on how much data can move through the connection per second — undersizing it for the actual data volume (backup jobs, replication traffic, user load) is one of the most common causes of a hybrid link feeling 'slow' even when latency itself is fine.",
+      explanation_he:
+        "bandwidth הוא התקרה של כמות הנתונים שיכולה לעבור דרך החיבור בשנייה — תת-הגדרה שלו ביחס לנפח הנתונים בפועל (עבודות גיבוי, תעבורת שכפול, עומס משתמשים) היא אחת הסיבות הנפוצות ביותר לכך שחיבור היברידי מרגיש 'איטי' גם כשה-latency עצמו תקין.",
       resourceTitle: "ExpressRoute bandwidth options",
       resourceUrl: "https://learn.microsoft.com/azure/expressroute/expressroute-faqs",
       keywords: ["bandwidth", "circuit sizing", "throughput"],
@@ -856,15 +1189,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "In general terms, what does hybrid connectivity provide?",
+      question_he: "באופן כללי, מה מספקת hybrid connectivity?",
       options: [
         "A network path that extends reachability between an on-premises environment and a cloud virtual network",
         "A way to run cloud services without any network at all",
         "A method for compressing files before upload",
         "A billing arrangement between two departments",
       ],
+      options_he: [
+        "מסלול רשת שמרחיב נגישות בין סביבת on-premises לבין רשת וירטואלית בענן",
+        "דרך להריץ שירותי ענן ללא כל רשת",
+        "שיטה לדחיסת קבצים לפני העלאה",
+        "הסדר חיוב בין שני מחלקות",
+      ],
       correctAnswer: 0,
       explanation:
         "Whether it's a VPN over the internet or a dedicated circuit, hybrid connectivity's core job is the same: let systems on each side reach each other over private addresses as if they were on one network, which is the prerequisite for everything else — hybrid identity, hybrid DNS, private access to managed services.",
+      explanation_he:
+        "בין אם מדובר ב-VPN מעל האינטרנט או במעגל ייעודי, התפקיד המרכזי של hybrid connectivity זהה: לאפשר למערכות בכל צד להגיע זו לזו דרך כתובות פרטיות כאילו הן על אותה רשת, וזה התנאי המקדים לכל השאר — hybrid identity, hybrid DNS, גישה פרטית לשירותים מנוהלים.",
       resourceTitle: "Hybrid networking architecture",
       resourceUrl: "https://learn.microsoft.com/azure/architecture/reference-architectures/hybrid-networking/",
       keywords: ["hybrid connectivity", "network extension", "reachability"],
@@ -877,10 +1219,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "Configuring two VPN tunnels in an active-active or active-standby arrangement removes a single point of failure from a site-to-site connection.",
+      question_he: "הגדרת שתי מנהרות VPN בסידור active-active או active-standby מסירה נקודת כשל יחידה (single point of failure) מחיבור site-to-site.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "A single tunnel is a SPOF — the customer gateway device, its power, or its ISP link failing takes down all hybrid connectivity. A second tunnel (ideally over a different device or path) means BGP can reroute traffic through the surviving tunnel automatically, which is why cloud VPN gateways are commonly provisioned with redundant tunnels by default.",
+      explanation_he:
+        "מנהרה יחידה היא נקודת כשל יחידה (SPOF) — כשל ב-device של ה-customer gateway, באספקת החשמל שלו, או בקישור ה-ISP שלו מפיל את כל הקישוריות ההיברידית. מנהרה שנייה (רצוי דרך device או מסלול שונה) פירושה ש-BGP יכול לנתב מחדש תעבורה דרך המנהרה השורדת באופן אוטומטי, ולכן VPN Gateway בענן מסופק בדרך כלל עם מנהרות מיותרות (redundant) כברירת מחדל.",
       resourceTitle: "VPN Gateway design (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/vpn-gateway/design",
       keywords: ["redundant vpn tunnels", "active-active", "single point of failure"],
@@ -893,15 +1239,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Why does MTU (Maximum Transmission Unit) mismatch matter for VPN tunnels?",
+      question_he: "למה חוסר התאמה ב-MTU (Maximum Transmission Unit) משנה עבור מנהרות VPN?",
       options: [
         "IPsec encapsulation adds overhead to each packet; if the resulting packet exceeds the path's MTU, it may be fragmented or silently dropped, causing intermittent connectivity issues",
         "MTU only affects wireless networks, not VPNs",
         "Larger MTU always means a faster connection with no downside",
         "MTU is negotiated automatically and never needs configuration",
       ],
+      options_he: [
+        "עטיפת IPsec (encapsulation) מוסיפה overhead לכל packet; אם ה-packet שנוצר חורג מ-MTU של המסלול, הוא עלול להתפצל (fragment) או להיזרק בשקט, מה שגורם לבעיות קישוריות לסירוגין",
+        "MTU משפיע רק על רשתות אלחוטיות, לא על VPN",
+        "MTU גדול יותר תמיד אומר חיבור מהיר יותר ללא חיסרון",
+        "MTU נסגר במשא ומתן אוטומטית ואף פעם לא דורש קונפיגורציה",
+      ],
       correctAnswer: 0,
       explanation:
         "Encapsulating a packet inside IPsec headers makes it bigger — if that pushes it past what a link along the path allows, and fragmentation is blocked (common with misconfigured firewalls dropping the ICMP messages needed for Path MTU Discovery), certain traffic mysteriously fails while smaller packets work fine. Tuning MTU/MSS on tunnel interfaces is a real and often underestimated troubleshooting step for hybrid connections.",
+      explanation_he:
+        "עטיפת packet בתוך headers של IPsec מגדילה אותו — אם זה דוחף אותו מעבר למה שקישור לאורך המסלול מאפשר, ופיצול (fragmentation) חסום (נפוץ עם firewalls שמוגדרים לא נכון וזורקים את הודעות ה-ICMP הנדרשות עבור Path MTU Discovery), תעבורה מסוימת נכשלת באופן מסתורי בעוד packets קטנים יותר עובדים תקין. כוונון MTU/MSS על ממשקי המנהרה הוא צעד אמיתי, ולעיתים קרובות מוערך בחסר, בפתרון תקלות בחיבורים היברידיים.",
       resourceTitle: "VPN Gateway MTU considerations",
       resourceUrl: "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpn-devices",
       keywords: ["mtu", "fragmentation", "ipsec overhead"],
@@ -914,15 +1269,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "How do dedicated circuits like ExpressRoute or Direct Connect typically compare to internet-based VPN in terms of SLA?",
+      question_he: "איך מעגלים ייעודיים כמו ExpressRoute או Direct Connect משתווים בדרך כלל ל-VPN מבוסס אינטרנט מבחינת SLA?",
       options: [
         "Dedicated circuits usually come with a stronger, provider-backed SLA for availability and performance than a VPN riding the public internet",
         "VPN always has a stronger SLA because it uses standard protocols",
         "Neither option offers any SLA",
         "SLA only applies to storage services, not networking",
       ],
+      options_he: [
+        "מעגלים ייעודיים מגיעים בדרך כלל עם SLA חזק יותר ומגובה על ידי הספק, עבור זמינות וביצועים, בהשוואה ל-VPN שרוכב על האינטרנט הציבורי",
+        "ל-VPN תמיד יש SLA חזק יותר כי הוא משתמש בפרוטוקולים סטנדרטיים",
+        "אף אחת מהאפשרויות לא מציעה SLA כלשהו",
+        "SLA חל רק על שירותי אחסון, לא על networking",
+      ],
       correctAnswer: 0,
       explanation:
         "A VPN's performance depends on the public internet's unpredictable path, which no one guarantees end to end. A dedicated circuit, provisioned through a connectivity partner with defined bandwidth on private infrastructure, comes with a formal SLA the provider is accountable to — one of the reasons workloads with strict, contracted uptime requirements graduate from VPN to a dedicated circuit.",
+      explanation_he:
+        "ביצועי VPN תלויים במסלול הבלתי צפוי של האינטרנט הציבורי, שאף אחד לא מבטיח מקצה לקצה. מעגל ייעודי, המסופק דרך שותף קישוריות עם bandwidth מוגדר על תשתית פרטית, מגיע עם SLA פורמלי שהספק אחראי לו — אחת הסיבות שבגללן עומסי עבודה עם דרישות זמינות מחייבות חוזית עוברים מ-VPN למעגל ייעודי.",
       resourceTitle: "ExpressRoute SLA",
       resourceUrl: "https://learn.microsoft.com/azure/expressroute/expressroute-faqs",
       keywords: ["sla", "dedicated circuit", "vpn reliability"],
@@ -935,15 +1299,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does hybrid identity typically involve?",
+      question_he: "מה בדרך כלל כולל hybrid identity?",
       options: [
         "Synchronizing or federating an on-premises directory (like Active Directory) with a cloud identity provider so users have one identity across both",
         "Creating entirely separate, unrelated accounts for cloud and on-premises systems",
         "Storing all passwords in a single shared spreadsheet",
         "Disabling on-premises accounts once cloud accounts exist",
       ],
+      options_he: [
+        "סנכרון או הצטרפות פדרטיבית (federation) של directory ב-on-premises (כמו Active Directory) עם ספק זהות בענן, כך שלמשתמשים יש זהות אחת בשני הצדדים",
+        "יצירת חשבונות נפרדים ולא קשורים לגמרי עבור מערכות ענן ו-on-premises",
+        "אחסון כל הסיסמאות בגיליון אלקטרוני משותף יחיד",
+        "השבתת חשבונות on-premises ברגע שקיימים חשבונות ענן",
+      ],
       correctAnswer: 0,
       explanation:
         "Hybrid identity connects the on-premises directory (often via a sync agent like Entra Connect) to the cloud identity provider, so a user's single set of credentials (and group memberships) governs access on both sides — avoiding the security and usability mess of maintaining two disconnected identity stores that inevitably drift out of sync.",
+      explanation_he:
+        "hybrid identity מחבר את ה-directory ב-on-premises (לרוב דרך סוכן סנכרון כמו Entra Connect) לספק הזהות בענן, כך שסט אחד של פרטי התחברות (וחברויות בקבוצות) של משתמש שולט על הגישה בשני הצדדים — נמנע מהבלגן הביטחוני והשימושיות של תחזוקת שני מאגרי זהות מנותקים שבהכרח יוצאים מסנכרון עם הזמן.",
       resourceTitle: "Hybrid identity solutions",
       resourceUrl: "https://learn.microsoft.com/entra/identity/hybrid/whatis-hybrid-identity",
       keywords: ["hybrid identity", "directory sync", "single identity"],
@@ -956,10 +1329,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "Sizing a dedicated circuit's bandwidth should be based on measured or projected workload traffic, not just the cheapest available tier.",
+      question_he: "קביעת גודל ה-bandwidth של מעגל ייעודי צריכה להתבסס על תעבורת עומס עבודה נמדדת או צפויה, ולא רק על שכבת המחיר הזולה ביותר הזמינה.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Circuits are typically billed in fixed bandwidth tiers under a term commitment, so undersizing means a persistently congested link (and a costly, slow process to upgrade), while wildly oversizing wastes budget on unused capacity every month. Sizing correctly requires actually measuring current cross-site traffic (backups, replication, user load) and projecting realistic growth — not guessing.",
+      explanation_he:
+        "מעגלים בדרך כלל מחויבים בשכבות bandwidth קבועות תחת התחייבות לתקופה, כך שתת-הגדרה משמעה קישור עמוס באופן מתמשך (ותהליך שדרוג יקר ואיטי), בעוד הגדרת יתר מוגזמת מבזבזת תקציב על קיבולת שאינה בשימוש מדי חודש. קביעת גודל נכונה דורשת מדידה בפועל של תעבורה נוכחית בין אתרים (גיבויים, שכפול, עומס משתמשים) ותחזית צמיחה ריאלית — לא ניחוש.",
       resourceTitle: "Plan for hybrid connectivity bandwidth",
       resourceUrl: "https://learn.microsoft.com/azure/expressroute/expressroute-faqs",
       keywords: ["bandwidth sizing", "circuit tier", "cost planning"],
@@ -972,15 +1349,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "In a hub-and-spoke hybrid architecture, why does the hybrid connection (VPN/circuit) typically terminate in the hub network rather than in each spoke?",
+      question_he: "בארכיטקטורה היברידית מסוג hub-and-spoke, למה החיבור ההיברידי (VPN/מעגל) בדרך כלל מסתיים ברשת ה-hub ולא בכל spoke בנפרד?",
       options: [
         "It centralizes on-premises connectivity so every spoke can reach on-premises through one managed path, instead of each spoke needing its own separate connection",
         "Spokes are technically incapable of hosting a gateway",
         "It removes the need for any routing configuration",
         "It is only a cost-saving measure with no architectural benefit",
       ],
+      options_he: [
+        "זה ממרכז את הקישוריות ל-on-premises כך שכל spoke יכול להגיע ל-on-premises דרך מסלול מנוהל אחד, במקום שכל spoke יזדקק לחיבור נפרד משלו",
+        "spokes אינם מסוגלים מבחינה טכנית לארח gateway",
+        "זה מבטל את הצורך בכל קונפיגורציית ניתוב",
+        "זהו רק אמצעי לחיסכון בעלויות, ללא יתרון ארכיטקטוני",
+      ],
       correctAnswer: 0,
       explanation:
         "Terminating the hybrid link once in the hub — and letting spokes reach it via peering — avoids provisioning (and paying for) a separate gateway and circuit per spoke network, while giving one central point to apply routing, firewalling and monitoring for all on-premises-bound traffic. It's the same hub-and-spoke rationale applied specifically to the hybrid connection.",
+      explanation_he:
+        "סיום החיבור ההיברידי פעם אחת ב-hub — ומתן אפשרות ל-spokes להגיע אליו דרך Peering — נמנע מהקצאת (ותשלום עבור) gateway ומעגל נפרדים לכל רשת spoke, ובמקביל נותן נקודה מרכזית אחת להחיל ניתוב, firewalling וניטור על כל התעבורה המיועדת ל-on-premises. זהו אותו רציונל של hub-and-spoke, מיושם באופן ספציפי על החיבור ההיברידי.",
       resourceTitle: "Hub-spoke network topology",
       resourceUrl: "https://learn.microsoft.com/azure/architecture/networking/architecture/hub-spoke",
       keywords: ["hub and spoke", "shared gateway", "centralized connectivity"],
@@ -993,15 +1379,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "When both a VPN and a dedicated circuit (like ExpressRoute) exist between the same networks, how is precedence for route selection typically decided?",
+      question_he: "כאשר גם VPN וגם מעגל ייעודי (כמו ExpressRoute) קיימים בין אותן רשתות, איך נקבעת בדרך כלל עדיפות בבחירת המסלול?",
       options: [
         "By configurable route/path preference (e.g. BGP attributes or explicit priority settings), often preferring the dedicated circuit for its performance and reserving VPN as a failover path",
         "The VPN is always used first automatically with no way to change it",
         "Traffic is always split exactly 50/50 between the two paths",
         "Only one of the two connections can be active at any time by design",
       ],
+      options_he: [
+        "באמצעות העדפת מסלול הניתנת לקונפיגורציה (למשל מאפייני BGP או הגדרות עדיפות מפורשות), לרוב תוך העדפת המעגל הייעודי בזכות ביצועיו ושמירת VPN כמסלול failover",
+        "ה-VPN תמיד משמש ראשון באופן אוטומטי, ללא אפשרות לשנות זאת",
+        "התעבורה תמיד מתפצלת בדיוק 50/50 בין שני המסלולים",
+        "רק אחד משני החיבורים יכול להיות פעיל בכל רגע נתון, מבחינת עיצוב",
+      ],
       correctAnswer: 0,
       explanation:
         "Both connections can be active simultaneously, and routing protocols (BGP) let you influence which path is preferred using standard attributes — typically the dedicated circuit as primary for its performance and cost profile, with VPN configured as automatic failover if the circuit goes down. Getting this preference configuration wrong is a common cause of unexpectedly routing production traffic over the slower path.",
+      explanation_he:
+        "שני החיבורים יכולים להיות פעילים בו-זמנית, ופרוטוקולי ניתוב (BGP) מאפשרים להשפיע על איזה מסלול מועדף באמצעות מאפיינים סטנדרטיים — בדרך כלל המעגל הייעודי כראשי בזכות ביצועיו ופרופיל העלות שלו, כש-VPN מוגדר כ-failover אוטומטי אם המעגל נופל. קונפיגורציה שגויה של העדפה זו היא סיבה נפוצה לניתוב לא צפוי של תעבורת ייצור דרך המסלול האיטי יותר.",
       resourceTitle: "ExpressRoute and VPN Gateway coexisting connections",
       resourceUrl: "https://learn.microsoft.com/azure/expressroute/expressroute-howto-coexist-resource-manager",
       keywords: ["route preference", "bgp", "vpn failover"],
@@ -1014,10 +1409,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "true-false",
       question: "Because dedicated circuits like ExpressRoute or Direct Connect are not encrypted by default, application-layer or IPsec-over-circuit encryption should be added if the data or compliance requirements demand it.",
+      question_he: "מכיוון שמעגלים ייעודיים כמו ExpressRoute או Direct Connect אינם מוצפנים כברירת מחדל, יש להוסיף הצפנה ברמת האפליקציה או IPsec מעל המעגל אם דרישות הנתונים או התאימות הרגולטורית מחייבות זאת.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "A dedicated circuit keeps traffic off the public internet, which is a privacy and performance benefit — but private is not the same as encrypted, and the traffic is still in the clear across shared carrier and provider equipment. Organizations with strict encryption-in-transit requirements layer IPsec or MACsec on top of the circuit, or rely on TLS at the application layer, rather than assuming the circuit itself satisfies that requirement.",
+      explanation_he:
+        "מעגל ייעודי משאיר את התעבורה מחוץ לאינטרנט הציבורי, וזה יתרון מבחינת פרטיות וביצועים — אך פרטי אינו זהה למוצפן, והתעבורה עדיין גלויה (in the clear) על פני ציוד ספק ותשתית משותפים. ארגונים עם דרישות מחמירות להצפנה בתעבורה מוסיפים שכבת IPsec או MACsec מעל המעגל, או מסתמכים על TLS ברמת האפליקציה, במקום להניח שהמעגל עצמו עונה על הדרישה הזו.",
       resourceTitle: "ExpressRoute encryption options",
       resourceUrl: "https://learn.microsoft.com/azure/expressroute/expressroute-about-encryption",
       keywords: ["circuit encryption", "compensating control", "compliance"],
@@ -1030,15 +1429,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is a common pitfall when configuring hybrid DNS conditional forwarding between on-premises and cloud resolvers?",
+      question_he: "מהי מלכודת נפוצה בהגדרת conditional forwarding עבור DNS היברידי בין resolvers ב-on-premises ובענן?",
       options: [
         "Forwarding rules that reference each other in a cycle can create resolution loops or unresolved queries for overlapping zones",
         "Conditional forwarding is not supported by any cloud provider",
         "It always requires disabling DNSSEC",
         "It can only forward queries for public domains, never private ones",
       ],
+      options_he: [
+        "כללי forwarding שמפנים זה לזה במעגל יכולים ליצור לולאות resolution או שאילתות לא פתורות עבור zones חופפים",
+        "conditional forwarding אינו נתמך על ידי אף ספק ענן",
+        "זה תמיד דורש השבתת DNSSEC",
+        "זה יכול להעביר הלאה (forward) רק שאילתות עבור domains ציבוריים, לעולם לא פרטיים",
+      ],
       correctAnswer: 0,
       explanation:
         "Hybrid DNS means two authoritative worlds are each configured to forward certain zones to the other — a subtle misconfiguration (both sides forwarding the same ambiguous zone to each other, or a private DNS zone shadowing a public one unexpectedly) creates queries that loop, time out, or resolve to the wrong answer. Careful, non-overlapping zone delegation design is essential and easy to get subtly wrong at scale.",
+      explanation_he:
+        "DNS היברידי פירושו ששני עולמות authoritative מוגדרים כל אחד להעביר zones מסוימים לשני — קונפיגורציה שגויה עדינה (שני הצדדים מעבירים את אותו zone דו-משמעי זה לזה, או zone פרטי שמסתיר zone ציבורי באופן לא צפוי) יוצרת שאילתות שנכנסות ללולאה, נתקעות ב-timeout, או מתפענחות לתשובה שגויה. עיצוב זהיר ולא-חופף של האצלת zones הכרחי, וקל לטעות בו בעדינות בקנה מידה גדול.",
       resourceTitle: "Azure DNS Private Resolver design considerations",
       resourceUrl: "https://learn.microsoft.com/azure/dns/dns-private-resolver-overview",
       keywords: ["conditional forwarding", "dns loop", "hybrid dns pitfalls"],
@@ -1051,10 +1459,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "true-false",
       question: "Gateway transit lets spoke networks connected via peering reach on-premises resources through a hub's VPN or ExpressRoute gateway, without each spoke needing its own connection.",
+      question_he: "Gateway transit מאפשר לרשתות spoke המחוברות דרך Peering להגיע למשאבי on-premises דרך ה-VPN Gateway או ExpressRoute gateway של ה-hub, מבלי שכל spoke יזדקק לחיבור משלו.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "By default, peering alone doesn't share a hub's gateway with its peered spokes — gateway transit is the explicit setting that extends that path, letting spokes route to on-premises through the hub's single shared gateway instead of every spoke needing (and paying for) its own. It's the technical mechanism that makes the hub-and-spoke hybrid pattern actually work.",
+      explanation_he:
+        "כברירת מחדל, Peering בלבד אינו משתף את ה-gateway של ה-hub עם ה-spokes המחוברים אליו ב-Peering — gateway transit הוא ההגדרה המפורשת שמרחיבה את המסלול הזה, ומאפשרת ל-spokes לנתב אל on-premises דרך ה-gateway המשותף היחיד של ה-hub, במקום שכל spoke יזדקק (וישלם) עבור אחד משלו. זהו המנגנון הטכני שהופך את דפוס ה-hub-and-spoke ההיברידי לעבוד בפועל.",
       resourceTitle: "Configure VNet peering to use gateways",
       resourceUrl: "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-peering-gateway-transit",
       keywords: ["gateway transit", "peering", "shared gateway"],
@@ -1067,15 +1479,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "For a workload with strict latency requirements crossing a hybrid connection, which factor matters as much as raw bandwidth?",
+      question_he: "עבור עומס עבודה עם דרישות latency מחמירות שחוצה חיבור היברידי, איזה גורם חשוב באותה מידה כמו bandwidth גולמי?",
       options: [
         "Round-trip latency and jitter of the path itself — high bandwidth doesn't fix a physically long or congested route",
         "The color of the network cable",
         "The number of VLANs configured on-premises",
         "The brand of the VPN gateway device",
       ],
+      options_he: [
+        "latency של round-trip ו-jitter של המסלול עצמו — bandwidth גבוה לא מתקן מסלול ארוך פיזית או עמוס",
+        "צבע כבל הרשת",
+        "מספר ה-VLANs שהוגדרו ב-on-premises",
+        "המותג של device ה-VPN Gateway",
+      ],
       correctAnswer: 0,
       explanation:
         "Bandwidth determines how much data can move per second; latency determines how long a single round trip takes, and is bounded by physical distance and the number of hops — no amount of extra bandwidth shortens the actual travel time. A latency-sensitive workload (real-time control systems, certain database replication) needs the physical path and circuit choice evaluated for latency specifically, not just throughput.",
+      explanation_he:
+        "bandwidth קובע כמה נתונים יכולים לזוז בשנייה; latency קובע כמה זמן לוקח round-trip בודד, והוא מוגבל על ידי מרחק פיזי ומספר הקפיצות — שום כמות נוספת של bandwidth לא מקצרת את זמן המעבר בפועל. עומס עבודה רגיש ל-latency (מערכות בקרה בזמן אמת, שכפול מסדי נתונים מסוימים) צריך שהמסלול הפיזי ובחירת המעגל יוערכו במיוחד עבור latency, לא רק עבור throughput.",
       resourceTitle: "Choose a hybrid connectivity option",
       resourceUrl: "https://learn.microsoft.com/azure/architecture/reference-architectures/hybrid-networking/",
       keywords: ["latency", "bandwidth vs latency", "circuit selection"],
@@ -1088,15 +1509,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "How does a Zero Trust approach change how a hybrid connection between on-premises and cloud should be treated?",
+      question_he: "איך גישת Zero Trust משנה את האופן שבו יש להתייחס לחיבור היברידי בין on-premises לענן?",
       options: [
         "Traffic crossing the link should still be authenticated, authorized and inspected — being \"internal\" or \"connected\" grants no implicit trust",
         "Once connected, on-premises systems should be fully trusted with unrestricted access to all cloud resources",
         "Zero Trust means hybrid connections should never be established",
         "It only applies to internet-facing traffic, not internal links",
       ],
+      options_he: [
+        "תעבורה שחוצה את החיבור צריכה עדיין לעבור אימות, הרשאה ובדיקה — היות \"פנימי\" או \"מחובר\" לא מעניק אמון משתמע",
+        "לאחר חיבור, יש לתת אמון מלא במערכות on-premises עם גישה בלתי מוגבלת לכל משאבי הענן",
+        "Zero Trust פירושו שלעולם אין להקים חיבורים היברידיים",
+        "זה חל רק על תעבורה הפונה לאינטרנט, לא על קישורים פנימיים",
+      ],
       correctAnswer: 0,
       explanation:
         "A hybrid link merges two environments' blast radii — treating everything crossing it as automatically trusted is exactly the assumption that let historical ransomware and breaches spread from a compromised on-premises network straight into cloud resources. Zero Trust says every request is verified on its own merits (identity, device posture, least privilege) regardless of which network it originated from, hybrid link or not.",
+      explanation_he:
+        "קישור היברידי ממזג את רדיוסי הנזק של שתי הסביבות — התייחסות לכל מה שחוצה אותו כבעל אמון אוטומטי היא בדיוק ההנחה שאפשרה בעבר לתקיפות כופר ופריצות להתפשט מרשת on-premises שנפרצה ישירות אל משאבי הענן. Zero Trust אומר שכל בקשה מאומתת על סמך המהות שלה (זהות, מצב ה-device, הרשאות מינימליות) ללא קשר לרשת שממנה היא הגיעה, קישור היברידי או לא.",
       resourceTitle: "Zero Trust architecture",
       resourceUrl: "https://learn.microsoft.com/security/zero-trust/zero-trust-overview",
       keywords: ["zero trust", "implicit trust", "hybrid security"],

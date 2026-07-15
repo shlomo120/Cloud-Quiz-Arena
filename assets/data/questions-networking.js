@@ -16,10 +16,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "How many IP addresses does a /24 CIDR block contain?",
+      question_he: "כמה כתובות IP מכיל בלוק CIDR בגודל /24?",
       options: ["24", "128", "256", "1024"],
+      options_he: ["24", "128", "256", "1024"],
       correctAnswer: 2,
       explanation:
         "A /24 leaves 8 host bits → 2⁸ = 256 addresses (traditionally 254 usable after network and broadcast; clouds reserve a few more — Azure and AWS each take 5 per subnet). The mental shortcut: every bit removed from the prefix doubles the block, so /23 = 512, /16 = 65,536. CIDR arithmetic is the foundation of every subnet plan.",
+      explanation_he:
+        "ל-/24 נותרים 8 ביטים למארח → 2⁸ = 256 כתובות (באופן מסורתי 254 שמישות אחרי כתובת הרשת והשידור; הענן שומר עוד כמה — Azure ו-AWS לוקחות 5 כל אחת מכל Subnet). הקיצור המנטלי: כל ביט שמוסר מהפריפיקס מכפיל את הבלוק, כך ש-/23 = 512, /16 = 65,536. חשבון CIDR הוא הבסיס לכל תכנון Subnet.",
       resourceTitle: "CIDR notation (AWS VPC sizing)",
       resourceUrl: "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html",
       keywords: ["cidr", "subnet size", "host bits"],
@@ -32,10 +36,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "Which of these is a private (RFC 1918) address range?",
+      question_he: "איזה מהבאים הוא טווח כתובות פרטי (RFC 1918)?",
       options: ["8.8.8.0/24", "10.0.0.0/8", "1.1.1.0/24", "52.0.0.0/8"],
+      options_he: ["8.8.8.0/24", "10.0.0.0/8", "1.1.1.0/24", "52.0.0.0/8"],
       correctAnswer: 1,
       explanation:
         "RFC 1918 reserves 10.0.0.0/8, 172.16.0.0/12 and 192.168.0.0/16 for private use — unroutable on the internet, which is why NAT exists. Virtual networks in every cloud are built from these ranges. The others are public: 8.8.8.8 is Google DNS, 1.1.1.1 is Cloudflare, and 52.x is largely AWS space.",
+      explanation_he:
+        "RFC 1918 שומר את הטווחים 10.0.0.0/8, 172.16.0.0/12 ו-192.168.0.0/16 לשימוש פרטי — הם אינם ניתנים לניתוב באינטרנט, ומכאן הצורך ב-NAT. הרשתות הווירטואליות בכל ענן נבנות מהטווחים האלה. שאר האפשרויות ציבוריות: 8.8.8.8 היא DNS של גוגל, 1.1.1.1 היא Cloudflare, ו-52.x שייך ברובו למרחב הכתובות של AWS.",
       resourceTitle: "RFC 1918 — Address Allocation for Private Internets",
       resourceUrl: "https://datatracker.ietf.org/doc/html/rfc1918",
       keywords: ["rfc 1918", "private ranges", "10.0.0.0/8"],
@@ -48,10 +56,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "TCP establishes a connection with a handshake and guarantees ordered delivery, while UDP sends datagrams without either.",
+      question_he: "TCP מקים חיבור באמצעות handshake ומבטיח מסירה מסודרת, בעוד ש-UDP שולח דאטגרמות בלי אף אחד מהשניים.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "TCP's three-way handshake, sequencing and retransmission buy reliability at the cost of latency and state; UDP just fires datagrams — which is exactly right for DNS queries, real-time media and QUIC. The distinction leaks into cloud config constantly: health checks, load balancer listeners and firewall rules are all defined per protocol.",
+      explanation_he:
+        "ה-handshake התלת-שלבי של TCP, המספור והשידור החוזר קונים אמינות במחיר של השהיה ותחזוקת מצב; UDP פשוט יורה דאטגרמות — וזה בדיוק מה שנדרש עבור שאילתות DNS, מדיה בזמן אמת ו-QUIC. ההבחנה הזו מחלחלת כל הזמן לקונפיגורציית הענן: בדיקות תקינות, ה-listeners של ה-Load Balancer וכללי ה-Firewall מוגדרים כולם לפי פרוטוקול.",
       resourceTitle: "TCP vs UDP (Cloudflare Learning)",
       resourceUrl: "https://www.cloudflare.com/learning/ddos/glossary/tcp-ip/",
       keywords: ["tcp", "udp", "handshake", "protocols"],
@@ -64,15 +76,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "Why divide a virtual network into subnets?",
+      question_he: "למה מחלקים רשת וירטואלית ל-Subnets?",
       options: [
         "To apply different routing and security rules to different segments — e.g. public-facing vs private tiers",
         "Subnets make traffic travel faster",
         "Clouds require exactly one subnet per VM",
         "Subnets reduce the price of IP addresses",
       ],
+      options_he: [
+        "כדי להחיל כללי ניתוב ואבטחה שונים על מקטעים שונים — למשל שכבות פונות-חוץ מול שכבות פרטיות",
+        "Subnets גורמים לתעבורה לנוע מהר יותר",
+        "ספקי הענן דורשים בדיוק Subnet אחד לכל VM",
+        "Subnets מוזילים את מחיר כתובות ה-IP",
+      ],
       correctAnswer: 0,
       explanation:
         "A subnet is the unit of policy: route tables, NAT behavior, NSG/firewall associations and service endpoints attach at subnet scope, so tiers with different exposure (web / app / data) get different subnets. Performance and price don't change; what changes is your ability to say 'this segment can reach the internet, that one can't' — the essence of segmentation.",
+      explanation_he:
+        "Subnet הוא יחידת המדיניות: Route Tables, התנהגות NAT, שיוכי NSG/Firewall ו-Service Endpoints מחוברים ברמת ה-Subnet, כך ששכבות עם רמת חשיפה שונה (web / app / data) מקבלות Subnets נפרדים. הביצועים והמחיר לא משתנים; מה שכן משתנה זו היכולת שלך לומר 'המקטע הזה יכול להגיע לאינטרנט, האחר לא' — זו המהות של סגמנטציה.",
       resourceTitle: "Add subnets (Azure VNet)",
       resourceUrl: "https://learn.microsoft.com/azure/virtual-network/virtual-network-manage-subnet",
       keywords: ["subnet", "segmentation", "tiers"],
@@ -85,15 +106,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does the route 0.0.0.0/0 represent in a route table?",
+      question_he: "מה מייצג ה-Route ‏0.0.0.0/0 ב-Route Table?",
       options: [
         "The default route — it matches any destination not matched by a more specific route",
         "A blocked destination",
         "The local subnet only",
         "A route reserved for DNS traffic",
       ],
+      options_he: [
+        "ה-Route ברירת המחדל — הוא תואם כל יעד שלא נתפס על ידי Route ספציפי יותר",
+        "יעד חסום",
+        "ה-Subnet המקומי בלבד",
+        "Route השמור לתעבורת DNS",
+      ],
       correctAnswer: 0,
       explanation:
         "0.0.0.0/0 matches every IPv4 address, so it acts as the catch-all after more specific prefixes are tried. Where it points defines the network's posture: at an internet gateway → public egress; at a NAT gateway → private egress; at a firewall appliance → inspected egress; absent → no default path at all. Reading a route table starts with finding this route.",
+      explanation_he:
+        "0.0.0.0/0 תואם כל כתובת IPv4, ולכן הוא משמש ככלל-קליטה-כללי אחרי שנבדקים פריפיקסים ספציפיים יותר. היעד שאליו הוא מצביע קובע את היציבה של הרשת: אל Internet Gateway ← Egress ציבורי; אל NAT Gateway ← Egress פרטי; אל מכשיר Firewall ← Egress שעובר בדיקה; ואם הוא נעדר ← אין נתיב ברירת מחדל כלל. קריאת Route Table מתחילה בחיפוש ה-Route הזה.",
       resourceTitle: "Route tables (AWS VPC)",
       resourceUrl: "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html",
       keywords: ["default route", "0.0.0.0/0", "catch-all"],
@@ -106,15 +136,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "A route table has routes for 10.0.0.0/8 → VPN and 10.1.2.0/24 → firewall. Where does a packet to 10.1.2.5 go?",
+      question_he: "ב-Route Table יש Routes עבור 10.0.0.0/8 ← VPN ועבור 10.1.2.0/24 ← Firewall. לאן ילך חבילה אל 10.1.2.5?",
       options: [
         "To the VPN, because its route was created first",
         "To the firewall — longest-prefix match wins, and /24 is more specific than /8",
         "It is dropped as ambiguous",
         "It is duplicated to both destinations",
       ],
+      options_he: [
+        "אל ה-VPN, מכיוון שה-Route שלו נוצר ראשון",
+        "אל ה-Firewall — longest-prefix match מנצח, ו-/24 ספציפי יותר מ-/8",
+        "היא נזרקת כלא-חד-משמעית",
+        "היא משוכפלת לשני היעדים",
+      ],
       correctAnswer: 1,
       explanation:
         "Routing always selects the most specific matching prefix — longest-prefix match — regardless of creation order or listing order. This is also a design tool: a broad route steers a whole range while a narrow exception carves out one subnet (and clouds use the same rule when your custom routes override system routes). If traffic goes somewhere unexpected, look for a more specific route you forgot.",
+      explanation_he:
+        "ניתוב תמיד בוחר בפריפיקס התואם הספציפי ביותר — longest-prefix match — בלי קשר לסדר היצירה או לסדר ההצגה. זהו גם כלי עיצוב: Route רחב מכוון טווח שלם, בעוד שחריג צר מייחד Subnet בודד (וספקי הענן משתמשים באותו כלל כשה-Routes המותאמים אישית שלך גוברים על Routes המערכת). אם תעבורה מגיעה למקום בלתי צפוי, חפש Route ספציפי יותר ששכחת ממנו.",
       resourceTitle: "How routing works (Azure UDR)",
       resourceUrl: "https://learn.microsoft.com/azure/virtual-network/virtual-networks-udr-overview",
       keywords: ["longest prefix match", "route selection", "specificity"],
@@ -127,15 +166,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does NAT (network address translation) accomplish?",
+      question_he: "מה NAT (‏network address translation) משיג?",
       options: [
         "It lets many private addresses share public IPs for outbound traffic, hiding internal addressing from the outside",
         "It encrypts traffic leaving the network",
         "It converts IPv4 packets to IPv6",
         "It speeds up DNS resolution",
       ],
+      options_he: [
+        "הוא מאפשר לכתובות פרטיות רבות לשתף כתובות IP ציבוריות עבור תעבורת Egress, ומסתיר את הכתובות הפנימיות מהעולם החיצון",
+        "הוא מצפין תעבורה היוצאת מהרשת",
+        "הוא ממיר חבילות IPv4 ל-IPv6",
+        "הוא מאיץ פענוח DNS",
+      ],
       correctAnswer: 0,
       explanation:
         "NAT rewrites source addresses (and ports) so private, unroutable hosts can converse with the internet through a shared public IP, with the translator tracking each flow to route replies back. Side effects matter: internal topology stays hidden, and unsolicited inbound has no mapping to follow — which is why NAT-only egress is a security posture, not just an addressing trick. It is not encryption.",
+      explanation_he:
+        "NAT כותב מחדש כתובות מקור (ופורטים), כך שמארחים פרטיים שאינם ניתנים לניתוב יכולים לתקשר עם האינטרנט דרך IP ציבורי משותף, כאשר המתרגם עוקב אחרי כל זרימה כדי לנתב את התשובות בחזרה. תופעות הלוואי חשובות: הטופולוגיה הפנימית נשארת מוסתרת, ולתעבורת Ingress בלתי מבוקשת אין מיפוי לעקוב אחריו — ולכן Egress דרך NAT בלבד הוא עמדת אבטחה, לא רק תרגיל בכתובות. זו אינה הצפנה.",
       resourceTitle: "NAT gateways (AWS)",
       resourceUrl: "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html",
       keywords: ["nat", "address translation", "egress"],
@@ -148,10 +196,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "A VM without any public IP address can still reach the internet if a NAT service provides outbound translation.",
+      question_he: "VM ללא כל כתובת IP ציבורית עדיין יכול להגיע לאינטרנט אם שירות NAT מספק תרגום Outbound.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Public reachability and outbound access are independent properties: the NAT gateway owns the public IP and performs translation, so the VM initiates connections freely while remaining invisible to inbound scans. This asymmetry is the standard backend posture in all clouds — the follow-up question to always ask is whether outbound should be filtered too (FQDN rules, proxies), since NAT alone allows egress anywhere.",
+      explanation_he:
+        "נגישות ציבורית וגישה יוצאת הן תכונות בלתי תלויות: ה-NAT Gateway מחזיק את ה-IP הציבורי ומבצע את התרגום, כך שה-VM יוזם חיבורים בחופשיות בעוד שהוא נשאר בלתי נראה לסריקות Ingress. אי-הסימטריה הזו היא היציבה הסטנדרטית לשרתי Backend בכל ספקי הענן — השאלה שתמיד כדאי לשאול בהמשך היא האם צריך לסנן גם את ה-Outbound (כללי FQDN, פרוקסים), שכן NAT לבדו מאפשר Egress לכל מקום.",
       resourceTitle: "Cloud NAT overview (GCP)",
       resourceUrl: "https://cloud.google.com/nat/docs/overview",
       keywords: ["no public ip", "outbound", "nat"],
@@ -164,15 +216,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multi-select",
       question: "Which practices reduce a cloud workload's attack surface? (Select all that apply.)",
+      question_he: "אילו נהלים מצמצמים את שטח התקיפה (attack surface) של עומס עבודה בענן? (בחר את כל האפשרויות הנכונות.)",
       options: [
         "Placing backend servers in private subnets with no public IPs",
         "Making a load balancer the only public entry point",
         "Providing egress through NAT plus outbound filtering",
         "Assigning each VM a public IP for management convenience",
       ],
+      options_he: [
+        "מיקום שרתי Backend ב-Subnets פרטיים ללא כתובות IP ציבוריות",
+        "הפיכת ה-Load Balancer לנקודת הכניסה הציבורית היחידה",
+        "מתן Egress דרך NAT יחד עם סינון תעבורה יוצאת",
+        "הקצאת IP ציבורי לכל VM לנוחות הניהול",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Attack surface is the set of things an attacker can reach: private backends can't be scanned, a single LB entry point concentrates hardening (TLS, WAF, logging) in one place, and filtered NAT egress limits exfiltration paths. Public IPs 'for convenience' invert all of that — every one is an internet-facing endpoint that must now be defended; bastions and identity-based access solve management properly.",
+      explanation_he:
+        "שטח התקיפה הוא אוסף הדברים שתוקף יכול להגיע אליהם: שרתי Backend פרטיים לא ניתנים לסריקה, נקודת כניסה בודדת דרך Load Balancer מרכזת את ההקשחה (TLS, WAF, לוגים) במקום אחד, ו-Egress מסונן דרך NAT מגביל נתיבי הדלפת מידע. כתובות IP ציבוריות 'לנוחות' הופכות את כל זה — כל אחת כזו היא נקודת קצה פונה-אינטרנט שצריך כעת להגן עליה; Bastions וגישה מבוססת זהות פותרים את נושא הניהול כראוי.",
       resourceTitle: "Network security best practices (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/security/fundamentals/network-best-practices",
       keywords: ["attack surface", "private subnets", "single entry point"],
@@ -185,15 +246,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "How do the scopes of Azure VNets, AWS VPCs and GCP VPC networks compare?",
+      question_he: "איך משתווה ההיקף (scope) של VNet ב-Azure, VPC ב-AWS ורשת VPC ב-GCP?",
       options: [
         "All three are global",
         "Azure VNets and AWS VPCs are regional; a GCP VPC network is global with regional subnets",
         "All three are confined to a single zone",
         "Azure VNets are global; the others are regional",
       ],
+      options_he: [
+        "כל השלושה גלובליים",
+        "VNet ב-Azure ו-VPC ב-AWS הם אזוריים (regional); רשת VPC ב-GCP גלובלית עם Subnets אזוריים",
+        "כל השלושה מוגבלים לזון (zone) בודד",
+        "VNet ב-Azure גלובלי; השאר אזוריים",
+      ],
       correctAnswer: 1,
       explanation:
         "The scope difference drives multi-region design: in Azure and AWS, each region needs its own VNet/VPC plus peering or a hub to connect them; in GCP, one VPC already spans every region and only subnets are regional. Same product category, different blast radius and topology cost — one of the most consequential differences when porting network architectures.",
+      explanation_he:
+        "ההבדל בהיקף מכתיב עיצוב מולטי-Region: ב-Azure וב-AWS כל Region זקוק ל-VNet/VPC משלו בתוספת Peering או Hub שיחבר ביניהם; ב-GCP, VPC אחד כבר משתרע על כל ה-Regions ורק ה-Subnets הם אזוריים. אותה קטגוריית מוצר, אבל רדיוס נזק ועלות טופולוגיה שונים — אחד ההבדלים המשמעותיים ביותר בעת העברת ארכיטקטורות רשת בין ספקים.",
       resourceTitle: "VPC networks (GCP)",
       resourceUrl: "https://cloud.google.com/vpc/docs/vpc",
       keywords: ["vnet", "vpc", "scope", "regional", "global"],
@@ -206,15 +276,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Across all three clouds, what determines whether a subnet's workloads can reach the internet directly?",
+      question_he: "בכל שלושת ספקי הענן, מה קובע האם עומסי העבודה ב-Subnet יכולים להגיע לאינטרנט ישירות?",
       options: [
         "The subnet's name and tags",
         "Routing (a path to an internet gateway or default internet route) combined with firewall rules and public IP assignment",
         "The VM's operating system",
         "The region the subnet is in",
       ],
+      options_he: [
+        "השם והתגיות של ה-Subnet",
+        "ניתוב (נתיב אל Internet Gateway או Route ברירת מחדל לאינטרנט) בשילוב עם כללי Firewall והקצאת IP ציבורי",
+        "מערכת ההפעלה של ה-VM",
+        "ה-Region שבו נמצא ה-Subnet",
+      ],
       correctAnswer: 1,
       explanation:
         "Internet exposure is always the conjunction of three switches: a route to the internet (IGW route in AWS, Azure's default internet route unless overridden, GCP's default route), permissive firewall rules, and an address the internet can reach (public IP or LB). Auditing exposure means checking all three — many 'private' subnets turn out to have two of the three already flipped.",
+      explanation_he:
+        "חשיפה לאינטרנט היא תמיד צירוף של שלושה מתגים: Route לאינטרנט (Route של IGW ב-AWS, Route ברירת המחדל של Azure אלא אם נדרס, ה-Route ברירת המחדל של GCP), כללי Firewall מתירניים, וכתובת שהאינטרנט יכול להגיע אליה (IP ציבורי או Load Balancer). ביקורת על חשיפה משמעה בדיקת שלושתם — מסתבר ש-Subnets רבים ש'פרטיים' לכאורה כבר הפעילו שניים מתוך השלושה.",
       resourceTitle: "Internet gateways (AWS)",
       resourceUrl: "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html",
       keywords: ["internet exposure", "routing", "public ip"],
@@ -227,15 +306,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "VNet A peers with VNet B, and B peers with VNet C. Can A reach C through B in Azure or AWS?",
+      question_he: "VNet A מבצע Peering עם VNet B, ו-B מבצע Peering עם VNet C. האם A יכול להגיע ל-C דרך B ב-Azure או ב-AWS?",
       options: [
         "Yes — peering is transitive in both clouds",
         "No — peering is non-transitive; A needs its own peering to C, or a hub (Azure Firewall/Virtual WAN, AWS Transit Gateway) to route between them",
         "Only if all three are in the same region",
         "Only for UDP traffic",
       ],
+      options_he: [
+        "כן — Peering הוא טרנזיטיבי בשני ספקי הענן",
+        "לא — Peering אינו טרנזיטיבי; A צריך Peering משלו אל C, או Hub (Azure Firewall/Virtual WAN, AWS Transit Gateway) שינתב ביניהם",
+        "רק אם שלושתם באותו Region",
+        "רק עבור תעבורת UDP",
+      ],
       correctAnswer: 1,
       explanation:
         "Non-transitivity is deliberate in both clouds: each peering is a private link between exactly two networks, so chains don't route through. At small scale you add direct peerings; at scale the mesh explodes quadratically and you move to hub-and-spoke — Transit Gateway in AWS, a hub VNet with firewall/router or Virtual WAN in Azure. GCP sidesteps some of this with its global VPC.",
+      explanation_he:
+        "היעדר הטרנזיטיביות מכוון בכוונה בשני הענפים: כל Peering הוא קישור פרטי בין שתי רשתות בדיוק, כך ששרשראות לא מנותבות דרכו. בקנה מידה קטן מוסיפים Peerings ישירים; בקנה מידה גדול הרשת (mesh) מתפוצצת בצורה ריבועית ועוברים ל-hub-and-spoke — Transit Gateway ב-AWS, VNet מרכזי עם Firewall/נתב או Virtual WAN ב-Azure. GCP עוקפת חלק מהבעיה הזו הודות ל-VPC הגלובלי שלה.",
       resourceTitle: "Virtual network peering (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/virtual-network/virtual-network-peering-overview",
       keywords: ["peering", "non-transitive", "hub and spoke"],
@@ -248,15 +336,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Why do enterprises prefer hub-and-spoke network topologies over full-mesh peering?",
+      question_he: "למה ארגונים מעדיפים טופולוגיית רשת hub-and-spoke על פני Peering ברשת full-mesh?",
       options: [
         "Hubs make traffic faster than direct connections",
         "A hub centralizes shared services and inspection (firewall, VPN, DNS) and scales linearly, while a mesh grows quadratically and decentralizes control",
         "Meshes are not supported by any cloud",
         "Hub-and-spoke removes the need for firewalls",
       ],
+      options_he: [
+        "Hub-ים גורמים לתעבורה לנוע מהר יותר מחיבורים ישירים",
+        "Hub מרכז שירותים משותפים ובדיקה (Firewall, VPN, DNS) ומתרחב באופן ליניארי, בעוד ש-mesh גדל באופן ריבועי ומבזר את השליטה",
+        "רשתות mesh אינן נתמכות באף ספק ענן",
+        "hub-and-spoke מבטל את הצורך ב-Firewalls",
+      ],
       correctAnswer: 1,
       explanation:
         "With n spokes, a mesh needs n(n−1)/2 links and puts security enforcement everywhere and nowhere; a hub needs n links and gives one place where east-west traffic can be inspected, on-prem connectivity terminates, and egress is filtered. The cost is an extra hop and a potential choke point — which is why hub capacity and availability get engineered carefully. Direct links are actually lower-latency; that's the trade.",
+      explanation_he:
+        "עבור n spokes, רשת mesh דורשת n(n−1)/2 קישורים ומפזרת את אכיפת האבטחה לכל מקום ולאף מקום; Hub דורש n קישורים ונותן מקום אחד שבו ניתן לבדוק תעבורת east-west, לסיים חיבוריות on-prem, ולסנן Egress. המחיר הוא קפיצה נוספת (hop) וצוואר בקבוק פוטנציאלי — ולכן הקיבולת והזמינות של ה-Hub מתוכננות בקפידה. קישורים ישירים למעשה מהירים יותר (latency נמוך יותר); זהו הפשרה.",
       resourceTitle: "Hub-spoke network topology (Azure Architecture Center)",
       resourceUrl: "https://learn.microsoft.com/azure/architecture/networking/architecture/hub-spoke",
       keywords: ["hub and spoke", "topology", "central inspection"],
@@ -269,15 +366,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Two networks you need to connect both use 10.0.0.0/16. What is the consequence?",
+      question_he: "שתי רשתות שאתה צריך לחבר, שתיהן משתמשות ב-10.0.0.0/16. מה התוצאה?",
       options: [
         "Nothing — modern clouds handle overlaps transparently",
         "They cannot be peered or routed together directly; you need NAT translation or re-addressing",
         "Traffic will simply be slower",
         "Only DNS will break",
       ],
+      options_he: [
+        "שום דבר — ספקי ענן מודרניים מטפלים בחפיפות בצורה שקופה",
+        "לא ניתן לבצע ביניהן Peering או ניתוב ישיר; נדרש תרגום NAT או שינוי כתובות",
+        "התעבורה פשוט תהיה איטית יותר",
+        "רק DNS יישבר",
+      ],
       correctAnswer: 1,
       explanation:
         "Routing needs unambiguous destinations: with identical ranges on both sides, a packet to 10.0.1.5 has two valid answers, so every cloud refuses to peer overlapping networks. Fixes are painful — NAT boxes that translate one side, or renumbering. This is why IP address management (a global, non-overlapping allocation plan across environments, acquisitions and on-prem) is boring work that prevents very expensive problems.",
+      explanation_he:
+        "ניתוב זקוק ליעדים חד-משמעיים: כאשר יש טווחים זהים משני הצדדים, לחבילה אל 10.0.1.5 יש שתי תשובות חוקיות, ולכן כל ספק ענן מסרב לבצע Peering בין רשתות חופפות. תיקונים כרוכים בכאב — תיבות NAT שמתרגמות צד אחד, או שינוי מספור מלא. זו הסיבה שניהול כתובות IP (תוכנית הקצאה גלובלית ולא-חופפת על פני סביבות, רכישות ותשתית on-prem) הוא עבודה משעממת שמונעת בעיות יקרות מאוד.",
       resourceTitle: "VPC peering basics — overlapping CIDR restriction (AWS)",
       resourceUrl: "https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-basics.html",
       keywords: ["overlapping cidr", "ip planning", "peering restrictions"],
@@ -291,10 +397,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "Egress filtering deserves as much attention as ingress filtering, because unrestricted outbound traffic enables data exfiltration and malware command-and-control.",
+      question_he:
+        "סינון Egress ראוי לתשומת לב לא פחות מסינון Ingress, מכיוון שתעבורה יוצאת ללא הגבלה מאפשרת הדלפת נתונים ותקשורת command-and-control של תוכנות זדוניות.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Teams harden inbound reflexively and leave outbound wide open — yet nearly every post-compromise action needs egress: pulling tools, beaconing to C2, shipping stolen data out. Restricting outbound to known destinations (FQDN allow-lists on cloud firewalls, proxies, private endpoints for cloud services) turns a breach into a contained incident and makes anomalous egress a high-signal alert.",
+      explanation_he:
+        "צוותים מקשיחים תעבורה נכנסת באופן רפלקסיבי ומשאירים את התעבורה היוצאת פתוחה לרווחה — ובכל זאת כמעט כל פעולה שלאחר פריצה זקוקה ל-Egress: משיכת כלים, תקשורת עם C2, והוצאת נתונים גנובים. הגבלת התעבורה היוצאת ליעדים ידועים (רשימות היתר מבוססות FQDN ב-Firewalls של הענן, פרוקסים, Private Endpoints לשירותי ענן) הופכת פריצה לאירוע מוכל והופכת Egress חריג להתראה בעלת ערך אבחוני גבוה.",
       resourceTitle: "Azure Firewall FQDN filtering",
       resourceUrl: "https://learn.microsoft.com/azure/firewall/features",
       keywords: ["egress filtering", "exfiltration", "c2", "outbound"],
@@ -307,15 +418,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What distinguishes a layer-4 load balancer from a layer-7 load balancer?",
+      question_he: "מה מבדיל בין Load Balancer בשכבה 4 (L4) ל-Load Balancer בשכבה 7 (L7)?",
       options: [
         "L4 balances TCP/UDP connections without reading application content; L7 understands HTTP and can route by URL, host or headers",
         "L4 is for small workloads, L7 for large ones",
         "L7 is always faster than L4",
         "L4 can only be used on-premises",
       ],
+      options_he: [
+        "L4 מאזן חיבורי TCP/UDP בלי לקרוא את תוכן האפליקציה; L7 מבין HTTP ויכול לנתב לפי URL, Host או Headers",
+        "L4 מיועד לעומסי עבודה קטנים, L7 לגדולים",
+        "L7 תמיד מהיר יותר מ-L4",
+        "L4 ניתן לשימוש רק on-premises",
+      ],
       correctAnswer: 0,
       explanation:
         "The layer determines what the balancer can see and therefore do: L4 forwards flows by IP/port — fast, protocol-agnostic, ideal for databases and raw TCP; L7 parses HTTP, enabling path routing, TLS termination, cookies and WAF integration at the cost of processing overhead. Every cloud sells both tiers, so this distinction is the first fork in any load-balancing decision.",
+      explanation_he:
+        "השכבה קובעת מה ה-Load Balancer יכול לראות ולכן גם מה הוא יכול לעשות: L4 מעביר זרימות לפי IP/פורט — מהיר, אגנוסטי לפרוטוקול, אידיאלי למסדי נתונים ו-TCP גולמי; L7 מפענח HTTP, ומאפשר ניתוב לפי נתיב, TLS Termination, Cookies ואינטגרציה עם WAF במחיר תקורת עיבוד. כל ספקי הענן מוכרים את שתי הרמות, ולכן ההבחנה הזו היא הפיצול הראשון בכל החלטת Load Balancing.",
       resourceTitle: "Load balancing options (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/architecture/guide/technology-choices/load-balancing-overview",
       keywords: ["layer 4", "layer 7", "load balancing"],
@@ -328,15 +448,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Why do stateless packet filters (like AWS network ACLs) require rules for ephemeral ports?",
+      question_he: "למה מסננים ללא-מצב (stateless), כמו NACLs ב-AWS, דורשים כללים עבור פורטים אפמריים (ephemeral ports)?",
       options: [
         "Because responses return to a random high port chosen by the client, and a stateless filter doesn't remember the outbound request",
         "Because ephemeral ports are more secure",
         "Because DNS only works on ephemeral ports",
         "They don't — ephemeral ports are always open",
       ],
+      options_he: [
+        "מכיוון שתשובות חוזרות לפורט גבוה ואקראי שנבחר על ידי הלקוח, ומסנן ללא-מצב לא זוכר את הבקשה היוצאת",
+        "מכיוון שפורטים אפמריים בטוחים יותר",
+        "מכיוון ש-DNS עובד רק על פורטים אפמריים",
+        "לא נדרש — פורטים אפמריים תמיד פתוחים",
+      ],
       correctAnswer: 0,
       explanation:
         "A client connecting to port 443 sources the connection from an ephemeral port (typically 1024–65535); the response targets that port. Stateful filters track the flow and admit the reply automatically — stateless ones evaluate the returning packet cold, so without an ephemeral-range allow rule the reply dies. This single fact explains most 'NACL broke my traffic' incidents and why stateful filters are the default choice.",
+      explanation_he:
+        "לקוח שמתחבר לפורט 443 יוצר את החיבור מפורט אפמרי (בדרך כלל 1024–65535); התשובה מכוונת לאותו פורט. מסננים stateful עוקבים אחרי הזרימה ומאשרים את התשובה באופן אוטומטי — מסננים stateless בודקים את החבילה החוזרת 'קר', כך שבלי כלל היתר לטווח האפמרי התשובה נהרגת בדרך. עובדה אחת זו מסבירה את רוב תקלות 'ה-NACL שבר לי את התעבורה' ולמה מסננים מבוססי-מצב הם ברירת המחדל.",
       resourceTitle: "Network ACLs — ephemeral ports (AWS)",
       resourceUrl: "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html",
       keywords: ["ephemeral ports", "stateless", "nacl", "return traffic"],
@@ -349,15 +478,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Azure Private Endpoints, AWS VPC endpoints (PrivateLink) and GCP Private Service Connect all serve what purpose?",
+      question_he: "מה המטרה המשותפת ל-Private Endpoints ב-Azure, VPC endpoints (PrivateLink) ב-AWS ו-Private Service Connect ב-GCP?",
       options: [
         "Accelerating traffic to managed services",
         "Reaching managed PaaS services (storage, databases, APIs) over private addresses, so the traffic never uses public endpoints",
         "Providing free data transfer",
         "Replacing DNS for cloud services",
       ],
+      options_he: [
+        "האצת תעבורה אל שירותים מנוהלים",
+        "הגעה לשירותי PaaS מנוהלים (אחסון, מסדי נתונים, APIs) דרך כתובות פרטיות, כך שהתעבורה לעולם לא משתמשת בנקודות קצה ציבוריות",
+        "מתן העברת נתונים חינם",
+        "החלפת DNS עבור שירותי ענן",
+      ],
       correctAnswer: 1,
       explanation:
         "By default, PaaS services live at public endpoints — even VNet/VPC traffic to them targets public IPs. Private endpoint technologies project the service into your address space as a private IP, letting you firewall off the public endpoint entirely and satisfy 'no data over public internet' requirements. The recurring operational catch in all three clouds: DNS must resolve the service name to the private address inside your network.",
+      explanation_he:
+        "כברירת מחדל, שירותי PaaS יושבים בנקודות קצה ציבוריות — אפילו תעבורת VNet/VPC אליהם מכוונת לכתובות IP ציבוריות. טכנולוגיות ה-Private Endpoint מקרינות את השירות אל תוך מרחב הכתובות שלך ככתובת IP פרטית, ומאפשרות לך לחסום לגמרי בעזרת Firewall את נקודת הקצה הציבורית ולעמוד בדרישות מסוג 'אין נתונים דרך האינטרנט הציבורי'. המכשול התפעולי החוזר בכל שלושת ספקי הענן: ה-DNS חייב לפענח את שם השירות אל הכתובת הפרטית בתוך הרשת שלך.",
       resourceTitle: "What is a private endpoint? (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/private-link/private-endpoint-overview",
       keywords: ["private endpoint", "privatelink", "private service connect"],
@@ -370,10 +508,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "A NAT gateway accepts inbound connections initiated from the internet and forwards them to private VMs.",
+      question_he: "NAT Gateway מקבל חיבורים נכנסים (Ingress) שיוזמים מהאינטרנט ומעביר אותם ל-VMs פרטיים.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: false,
       explanation:
         "False — that would be a load balancer or port-forwarding, not NAT-gateway behavior in any cloud. Managed NAT gateways translate outbound flows only: a mapping exists only because an internal host initiated it, so unsolicited inbound packets have nowhere to go. Keeping 'NAT = egress-only door' straight prevents both accidental exposure assumptions and misdiagnosed connectivity issues.",
+      explanation_he:
+        "לא נכון — זו הייתה התנהגות של Load Balancer או port-forwarding, לא של NAT Gateway באף ספק ענן. NAT Gateways מנוהלים מתרגמים רק זרימות יוצאות (Outbound): מיפוי קיים רק כי מארח פנימי יזם אותו, כך שחבילות Ingress בלתי מבוקשות אין להן לאן ללכת. שמירה על העיקרון 'NAT = דלת Egress בלבד' מונעת גם הנחות שגויות לגבי חשיפה וגם אבחון שגוי של תקלות קישוריות.",
       resourceTitle: "Azure NAT Gateway",
       resourceUrl: "https://learn.microsoft.com/azure/nat-gateway/nat-overview",
       keywords: ["nat gateway", "outbound only", "inbound"],
@@ -386,15 +528,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multi-select",
       question: "Which are IP address planning best practices for cloud environments? (Select all that apply.)",
+      question_he: "אילו מהבאים הם נהלים מומלצים לתכנון כתובות IP בסביבות ענן? (בחר את כל האפשרויות הנכונות.)",
       options: [
         "Allocate non-overlapping ranges across environments, regions and on-premises",
         "Size networks with growth headroom — renumbering later is expensive",
         "Document allocations centrally (IPAM) so teams don't improvise",
         "Reuse the same CIDR everywhere so configs look identical",
       ],
+      options_he: [
+        "הקצאת טווחים לא-חופפים על פני סביבות, Regions ותשתית on-premises",
+        "תכנון רשתות עם מרווח לגידול עתידי — שינוי מספור בהמשך יקר",
+        "תיעוד ההקצאות במקום מרכזי (IPAM) כדי שצוותים לא יאלתרו",
+        "שימוש חוזר באותו CIDR בכל מקום כדי שהקונפיגורציות ייראו זהות",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Address plans fail years after they're made: the duplicate 10.0.0.0/16 chosen 'because it's the default' blocks tomorrow's peering, merger or hybrid link. Non-overlap, headroom and a single source of truth (an IPAM tool or even a disciplined spreadsheet) are cheap now and priceless later. Deliberately reusing ranges is the one option that guarantees future NAT contortions.",
+      explanation_he:
+        "תוכניות כתובות נכשלות שנים אחרי שנקבעו: ה-10.0.0.0/16 הכפול שנבחר 'כי זו ברירת המחדל' חוסם Peering, מיזוג או קישור היברידי של מחר. אי-חפיפה, מרווח גידול ומקור אמת יחיד (כלי IPAM או אפילו גיליון אלקטרוני ממושמע) זולים עכשיו ובעלי ערך רב בהמשך. שימוש חוזר מכוון בטווחים הוא האפשרות היחידה שמבטיחה סבך NAT עתידי.",
       resourceTitle: "Plan for IP addressing (Azure Cloud Adoption Framework)",
       resourceUrl: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/plan-for-ip-addressing",
       keywords: ["ip planning", "ipam", "overlap", "headroom"],

@@ -489,7 +489,7 @@ CQA.i18n.register({
     "domain.cost": "עלות",
     "domain.resiliency": "עמידות",
     "domain.kubernetes": "Kubernetes",
-    "domain.containers": "מכולות",
+    "domain.containers": "Containers",
     "domain.dns-lb": "DNS ואיזון עומסים",
     "domain.hybrid": "היברידי",
     "domain.security": "אבטחה",

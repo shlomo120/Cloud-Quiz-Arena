@@ -16,15 +16,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a Pod in Kubernetes?",
+      question_he: "מהו Pod ב-Kubernetes?",
       options: [
         "The smallest deployable unit — one or more containers sharing network and storage",
         "A physical server in the cluster",
         "A backup of the cluster's configuration",
         "A user account for developers",
       ],
+      options_he: [
+        "היחידה הקטנה ביותר שניתן לפרוס — קונטיינר אחד או יותר החולקים רשת ואחסון",
+        "שרת פיזי ב-Cluster",
+        "גיבוי של תצורת ה-Cluster",
+        "חשבון משתמש עבור מפתחים",
+      ],
       correctAnswer: 0,
       explanation:
         "A Pod wraps one or more tightly-coupled containers that share an IP address, port space and volumes — most Pods hold a single app container, sometimes joined by a sidecar. Pods are ephemeral by design: they are created, destroyed and rescheduled freely, which is why you almost never create them directly but through controllers like Deployments.",
+      explanation_he:
+        "Pod עוטף קונטיינר אחד או יותר הקשורים זה לזה בהדוקות, החולקים כתובת IP, מרחב פורטים ו-volumes — רוב ה-Pods מכילים קונטיינר אפליקציה בודד, שלעיתים מצטרף אליו Sidecar. Pods הם ארעיים מטבעם: הם נוצרים, נהרסים ומתוזמנים מחדש בחופשיות, ולכן כמעט אף פעם לא יוצרים אותם ישירות אלא דרך controllers כמו Deployment.",
       resourceTitle: "Pods — Kubernetes documentation",
       resourceUrl: "https://kubernetes.io/docs/concepts/workloads/pods/",
       keywords: ["pod", "smallest unit", "containers"],
@@ -37,15 +46,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a Node in a Kubernetes cluster?",
+      question_he: "מהו Node ב-Cluster של Kubernetes?",
       options: [
         "A worker machine (VM or physical) that runs Pods via the kubelet and a container runtime",
         "A network switch connecting containers",
         "A single container instance",
         "The cluster's configuration database",
       ],
+      options_he: [
+        "מכונת עבודה (וירטואלית או פיזית) המריצה Pods דרך ה-kubelet ו-container runtime",
+        "מתג רשת המחבר בין קונטיינרים",
+        "מופע קונטיינר בודד",
+        "מסד הנתונים של תצורת ה-Cluster",
+      ],
       correctAnswer: 0,
       explanation:
         "Nodes are the compute: each runs the kubelet (the agent that starts and watches Pods), a container runtime, and kube-proxy for service networking. The control plane schedules Pods onto nodes based on resources and constraints. In managed Kubernetes (AKS/EKS/GKE), nodes are the part you still see and often pay for; the control plane is the provider's problem.",
+      explanation_he:
+        "ה-Nodes הם שכבת החישוב: כל אחד מריץ kubelet (הסוכן שמפעיל ומפקח על Pods), container runtime, ו-kube-proxy לצורך רשת ה-Service. ה-control plane מתזמן Pods על גבי Nodes בהתאם למשאבים ולאילוצים. ב-Kubernetes מנוהל (AKS/EKS/GKE), ה-Nodes הם החלק שעדיין נראה לעין ולעיתים קרובות משלמים עליו; ה-control plane הוא בעיה של הספק.",
       resourceTitle: "Nodes — Kubernetes documentation",
       resourceUrl: "https://kubernetes.io/docs/concepts/architecture/nodes/",
       keywords: ["node", "kubelet", "worker"],
@@ -58,15 +76,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is the role of the Kubernetes API server?",
+      question_he: "מה תפקידו של ה-API server ב-Kubernetes?",
       options: [
         "It is the front door of the control plane — every command, controller and kubelet interaction goes through it",
         "It serves your application's HTTP traffic to users",
         "It builds container images",
         "It provides DNS inside the cluster",
       ],
+      options_he: [
+        "הוא הדלת הראשית של ה-control plane — כל פקודה, controller ואינטראקציית kubelet עוברים דרכו",
+        "הוא מגיש את תעבורת ה-HTTP של האפליקציה שלך למשתמשים",
+        "הוא בונה image של קונטיינרים",
+        "הוא מספק DNS בתוך ה-Cluster",
+      ],
       correctAnswer: 0,
       explanation:
         "kubectl, controllers, the scheduler and kubelets all speak exclusively to the API server, which validates requests, enforces authentication/authorization/admission, and persists state to etcd. That chokepoint design is also the security model: protecting the API server (network exposure, RBAC, audit logs) is protecting the cluster. App traffic and DNS are handled by Services/Ingress and CoreDNS respectively.",
+      explanation_he:
+        "kubectl, controllers, ה-scheduler וה-kubelets כולם מדברים אך ורק עם ה-API server, אשר מאמת בקשות, אוכף authentication/authorization/admission, ושומר את המצב ב-etcd. עיצוב צוואר הבקבוק הזה הוא גם מודל האבטחה: הגנה על ה-API server (חשיפה ברשת, RBAC, יומני ביקורת) שקולה להגנה על ה-Cluster כולו. תעבורת האפליקציה ו-DNS מטופלים בהתאמה על ידי Service/Ingress ו-CoreDNS.",
       resourceTitle: "Kubernetes components",
       resourceUrl: "https://kubernetes.io/docs/concepts/overview/components/",
       keywords: ["api server", "control plane", "etcd"],
@@ -79,10 +106,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "A Deployment keeps the desired number of Pod replicas running, replacing Pods that fail or are deleted.",
+      question_he: "Deployment שומר על מספר ה-replicas הרצוי של Pods פעיל, ומחליף Pods שנכשלים או נמחקים.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "A Deployment declares desired state — image, replica count, update strategy — and its ReplicaSet continuously reconciles reality toward it: delete a Pod and a replacement appears. This reconciliation loop is Kubernetes' core idea, and it's also what enables rolling updates and instant rollbacks. Self-healing at the Pod level comes free; you design for it by keeping Pods disposable.",
+      explanation_he:
+        "Deployment מצהיר על מצב רצוי — image, מספר replicas, אסטרטגיית עדכון — וה-ReplicaSet שלו מיישר כל הזמן את המציאות אליו: מוחקים Pod ומופיע תחליף. לולאת ההתכנסות הזו היא הרעיון המרכזי של Kubernetes, והיא גם מה שמאפשר rolling updates ו-rollbacks מיידיים. ריפוי עצמי ברמת ה-Pod מגיע בחינם; מתכננים לכך על ידי כך ש-Pods נשארים חד-פעמיים וניתנים להחלפה.",
       resourceTitle: "Deployments — Kubernetes documentation",
       resourceUrl: "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
       keywords: ["deployment", "replicaset", "desired state", "self-healing"],
@@ -95,15 +126,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "Why do you put a Service in front of Pods instead of connecting to Pods directly?",
+      question_he: "מדוע שמים Service מול Pods במקום להתחבר ל-Pods ישירות?",
       options: [
         "Pods are ephemeral and their IPs change; a Service provides a stable virtual IP and DNS name that load-balances across current Pods",
         "Pods cannot receive network traffic without one",
         "Services encrypt all traffic automatically",
         "Services are required to pull container images",
       ],
+      options_he: [
+        "Pods הם ארעיים וכתובות ה-IP שלהם משתנות; Service מספק כתובת IP וירטואלית יציבה ושם DNS המאזנים עומסים בין ה-Pods הפעילים כרגע",
+        "Pods אינם יכולים לקבל תעבורת רשת בלעדיו",
+        "Services מצפינים את כל התעבורה באופן אוטומטי",
+        "Services נדרשים כדי למשוך image של קונטיינר",
+      ],
       correctAnswer: 0,
       explanation:
         "Every Pod restart or reschedule brings a new IP, so hardcoding Pod addresses breaks constantly. A Service selects Pods by label and gives clients one stable endpoint (ClusterIP + DNS name), spreading connections across whatever healthy Pods exist right now. Encryption and image pulling are unrelated — those are the mesh/TLS layer and the kubelet's registry access.",
+      explanation_he:
+        "כל הפעלה מחדש או תזמון מחדש של Pod מביאה IP חדש, כך שקידוד כתובות Pod ישירות בקוד נשבר כל הזמן. Service בוחר Pods לפי label ונותן ללקוחות נקודת קצה יציבה אחת (ClusterIP + שם DNS), ומפזר חיבורים בין כל ה-Pods הבריאים הקיימים כרגע. הצפנה ומשיכת image אינן קשורות לכך — אלו שייכות לשכבת ה-mesh/TLS ולגישת ה-kubelet ל-registry.",
       resourceTitle: "Service — Kubernetes documentation",
       resourceUrl: "https://kubernetes.io/docs/concepts/services-networking/service/",
       keywords: ["service", "clusterip", "stable endpoint", "labels"],
@@ -116,10 +156,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Which Service type provisions a cloud load balancer to expose an application externally?",
+      question_he: "איזה סוג Service מקצה Load Balancer בענן כדי לחשוף אפליקציה כלפי חוץ?",
       options: ["ClusterIP", "NodePort", "LoadBalancer", "ExternalName"],
+      options_he: ["ClusterIP", "NodePort", "LoadBalancer", "ExternalName"],
       correctAnswer: 2,
       explanation:
         "Service types form a ladder of exposure: ClusterIP is internal-only (the default and the safest), NodePort opens a high port on every node, and LoadBalancer asks the cloud provider to provision a real load balancer pointing at those ports — on AKS/EKS/GKE this creates an Azure LB / ELB / GCP LB automatically. ExternalName is just a DNS alias. Choose the least exposure the use case allows.",
+      explanation_he:
+        "סוגי ה-Service יוצרים סולם של חשיפה: ClusterIP הוא פנימי בלבד (ברירת המחדל והבטוחה ביותר), NodePort פותח פורט גבוה בכל Node, ו-LoadBalancer מבקש מספק הענן להקצות Load Balancer אמיתי המצביע על אותם פורטים — ב-AKS/EKS/GKE זה יוצר אוטומטית Azure LB / ELB / GCP LB בהתאמה. ExternalName הוא רק כינוי DNS. יש לבחור את החשיפה המינימלית שמתאימה למקרה השימוש.",
       resourceTitle: "Service types",
       resourceUrl: "https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
       keywords: ["service types", "loadbalancer", "nodeport", "exposure"],
@@ -132,15 +176,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does a Kubernetes Ingress provide?",
+      question_he: "מה מספק Ingress ב-Kubernetes?",
       options: [
         "HTTP(S) routing into the cluster by host and path, implemented by an ingress controller",
         "Outbound internet access for Pods",
         "Persistent storage for stateful applications",
         "Automatic horizontal scaling of Deployments",
       ],
+      options_he: [
+        "ניתוב HTTP(S) לתוך ה-Cluster לפי host ו-path, המיושם על ידי ingress controller",
+        "גישת אינטרנט יוצאת (Egress) עבור Pods",
+        "אחסון מתמיד עבור אפליקציות stateful",
+        "הרחבה אופקית אוטומטית של Deployments",
+      ],
       correctAnswer: 0,
       explanation:
         "An Ingress consolidates many services behind one entry point with layer-7 rules — api.example.com → service A, /shop → service B — plus TLS termination. The resource is only a declaration: an ingress controller (NGINX, Traefik, or a cloud one like AGIC/ALB controller/GKE Ingress) must run to actually implement it. Egress, storage and scaling belong to other objects entirely.",
+      explanation_he:
+        "Ingress מאחד שירותים רבים מאחורי נקודת כניסה אחת עם כללי שכבה 7 — api.example.com → service A, ‎/shop → service B — בתוספת TLS Termination. המשאב הוא רק הצהרה: ingress controller (NGINX, Traefik, או אחד ענני כמו AGIC/ALB controller/GKE Ingress) חייב לרוץ כדי לממש אותו בפועל. Egress, אחסון והרחבה שייכים לגמרי לאובייקטים אחרים.",
       resourceTitle: "Ingress — Kubernetes documentation",
       resourceUrl: "https://kubernetes.io/docs/concepts/services-networking/ingress/",
       keywords: ["ingress", "layer 7", "ingress controller", "tls"],
@@ -154,10 +207,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "Kubernetes namespaces provide logical separation of resources, but on their own they are not a strong security boundary.",
+      question_he:
+        "Namespaces ב-Kubernetes מספקים הפרדה לוגית בין משאבים, אך כשלעצמם הם אינם גבול אבטחה חזק.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Namespaces scope names, quotas and RBAC — organizationally invaluable — but by default Pods in different namespaces share nodes, can reach each other over the network, and escape via any container breakout. Turning namespaces into a real boundary takes layered work: NetworkPolicies for traffic, RBAC per namespace, Pod Security standards, and for hostile multi-tenancy, separate node pools or clusters.",
+      explanation_he:
+        "Namespaces מגדירים תחום עבור שמות, מכסות ו-RBAC — יקרי ערך מבחינה ארגונית — אך כברירת מחדל Pods ב-namespaces שונים חולקים Nodes, יכולים להגיע זה לזה ברשת, ולברוח דרך כל פריצת קונטיינר. הפיכת namespaces לגבול אמיתי דורשת עבודה בשכבות: NetworkPolicy עבור התעבורה, RBAC לכל namespace, תקני Pod Security, ועבור multi-tenancy עוין — node pools או clusters נפרדים.",
       resourceTitle: "Namespaces — Kubernetes documentation",
       resourceUrl: "https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
       keywords: ["namespaces", "isolation", "multi-tenancy"],
@@ -170,15 +228,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Which statement about Kubernetes Secrets is correct?",
+      question_he: "איזה משפט נכון לגבי Secrets ב-Kubernetes?",
       options: [
         "They are encrypted with a hardware key by default",
         "They are base64-encoded, not encrypted, by default — encryption at rest and external secret stores are recommended hardening",
         "They can only store TLS certificates",
         "They are visible to every Pod in the cluster automatically",
       ],
+      options_he: [
+        "הם מוצפנים כברירת מחדל באמצעות מפתח חומרה",
+        "הם מקודדים ב-base64 ולא מוצפנים כברירת מחדל — הצפנה at rest ואחסון Secrets חיצוני הם חיזוקים מומלצים",
+        "הם יכולים לאחסן רק תעודות TLS",
+        "הם גלויים אוטומטית לכל Pod ב-Cluster",
+      ],
       correctAnswer: 1,
       explanation:
         "The name oversells it: base64 is encoding, not encryption, and by default Secrets sit readable in etcd. Hardening means enabling encryption at rest for etcd, restricting who can read Secrets via RBAC, and increasingly pulling from an external store (Azure Key Vault, AWS Secrets Manager, GCP Secret Manager) via CSI drivers — so the cloud KMS owns the crypto and the audit trail.",
+      explanation_he:
+        "השם מבטיח יותר ממה שהוא נותן: base64 הוא קידוד, לא הצפנה, וכברירת מחדל ה-Secrets יושבים קריאים ב-etcd. חיזוק המצב אומר הפעלת הצפנה at rest עבור etcd, הגבלת מי שיכול לקרוא Secrets דרך RBAC, ויותר ויותר משיכה מאחסון חיצוני (Azure Key Vault, AWS Secrets Manager, GCP Secret Manager) דרך CSI drivers — כך שה-KMS הענני מחזיק את ההצפנה ואת יומן הביקורת.",
       resourceTitle: "Secrets — Kubernetes documentation",
       resourceUrl: "https://kubernetes.io/docs/concepts/configuration/secret/",
       keywords: ["secrets", "base64", "encryption at rest", "key vault"],
@@ -191,15 +258,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multi-select",
       question: "Which statements about Kubernetes NetworkPolicies are correct? (Select all that apply.)",
+      question_he: "אילו מהמשפטים לגבי NetworkPolicy ב-Kubernetes נכונים? (בחר את כל האפשרויות הנכונות.)",
       options: [
         "Until a policy selects a Pod, that Pod accepts traffic from anywhere in the cluster",
         "Policies can restrict both ingress and egress traffic",
         "Enforcement requires a CNI plugin that supports NetworkPolicy",
         "They are enforced by the cloud provider's security groups",
       ],
+      options_he: [
+        "עד שמדיניות בוחרת Pod מסוים, אותו Pod מקבל תעבורה מכל מקום ב-Cluster",
+        "מדיניות יכולה להגביל גם תעבורת Ingress וגם תעבורת Egress",
+        "האכיפה דורשת תוסף CNI התומך ב-NetworkPolicy",
+        "הן נאכפות על ידי security groups של ספק הענן",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Kubernetes networking defaults to allow-all Pod-to-Pod — the opposite of cloud firewall defaults — so an unselected Pod is open to the whole cluster. NetworkPolicies bring default-deny segmentation per namespace, covering both directions, but only if the CNI (Calico, Cilium, Azure CNI…) enforces them; without support they're silently ignored. Cloud security groups filter node traffic and never see Pod-to-Pod flows on the same node.",
+      explanation_he:
+        "רשת ה-Kubernetes ברירת המחדל שלה היא allow-all בין Pod ל-Pod — ההפך מברירות המחדל של firewall בענן — כך ש-Pod שלא נבחר על ידי אף מדיניות פתוח לכל ה-Cluster. NetworkPolicy מביא סגמנטציה מסוג default-deny לכל namespace, בשני הכיוונים, אך רק אם ה-CNI (Calico, Cilium, Azure CNI...) אוכף אותן; ללא תמיכה הן פשוט מתעלמות בשקט. security groups בענן מסננים תעבורת Node ולעולם לא רואים זרימות Pod-to-Pod על אותו Node.",
       resourceTitle: "Network Policies",
       resourceUrl: "https://kubernetes.io/docs/concepts/services-networking/network-policies/",
       keywords: ["networkpolicy", "default allow", "cni", "segmentation"],
@@ -212,15 +288,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does the kubelet do?",
+      question_he: "מה עושה ה-kubelet?",
       options: [
         "It is the agent on each node that ensures the containers described in PodSpecs are running and healthy",
         "It schedules Pods onto nodes",
         "It stores the cluster state",
         "It is the CLI tool administrators use",
       ],
+      options_he: [
+        "הוא הסוכן על כל Node שמוודא שהקונטיינרים המתוארים ב-PodSpecs פועלים ובריאים",
+        "הוא מתזמן Pods על גבי Nodes",
+        "הוא שומר את מצב ה-Cluster",
+        "הוא כלי ה-CLI שמנהלי המערכת משתמשים בו",
+      ],
       correctAnswer: 0,
       explanation:
         "The kubelet is the node's hands: it watches the API server for Pods assigned to its node, tells the container runtime to start them, runs the probes, and reports status back. Scheduling decisions are the scheduler's (control plane), state lives in etcd, and the CLI is kubectl — three classic distractors. A compromised kubelet means a compromised node, which is why its API is locked down in hardened clusters.",
+      explanation_he:
+        "ה-kubelet הוא הידיים של ה-Node: הוא עוקב אחר ה-API server לגבי Pods שהוקצו ל-Node שלו, אומר ל-container runtime להפעיל אותם, מריץ את ה-probes, ומדווח חזרה על הסטטוס. החלטות תזמון שייכות ל-scheduler (control plane), המצב חי ב-etcd, וה-CLI הוא kubectl — שלושה distractors קלאסיים. kubelet שנפרץ משמעו Node שנפרץ, ולכן ה-API שלו נעול היטב ב-clusters מוקשחים.",
       resourceTitle: "kubelet reference",
       resourceUrl: "https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/",
       keywords: ["kubelet", "node agent", "podspec"],
@@ -233,15 +318,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is the difference between a liveness probe and a readiness probe?",
+      question_he: "מה ההבדל בין liveness probe ל-readiness probe?",
       options: [
         "Liveness failure restarts the container; readiness failure removes the Pod from Service endpoints without restarting it",
         "Liveness runs once at startup; readiness runs forever",
         "Readiness failure deletes the Pod permanently",
         "They are two names for the same check",
       ],
+      options_he: [
+        "כישלון liveness מפעיל מחדש את הקונטיינר; כישלון readiness מסיר את ה-Pod מנקודות הקצה של ה-Service בלי להפעיל אותו מחדש",
+        "liveness רץ פעם אחת בעת ההפעלה; readiness רץ לנצח",
+        "כישלון readiness מוחק את ה-Pod לצמיתות",
+        "אלו שני שמות לאותה בדיקה בדיוק",
+      ],
       correctAnswer: 0,
       explanation:
         "Two different remedies for two different problems: liveness answers 'is this process wedged beyond recovery?' (restart it), readiness answers 'can it take traffic right now?' (stop routing to it — during startup, warmup or overload). Wiring these backwards causes real outages: an aggressive liveness probe on a slow-starting app produces a restart loop that readiness would have handled gracefully.",
+      explanation_he:
+        "שני פתרונות שונים לשתי בעיות שונות: liveness עונה על 'האם התהליך תקוע מעבר לאפשרות התאוששות?' (יש להפעיל מחדש), ואילו readiness עונה על 'האם הוא מסוגל לקבל תעבורה כרגע?' (יש להפסיק לנתב אליו — בזמן עלייה, חימום או עומס יתר). חיווט הפוך בין השניים גורם להשבתות אמיתיות: liveness probe אגרסיבי על אפליקציה שעולה לאט יוצר לולאת restart שבה readiness היה מטפל בעדינות.",
       resourceTitle: "Liveness, Readiness and Startup Probes",
       resourceUrl: "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes",
       keywords: ["liveness", "readiness", "probes", "health checks"],
@@ -254,15 +348,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "In Kubernetes RBAC, what is the difference between a Role and a ClusterRole?",
+      question_he: "ב-RBAC של Kubernetes, מה ההבדל בין Role ל-ClusterRole?",
       options: [
         "A Role grants permissions within one namespace; a ClusterRole can grant them cluster-wide or on non-namespaced resources",
         "A Role is for humans, a ClusterRole for service accounts",
         "ClusterRoles can only be used by cloud administrators",
         "Roles are deprecated in favor of ClusterRoles",
       ],
+      options_he: [
+        "Role מעניק הרשאות בתוך namespace יחיד; ClusterRole יכול להעניק אותן על פני כל ה-Cluster או על משאבים שאינם משויכים ל-namespace",
+        "Role מיועד לבני אדם, ClusterRole ל-service accounts",
+        "ClusterRole ניתן לשימוש רק על ידי מנהלי הענן",
+        "Role הוצא משימוש לטובת ClusterRole",
+      ],
       correctAnswer: 0,
       explanation:
         "Scope is the whole distinction: Roles (+RoleBindings) express least privilege inside a namespace — 'this CI service account may update Deployments in team-a' — while ClusterRoles cover cluster-scoped resources (nodes, namespaces themselves) or, bound cluster-wide, everything. The hygiene rule mirrors cloud IAM: default to namespaced Roles, treat every ClusterRole binding as a privilege-escalation review.",
+      explanation_he:
+        "ההבדל כולו הוא היקף: Role (עם RoleBinding) מבטא least privilege בתוך namespace — 'ל-service account הזה של ה-CI מותר לעדכן Deployments ב-team-a' — בעוד ש-ClusterRole מכסה משאבים ברמת ה-Cluster (Nodes, ה-namespaces עצמם) או, כאשר נקשר באופן גלובלי, את הכול. כלל ההיגיינה מקביל ל-IAM בענן: ברירת המחדל היא Role בתוך namespace, וכל קישור של ClusterRole יש להתייחס אליו כביקורת של הסלמת הרשאות.",
       resourceTitle: "Using RBAC Authorization",
       resourceUrl: "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
       keywords: ["rbac", "role", "clusterrole", "least privilege"],
@@ -275,15 +378,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multi-select",
       question: "Which are Pod security best practices? (Select all that apply.)",
+      question_he: "אילו מהבאות הן שיטות מומלצות לאבטחת Pod? (בחר את כל האפשרויות הנכונות.)",
       options: [
         "Run containers as a non-root user",
         "Drop unneeded Linux capabilities and use a read-only root filesystem",
         "Avoid privileged containers except for narrowly justified system workloads",
         "Run everything privileged to avoid permission errors",
       ],
+      options_he: [
+        "להריץ קונטיינרים כמשתמש שאינו root",
+        "להסיר capabilities מיותרות של Linux ולהשתמש במערכת קבצים לקריאה בלבד (root filesystem read-only)",
+        "להימנע מקונטיינרים privileged למעט עומסי עבודה מערכתיים המוצדקים במפורש",
+        "להריץ הכול כ-privileged כדי להימנע משגיאות הרשאה",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Container escape severity is a function of what the process could do: non-root, minimal capabilities and a read-only filesystem shrink the blast radius of any compromise, while a privileged container is effectively root on the node. The Pod Security Standards (baseline/restricted) codify these rules, and admission control can enforce them cluster-wide — 'privileged everywhere to make errors go away' is how one CVE becomes a cluster takeover.",
+      explanation_he:
+        "חומרת בריחה מקונטיינר היא פונקציה של מה שהתהליך יכול היה לעשות: non-root, capabilities מינימליות ומערכת קבצים לקריאה בלבד מצמצמים את רדיוס הפגיעה של כל פריצה, בעוד שקונטיינר privileged הוא בפועל root על ה-Node. תקני Pod Security (baseline/restricted) מגדירים כללים אלה במפורש, ובקרת admission יכולה לאכוף אותם על כל ה-Cluster — 'privileged בכל מקום כדי שהשגיאות ייעלמו' היא הדרך שבה CVE אחד הופך להשתלטות על הכול.",
       resourceTitle: "Pod Security Standards",
       resourceUrl: "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
       keywords: ["pod security", "non-root", "capabilities", "privileged"],
@@ -296,15 +408,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Why is etcd such a critical component to protect and back up?",
+      question_he: "מדוע etcd הוא רכיב כה קריטי להגנה ולגיבוי?",
       options: [
         "It stores the entire cluster state — including Secrets — so losing it loses the cluster, and reading it reads everything",
         "It routes all application traffic",
         "It stores the container images",
         "It is the only component that cannot be replicated",
       ],
+      options_he: [
+        "הוא שומר את כל מצב ה-Cluster — כולל Secrets — כך שאיבודו פירושו איבוד ה-Cluster, וקריאה ממנו פירושה קריאת הכול",
+        "הוא מנתב את כל תעבורת האפליקציה",
+        "הוא שומר את ה-images של הקונטיינרים",
+        "הוא הרכיב היחיד שלא ניתן לשכפל",
+      ],
       correctAnswer: 0,
       explanation:
         "etcd is the single source of truth: every object, binding and Secret lives there. Confidentiality-wise, raw etcd access bypasses all RBAC — hence encryption at rest and strict network isolation; availability-wise, no backup means no recovery from corruption. It replicates fine (that's its job); managed offerings hide it entirely, which is a large part of what you're paying AKS/EKS/GKE for.",
+      explanation_he:
+        "etcd הוא מקור האמת היחיד: כל אובייקט, binding ו-Secret חיים שם. מבחינת סודיות, גישה גולמית ל-etcd עוקפת את כל ה-RBAC — ומכאן הצורך בהצפנה at rest ובבידוד רשת מחמיר; מבחינת זמינות, ללא גיבוי אין התאוששות מהשחתת נתונים. הוא משוכפל היטב (זה בדיוק תפקידו); הצעות מנוהלות מסתירות אותו לחלוטין, וזה חלק גדול ממה שמשלמים עבורו ב-AKS/EKS/GKE.",
       resourceTitle: "Operating etcd clusters for Kubernetes",
       resourceUrl: "https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/",
       keywords: ["etcd", "cluster state", "backup", "encryption"],
@@ -318,10 +439,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "Kubernetes service accounts give Pods an identity for calling the API server, and RBAC bindings should limit each one to the minimum it needs.",
+      question_he:
+        "Service accounts ב-Kubernetes נותנים ל-Pods זהות לצורך קריאה ל-API server, ו-RBAC bindings צריכים להגביל כל אחד למינימום הנדרש לו.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Every Pod runs as a service account (default per namespace unless specified) whose token can be mounted into the container — an attacker in the Pod inherits exactly those permissions. Least privilege therefore means dedicated service accounts per workload, minimal Role bindings, and disabling token automount where the app never calls the API. Cloud extensions (workload identity on AKS/EKS/GKE) map these identities to cloud IAM for the same reason.",
+      explanation_he:
+        "כל Pod רץ תחת service account (ברירת המחדל של ה-namespace אלא אם צוין אחרת), שה-token שלו יכול להיות מוצמד לתוך הקונטיינר — תוקף בתוך ה-Pod יורש בדיוק את אותן הרשאות. לכן least privilege משמעו service accounts ייעודיים לכל workload, Role bindings מינימליים, וביטול token automount היכן שהאפליקציה אף פעם לא קוראת ל-API. הרחבות ענניות (workload identity ב-AKS/EKS/GKE) ממפות זהויות אלה ל-IAM הענני מאותה סיבה בדיוק.",
       resourceTitle: "Configure Service Accounts for Pods",
       resourceUrl: "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
       keywords: ["service account", "pod identity", "least privilege", "token"],
@@ -334,15 +460,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "In managed Kubernetes (AKS, EKS, GKE), how does the responsibility split typically work?",
+      question_he: "ב-Kubernetes מנוהל (AKS, EKS, GKE), כיצד בדרך כלל מתחלקת האחריות?",
       options: [
         "The provider operates the control plane (API server, etcd); you remain responsible for workloads, RBAC, network policy and (mode-dependent) node upkeep",
         "The provider secures everything including your application containers",
         "You must still run and patch etcd yourself",
         "The provider only supplies the billing integration",
       ],
+      options_he: [
+        "הספק מפעיל את ה-control plane (API server, etcd); אתה נותר אחראי לעומסי העבודה, RBAC, network policy ותחזוקת Nodes (בהתאם למצב התפעול)",
+        "הספק מאבטח את הכול, כולל את קונטיינרי האפליקציה שלך",
+        "אתה עדיין חייב להריץ ולעדכן את etcd בעצמך",
+        "הספק מספק רק את שילוב החיוב",
+      ],
       correctAnswer: 0,
       explanation:
         "Managed Kubernetes is the shared responsibility model applied to a cluster: the control plane's availability, patching and etcd care are the provider's SLA, while everything you deploy — images, RBAC, Secrets handling, NetworkPolicies — stays yours. Node responsibility slides with the mode: self-managed node pools mean you patch; GKE Autopilot or EKS Fargate push nodes to the provider too. 'It's managed' never means 'it's secured'.",
+      explanation_he:
+        "Kubernetes מנוהל הוא מודל האחריות המשותפת המיושם על Cluster: זמינות ה-control plane, עדכוני גרסה וטיפול ב-etcd הם ה-SLA של הספק, בעוד שכל מה שאתה פורס — images, RBAC, טיפול ב-Secrets, NetworkPolicy — נשאר שלך. אחריות ה-Node נעה בהתאם למצב התפעול: node pools בניהול עצמי אומרים שאתה מעדכן; GKE Autopilot או EKS Fargate דוחפים גם את ה-Nodes אל הספק. 'זה מנוהל' לעולם לא אומר 'זה מאובטח'.",
       resourceTitle: "AKS security concepts",
       resourceUrl: "https://learn.microsoft.com/azure/aks/concepts-security",
       keywords: ["managed kubernetes", "shared responsibility", "control plane"],
@@ -355,15 +490,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "How do Kubernetes NetworkPolicies and cloud firewall layers (NSGs / security groups / VPC firewall rules) relate?",
+      question_he: "כיצד מתקשרות NetworkPolicy של Kubernetes עם שכבות firewall בענן (NSG / security groups / כללי VPC firewall)?",
       options: [
         "They are complementary layers: cloud firewalls control traffic to and between nodes/subnets, NetworkPolicies control Pod-to-Pod traffic inside the cluster",
         "NetworkPolicies replace cloud firewalls entirely",
         "Cloud firewalls can see and filter individual Pod-to-Pod flows on the same node",
         "Only one of the two layers may be active at a time",
       ],
+      options_he: [
+        "אלו שכבות משלימות: ה-firewall בענן שולט בתעבורה אל ובין Nodes/subnets, ו-NetworkPolicy שולטת בתעבורת Pod-to-Pod בתוך ה-Cluster",
+        "NetworkPolicy מחליפה לחלוטין את ה-firewall בענן",
+        "ה-firewall בענן יכול לראות ולסנן זרימות Pod-to-Pod בודדות על אותו Node",
+        "רק אחת משתי השכבות יכולה להיות פעילה בכל רגע נתון",
+      ],
       correctAnswer: 0,
       explanation:
         "Defense in depth across two visibility domains: NSGs/security groups filter at the node NIC and subnet — they cannot distinguish Pods sharing a node, let alone same-node Pod traffic that never leaves the host. NetworkPolicies segment at Pod granularity but know nothing about the VNet around the cluster. Real hardening uses both: cloud rules to isolate the cluster, policies to segment within it.",
+      explanation_he:
+        "הגנה בעומק על פני שני תחומי ראייה: NSG/security groups מסננים ברמת ה-NIC וה-subnet של ה-Node — הם אינם יכולים להבחין בין Pods החולקים Node, קל וחומר תעבורת Pod על אותו Node שאף פעם לא עוזבת את המארח. NetworkPolicy מבצעת סגמנטציה ברמת ה-Pod אך לא יודעת דבר על ה-VNet שמסביב ל-Cluster. חיזוק אמיתי משתמש בשניהם: כללי ענן לבידוד ה-Cluster, ומדיניות לסגמנטציה בתוכו.",
       resourceTitle: "Network Policies — Kubernetes documentation",
       resourceUrl: "https://kubernetes.io/docs/concepts/services-networking/network-policies/",
       keywords: ["networkpolicy", "nsg", "security group", "defense in depth"],
@@ -376,15 +520,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "When would you use a DaemonSet instead of a Deployment?",
+      question_he: "מתי משתמשים ב-DaemonSet במקום ב-Deployment?",
       options: [
         "When exactly one copy of a Pod must run on every (or selected) node — log collectors, monitoring agents, CNI components",
         "When you need to scale Pods based on CPU load",
         "When Pods must run to completion once",
         "When you need a stable network identity per Pod",
       ],
+      options_he: [
+        "כאשר עותק אחד בדיוק של Pod חייב לרוץ על כל Node (או Nodes נבחרים) — אספני לוגים, סוכני ניטור, רכיבי CNI",
+        "כאשר צריך להרחיב Pods בהתאם לעומס CPU",
+        "כאשר Pods חייבים לרוץ עד להשלמה, פעם אחת",
+        "כאשר נדרשת זהות רשת יציבה לכל Pod",
+      ],
       correctAnswer: 0,
       explanation:
         "A DaemonSet's contract is per-node presence: add a node and the Pod appears there automatically — perfect for node-level agents like Fluent Bit, Prometheus node-exporter or security sensors. Load-driven scaling is a Deployment plus HorizontalPodAutoscaler, run-to-completion is a Job, and stable identity is a StatefulSet. Matching controller to workload shape is core Kubernetes fluency.",
+      explanation_he:
+        "החוזה של DaemonSet הוא נוכחות לכל Node: מוסיפים Node וה-Pod מופיע שם אוטומטית — מושלם עבור סוכנים ברמת ה-Node כמו Fluent Bit, Prometheus node-exporter או חיישני אבטחה. הרחבה מונעת עומס היא Deployment בשילוב HorizontalPodAutoscaler (HPA), ריצה עד השלמה היא Job, וזהות יציבה היא StatefulSet. התאמת ה-controller לצורת עומס העבודה היא שליטה בסיסית ב-Kubernetes.",
       resourceTitle: "DaemonSet — Kubernetes documentation",
       resourceUrl: "https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/",
       keywords: ["daemonset", "node agents", "log collection"],
@@ -397,15 +550,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Where does TLS typically terminate for HTTPS traffic entering a Kubernetes cluster via Ingress?",
+      question_he: "היכן בדרך כלל מתבצע TLS Termination עבור תעבורת HTTPS הנכנסת ל-Cluster של Kubernetes דרך Ingress?",
       options: [
         "At the ingress controller, using a certificate from a Secret — traffic onward to Pods is plain HTTP unless re-encrypted (e.g. by a service mesh)",
         "TLS cannot be used with Ingress",
         "At each application Pod, always",
         "At the cloud provider's DNS service",
       ],
+      options_he: [
+        "אצל ה-ingress controller, באמצעות תעודה מ-Secret — התעבורה הלאה אל ה-Pods היא HTTP רגיל אלא אם מוצפנת מחדש (למשל על ידי Service Mesh)",
+        "לא ניתן להשתמש ב-TLS עם Ingress",
+        "בכל Pod אפליקציה, תמיד",
+        "אצל שירות ה-DNS של ספק הענן",
+      ],
       correctAnswer: 0,
       explanation:
         "The standard pattern: the Ingress references a TLS Secret, the controller terminates HTTPS and routes decrypted HTTP by host/path. That leaves the in-cluster hop unencrypted — acceptable for some threat models, unacceptable for others, which is where mTLS from a service mesh (or end-to-end passthrough) comes in. Certificates usually arrive via cert-manager; DNS only points clients at the entry IP.",
+      explanation_he:
+        "התבנית הסטנדרטית: ה-Ingress מפנה אל Secret עם תעודת TLS, ה-controller מבצע TLS Termination ל-HTTPS ומנתב HTTP מפוענח לפי host/path. זה משאיר את הקפיצה בתוך ה-Cluster לא מוצפנת — מקובל עבור מודלי איום מסוימים, לא מקובל עבור אחרים, וכאן נכנס mTLS מ-Service Mesh (או passthrough מקצה לקצה). תעודות בדרך כלל מגיעות דרך cert-manager; DNS רק מכוון לקוחות אל כתובת ה-IP של נקודת הכניסה.",
       resourceTitle: "Ingress TLS",
       resourceUrl: "https://kubernetes.io/docs/concepts/services-networking/ingress/#tls",
       keywords: ["tls termination", "ingress", "mtls", "cert-manager"],

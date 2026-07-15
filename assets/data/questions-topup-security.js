@@ -16,15 +16,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What do the three parts of the CIA triad (Confidentiality, Integrity, Availability) represent in security?",
+      question_he: "מה מייצגים שלושת חלקי משולש ה-CIA (Confidentiality, Integrity, Availability) באבטחת מידע?",
       options: [
         "Keeping data secret from unauthorized parties, keeping it accurate and untampered, and keeping systems accessible when needed",
         "Three government security agencies",
         "Three types of firewalls",
         "Confidentiality, Investigation, Authorization",
       ],
+      options_he: [
+        "שמירה על סודיות המידע מפני גורמים לא מורשים, שמירה על דיוקו ואי-שינויו, ושמירה על זמינות המערכות בעת הצורך",
+        "שלוש סוכנויות אבטחה ממשלתיות",
+        "שלושה סוגי חומות אש",
+        "Confidentiality, Investigation, Authorization",
+      ],
       correctAnswer: 0,
       explanation:
         "The CIA triad is the foundational lens for security decisions: encryption and access control protect confidentiality, hashing and signing protect integrity, and redundancy/DDoS protection protect availability. Most security controls map cleanly onto one or more of these three goals — it's a useful checklist for reasoning about what a given control is actually defending.",
+      explanation_he:
+        "משולש ה-CIA הוא העדשה הבסיסית לקבלת החלטות אבטחה: הצפנה ובקרת גישה מגנות על הסודיות (Confidentiality), hashing וחתימה דיגיטלית מגנים על השלמות (Integrity), ורדונדנטיות והגנה מפני DDoS מגנות על הזמינות (Availability). רוב בקרות האבטחה משתייכות בבירור לאחת או יותר משלוש המטרות הללו - זוהי רשימת בדיקה שימושית לניתוח מה בעצם בקרה מסוימת מגנה עליו.",
       resourceTitle: "The CIA triad",
       resourceUrl: "https://www.cisa.gov/news-events/news/security-tip-st04-001",
       keywords: ["cia triad", "confidentiality integrity availability"],
@@ -37,10 +46,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "Regularly applying security patches to operating systems and software reduces the window of exposure to known vulnerabilities.",
+      question_he: "החלה סדירה של תיקוני אבטחה על מערכות הפעלה ותוכנה מקטינה את חלון החשיפה לפגיעויות ידועות.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Most large-scale breaches don't exploit secret zero-days — they exploit known, already-patched vulnerabilities on systems that were simply never updated. A disciplined patch management process (assessing, testing, and applying updates on a defined cadence) closes that gap before attackers can exploit it, which is why it's consistently one of the highest-leverage, least glamorous security practices.",
+      explanation_he:
+        "רוב הפריצות בקנה מידה גדול אינן מנצלות פגיעויות zero-day סודיות - הן מנצלות פגיעויות ידועות שכבר קיים להן תיקון, במערכות שפשוט מעולם לא עודכנו. תהליך patch management ממושמע (הערכה, בדיקה והחלה של עדכונים בקצב קבוע) סוגר את הפער הזה לפני שתוקפים מספיקים לנצל אותו, וזו הסיבה שזו אחת מהפרקטיקות בעלות התועלת הגבוהה ביותר ביחס למאמץ, גם אם היא לא הכי מרשימה.",
       resourceTitle: "Patch management best practices",
       resourceUrl: "https://www.cisa.gov/topics/cyber-threats-and-advisories/known-exploited-vulnerabilities-catalog",
       keywords: ["patch management", "known vulnerabilities", "exposure window"],
@@ -54,15 +67,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a DMZ (demilitarized zone) in network security?",
+      question_he: "מהי DMZ (אזור מפורז) באבטחת רשת?",
       options: [
         "A network segment that sits between the internet and the internal network, hosting public-facing services with restricted access to the internal side",
         "A region where no cloud provider operates",
         "A backup datacenter used only during disasters",
         "A zone where all traffic is unencrypted by design",
       ],
+      options_he: [
+        "מקטע רשת הממוקם בין האינטרנט לרשת הפנימית, ומארח שירותים פונים-החוצה תוך הגבלה קפדנית של הגישה לצד הפנימי",
+        "אזור שבו אף ספק ענן אינו פועל",
+        "מרכז נתונים גיבוי המשמש רק בעת אסון",
+        "אזור שבו כל התעבורה אינה מוצפנת מעצם תכנונו",
+      ],
       correctAnswer: 0,
       explanation:
         "A DMZ hosts what genuinely needs to be internet-reachable — a web server, a mail gateway — while enforcing strict, narrow rules for any traffic trying to reach further into the internal network from there. If the DMZ host is compromised, the attacker still hits another wall before reaching sensitive internal systems, which is the whole point of the extra segment.",
+      explanation_he:
+        "ה-DMZ מארח את מה שבאמת חייב להיות נגיש מהאינטרנט - שרת אינטרנט, שער דואר - תוך אכיפת כללים קפדניים וצרים על כל תעבורה המנסה להגיע משם עמוק יותר לרשת הפנימית. אם המארח ב-DMZ נפרץ, התוקף עדיין נתקל בחומה נוספת לפני שהוא מגיע למערכות הפנימיות הרגישות, וזו בדיוק המטרה של המקטע הנוסף.",
       resourceTitle: "DMZ network security",
       resourceUrl: "https://learn.microsoft.com/azure/architecture/reference-architectures/dmz/secure-vnet-hybrid",
       keywords: ["dmz", "perimeter network", "segmentation"],
@@ -75,15 +97,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is port scanning?",
+      question_he: "מהו port scanning (סריקת פורטים)?",
       options: [
         "Systematically probing a target's ports to discover which services are listening and potentially exploitable",
         "A method for speeding up network connections",
         "A billing report for network usage",
         "A technique for compressing network traffic",
       ],
+      options_he: [
+        "בדיקה שיטתית של הפורטים של יעד כדי לגלות אילו שירותים מאזינים ועלולים להיות ניתנים לניצול",
+        "שיטה להאצת חיבורי רשת",
+        "דוח חיוב עבור שימוש ברשת",
+        "טכניקה לדחיסת תעבורת רשת",
+      ],
       correctAnswer: 0,
       explanation:
         "Attackers (and legitimate security teams doing reconnaissance) scan a range of ports to map out what's running and reachable — an open, unexpected port is often the first thread pulled in an attack chain. Flow logs showing one source hitting many ports across many hosts, mostly denied, is the classic signature a SIEM or GuardDuty-style detector flags as a scan.",
+      explanation_he:
+        "תוקפים (וגם צוותי אבטחה לגיטימיים העורכים סיור מודיעיני) סורקים טווח פורטים כדי למפות מה פועל ונגיש - פורט פתוח ובלתי צפוי הוא לרוב החוט הראשון שנמשך בשרשרת התקפה. יומני זרימה שמראים מקור אחד הפונה לפורטים רבים במארחים רבים, ברובם נדחים, הם התבנית הקלאסית ש-SIEM או גלאי מסוג GuardDuty מסמנים כסריקה.",
       resourceTitle: "Port scanning basics",
       resourceUrl: "https://www.cisa.gov/news-events/cybersecurity-advisories",
       keywords: ["port scanning", "reconnaissance", "attack surface"],
@@ -96,15 +127,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What security benefit does a reverse proxy provide, beyond routing traffic?",
+      question_he: "איזה יתרון אבטחתי מספק reverse proxy, מעבר לניתוב תעבורה?",
       options: [
         "It hides the identity and topology of backend servers from direct internet exposure",
         "It automatically encrypts all stored data",
         "It replaces the need for any authentication",
         "It prevents all forms of denial-of-service attacks",
       ],
+      options_he: [
+        "הוא מסתיר את הזהות והטופולוגיה של שרתי ה-backend מחשיפה ישירה לאינטרנט",
+        "הוא מצפין באופן אוטומטי את כל הנתונים המאוחסנים",
+        "הוא מייתר את הצורך בכל אימות",
+        "הוא מונע את כל צורות התקפות מניעת השירות",
+      ],
       correctAnswer: 0,
       explanation:
         "Clients connect to the reverse proxy, never directly to the backend servers — their real addresses, software versions and internal topology stay hidden, denying an attacker easy reconnaissance targets. It's a genuine security layer, but not a silver bullet: it doesn't replace authentication, encryption of stored data, or dedicated DDoS protection.",
+      explanation_he:
+        "לקוחות מתחברים אל ה-reverse proxy ולעולם לא ישירות אל שרתי ה-backend - הכתובות האמיתיות שלהם, גרסאות התוכנה והטופולוגיה הפנימית נשארות חבויות, מה שמונע מתוקף יעדי סיור קלים. זוהי שכבת אבטחה אמיתית, אך לא פתרון קסם: היא אינה מחליפה אימות, הצפנת נתונים מאוחסנים, או הגנת DDoS ייעודית.",
       resourceTitle: "Reverse proxy (Cloudflare Learning)",
       resourceUrl: "https://www.cloudflare.com/learning/cdn/glossary/reverse-proxy/",
       keywords: ["reverse proxy", "topology hiding", "attack surface reduction"],
@@ -117,15 +157,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does rate limiting help protect against at the application layer?",
+      question_he: "מפני מה rate limiting מסייע להגן ברמת שכבת האפליקציה?",
       options: [
         "Brute-force login attempts and abusive traffic spikes, by capping how many requests a client can make in a time window",
         "It only affects billing, not security",
         "It permanently blocks all traffic from an IP address",
         "It encrypts requests above a certain size",
       ],
+      options_he: [
+        "ניסיונות התחברות בשיטת brute-force וקפיצות תעבורה פוגעניות, על ידי הגבלת מספר הבקשות שלקוח יכול לבצע בחלון זמן נתון",
+        "הוא משפיע רק על חיוב, לא על אבטחה",
+        "הוא חוסם לצמיתות את כל התעבורה מכתובת IP מסוימת",
+        "הוא מצפין בקשות מעל גודל מסוים",
+      ],
       correctAnswer: 0,
       explanation:
         "By capping requests per client (per IP, per API key, per account) within a time window, rate limiting makes brute-forcing a password or hammering an endpoint impractically slow, and reduces the impact of application-layer floods — a complementary control alongside MFA and network-layer DDoS protection, not a replacement for either.",
+      explanation_he:
+        "על ידי הגבלת מספר הבקשות ללקוח (לפי IP, מפתח API, או חשבון) בתוך חלון זמן, rate limiting הופך ניסיון brute-force על סיסמה או הפצצת endpoint לאיטי באופן בלתי מעשי, ומקטין את ההשפעה של הצפות ברמת האפליקציה - בקרה משלימה לצד MFA והגנת DDoS ברמת הרשת, לא תחליף לאף אחת מהן.",
       resourceTitle: "Rate limiting concepts",
       resourceUrl: "https://www.cloudflare.com/learning/bots/what-is-rate-limiting/",
       keywords: ["rate limiting", "brute force", "abuse prevention"],
@@ -138,10 +187,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "IP allowlisting (permitting only specific known IP addresses) is a useful control but can be spoofed or become unreliable when legitimate users have dynamic addresses.",
+      question_he: "IP allowlisting (התרת גישה רק מכתובות IP ידועות ומוגדרות) היא בקרה שימושית, אך ניתנת ל-spoofing ועלולה להיות לא אמינה כאשר למשתמשים לגיטימיים יש כתובות דינמיות.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Restricting an endpoint to a known set of source IPs is a real reduction in exposed attack surface, and works well for fixed infrastructure like a partner's office or a CI system's egress IP. But source IPs can be spoofed on some traffic types, and legitimate remote users on dynamic home or mobile IPs make pure IP allowlisting brittle — which is why it's usually paired with, not a substitute for, identity-based controls.",
+      explanation_he:
+        "הגבלת endpoint לקבוצה ידועה של כתובות IP מקור היא הפחתה אמיתית של משטח ההתקפה החשוף, והיא עובדת היטב עבור תשתית קבועה כמו משרד של שותף עסקי או כתובת ה-egress של מערכת CI. אך כתובות IP מקור ניתנות ל-spoofing בסוגי תעבורה מסוימים, ומשתמשים מרוחקים לגיטימיים עם כתובות בית או נייד דינמיות הופכים IP allowlisting טהור לשביר - ולכן הוא בדרך כלל משולב לצד בקרות מבוססות זהות, ולא מחליף אותן.",
       resourceTitle: "Network security best practices",
       resourceUrl: "https://learn.microsoft.com/azure/security/fundamentals/network-best-practices",
       keywords: ["ip allowlisting", "spoofing", "identity vs network controls"],
@@ -155,15 +208,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a \"claim\" inside an identity token?",
+      question_he: "מהו \"claim\" בתוך טוקן זהות?",
       options: [
         "A piece of information about the authenticated user or session, such as their email, roles, or when they signed in",
         "A legal request for compensation",
         "An encrypted password",
         "The name of the application requesting access",
       ],
+      options_he: [
+        "פרט מידע על המשתמש המאומת או ההפעלה, כגון כתובת הדוא\"ל שלו, תפקידיו, או מועד ההתחברות",
+        "דרישה משפטית לפיצוי",
+        "סיסמה מוצפנת",
+        "שם האפליקציה המבקשת גישה",
+      ],
       correctAnswer: 0,
       explanation:
         "Claims are the actual payload of a SAML assertion or OIDC ID token — key-value statements like sub (subject), email, or groups that the relying application reads to know who the user is and what they're entitled to, without ever seeing a password. The application trusts these claims because the token is signed by an identity provider it already trusts.",
+      explanation_he:
+        "ה-claims הם המטען בפועל של assertion מסוג SAML או ID token מסוג OIDC - הצהרות key-value כמו sub (הנושא), email, או groups, שאותן האפליקציה המסתמכת קוראת כדי לדעת מי המשתמש ומה הוא מורשה לעשות, מבלי לראות סיסמה בכלל. האפליקציה סומכת על ה-claims הללו מכיוון שהטוקן חתום על ידי ספק זהות שהיא כבר סומכת עליו.",
       resourceTitle: "Claims in the Microsoft identity platform",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/security-tokens",
       keywords: ["claims", "id token", "token payload"],
@@ -176,15 +238,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a refresh token used for?",
+      question_he: "לשם מה משמש refresh token?",
       options: [
         "Obtaining a new access/ID token after the current one expires, without forcing the user to log in again",
         "Refreshing a web page automatically",
         "Resetting a user's password",
         "Encrypting the initial login request",
       ],
+      options_he: [
+        "קבלת access token או ID token חדש לאחר שהקיים פוקע, מבלי לחייב את המשתמש להתחבר מחדש",
+        "רענון אוטומטי של דף אינטרנט",
+        "איפוס סיסמה של משתמש",
+        "הצפנת בקשת ההתחברות הראשונית",
+      ],
       correctAnswer: 0,
       explanation:
         "Access and ID tokens are deliberately short-lived to limit damage if one leaks — but re-authenticating every few minutes would be unusable. A refresh token (itself long-lived but tightly scoped and revocable) lets the client silently obtain a fresh short-lived token behind the scenes, keeping the session smooth without ever the storing password.",
+      explanation_he:
+        "access token ו-ID token נועדו במכוון להיות קצרי חיים כדי להגביל את הנזק אם אחד מהם דולף - אך אימות מחדש כל כמה דקות היה בלתי שימושי. refresh token (שהוא עצמו ארוך חיים אך מוגבל בהיקפו וניתן לביטול) מאפשר ללקוח לקבל בשקט טוקן קצר טווח חדש מאחורי הקלעים, ולשמור על ההפעלה חלקה מבלי לאחסן סיסמה בכלל.",
       resourceTitle: "Refresh tokens",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/refresh-tokens",
       keywords: ["refresh token", "silent renewal", "session continuity"],
@@ -197,15 +268,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is \"social login\" (signing into a third-party app using your Google or Facebook account)?",
+      question_he: "מהו \"social login\" (התחברות לאפליקציית צד שלישי באמצעות חשבון Google או Facebook)?",
       options: [
         "A consumer-facing form of identity federation, where the third-party app trusts an assertion from the social provider instead of managing its own password",
         "A feature that posts your activity to social media automatically",
         "A method for recovering a forgotten password",
         "A type of two-factor authentication",
       ],
+      options_he: [
+        "צורה פונה-צרכן של federation זהות, שבה אפליקציית הצד השלישי סומכת על assertion מהספק החברתי במקום לנהל סיסמה משלה",
+        "תכונה שמפרסמת את הפעילות שלך ברשתות חברתיות באופן אוטומטי",
+        "שיטה לשחזור סיסמה שנשכחה",
+        "סוג של אימות דו-שלבי",
+      ],
       correctAnswer: 0,
       explanation:
         "Social login is federation aimed at consumers rather than enterprises — the same OIDC mechanics as an enterprise signing into a SaaS app via Entra ID, just with a consumer identity provider as the IdP. The app never sees or stores your Google/Facebook password, only a signed token asserting who you are.",
+      explanation_he:
+        "social login הוא federation המכוון לצרכנים ולא לארגונים - אותם מנגנוני OIDC כמו ארגון המתחבר לאפליקציית SaaS דרך Entra ID, רק עם ספק זהות צרכני בתפקיד ה-IdP. האפליקציה לעולם לא רואה או מאחסנת את סיסמת ה-Google/Facebook שלך, רק טוקן חתום שמאשר מי אתה.",
       resourceTitle: "Sign in with Google",
       resourceUrl: "https://developers.google.com/identity/gsi/web/guides/overview",
       keywords: ["social login", "consumer federation", "oidc"],
@@ -218,15 +298,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is B2B guest access in an identity platform?",
+      question_he: "מהי גישת B2B guest בפלטפורמת זהות?",
       options: [
         "Inviting an external partner's identity to access your resources, using their own organization's credentials rather than creating a new local account",
         "Giving every internal employee guest-level permissions",
         "A feature that only works for anonymous, unauthenticated users",
         "A method for sharing Wi-Fi passwords with visitors",
       ],
+      options_he: [
+        "הזמנת הזהות של שותף חיצוני לגשת למשאבים שלך, תוך שימוש בפרטי הזיהוי של הארגון שלו במקום יצירת חשבון מקומי חדש",
+        "מתן הרשאות ברמת guest לכל עובד פנימי",
+        "תכונה שעובדת רק עבור משתמשים אנונימיים ולא מאומתים",
+        "שיטה לשיתוף סיסמאות Wi-Fi עם מבקרים",
+      ],
       correctAnswer: 0,
       explanation:
         "Instead of creating and managing a separate local account (with its own password to forget and offboard) for an external collaborator, B2B guest access invites their existing identity from their own organization's directory — when they leave that organization, their access to yours can be governed accordingly too, without you managing a parallel account.",
+      explanation_he:
+        "במקום ליצור ולנהל חשבון מקומי נפרד (עם סיסמה משלו שאפשר לשכוח ותהליך offboarding משלו) עבור משתף פעולה חיצוני, גישת B2B guest מזמינה את הזהות הקיימת שלו מתוך ה-directory של הארגון שלו עצמו - וכאשר הוא עוזב את אותו ארגון, ניתן לנהל בהתאם גם את הגישה שלו אליך, מבלי שתצטרך לנהל חשבון מקביל.",
       resourceTitle: "What is Microsoft Entra B2B collaboration?",
       resourceUrl: "https://learn.microsoft.com/entra/external-id/what-is-b2b",
       keywords: ["b2b guest access", "external collaboration", "cross-tenant"],
@@ -239,8 +328,15 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does \"IdP\" stand for in federated identity?",
+      question_he: "מה משמעות הקיצור \"IdP\" בזהות פדרטיבית (federated identity)?",
       options: [
         "Identity Provider — the system that authenticates users and issues signed assertions",
+        "Internet Data Protocol",
+        "Internal Directory Path",
+        "Identity Policy",
+      ],
+      options_he: [
+        "Identity Provider - המערכת שמאמתת משתמשים ומנפיקה assertions חתומים",
         "Internet Data Protocol",
         "Internal Directory Path",
         "Identity Policy",
@@ -248,6 +344,8 @@ CQA.data.registerPack({
       correctAnswer: 0,
       explanation:
         "The IdP (Entra ID, Okta, Google, an on-premises ADFS server…) is where authentication actually happens — it verifies the user, applies MFA/conditional access, and issues the signed assertion or token that the relying application will trust. Every federation flow starts with the IdP.",
+      explanation_he:
+        "ה-IdP (Entra ID, Okta, Google, שרת ADFS מקומי...) הוא המקום שבו האימות בפועל מתרחש - הוא מוודא את זהות המשתמש, אוכף MFA/conditional access, ומנפיק את ה-assertion או הטוקן החתום שבו האפליקציה המסתמכת תבטח. כל תהליך federation מתחיל ב-IdP.",
       resourceTitle: "What is federated identity?",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/federation",
       keywords: ["idp", "identity provider"],
@@ -260,15 +358,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does \"SP\" (Service Provider) refer to in a federation flow?",
+      question_he: "למה מתייחס \"SP\" (Service Provider) בתהליך federation?",
       options: [
         "The application or service that trusts and consumes the identity assertion issued by the IdP",
         "The company that sells the identity provider software",
         "A network service provider like an ISP",
         "The database storing user passwords",
       ],
+      options_he: [
+        "האפליקציה או השירות שבוטח ב-assertion הזהות שהונפק על ידי ה-IdP ומשתמש בו",
+        "החברה שמוכרת את תוכנת ספק הזהות",
+        "ספק שירותי רשת כמו ISP",
+        "מסד הנתונים שמאחסן סיסמאות משתמשים",
+      ],
       correctAnswer: 0,
       explanation:
         "The SP is the consumer side of the trust relationship — the SaaS app, cloud console, or internal tool that receives a signed assertion from the IdP and, having verified its signature, starts a session for that user without ever handling their credentials directly.",
+      explanation_he:
+        "ה-SP הוא הצד הצרכני ביחסי האמון - אפליקציית SaaS, קונסולת ענן, או כלי פנימי שמקבל assertion חתום מה-IdP, ולאחר אימות החתימה, פותח הפעלה (session) עבור אותו משתמש מבלי לטפל בפרטי הזיהוי שלו כלל.",
       resourceTitle: "SAML authentication flow",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/single-sign-on-saml-protocol",
       keywords: ["service provider", "relying party", "federation roles"],
@@ -281,15 +388,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a JWT (JSON Web Token) at a basic level?",
+      question_he: "מהו JWT (JSON Web Token) ברמה בסיסית?",
       options: [
         "A compact, signed piece of JSON data used to represent claims, such as who a user is",
         "A file format for storing images",
         "A type of database query language",
         "An encryption algorithm",
       ],
+      options_he: [
+        "פיסת נתוני JSON קומפקטית וחתומה המשמשת לייצוג claims, כגון מיהו המשתמש",
+        "פורמט קובץ לאחסון תמונות",
+        "סוג של שפת שאילתות למסדי נתונים",
+        "אלגוריתם הצפנה",
+      ],
       correctAnswer: 0,
       explanation:
         "A JWT packages claims (user info, expiry, audience) into a compact, URL-safe string signed by the issuer — anyone holding the issuer's public key can verify it wasn't tampered with, without needing to call back to the issuer for every check. OIDC ID tokens and many API access tokens are JWTs under the hood.",
+      explanation_he:
+        "JWT ארוז claims (פרטי משתמש, תוקף, audience) למחרוזת קומפקטית ובטוחה לשימוש ב-URL, חתומה על ידי המנפיק - כל מי שמחזיק במפתח הציבורי של המנפיק יכול לוודא שהיא לא שונתה, מבלי לפנות בחזרה למנפיק בכל בדיקה. ID tokens של OIDC והרבה access tokens של API הם JWTs במהותם.",
       resourceTitle: "JSON Web Tokens (jwt.io introduction)",
       resourceUrl: "https://jwt.io/introduction",
       keywords: ["jwt", "signed token", "claims"],
@@ -302,10 +418,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "Federating identity into an application is generally more secure than creating a separate local account with its own password for every app.",
+      question_he: "הכנסת federation זהות לתוך אפליקציה בטוחה יותר בדרך כלל מיצירת חשבון מקומי נפרד עם סיסמה משלו לכל אפליקציה.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Every extra local password is another credential that can be reused, phished, or forgotten and reset insecurely — and another account that lingers if someone forgets to delete it when access should end. Federation consolidates authentication (and its MFA, monitoring, and offboarding) at one trusted IdP instead of scattering it across every app's own login system.",
+      explanation_he:
+        "כל סיסמה מקומית נוספת היא פרט זיהוי נוסף שניתן לעשות בו שימוש חוזר, לדוג בפישינג, או לשכוח ולאפס בצורה לא בטוחה - וגם חשבון נוסף שנשאר קיים אם מישהו שוכח למחוק אותו כשהגישה אמורה להסתיים. federation מרכזת את האימות (וגם את ה-MFA, הניטור וה-offboarding שלו) בספק זהות אחד ומהימן, במקום לפזר אותו על פני מערכת ההתחברות של כל אפליקציה בנפרד.",
       resourceTitle: "Why use identity federation",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/federation",
       keywords: ["federation benefits", "password sprawl", "centralized auth"],
@@ -318,15 +438,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is the difference between SP-initiated and IdP-initiated SSO?",
+      question_he: "מה ההבדל בין SSO מסוג SP-initiated לבין IdP-initiated?",
       options: [
         "SP-initiated starts when the user visits the application, which redirects them to the IdP; IdP-initiated starts from the identity provider's own portal, which sends the user directly into the app already authenticated",
         "They produce different, incompatible token formats",
         "IdP-initiated only works for mobile apps",
         "SP-initiated does not support MFA",
       ],
+      options_he: [
+        "SP-initiated מתחיל כאשר המשתמש נכנס לאפליקציה, שמפנה אותו ל-IdP; IdP-initiated מתחיל מתוך הפורטל של ספק הזהות עצמו, ששולח את המשתמש ישירות לאפליקציה כשהוא כבר מאומת",
+        "הם מייצרים פורמטי טוקן שונים ובלתי תואמים",
+        "IdP-initiated עובד רק עבור אפליקציות מובייל",
+        "SP-initiated לא תומך ב-MFA",
+      ],
       correctAnswer: 0,
       explanation:
         "Both end in the same authenticated session, but the entry point differs: SP-initiated is what happens when a user types the app's URL directly and gets bounced to the IdP first; IdP-initiated is clicking a tile in an app portal (like the Entra ID or Okta dashboard) that immediately posts an assertion to the app. Some SPs only support one flow, which is a real integration detail to check.",
+      explanation_he:
+        "שני הזרמים מסתיימים באותה הפעלה מאומתת, אך נקודת הכניסה שונה: SP-initiated קורה כאשר המשתמש מקליד ישירות את כתובת האפליקציה ומופנה תחילה ל-IdP; IdP-initiated הוא לחיצה על אריח בפורטל אפליקציות (כמו הדשבורד של Entra ID או Okta) ששולח מיד assertion לאפליקציה. חלק מה-SPs תומכים בזרימה אחת בלבד, וזה פרט אינטגרציה אמיתי שכדאי לבדוק.",
       resourceTitle: "SAML SSO flows",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/single-sign-on-saml-protocol",
       keywords: ["sp-initiated", "idp-initiated", "sso flow"],
@@ -339,15 +468,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Why are access and ID tokens deliberately given short expiration times?",
+      question_he: "מדוע access tokens ו-ID tokens מקבלים במכוון זמני תפוגה קצרים?",
       options: [
         "To limit the window during which a leaked or stolen token remains usable by an attacker",
         "To reduce the size of the token",
         "Because long-lived tokens are technically impossible to create",
         "To force users to change their passwords frequently",
       ],
+      options_he: [
+        "כדי להגביל את חלון הזמן שבו טוקן שדלף או נגנב עדיין ניתן לשימוש על ידי תוקף",
+        "כדי להקטין את גודל הטוקן",
+        "מכיוון שטכנית בלתי אפשרי ליצור טוקנים ארוכי חיים",
+        "כדי לאלץ משתמשים להחליף סיסמאות בתדירות גבוהה",
+      ],
       correctAnswer: 0,
       explanation:
         "A stolen token is valid until it either expires or is explicitly revoked — since revocation isn't always instantaneous or even possible for a stateless JWT, short expiry (minutes to an hour) is the primary defense, with a longer-lived refresh token handling renewal transparently in the background so users aren't disrupted.",
+      explanation_he:
+        "טוקן גנוב תקף עד שהוא פוקע או מבוטל במפורש - ומכיוון שביטול אינו תמיד מיידי או אפילו אפשרי עבור JWT חסר מצב (stateless), תפוגה קצרה (דקות עד שעה) היא ההגנה העיקרית, כאשר refresh token ארוך חיים יותר מטפל בחידוש בשקיפות ברקע כך שהמשתמשים אינם מופרעים.",
       resourceTitle: "Token lifetimes",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/configurable-token-lifetimes",
       keywords: ["token expiration", "leaked token", "blast radius"],
@@ -360,10 +498,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "A relying application must verify a JWT's cryptographic signature before trusting any of its claims.",
+      question_he: "אפליקציה מסתמכת חייבת לאמת את החתימה הקריפטוגרפית של JWT לפני שהיא בוטחת בכל אחד מה-claims שלו.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "A JWT's claims are just readable JSON — anyone could craft one that claims to be an administrator. The signature is what makes it trustworthy: verifying it against the issuer's published public key proves the token was actually issued by the real IdP and hasn't been altered since. Skipping signature verification (a real, historically-exploited bug class) means trusting arbitrary attacker-supplied claims.",
+      explanation_he:
+        "ה-claims של JWT הם פשוט JSON קריא - כל אחד יכול לייצר אחד שטוען שהוא מנהל מערכת. החתימה היא מה שהופך אותו למהימן: אימותה מול המפתח הציבורי המפורסם של המנפיק מוכיח שהטוקן אכן הונפק על ידי ה-IdP האמיתי ולא שונה מאז. דילוג על אימות חתימה (סוג באג אמיתי שנוצל היסטורית) פירושו לבטוח ב-claims שרירותיים שסופקו על ידי תוקף.",
       resourceTitle: "Validating tokens",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/access-tokens",
       keywords: ["signature verification", "jwt security", "token validation"],
@@ -376,15 +518,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does registering an application as \"multi-tenant\" typically mean?",
+      question_he: "מה משמעות רישום אפליקציה כ-\"multi-tenant\" בדרך כלל?",
       options: [
         "The app can accept sign-ins from users belonging to any organization's tenant, not just the one it was originally registered in",
         "The app can only be used by one specific department",
         "The app requires a separate database per customer",
         "The app cannot use OIDC or SAML",
       ],
+      options_he: [
+        "האפליקציה יכולה לקבל התחברויות ממשתמשים השייכים לכל tenant ארגוני, ולא רק לזה שבו היא נרשמה במקור",
+        "האפליקציה יכולה לשמש רק מחלקה ספציפית אחת",
+        "האפליקציה דורשת מסד נתונים נפרד לכל לקוח",
+        "האפליקציה אינה יכולה להשתמש ב-OIDC או ב-SAML",
+      ],
       correctAnswer: 0,
       explanation:
         "A single-tenant app registration only trusts users from its home directory; a multi-tenant registration lets any external organization's users authenticate against it too (each admin typically consenting once) — the pattern SaaS vendors use to let any customer's Entra ID or Okta tenant federate into the same application without a separate registration per customer.",
+      explanation_he:
+        "רישום אפליקציה single-tenant בוטח רק במשתמשים מתוך ה-directory הביתי שלה; רישום multi-tenant מאפשר גם למשתמשים מכל ארגון חיצוני להתאמת מולה (כאשר כל מנהל מערכת נותן בדרך כלל הסכמה חד-פעמית) - זהו הדפוס שספקי SaaS משתמשים בו כדי לאפשר לכל tenant של Entra ID או Okta של לקוח להתאחד (federate) לאותה אפליקציה בדיוק, ללא רישום נפרד לכל לקוח.",
       resourceTitle: "Tenancy in Microsoft Entra ID",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/single-and-multi-tenant-apps",
       keywords: ["multi-tenant app", "cross-tenant sign-in", "saas federation"],
@@ -397,15 +548,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does just-in-time (JIT) provisioning via federation accomplish?",
+      question_he: "מה משיגה גישת just-in-time (JIT) provisioning באמצעות federation?",
       options: [
         "It automatically creates a local user record in the application the first time a federated user signs in, based on claims in the token",
         "It provisions a new virtual machine for every login",
         "It deletes the user account immediately after logout",
         "It only applies to billing accounts",
       ],
+      options_he: [
+        "היא יוצרת אוטומטית רשומת משתמש מקומית באפליקציה בפעם הראשונה שמשתמש פדרטיבי מתחבר, בהתבסס על ה-claims בטוקן",
+        "היא מספקת מכונה וירטואלית חדשה עבור כל התחברות",
+        "היא מוחקת את חשבון המשתמש מיד לאחר יציאה מהמערכת",
+        "היא חלה רק על חשבונות חיוב",
+      ],
       correctAnswer: 0,
       explanation:
         "Rather than an admin manually pre-creating every user in the application ahead of time, JIT provisioning reads the incoming assertion's claims (name, email, group) on first sign-in and creates the matching local record automatically — reducing onboarding friction, though it still needs to be paired with a deprovisioning process (like SCIM) so leaving the IdP actually removes access too.",
+      explanation_he:
+        "במקום שמנהל מערכת ייצור מראש ידנית כל משתמש באפליקציה, JIT provisioning קורא את ה-claims (שם, אימייל, קבוצה) מה-assertion הנכנס בהתחברות הראשונה ויוצר אוטומטית את הרשומה המקומית התואמת - מה שמקטין חיכוך בקליטת משתמשים, אם כי עדיין יש לשלב זאת עם תהליך ביטול הקצאה (כמו SCIM) כך שעזיבת ה-IdP באמת תסיר גם את הגישה.",
       resourceTitle: "SAML-based JIT provisioning",
       resourceUrl: "https://learn.microsoft.com/entra/identity/saas-apps/what-is-jit-provisioning",
       keywords: ["jit provisioning", "automatic account creation", "onboarding"],
@@ -418,10 +578,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "A leaked OAuth/OIDC client secret can let an attacker impersonate the application itself when requesting tokens, so it must be protected like any other credential.",
+      question_he: "client secret של OAuth/OIDC שדלף יכול לאפשר לתוקף להתחזות לאפליקציה עצמה בעת בקשת טוקנים, ולכן יש להגן עליו כמו כל פרט זיהוי אחר.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "The client secret proves the application's own identity to the IdP during token exchanges — leak it (in a public repo, a client-side bundle, a misconfigured config file) and an attacker can request tokens as if they were your legitimate application. It belongs in a secret manager, never in source control or anywhere a browser can read it, which is exactly why public clients (mobile/SPA apps) use PKCE instead of a client secret at all.",
+      explanation_he:
+        "ה-client secret מוכיח את זהות האפליקציה עצמה מול ה-IdP במהלך החלפת טוקנים - אם הוא דולף (ב-repo ציבורי, בחבילת client-side, בקובץ הגדרות שגוי), תוקף יכול לבקש טוקנים כאילו הוא האפליקציה הלגיטימית שלך. מקומו במנהל סודות (secret manager), לעולם לא בבקרת גרסאות או בכל מקום שדפדפן יכול לקרוא, וזו בדיוק הסיבה ש-public clients (אפליקציות מובייל/SPA) משתמשים ב-PKCE במקום ב-client secret כלל.",
       resourceTitle: "Application secrets",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/security-best-practices-for-app-registration",
       keywords: ["client secret", "credential leak", "secret handling"],
@@ -434,15 +598,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "How do short token lifetimes and audience restriction together mitigate token replay attacks?",
+      question_he: "כיצד זמני תוקף קצרים והגבלת audience פועלים יחד להפחתת התקפות replay על טוקנים?",
       options: [
         "A stolen token works for a limited time and only against the specific application it was issued for, sharply limiting what a replayed token can be used for",
         "They make tokens impossible to steal in the first place",
         "They eliminate the need for TLS",
         "They only matter for SAML, not OIDC",
       ],
+      options_he: [
+        "טוקן גנוב פועל לזמן מוגבל ורק כנגד האפליקציה הספציפית שעבורה הונפק, מה שמגביל בחדות למה ניתן להשתמש בטוקן שהופעל שוב",
+        "הם הופכים גניבת טוקנים לבלתי אפשרית מלכתחילה",
+        "הם מבטלים את הצורך ב-TLS",
+        "הם רלוונטיים רק ל-SAML, לא ל-OIDC",
+      ],
       correctAnswer: 0,
       explanation:
         "A replay attack means reusing a captured, still-valid token. Short expiry shrinks the window such a token remains valid at all, and the audience (aud) claim scopes the token to one specific application — even a captured, unexpired token is useless if replayed against a different app than the one it names. Neither control prevents theft outright, but together they minimize the damage a captured token can do.",
+      explanation_he:
+        "התקפת replay פירושה שימוש חוזר בטוקן שנתפס ועדיין תקף. תוקף קצר מכווץ את חלון הזמן שבו הטוקן בכלל תקף, וה-claim של audience (aud) מגביל את הטוקן לאפליקציה ספציפית אחת - אפילו טוקן שנתפס ועדיין לא פג תוקפו חסר תועלת אם מופעל מחדש כנגד אפליקציה שונה מזו שהוא מציין. אף אחת מהבקרות לא מונעת גניבה כשלעצמה, אך יחד הן ממזערות את הנזק שטוקן שנתפס יכול לגרום.",
       resourceTitle: "Access token claims",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/access-tokens",
       keywords: ["token replay", "audience restriction", "token lifetime"],
@@ -455,15 +628,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Why do public clients (mobile apps, single-page apps) use PKCE (Proof Key for Code Exchange) in OAuth flows?",
+      question_he: "מדוע public clients (אפליקציות מובייל, single-page apps) משתמשים ב-PKCE (Proof Key for Code Exchange) בתהליכי OAuth?",
       options: [
         "Because they cannot securely store a client secret, PKCE lets the client prove it's the same party that started the flow without needing one",
         "PKCE replaces the need for user authentication entirely",
         "PKCE is only used for server-to-server communication",
         "PKCE encrypts the entire application's source code",
       ],
+      options_he: [
+        "מכיוון שהם אינם יכולים לאחסן client secret בצורה בטוחה, PKCE מאפשר ללקוח להוכיח שהוא אותו גורם שהתחיל את התהליך מבלי להזדקק לאחד כזה",
+        "PKCE מייתר לחלוטין את הצורך באימות משתמש",
+        "PKCE משמש רק לתקשורת שרת-לשרת",
+        "PKCE מצפין את כל קוד המקור של האפליקציה",
+      ],
       correctAnswer: 0,
       explanation:
         "A mobile app or browser-based SPA can't hide a client secret — anyone can decompile the app or inspect the browser's network traffic. PKCE has the client generate a one-time secret (a code verifier) at the start of the flow and prove possession of it at the token exchange, closing the specific attack where a malicious app intercepts the authorization code and tries to redeem it itself.",
+      explanation_he:
+        "אפליקציית מובייל או SPA מבוסס-דפדפן לא יכולים להסתיר client secret - כל אחד יכול לפרק את האפליקציה (decompile) או לבחון את תעבורת הרשת של הדפדפן. PKCE גורם ללקוח לייצר סוד חד-פעמי (code verifier) בתחילת התהליך ולהוכיח את החזקתו בעת החלפת הטוקן, מה שסוגר את ההתקפה הספציפית שבה אפליקציה זדונית מיירטת את קוד ההרשאה ומנסה לממש אותו בעצמה.",
       resourceTitle: "Proof Key for Code Exchange (PKCE)",
       resourceUrl: "https://oauth.net/2/pkce/",
       keywords: ["pkce", "public clients", "authorization code interception"],
@@ -476,15 +658,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is the difference between signing and encrypting a SAML assertion?",
+      question_he: "מה ההבדל בין חתימה (signing) להצפנה (encryption) של assertion מסוג SAML?",
       options: [
         "Signing proves the assertion wasn't tampered with and came from the claimed IdP; encryption additionally hides its contents from anyone who intercepts it in transit",
         "They are the same operation with different names",
         "Encryption is required by the SAML standard while signing is optional and rarely used",
         "Signing hides the contents; encryption proves authenticity",
       ],
+      options_he: [
+        "חתימה מוכיחה שה-assertion לא שונה והגיע מה-IdP הנטען; הצפנה מסתירה בנוסף את תוכנו מכל מי שמיירט אותו בזמן ההעברה",
+        "אלה אותה פעולה עם שמות שונים",
+        "הצפנה נדרשת על ידי תקן ה-SAML בעוד שחתימה היא אופציונלית ונדירה בשימוש",
+        "חתימה מסתירה את התוכן; הצפנה מוכיחה אותנטיות",
+      ],
       correctAnswer: 0,
       explanation:
         "Every production SAML assertion should be signed — that's non-negotiable integrity and authenticity. Encryption is a separate, additional layer that hides the assertion's contents (like sensitive claims) from anyone who might intercept it before it reaches the intended SP, useful when the assertion passes through an untrusted intermediary such as the user's own browser redirect.",
+      explanation_he:
+        "כל assertion בסביבת ייצור אמור להיות חתום - זו שלמות ואותנטיות שאינן ניתנות למשא ומתן. הצפנה היא שכבה נפרדת ונוספת שמסתירה את תוכן ה-assertion (כמו claims רגישים) מכל מי שעלול ליירט אותו לפני שהוא מגיע ל-SP המיועד, שימושית כאשר ה-assertion עובר דרך מתווך שאינו מהימן, כמו הפניית הדפדפן של המשתמש עצמו.",
       resourceTitle: "SAML security considerations",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/single-sign-on-saml-protocol",
       keywords: ["saml signing", "saml encryption", "assertion security"],
@@ -497,10 +688,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "true-false",
       question: "Single logout (SLO) across multiple federated applications is technically harder to guarantee than single sign-on, because not every application reliably honors a logout signal.",
+      question_he: "Single logout (SLO) על פני מספר אפליקציות פדרטיביות קשה יותר טכנית להבטיח מ-single sign-on, מכיוון שלא כל אפליקציה מכבדת באופן אמין אות יציאה.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Signing in is a single, synchronous flow the IdP fully controls. Signing out ideally needs to notify every application the user is currently signed into (via back-channel or front-channel logout signals) — but any one of them might be offline, misconfigured, or simply not implement the logout protocol correctly, leaving a session alive somewhere the user believes they've logged out of everywhere.",
+      explanation_he:
+        "התחברות היא תהליך יחיד וסינכרוני שה-IdP שולט בו במלואו. יציאה, באופן אידיאלי, צריכה להודיע לכל אפליקציה שהמשתמש מחובר אליה כרגע (באמצעות אותות logout מסוג back-channel או front-channel) - אך כל אחת מהן עלולה להיות לא זמינה, מוגדרת בצורה שגויה, או פשוט לא מיישמת נכון את פרוטוקול היציאה, מה שמשאיר הפעלה חיה איפשהו שהמשתמש מאמין שכבר יצא ממנה בכל מקום.",
       resourceTitle: "Single Sign-Out",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/single-sign-on-saml-protocol",
       keywords: ["single logout", "slo", "session termination"],
@@ -513,15 +708,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Why must a relying application validate the \"audience\" (aud) claim of a token it receives?",
+      question_he: "מדוע חייבת אפליקציה מסתמכת לאמת את ה-claim של \"audience\" (aud) בטוקן שהיא מקבלת?",
       options: [
         "To ensure the token was actually issued FOR this application, not obtained legitimately for a different application and replayed here",
         "To check the user's preferred display language",
         "The audience claim is purely informational and safe to ignore",
         "To determine the token's expiration time",
       ],
+      options_he: [
+        "כדי לוודא שהטוקן אכן הונפק עבור האפליקציה הזו, ולא הושג באופן לגיטימי עבור אפליקציה אחרת והופעל כאן מחדש",
+        "כדי לבדוק את שפת התצוגה המועדפת על המשתמש",
+        "ה-claim של audience הוא מידע בלבד וניתן להתעלם ממנו בבטחה",
+        "כדי לקבוע את זמן תפוגת הטוקן",
+      ],
       correctAnswer: 0,
       explanation:
         "A valid, correctly-signed token issued for application A proves nothing about application B's trust in it — without checking that the aud claim names this specific application, a token legitimately obtained elsewhere could be replayed against a different, more sensitive app. Skipping audience validation is a real and recurring class of vulnerability in home-grown OIDC integrations.",
+      explanation_he:
+        "טוקן תקף וחתום כראוי שהונפק עבור אפליקציה A לא מוכיח דבר לגבי האמון של אפליקציה B בו - ללא בדיקה שה-claim של aud נוקב באפליקציה הספציפית הזו, טוקן שהושג באופן לגיטימי במקום אחר יכול להיות מופעל מחדש כנגד אפליקציה אחרת ורגישה יותר. דילוג על אימות audience הוא מחלקת פגיעות אמיתית וחוזרת באינטגרציות OIDC ביתיות.",
       resourceTitle: "ID token claims reference",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/id-token-claims-reference",
       keywords: ["audience claim", "aud", "token confusion attack"],
@@ -534,15 +738,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Why do organizations configure explicit cross-tenant access settings rather than leaving external collaboration fully open by default?",
+      question_he: "מדוע ארגונים מגדירים הגדרות cross-tenant access מפורשות במקום להשאיר את שיתוף הפעולה החיצוני פתוח לחלוטין כברירת מחדל?",
       options: [
         "Unrestricted external federation could let any outside tenant's users be invited in, or let internal users be federated out, without governance oversight",
         "Cross-tenant access settings are purely cosmetic branding options",
         "They are required only for billing separation",
         "They have no effect on B2B guest invitations",
       ],
+      options_he: [
+        "federation חיצוני בלתי מוגבל עלול לאפשר להזמין פנימה משתמשים מכל tenant חיצוני, או לאפשר למשתמשים פנימיים להתאחד (federate) החוצה, ללא פיקוח ממשל תאגידי (governance)",
+        "הגדרות cross-tenant access הן אפשרויות מיתוג קוסמטיות בלבד",
+        "הן נדרשות רק להפרדת חיוב",
+        "אין להן השפעה על הזמנות B2B guest",
+      ],
       correctAnswer: 0,
       explanation:
         "Left wide open, external identity collaboration can become a governance blind spot — any employee could invite any external party as a guest, or trust relationships could form with organizations that were never vetted. Explicit inbound/outbound cross-tenant access policies let security teams control exactly which external organizations are trusted, what MFA/device requirements apply to their users, and what those guests can actually reach.",
+      explanation_he:
+        "כאשר זה נשאר פתוח לגמרי, שיתוף פעולה חיצוני בזהויות יכול להפוך לנקודה עיוורת מבחינת ממשל תאגידי - כל עובד יכול להזמין כל גורם חיצוני כ-guest, או שעלולים להיווצר יחסי אמון עם ארגונים שמעולם לא נבדקו. מדיניות cross-tenant access מפורשת בכניסה וביציאה מאפשרת לצוותי אבטחה לשלוט בדיוק באילו ארגונים חיצוניים בוטחים, אילו דרישות MFA/מכשיר חלות על המשתמשים שלהם, ולמה בדיוק ה-guests הללו יכולים לגשת בפועל.",
       resourceTitle: "Cross-tenant access overview",
       resourceUrl: "https://learn.microsoft.com/entra/external-id/cross-tenant-access-overview",
       keywords: ["cross-tenant access", "external identity governance", "b2b risk"],
@@ -556,15 +769,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a false positive in security alerting?",
+      question_he: "מהו false positive בהתראות אבטחה?",
       options: [
         "An alert that fires for benign activity that isn't actually a security threat",
         "An alert that correctly identifies a real threat",
         "A missing log source",
         "A type of malware",
       ],
+      options_he: [
+        "התראה שנפעלת עבור פעילות תמימה שאינה בעצם איום אבטחה",
+        "התראה שמזהה נכון איום אמיתי",
+        "מקור לוגים חסר",
+        "סוג של תוכנה זדונית",
+      ],
       correctAnswer: 0,
       explanation:
         "A false positive wastes analyst time investigating something harmless — a handful are tolerable, but too many at once cause alert fatigue, where real alerts get ignored along with the noise. Tuning detection rules to reduce false positives (without silencing genuine threats) is an ongoing SOC discipline, not a one-time task.",
+      explanation_he:
+        "false positive מבזבז את זמנם של אנליסטים בבדיקת משהו לא מזיק - כמה בודדים הם נסבלים, אך יותר מדי בבת אחת גורמים ל-alert fatigue, שבו התראות אמיתיות מתעלמות ממנו יחד עם הרעש. כיוונון כללי זיהוי כדי להפחית false positives (מבלי להשתיק איומים אמיתיים) הוא משמעת מתמשכת ב-SOC, לא משימה חד-פעמית.",
       resourceTitle: "Reduce alert fatigue (Microsoft Sentinel)",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/best-practices",
       keywords: ["false positive", "alert noise", "detection tuning"],
@@ -577,15 +799,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a false negative in security detection?",
+      question_he: "מהו false negative בזיהוי אבטחה?",
       options: [
         "A real threat that occurs but is not detected or alerted on",
         "An alert that fires too quickly",
         "A backup that fails silently",
         "A firewall rule that is too permissive",
       ],
+      options_he: [
+        "איום אמיתי שמתרחש אך אינו מזוהה או מקבל התראה",
+        "התראה שנפעלת מהר מדי",
+        "גיבוי שנכשל בשקט",
+        "כלל firewall שמתירני מדי",
+      ],
       correctAnswer: 0,
       explanation:
         "A false negative is the more dangerous failure mode of the two — the attack actually happened and nothing caught it, often because a detection rule's coverage has a gap, or the threat used a technique no rule was written for. Detection engineering is a constant push to shrink false negatives without inflating false positives, a genuine ongoing tension.",
+      explanation_he:
+        "false negative הוא מצב הכשל המסוכן יותר מבין השניים - ההתקפה אכן קרתה ושום דבר לא תפס אותה, לרוב מכיוון שיש פער בכיסוי של כלל זיהוי, או שהאיום השתמש בטכניקה שאף כלל לא נכתב עבורה. detection engineering הוא מאמץ מתמיד לצמצם false negatives מבלי להעצים false positives - מתח אמיתי ומתמשך.",
       resourceTitle: "Detection coverage and gaps",
       resourceUrl: "https://attack.mitre.org/",
       keywords: ["false negative", "detection gap", "missed threat"],
@@ -598,15 +829,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is the purpose of assigning a severity level to a security incident?",
+      question_he: "מה מטרת הקצאת רמת חומרה (severity) לאירוע אבטחה?",
       options: [
         "To prioritize response effort — critical incidents get immediate attention, while low-severity ones can wait",
         "To determine how much the incident will be billed",
         "Severity levels are purely for legal record-keeping with no operational use",
         "To decide which country's laws apply",
       ],
+      options_he: [
+        "לתעדף את מאמץ התגובה - אירועים קריטיים מקבלים תשומת לב מיידית, בעוד שאירועים בחומרה נמוכה יכולים להמתין",
+        "לקבוע כמה יחויב עבור האירוע",
+        "רמות חומרה משמשות אך ורק לתיעוד משפטי וללא שימוש תפעולי",
+        "להחליט אילו חוקי מדינה חלים",
+      ],
       correctAnswer: 0,
       explanation:
         "With finite analyst time and many simultaneous alerts, severity levels (critical/high/medium/low) are the triage mechanism — an active ransomware encryption event gets paged immediately, while a low-risk misconfiguration finding can be queued for the next sprint. Consistent, well-defined severity criteria keep triage decisions fast and defensible.",
+      explanation_he:
+        "מכיוון שזמן האנליסטים מוגבל ויש התראות רבות בו-זמנית, רמות חומרה (קריטי/גבוה/בינוני/נמוך) הן מנגנון ה-triage - אירוע הצפנה פעיל של ransomware מקבל קריאה מיידית, בעוד שממצא תצורה שגויה בסיכון נמוך יכול להיכנס לתור לספרינט הבא. קריטריוני חומרה עקביים ומוגדרים היטב שומרים על החלטות triage מהירות וניתנות להצדקה.",
       resourceTitle: "Incident severity and triage",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/investigate-cases",
       keywords: ["incident severity", "triage", "prioritization"],
@@ -619,15 +859,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does \"onboarding a log source\" into a SIEM mean?",
+      question_he: "מה משמעות \"onboarding\" של מקור לוגים לתוך SIEM?",
       options: [
         "Configuring the SIEM to ingest logs/events from a specific system, so its data becomes available for detection and investigation",
         "Hiring a new security analyst",
         "Registering a new employee's device for the first time",
         "Purchasing a SIEM license",
       ],
+      options_he: [
+        "הגדרת ה-SIEM לקלוט (ingest) לוגים/אירועים ממערכת ספציפית, כך שהנתונים שלה יהיו זמינים לזיהוי ולחקירה",
+        "גיוס אנליסט אבטחה חדש",
+        "רישום מכשיר של עובד חדש בפעם הראשונה",
+        "רכישת רישיון SIEM",
+      ],
       correctAnswer: 0,
       explanation:
         "A SIEM can only detect threats in data it actually receives — onboarding a log source (firewall logs, identity sign-ins, cloud audit trails) means setting up the connector or agent that streams that system's events in. A threat happening entirely within a system that was never onboarded is invisible to the SIEM no matter how good its detection rules are.",
+      explanation_he:
+        "SIEM יכול לזהות איומים רק בנתונים שהוא בפועל מקבל - onboarding של מקור לוגים (לוגי firewall, התחברויות זהות, יומני ביקורת בענן) פירושו הקמת המחבר (connector) או הסוכן שמזרים את אירועי אותה מערכת פנימה. איום שקורה כולו בתוך מערכת שמעולם לא עברה onboarding בלתי נראה ל-SIEM, לא משנה כמה טובים כללי הזיהוי שלו.",
       resourceTitle: "Data connectors (Microsoft Sentinel)",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/connect-data-sources",
       keywords: ["log source onboarding", "data connector", "visibility"],
@@ -640,10 +889,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "A security dashboard is for situational awareness at a glance, while an alert is meant to actively notify someone that action may be needed.",
+      question_he: "דשבורד אבטחה נועד למודעות מצבית במבט חטוף, בעוד שהתראה נועדה להודיע באופן אקטיבי למישהו שנדרשת פעולה.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "A dashboard is pull-based — someone has to look at it to learn anything, which is fine for trends and reviews but useless for catching something the moment it happens. An alert is push-based — it reaches an on-call person actively. Relying on dashboards alone for detection means threats are only caught when someone happens to be watching.",
+      explanation_he:
+        "דשבורד הוא מבוסס pull - מישהו חייב להסתכל עליו כדי ללמוד משהו, וזה מתאים לניתוח מגמות וסקירות אך חסר תועלת ללכידת משהו ברגע שהוא קורה. התראה היא מבוססת push - היא מגיעה באופן אקטיבי לאדם התורן. הסתמכות על דשבורדים בלבד לזיהוי משמעה שאיומים נתפסים רק כאשר מישהו במקרה צופה.",
       resourceTitle: "Workbooks and dashboards (Microsoft Sentinel)",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/monitor-your-data",
       keywords: ["dashboard vs alert", "situational awareness", "push vs pull"],
@@ -656,15 +909,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is log normalization in a SIEM context?",
+      question_he: "מהי log normalization בהקשר של SIEM?",
       options: [
         "Converting logs from many different sources and formats into a consistent schema so they can be searched and correlated together",
         "Deleting logs that are too large",
         "Compressing logs to save storage space only",
         "Translating logs into a different human language",
       ],
+      options_he: [
+        "המרת לוגים ממקורות ופורמטים רבים ושונים לסכמה עקבית אחת, כך שניתן לחפש ולקשור אותם יחד",
+        "מחיקת לוגים גדולים מדי",
+        "דחיסת לוגים לחיסכון במקום אחסון בלבד",
+        "תרגום לוגים לשפה אנושית אחרת",
+      ],
       correctAnswer: 0,
       explanation:
         "A firewall, an identity provider and a cloud audit trail all describe events in different native formats — normalization maps them onto common fields (like a standard 'source IP' or 'user' field) so a single detection rule or search can work across all of them at once, instead of writing separate logic per log format.",
+      explanation_he:
+        "firewall, ספק זהות ויומן ביקורת בענן מתארים אירועים כל אחד בפורמט מקורי שונה - normalization ממפה אותם לשדות משותפים (כמו שדה 'source IP' או 'user' סטנדרטי) כך שכלל זיהוי או חיפוש בודד יכול לעבוד על פני כולם בו-זמנית, במקום לכתוב לוגיקה נפרדת לכל פורמט לוגים.",
       resourceTitle: "Advanced Security Information Model (ASIM)",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/normalization",
       keywords: ["log normalization", "common schema", "cross-source correlation"],
@@ -677,15 +939,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is the primary role of a Security Operations Center (SOC)?",
+      question_he: "מהו התפקיד העיקרי של Security Operations Center (SOC)?",
       options: [
         "A team (and the tools/processes they use) responsible for continuously monitoring, detecting, and responding to security threats",
         "A physical location that only handles hardware repairs",
         "A team focused exclusively on writing new application features",
         "A billing department for security tools",
       ],
+      options_he: [
+        "צוות (והכלים/התהליכים שהוא משתמש בהם) האחראי על ניטור, זיהוי ותגובה מתמשכים לאיומי אבטחה",
+        "מיקום פיזי שמטפל אך ורק בתיקוני חומרה",
+        "צוות שמתמקד באופן בלעדי בכתיבת תכונות אפליקציה חדשות",
+        "מחלקת חיוב עבור כלי אבטחה",
+      ],
       correctAnswer: 0,
       explanation:
         "The SOC is the human and process layer around the SIEM — analysts triaging alerts, escalating real incidents, running response playbooks, and continuously tuning detection based on what they learn. Tools alone (however sophisticated) don't respond to an incident; the SOC's people and processes are what turn detection into action.",
+      explanation_he:
+        "ה-SOC הוא השכבה האנושית והתהליכית סביב ה-SIEM - אנליסטים המבצעים triage להתראות, מסלימים אירועים אמיתיים, מריצים playbooks לתגובה, ומכווננים באופן מתמיד את הזיהוי בהתבסס על מה שהם לומדים. כלים בלבד (עד כמה שיהיו מתוחכמים) לא מגיבים לאירוע; האנשים והתהליכים של ה-SOC הם אלה שהופכים זיהוי לפעולה.",
       resourceTitle: "What is a Security Operations Center (SOC)?",
       resourceUrl: "https://learn.microsoft.com/security/operations/soc-siem",
       keywords: ["soc", "security operations center", "analyst team"],
@@ -698,15 +969,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is the purpose of the MITRE ATT&CK framework in detection engineering?",
+      question_he: "מה תפקיד מסגרת MITRE ATT&CK ב-detection engineering?",
       options: [
         "It catalogs real-world adversary tactics and techniques, giving defenders a common language to map detection coverage against known attack behavior",
         "It is a certification exam for security analysts",
         "It is a firewall product",
         "It replaces the need for a SIEM entirely",
       ],
+      options_he: [
+        "היא מקטלגת טקטיקות וטכניקות אמיתיות של תוקפים, ומעניקה למגנים שפה משותפת למיפוי כיסוי הזיהוי מול התנהגות תקיפה ידועה",
+        "היא מבחן הסמכה לאנליסטי אבטחה",
+        "היא מוצר firewall",
+        "היא מייתרת לחלוטין את הצורך ב-SIEM",
+      ],
       correctAnswer: 0,
       explanation:
         "ATT&CK breaks attacks into tactics (goals, like 'privilege escalation') and techniques (specific methods achieving them), based on observed real-world intrusions. Mapping your SIEM's analytics rules against this matrix reveals coverage gaps concretely — 'we have zero detections for technique T1078 credential access' — instead of vaguely wondering if detection is good enough.",
+      explanation_he:
+        "ATT&CK מפרקת התקפות לטקטיקות (מטרות, כמו 'privilege escalation') וטכניקות (שיטות ספציפיות להשגתן), בהתבסס על פריצות אמיתיות שנצפו בעולם. מיפוי כללי הניתוח (analytics rules) של ה-SIEM שלך מול המטריצה הזו חושף פערי כיסוי באופן קונקרטי - 'אין לנו אף זיהוי עבור טכניקה T1078 גישה לפרטי זיהוי' - במקום לתהות באופן מעורפל האם הזיהוי טוב מספיק.",
       resourceTitle: "MITRE ATT&CK",
       resourceUrl: "https://attack.mitre.org/",
       keywords: ["mitre att&ck", "detection coverage", "adversary tactics"],
@@ -719,15 +999,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Why do SIEMs often offer tiered log retention (e.g. hot vs. archive tiers)?",
+      question_he: "מדוע SIEMs מציעים לעיתים קרובות שמירת לוגים מדורגת (tiered retention), למשל שכבת hot מול שכבת archive?",
       options: [
         "Recent logs need fast search for active investigation; older logs are needed for compliance/forensics but can tolerate slower, cheaper storage",
         "Older logs are automatically less accurate",
         "Tiering is purely a marketing distinction with no real cost or performance difference",
         "Hot tier logs cannot be searched at all",
       ],
+      options_he: [
+        "לוגים עדכניים דורשים חיפוש מהיר לצורך חקירה פעילה; לוגים ישנים יותר נחוצים לצורך תאימות רגולטורית/פורנזיקה אך יכולים לסבול אחסון איטי וזול יותר",
+        "לוגים ישנים יותר הם אוטומטית פחות מדויקים",
+        "דירוג בשכבות הוא הבחנה שיווקית בלבד ללא הבדל אמיתי בעלות או בביצועים",
+        "לוגים בשכבת hot לא ניתנים לחיפוש כלל",
+      ],
       correctAnswer: 0,
       explanation:
         "Keeping every log instantly and fully searchable forever is expensive at scale — tiering lets recent, high-value data (the last 30–90 days, say) stay in fast, queryable storage for active investigation, while older data needed only for compliance retention moves to cheaper, slower archive storage that's rehydrated only when actually needed.",
+      explanation_he:
+        "שמירה על כל לוג ניתן לחיפוש מיידי ומלא לנצח היא יקרה בקנה מידה גדול - דירוג בשכבות מאפשר לנתונים עדכניים ובעלי ערך גבוה (למשל 30-90 הימים האחרונים) להישאר באחסון מהיר וניתן לשאילתה עבור חקירה פעילה, בעוד שנתונים ישנים יותר הנחוצים רק לשמירה לצורכי תאימות עוברים לאחסון ארכיון זול ואיטי יותר, שמוחזר (rehydrated) רק כשבאמת נדרש.",
       resourceTitle: "Log retention plans (Microsoft Sentinel)",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/log-plans",
       keywords: ["log retention", "hot tier", "archive tier", "cost tradeoff"],
@@ -740,15 +1029,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "How does a correlation rule differ from a single-event alert?",
+      question_he: "במה כלל קורלציה (correlation rule) שונה מהתראה על אירוע בודד?",
       options: [
         "A correlation rule fires only when a specific pattern across multiple related events occurs, which is a much stronger signal than any one event alone",
         "Correlation rules only work on metrics, never logs",
         "A single-event alert is always more accurate than a correlation rule",
         "They are the same mechanism with different names",
       ],
+      options_he: [
+        "כלל קורלציה נפעל רק כאשר מתרחשת תבנית ספציפית על פני מספר אירועים קשורים, מה שמהווה סיגנל חזק בהרבה מכל אירוע בודד",
+        "כללי קורלציה עובדים רק על metrics, לעולם לא על לוגים",
+        "התראה על אירוע בודד תמיד מדויקת יותר מכלל קורלציה",
+        "אלה אותו מנגנון עם שמות שונים",
+      ],
       correctAnswer: 0,
       explanation:
         "One failed login means nothing on its own. A correlation rule looking for '5 failed logins from 5 different countries within 10 minutes, followed by a success' describes an actual attack pattern (credential stuffing) that no single event reveals — this is exactly the technique behind detections like impossible-travel and brute-force alerts.",
+      explanation_he:
+        "התחברות כושלת אחת לא אומרת דבר כשלעצמה. כלל קורלציה שמחפש '5 התחברויות כושלות מ-5 מדינות שונות תוך 10 דקות, ולאחריהן הצלחה' מתאר תבנית תקיפה אמיתית (credential stuffing) שאף אירוע בודד לא חושף - זו בדיוק הטכניקה שמאחורי זיהויים כמו impossible-travel והתראות brute-force.",
       resourceTitle: "Analytics rules in Microsoft Sentinel",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/detect-threats-built-in",
       keywords: ["correlation rule", "pattern detection", "multi-event"],
@@ -761,15 +1059,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does a threat intelligence feed add to a SIEM?",
+      question_he: "מה מוסיף feed של threat intelligence ל-SIEM?",
       options: [
         "Known indicators of compromise (malicious IPs, domains, file hashes) that detection rules can match logs against",
         "A list of internal employees' passwords",
         "Automatic patches for vulnerable software",
         "A backup of all ingested logs",
       ],
+      options_he: [
+        "אינדיקטורים ידועים לפריצה (indicators of compromise) - כתובות IP זדוניות, דומיינים, hashes של קבצים - שכללי הזיהוי יכולים להשוות מולם לוגים נכנסים",
+        "רשימת סיסמאות של עובדים פנימיים",
+        "תיקוני אבטחה אוטומטיים לתוכנה פגיעה",
+        "גיבוי של כל הלוגים שנקלטו",
+      ],
       correctAnswer: 0,
       explanation:
         "Threat intel feeds supply externally-sourced indicators — an IP known to run a botnet, a hash matching known ransomware — which the SIEM checks incoming events against, catching threats your own historical data would never reveal on its own. Feed quality and freshness matter enormously; stale intel misses current campaigns.",
+      explanation_he:
+        "feeds של threat intelligence מספקים אינדיקטורים ממקורות חיצוניים - כתובת IP ידועה כמפעילה botnet, hash שתואם ransomware ידוע - שה-SIEM בודק מולם אירועים נכנסים, ותופס איומים שהנתונים ההיסטוריים שלך לבדם לעולם לא היו חושפים. איכות ועדכניות ה-feed קריטיות ביותר; מודיעין מיושן מפספס קמפיינים נוכחיים.",
       resourceTitle: "Threat intelligence in Microsoft Sentinel",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/understand-threat-intelligence",
       keywords: ["threat intelligence", "indicators of compromise", "ioc matching"],
@@ -782,15 +1089,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is a security playbook (or runbook)?",
+      question_he: "מהו security playbook (או runbook)?",
       options: [
         "A documented (often automated) set of steps to follow in response to a specific type of incident",
         "A record of all past employee logins",
         "A marketing document for the security team",
         "A single firewall rule",
       ],
+      options_he: [
+        "סדרת צעדים מתועדת (ולרוב אוטומטית) שיש לבצע בתגובה לסוג ספציפי של אירוע",
+        "רישום של כל ההתחברויות הקודמות של העובדים",
+        "מסמך שיווקי עבור צוות האבטחה",
+        "כלל firewall בודד",
+      ],
       correctAnswer: 0,
       explanation:
         "A playbook turns 'we detected X' into a repeatable, pre-agreed response — isolate the host, disable the account, notify these people, in this order — so response quality doesn't depend on which analyst happens to be on call at 3am. Many SOAR platforms let these steps run automatically once an alert matches the trigger condition.",
+      explanation_he:
+        "playbook הופך את 'זיהינו X' לתגובה חוזרת ומוסכמת מראש - בודד את המארח, השבת את החשבון, הודע לאנשים האלה, בסדר הזה - כך שאיכות התגובה לא תלויה באיזה אנליסט במקרה תורן ב-3 לפנות בוקר. פלטפורמות SOAR רבות מאפשרות להריץ את הצעדים הללו אוטומטית ברגע שהתראה תואמת את תנאי ההפעלה.",
       resourceTitle: "Automation and playbooks (Microsoft Sentinel)",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/automation/automation",
       keywords: ["playbook", "runbook", "incident response process"],
@@ -803,10 +1119,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "Consistent time synchronization (e.g. via NTP) across systems is important for a SIEM to correctly correlate events from different sources.",
+      question_he: "סנכרון זמן עקבי (למשל באמצעות NTP) בין מערכות חשוב כדי ש-SIEM יוכל לקשור בצורה נכונה אירועים ממקורות שונים.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Correlating 'a failed login on the firewall' with 'a successful login on the identity provider two seconds later' only works if both systems' clocks actually agree on what time it is. Clock drift of even a few seconds across log sources can scramble the order of events and quietly break correlation rules that depend on precise timing — a subtle failure that's easy to overlook until an investigation doesn't add up.",
+      explanation_he:
+        "קשירה בין 'התחברות כושלת ב-firewall' ל'התחברות מוצלחת בספק הזהות שנייתיים לאחר מכן' עובדת רק אם שעוני שתי המערכות אכן מסכימים מה השעה. סטייה בשעון (clock drift) של אפילו כמה שניות בין מקורות לוגים יכולה לערבב את סדר האירועים ולשבור בשקט כללי קורלציה שתלויים בתזמון מדויק - כשל עדין שקל להתעלם ממנו עד שחקירה פשוט לא מסתדרת.",
       resourceTitle: "Time synchronization for security logging",
       resourceUrl: "https://www.cisa.gov/news-events/cybersecurity-advisories",
       keywords: ["ntp", "clock synchronization", "event correlation"],
@@ -819,15 +1139,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What does \"detection engineering\" involve, beyond enabling a vendor's default rules?",
+      question_he: "מה כולל \"detection engineering\", מעבר להפעלת כללי ברירת המחדל של הספק?",
       options: [
         "Deliberately designing, testing and tuning custom detection logic based on your specific environment and threat model",
         "Buying more expensive SIEM licenses",
         "Disabling all default rules to reduce noise",
         "Writing marketing content about security features",
       ],
+      options_he: [
+        "עיצוב, בדיקה וכיוונון מכוונים של לוגיקת זיהוי מותאמת אישית, בהתבסס על הסביבה הספציפית שלך ומודל האיומים שלך",
+        "רכישת רישיונות SIEM יקרים יותר",
+        "השבתת כל כללי ברירת המחדל כדי להפחית רעש",
+        "כתיבת תוכן שיווקי על תכונות אבטחה",
+      ],
       correctAnswer: 0,
       explanation:
         "Default rules are generic — they don't know your specific architecture, normal traffic patterns, or which assets are actually critical. Detection engineering treats detections like software: write a rule targeting a specific technique from your threat model, test it against both real attack simulations and normal traffic (to gauge false positive rate), then iterate — a genuine engineering discipline, not a checkbox exercise.",
+      explanation_he:
+        "כללי ברירת מחדל הם גנריים - הם לא מכירים את הארכיטקטורה הספציפית שלך, את תבניות התעבורה הרגילות, או אילו נכסים באמת קריטיים. detection engineering מתייחס לזיהויים כמו לתוכנה: לכתוב כלל שמכוון לטכניקה ספציפית ממודל האיומים שלך, לבדוק אותו הן מול סימולציות תקיפה אמיתיות והן מול תעבורה רגילה (כדי למדוד את שיעור ה-false positive), ואז לחזור על התהליך - משמעת הנדסית אמיתית, לא תרגיל של סימון תיבות.",
       resourceTitle: "Detection engineering practices",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/detect-threats-custom",
       keywords: ["detection engineering", "custom analytics rules", "threat modeling"],
@@ -840,15 +1169,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What does User and Entity Behavior Analytics (UEBA) add to threat detection?",
+      question_he: "מה מוסיף User and Entity Behavior Analytics (UEBA) לזיהוי איומים?",
       options: [
         "A learned baseline of normal behavior per user/entity, so deviations from that individual baseline — not just fixed thresholds — can be flagged",
         "A list of banned usernames",
         "Automatic password resets for every user weekly",
         "A replacement for all correlation rules",
       ],
+      options_he: [
+        "בסיס התנהגות רגילה נלמד לכל משתמש/ישות, כך שניתן לסמן חריגות מהבסיס האישי הזה - ולא רק מסף קבוע",
+        "רשימה של שמות משתמש חסומים",
+        "איפוס סיסמה אוטומטי לכל משתמש מדי שבוע",
+        "תחליף לכל כללי הקורלציה",
+      ],
       correctAnswer: 0,
       explanation:
         "A fixed rule ('more than 1000 file downloads') might miss an executive who legitimately downloads that much data, while flagging an intern who never has — both wrong. UEBA instead learns each entity's own normal pattern and flags meaningful deviations from it (that specific user suddenly accessing systems they've never touched at 3am), catching subtler insider-threat and compromised-account scenarios that static thresholds miss entirely.",
+      explanation_he:
+        "כלל קבוע ('יותר מ-1000 הורדות קבצים') עלול לפספס מנהל בכיר שמוריד באופן לגיטימי כמות כזו של נתונים, בעוד שיסמן מתמחה שמעולם לא עשה זאת - שתי טעויות. UEBA לעומת זאת לומד את התבנית הרגילה של כל ישות בפני עצמה ומסמן חריגות משמעותיות ממנה (אותו משתמש ספציפי שפתאום ניגש למערכות שמעולם לא נגע בהן ב-3 לפנות בוקר), ותופס תרחישי איום פנימי וחשבון שנפרץ עדינים יותר שסף סטטי מפספס לחלוטין.",
       resourceTitle: "User and Entity Behavior Analytics (UEBA)",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/identify-threats-with-entity-behavior-analytics",
       keywords: ["ueba", "behavioral baseline", "anomaly detection"],
@@ -861,10 +1199,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "true-false",
       question: "For logs to be admissible and trustworthy in a forensic investigation, they generally need protection against tampering (e.g. immutability or write-once storage).",
+      question_he: "כדי שלוגים יהיו קבילים ומהימנים בחקירה פורנזית, בדרך כלל הם זקוקים להגנה מפני שיבוש (למשל immutability או אחסון write-once).",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "An attacker's standard playbook includes covering tracks by deleting or altering logs — and a log store an attacker (or even a well-meaning insider) could modify undermines any conclusion drawn from it, forensically and legally. Immutable, append-only or WORM-protected log storage, combined with export to a location the compromised environment can't reach, is what keeps the evidence trustworthy.",
+      explanation_he:
+        "הפעולה הסטנדרטית של תוקף כוללת כיסוי עקבות על ידי מחיקה או שינוי לוגים - ואחסון לוגים שתוקף (או אפילו איש פנים בכוונה טובה) יכול לשנות מערער כל מסקנה שנגזרת ממנו, מבחינה פורנזית ומשפטית כאחד. אחסון לוגים בלתי ניתן לשינוי, append-only או מוגן WORM, בשילוב עם ייצוא למיקום שהסביבה הנפרצת לא יכולה להגיע אליו, הוא מה ששומר על הראיה מהימנה.",
       resourceTitle: "Log immutability for forensic integrity",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/log-plans",
       keywords: ["log tampering", "forensic integrity", "immutable logs"],
@@ -877,15 +1219,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What do MTTD (Mean Time to Detect) and MTTR (Mean Time to Respond) measure, and why do SOCs track them?",
+      question_he: "מה מודדים MTTD (Mean Time to Detect) ו-MTTR (Mean Time to Respond), ומדוע SOCs עוקבים אחריהם?",
       options: [
         "How long it takes on average to notice a threat and how long to respond to it — both are core measures of a security program's real-world effectiveness",
         "The average cost of a security tool license",
         "The number of employees in the SOC",
         "How many logs are ingested per day",
       ],
+      options_he: [
+        "כמה זמן לוקח בממוצע לשים לב לאיום וכמה זמן לוקח להגיב אליו - שניהם מדדים מרכזיים ליעילותה בפועל של תוכנית אבטחה",
+        "העלות הממוצעת של רישיון כלי אבטחה",
+        "מספר העובדים ב-SOC",
+        "כמה לוגים נקלטים ביום",
+      ],
       correctAnswer: 0,
       explanation:
         "A SIEM full of rules is only as good as how fast it actually gets threats in front of a responder (MTTD) and how fast that responder contains them (MTTR) — both directly track how much damage an attacker gets to do before being stopped. Tracking these over time reveals whether detection engineering, staffing, and automation investments are actually improving outcomes, not just adding dashboards.",
+      explanation_he:
+        "SIEM מלא בכללים טוב רק כמו המהירות שבה הוא בפועל מציג איומים בפני מגיב (MTTD) והמהירות שבה אותו מגיב מכיל אותם (MTTR) - שני המדדים עוקבים ישירות אחר כמות הנזק שתוקף מספיק לגרום לפני שהוא נעצר. מעקב אחרי מדדים אלה לאורך זמן חושף האם השקעות ב-detection engineering, כוח אדם ואוטומציה אכן משפרות תוצאות, ולא רק מוסיפות דשבורדים.",
       resourceTitle: "Security operations metrics",
       resourceUrl: "https://learn.microsoft.com/security/operations/soc-siem",
       keywords: ["mttd", "mttr", "soc metrics"],
@@ -898,15 +1249,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "How does proactive threat hunting differ from reactive alert-driven detection?",
+      question_he: "במה threat hunting יזום שונה מזיהוי ריאקטיבי המבוסס על התראות?",
       options: [
         "Threat hunting proactively searches for signs of compromise that existing rules might have missed, rather than waiting for a rule to fire",
         "Threat hunting only happens after an alert has already fired",
         "Threat hunting is fully automated with no analyst involvement",
         "Threat hunting replaces the need for logging",
       ],
+      options_he: [
+        "threat hunting מחפש באופן יזום סימנים לפריצה שכללים קיימים אולי פספסו, במקום להמתין שכלל יופעל",
+        "threat hunting קורה רק לאחר שהתראה כבר הופעלה",
+        "threat hunting הוא אוטומטי לחלוטין וללא מעורבות אנליסט",
+        "threat hunting מייתר את הצורך ברישום לוגים",
+      ],
       correctAnswer: 0,
       explanation:
         "Alert-driven detection is inherently limited to threats someone already wrote a rule for. Threat hunting flips that: a skilled analyst forms a hypothesis ('could a living-off-the-land technique be hiding in our PowerShell logs?') and actively digs through raw data looking for evidence — often uncovering both real intrusions that evaded existing rules and gaps that turn into new detection rules going forward.",
+      explanation_he:
+        "זיהוי המבוסס על התראות מוגבל מטבעו לאיומים שמישהו כבר כתב עבורם כלל. threat hunting הופך את זה: אנליסט מיומן מגבש השערה ('האם טכניקת living-off-the-land יכולה להסתתר בלוגי ה-PowerShell שלנו?') וחופר באופן אקטיבי בנתונים גולמיים בחיפוש אחר ראיות - לעיתים קרובות חושף גם פריצות אמיתיות שהתחמקו מכללים קיימים וגם פערים שהופכים לכללי זיהוי חדשים בעתיד.",
       resourceTitle: "Hunting for threats (Microsoft Sentinel)",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/hunting",
       keywords: ["threat hunting", "proactive detection", "hypothesis-driven"],
@@ -919,15 +1279,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Why is deciding which log sources to ingest into a SIEM a genuine cost-versus-coverage tradeoff?",
+      question_he: "מדוע ההחלטה אילו מקורות לוגים לקלוט לתוך SIEM היא פשרה אמיתית בין עלות לכיסוי?",
       options: [
         "Ingesting more data increases detection coverage and storage/analysis cost simultaneously, so sources must be prioritized by security value, not ingested indiscriminately",
         "SIEM ingestion is always free regardless of volume",
         "More log sources always simplify configuration with no added cost",
         "Only network logs are ever worth ingesting",
       ],
+      options_he: [
+        "קליטת יותר נתונים מגדילה בו-זמנית את כיסוי הזיהוי ואת עלות האחסון/הניתוח, ולכן יש לתעדף מקורות לפי ערך אבטחתי, ולא לקלוט הכל ללא הבחנה",
+        "קליטת נתונים ב-SIEM תמיד חינמית ללא תלות בנפח",
+        "יותר מקורות לוגים תמיד מפשטים את התצורה ללא עלות נוספת",
+        "רק לוגי רשת שווים קליטה אי פעם",
+      ],
       correctAnswer: 0,
       explanation:
         "SIEMs typically charge by ingested data volume, and a firehose of low-value logs (verbose debug logs, health-check noise) can dominate the bill while adding little detection value, crowding out budget that could ingest a high-value source like identity sign-in logs instead. Mature programs deliberately rank log sources by security signal density per byte, not just \"ingest everything to be safe\".",
+      explanation_he:
+        "SIEMs בדרך כלל גובים תשלום לפי נפח הנתונים הנקלט, ושטף עצום של לוגים בעלי ערך נמוך (לוגי debug מפורטים, רעש של health-check) יכול לשלוט בחשבון תוך הוספת ערך זיהוי מועט, ולדחוק החוצה תקציב שיכול היה לקלוט במקום זאת מקור בעל ערך גבוה כמו לוגי התחברות זהות. תוכניות בוגרות מדרגות במכוון מקורות לוגים לפי צפיפות סיגנל אבטחתי לכל בייט, ולא סתם \"לקלוט הכל ליתר ביטחון\".",
       resourceTitle: "Plan costs for Microsoft Sentinel",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/billing",
       keywords: ["ingestion cost", "log source prioritization", "signal density"],

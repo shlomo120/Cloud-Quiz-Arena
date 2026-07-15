@@ -16,15 +16,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is the purpose of an Azure resource group?",
+      question_he: "מהי מטרתו של Azure resource group?",
       options: [
         "A logical container that groups related resources for unified lifecycle management, access control and cost tracking",
         "A physical datacenter rack",
         "A type of virtual machine",
         "A DNS zone for internal names",
       ],
+      options_he: [
+        "מיכל לוגי המקבץ יחד משאבים קשורים לצורך ניהול מחזור חיים אחיד, בקרת גישה ומעקב עלויות",
+        "מדף פיזי במרכז נתונים",
+        "סוג של מכונה וירטואלית",
+        "אזור DNS לשמות פנימיים",
+      ],
       correctAnswer: 0,
       explanation:
         "Resources in a resource group share a lifecycle boundary — deleting the group deletes everything in it, RBAC and policy can apply at that scope, and cost reports can filter by it. Grouping resources logically (by app, environment or team) is one of the first governance decisions in any Azure subscription.",
+      explanation_he:
+        "משאבים בתוך resource group חולקים גבול מחזור חיים משותף — מחיקת הקבוצה מוחקת את כל מה שבתוכה, RBAC ו-policy יכולים לחול ברמת ההיקף הזה, ודוחות עלויות יכולים לסנן לפיו. קיבוץ משאבים בצורה לוגית (לפי אפליקציה, סביבה או צוות) הוא אחת מהחלטות הממשל הראשונות בכל מנוי Azure.",
       resourceTitle: "Manage resource groups",
       resourceUrl: "https://learn.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal",
       keywords: ["resource group", "lifecycle", "logical container"],
@@ -37,15 +46,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is the primary purpose of the AWS account boundary?",
+      question_he: "מהי המטרה העיקרית של גבול ה-account ב-AWS?",
       options: [
         "It isolates resources, billing and security for everything inside it from other accounts",
         "It limits the number of regions you can use",
         "It is only used for tax purposes",
         "It replaces the need for IAM",
       ],
+      options_he: [
+        "הוא מבודד משאבים, חיוב ואבטחה של כל מה שבתוכו מחשבונות אחרים",
+        "הוא מגביל את מספר האזורים (regions) שניתן להשתמש בהם",
+        "הוא משמש רק לצרכי מס",
+        "הוא מייתר את הצורך ב-IAM",
+      ],
       correctAnswer: 0,
       explanation:
         "An AWS account is a hard isolation boundary — its own resource namespace, its own default service quotas, its own blast radius. Multi-account strategies (one account per environment or team) use this boundary deliberately to contain the impact of a misconfiguration or compromise to a single account.",
+      explanation_he:
+        "חשבון AWS הוא גבול בידוד קשיח — מרחב שמות משאבים משלו, מכסות שירות ברירת מחדל משלו, ורדיוס נזק (blast radius) משלו. אסטרטגיות multi-account (חשבון אחד לכל סביבה או צוות) מנצלות את הגבול הזה במכוון כדי לצמצם את השפעתה של תצורה שגויה או פריצה לחשבון בודד.",
       resourceTitle: "Organizing your AWS environment using multiple accounts",
       resourceUrl: "https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/organizing-your-aws-environment.html",
       keywords: ["account boundary", "isolation", "multi-account"],
@@ -58,15 +76,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a Google Cloud project?",
+      question_he: "מהו Google Cloud project?",
       options: [
         "The fundamental organizing unit that every resource belongs to, carrying its own IAM policy and billing link",
         "A folder for storing documents",
         "A single virtual machine",
         "A billing account",
       ],
+      options_he: [
+        "יחידת הארגון הבסיסית שכל משאב שייך אליה, ונושאת מדיניות IAM וקישור חיוב משלה",
+        "תיקייה לאחסון מסמכים",
+        "מכונה וירטואלית בודדת",
+        "חשבון חיוב",
+      ],
       correctAnswer: 0,
       explanation:
         "Every GCP resource lives inside exactly one project — the unit that carries IAM bindings, enabled APIs and a billing account link. Projects sit below folders and the organization in the resource hierarchy, and are the level most teams actually work at day to day.",
+      explanation_he:
+        "כל משאב ב-GCP נמצא בתוך project בודד ויחיד — היחידה שנושאת bindings של IAM, ממשקי API מופעלים וקישור לחשבון חיוב. Project נמצא מתחת ל-folders ולארגון בהיררכיית המשאבים, וזו הרמה שרוב הצוותים עובדים בה בפועל ביום-יום.",
       resourceTitle: "Creating and managing projects",
       resourceUrl: "https://cloud.google.com/resource-manager/docs/creating-managing-projects",
       keywords: ["project", "resource hierarchy", "billing"],
@@ -79,15 +106,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "Why do organizations tag or label cloud resources?",
+      question_he: "מדוע ארגונים מתייגים (tag/label) משאבי ענן?",
       options: [
         "To enable cost allocation, ownership tracking and automated policy enforcement based on metadata",
         "Tags are required by the cloud provider to create any resource",
         "Tags automatically encrypt the resource",
         "Tags replace the need for access control",
       ],
+      options_he: [
+        "כדי לאפשר הקצאת עלויות, מעקב בעלות ואכיפת policy אוטומטית על בסיס מטא-דאטה",
+        "תגיות נדרשות על ידי ספק הענן כדי ליצור כל משאב",
+        "תגיות מצפינות את המשאב אוטומטית",
+        "תגיות מייתרות את הצורך בבקרת גישה",
+      ],
       correctAnswer: 0,
       explanation:
         "A tag like team=payments or env=prod lets cost reports be sliced by team, lets automation find and act on resources (shut down non-prod after hours), and lets policy engines require or react to specific values. Tags are metadata, not security — they inform reporting and automation, never replace IAM or firewall rules.",
+      explanation_he:
+        "תגית כמו team=payments או env=prod מאפשרת לפלח דוחות עלויות לפי צוות, מאפשרת לאוטומציה לאתר משאבים ולפעול עליהם (למשל לכבות סביבות non-prod מחוץ לשעות עבודה), ומאפשרת למנועי policy לדרוש או להגיב לערכים מסוימים. תגיות הן מטא-דאטה, לא אבטחה — הן מזינות דיווח ואוטומציה, ולעולם אינן מחליפות IAM או חוקי firewall.",
       resourceTitle: "Using tags to organize your Azure resources",
       resourceUrl: "https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources",
       keywords: ["tags", "labels", "cost allocation"],
@@ -100,10 +136,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "A landing zone is a pre-configured, standardized environment (accounts, networking, guardrails) that new workloads are deployed into.",
+      question_he: "landing zone היא סביבה מוגדרת מראש ומתוקננת (חשבונות, רשת, guardrails) שאליה נפרסים workloads חדשים.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Rather than every team hand-building its own subscription with inconsistent security and networking, a landing zone provides a repeatable starting point — baseline policies, logging, network connectivity — so new workloads inherit good governance from day one instead of bolting it on later.",
+      explanation_he:
+        "במקום שכל צוות יבנה ידנית subscription משלו עם אבטחה ורשת לא עקביות, landing zone מספקת נקודת התחלה חוזרת — מדיניות בסיס, לוגים, חיבוריות רשת — כך ש-workloads חדשים יורשים ממשל תקין כבר מהיום הראשון, במקום להוסיף אותו בדיעבד.",
       resourceTitle: "What is an Azure landing zone?",
       resourceUrl: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/",
       keywords: ["landing zone", "baseline", "standardization"],
@@ -116,15 +156,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What role does a compliance framework (such as SOC 2 or ISO 27001) play in cloud governance?",
+      question_he: "איזה תפקיד ממלא framework של תאימות (כמו SOC 2 או ISO 27001) בממשל ענן?",
       options: [
         "It defines a set of controls and practices an organization must demonstrate to auditors, shaping how cloud resources must be configured and monitored",
         "It is a cloud provider's marketing certification with no effect on configuration",
         "It only applies to on-premises datacenters",
         "It replaces the need for any internal security policy",
       ],
+      options_he: [
+        "הוא מגדיר קבוצת בקרות ונהלים שעל הארגון להוכיח למבקרים, ובכך מעצב את האופן שבו יש להגדיר ולנטר משאבי ענן",
+        "זהו תעודת שיווק של ספק הענן שאין לה השפעה על התצורה",
+        "הוא חל רק על מרכזי נתונים מקומיים (on-premises)",
+        "הוא מייתר את הצורך בכל מדיניות אבטחה פנימית",
+      ],
       correctAnswer: 0,
       explanation:
         "Frameworks translate into concrete requirements — encryption at rest, access reviews, audit logging retention — that show up directly in how resources get configured and which controls (like Azure Policy or AWS Config rules) get enforced. Compliance is a driver of technical governance decisions, not a separate paperwork exercise.",
+      explanation_he:
+        "frameworks מתורגמים לדרישות קונקרטיות — הצפנה במנוחה, בדיקות גישה, שמירת לוגי ביקורת — שמשפיעות ישירות על אופן הגדרת המשאבים ועל אילו בקרות (כמו Azure Policy או כללי AWS Config) נאכפות. תאימות היא גורם מניע להחלטות ממשל טכניות, לא תרגיל ניירת נפרד.",
       resourceTitle: "Microsoft compliance offerings",
       resourceUrl: "https://learn.microsoft.com/compliance/regulatory/offering-home",
       keywords: ["compliance framework", "soc 2", "iso 27001"],
@@ -137,15 +186,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does AWS Organizations let you do?",
+      question_he: "מה מאפשר AWS Organizations לעשות?",
       options: [
         "Centrally manage multiple AWS accounts with consolidated billing and organization-wide policies",
         "Create IAM users faster",
         "Monitor EC2 CPU usage",
         "Encrypt S3 buckets automatically",
       ],
+      options_he: [
+        "לנהל באופן מרכזי מספר חשבונות AWS עם חיוב מאוחד ומדיניות ברמת הארגון כולו",
+        "ליצור משתמשי IAM מהר יותר",
+        "לנטר את ניצול ה-CPU של EC2",
+        "להצפין buckets של S3 באופן אוטומטי",
+      ],
       correctAnswer: 0,
       explanation:
         "Organizations groups accounts into a hierarchy (with organizational units), applies Service Control Policies across that hierarchy, and rolls all member accounts into one consolidated bill — the foundation multi-account strategies and tools like Control Tower are built on.",
+      explanation_he:
+        "Organizations מקבץ חשבונות להיררכיה (עם organizational units), מחיל Service Control Policies על פני אותה היררכיה, ומאחד את כל חשבונות החברים לחשבונית מאוחדת אחת — הבסיס שעליו נבנות אסטרטגיות multi-account וכלים כמו Control Tower.",
       resourceTitle: "What is AWS Organizations?",
       resourceUrl: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html",
       keywords: ["aws organizations", "consolidated billing", "multi-account"],
@@ -158,15 +216,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is the purpose of folders in the GCP resource hierarchy?",
+      question_he: "מהי מטרתם של folders בהיררכיית המשאבים של GCP?",
       options: [
         "Grouping projects (by team, department or environment) so IAM and policy can be applied once to the whole group",
         "Storing uploaded files",
         "Hosting virtual machines directly",
         "Defining network subnets",
       ],
+      options_he: [
+        "לקבץ projects (לפי צוות, מחלקה או סביבה) כך ש-IAM ו-policy יוחלו פעם אחת על כל הקבוצה",
+        "לאחסן קבצים שהועלו",
+        "לארח מכונות וירטואליות ישירות",
+        "להגדיר subnets ברשת",
+      ],
       correctAnswer: 0,
       explanation:
         "Folders sit between the organization and projects, letting you mirror your company's structure — one folder per business unit, say — and apply IAM bindings or organization policies at that level so every project underneath inherits them automatically, instead of configuring each project individually.",
+      explanation_he:
+        "folders נמצאים בין הארגון לבין ה-projects, ומאפשרים לשקף את המבנה של החברה — למשל folder אחד לכל יחידה עסקית — ולהחיל bindings של IAM או organization policies ברמה הזו כך שכל project מתחת יורש אותם אוטומטית, במקום להגדיר כל project בנפרד.",
       resourceTitle: "Resource hierarchy",
       resourceUrl: "https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy",
       keywords: ["folders", "resource hierarchy", "inheritance"],
@@ -179,10 +246,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "A documented, enforced naming convention for cloud resources makes environments easier to audit, automate against, and troubleshoot.",
+      question_he: "מוסכמת שמות (naming convention) מתועדת ואכופה למשאבי ענן מקלה על ביקורת, אוטומציה ופתרון תקלות בסביבות.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "A name like prod-eu-web-01 instantly tells you environment, region and role — versus an opaque name that requires digging through a console to understand. Consistent naming also makes automation (scripts that filter by prefix) and cost reporting far more reliable than relying on tags alone.",
+      explanation_he:
+        "שם כמו prod-eu-web-01 מספר לך מיד את הסביבה, האזור והתפקיד — לעומת שם אטום שדורש חיטוט בקונסולה כדי להבין אותו. שמות עקביים גם הופכים אוטומציה (סקריפטים שמסננים לפי prefix) ודיווח עלויות לאמינים הרבה יותר מהסתמכות על תגיות בלבד.",
       resourceTitle: "Define your naming convention (Azure Cloud Adoption Framework)",
       resourceUrl: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging",
       keywords: ["naming convention", "consistency", "auditability"],
@@ -196,15 +267,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is the purpose of a monitoring dashboard?",
+      question_he: "מהי מטרתו של dashboard ניטור?",
       options: [
         "To visualize key metrics and trends at a glance so operators can spot problems quickly",
         "To store raw log files permanently",
         "To send emails to customers",
         "To replace the need for alerts entirely",
       ],
+      options_he: [
+        "להמחיש metrics ומגמות מרכזיות במבט אחד כדי שאנשי תפעול יוכלו לזהות בעיות במהירות",
+        "לאחסן קבצי log גולמיים לצמיתות",
+        "לשלוח מיילים ללקוחות",
+        "לייתר לחלוטין את הצורך בהתראות",
+      ],
       correctAnswer: 0,
       explanation:
         "A dashboard turns numeric time-series data into charts a human can scan in seconds — request rate, error rate, latency, resource usage. It's for situational awareness, not for catching problems while no one is looking; that's what alerting rules are for.",
+      explanation_he:
+        "dashboard הופך נתוני סדרות זמן מספריות לגרפים שאדם יכול לסרוק תוך שניות — קצב בקשות, שיעור שגיאות, latency, ניצול משאבים. הוא נועד למודעות מצבית, לא לתפיסת בעיות כשאף אחד לא צופה — לשם כך קיימים כללי alert.",
       resourceTitle: "Azure Monitor dashboards",
       resourceUrl: "https://learn.microsoft.com/azure/azure-monitor/visualize/tutorial-logs-dashboards",
       keywords: ["dashboard", "metrics visualization", "operational awareness"],
@@ -217,15 +297,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does a CloudWatch alarm do?",
+      question_he: "מה עושה CloudWatch alarm?",
       options: [
         "Watches a metric against a threshold and triggers an action (notification, auto-scaling, etc.) when it's breached",
         "Automatically fixes any detected problem",
         "Deletes resources that are underused",
         "Only logs the event with no other action",
       ],
+      options_he: [
+        "עוקב אחר metric מול סף ומפעיל פעולה (התראה, auto-scaling וכו') כאשר הסף נחצה",
+        "מתקן אוטומטית כל בעיה שזוהתה",
+        "מוחק משאבים שאינם מנוצלים מספיק",
+        "רק רושם את האירוע בלוג ללא כל פעולה נוספת",
+      ],
       correctAnswer: 0,
       explanation:
         "An alarm continuously evaluates a metric (like CPU utilization or queue depth) against a threshold over a set period, and when the condition is met it can notify an SNS topic, trigger Auto Scaling, or invoke Lambda. It's the trigger for a response — it doesn't perform the fix itself.",
+      explanation_he:
+        "alarm מעריך באופן רציף metric (כמו ניצול CPU או עומק תור) מול סף לאורך פרק זמן מוגדר, וכאשר התנאי מתקיים הוא יכול להודיע ל-SNS topic, להפעיל Auto Scaling, או להפעיל Lambda. זהו הטריגר לתגובה — הוא אינו מבצע את התיקון בעצמו.",
       resourceTitle: "Using Amazon CloudWatch alarms",
       resourceUrl: "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html",
       keywords: ["cloudwatch alarm", "threshold", "notification"],
@@ -238,15 +327,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is an uptime check in Cloud Monitoring?",
+      question_he: "מהו uptime check ב-Cloud Monitoring?",
       options: [
         "A periodic probe from external locations that verifies a service is reachable and responding correctly",
         "A count of how many VMs are running",
         "A billing report generated monthly",
         "A tool for compressing log files",
       ],
+      options_he: [
+        "בדיקה תקופתית ממיקומים חיצוניים שמוודאת שהשירות נגיש ומגיב כראוי",
+        "ספירה של כמה VMs פועלות",
+        "דוח חיוב שנוצר מדי חודש",
+        "כלי לדחיסת קבצי log",
+      ],
       correctAnswer: 0,
       explanation:
         "Uptime checks simulate a real user by polling an endpoint from multiple global locations on a schedule, verifying response code and content — catching outages that internal metrics might miss because the problem is between the user and your edge, not inside your infrastructure.",
+      explanation_he:
+        "uptime checks מדמים משתמש אמיתי על ידי פנייה ל-endpoint ממספר מיקומים גלובליים לפי לוח זמנים, ומאמתים קוד תגובה ותוכן — כך הם תופסים תקלות שמדדים פנימיים עלולים לפספס, כי הבעיה נמצאת בין המשתמש ל-edge שלך, לא בתוך התשתית עצמה.",
       resourceTitle: "Uptime checks",
       resourceUrl: "https://cloud.google.com/monitoring/uptime-checks",
       keywords: ["uptime check", "synthetic monitoring", "external probe"],
@@ -259,15 +357,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "In monitoring, what is a \"metric\"?",
+      question_he: "בעולם הניטור, מהו \"metric\"?",
       options: [
         "A numeric value measured over time, such as CPU percentage or request count",
         "A written description of an incident",
         "A user's login history",
         "A firewall rule",
       ],
+      options_he: [
+        "ערך מספרי הנמדד לאורך זמן, כמו אחוז ניצול CPU או מספר בקשות",
+        "תיאור כתוב של אירוע",
+        "היסטוריית התחברויות של משתמש",
+        "חוק firewall",
+      ],
       correctAnswer: 0,
       explanation:
         "Metrics are lightweight, timestamped numbers collected at regular intervals — cheap to store and fast to query, which is why they power real-time dashboards and alarms. Logs, by contrast, are discrete detailed events; the two are complementary pillars of observability, not substitutes for each other.",
+      explanation_he:
+        "metrics הם מספרים קלים ומתויגי-זמן שנאספים במרווחים קבועים — זולים לאחסון ומהירים לשאילתה, ולכן הם מזינים dashboards והתראות בזמן אמת. לוגים, לעומת זאת, הם אירועים מפורטים בדידים; שני אלה הם עמודים משלימים של observability, לא תחליפים זה לזה.",
       resourceTitle: "Azure Monitor metrics",
       resourceUrl: "https://learn.microsoft.com/azure/azure-monitor/essentials/data-platform-metrics",
       keywords: ["metric", "time series", "observability"],
@@ -280,10 +387,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "Relying only on metrics or only on logs gives an incomplete picture — metrics show that something is wrong, logs show what happened.",
+      question_he: "הסתמכות רק על metrics או רק על לוגים נותנת תמונה חלקית — metrics מראים שמשהו לא בסדר, לוגים מראים מה בדיוק קרה.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "A latency metric spiking tells you there's a problem right now; the logs from that same time window tell you which requests failed and why. Mature observability practice always pairs the two — metrics for fast detection, logs (and traces) for the investigation that follows.",
+      explanation_he:
+        "קפיצה ב-metric של latency מספרת לך שיש בעיה עכשיו; הלוגים מאותו חלון זמן מספרים לך אילו בקשות נכשלו ומדוע. פרקטיקת observability בשלה תמיד משלבת בין השניים — metrics לגילוי מהיר, לוגים (וגם traces) לחקירה שבאה אחרי.",
       resourceTitle: "Observability (Azure Well-Architected)",
       resourceUrl: "https://learn.microsoft.com/azure/well-architected/operational-excellence/observability",
       keywords: ["metrics vs logs", "observability pillars"],
@@ -296,15 +407,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "How does a Log Analytics KQL query differ from a metric alert?",
+      question_he: "במה שונה שאילתת KQL ב-Log Analytics מ-metric alert?",
       options: [
         "A KQL query searches and correlates detailed log events for investigation; a metric alert reacts in near real time to a numeric threshold",
         "They are the same feature under two names",
         "KQL queries can only run once a month",
         "Metric alerts can search free text in logs",
       ],
+      options_he: [
+        "שאילתת KQL מחפשת ומקשרת אירועי log מפורטים לצורך חקירה; metric alert מגיב כמעט בזמן אמת לחריגה מסף מספרי",
+        "מדובר באותה יכולת בדיוק תחת שני שמות",
+        "שאילתות KQL יכולות לרוץ רק פעם בחודש",
+        "metric alerts יכולים לחפש טקסט חופשי בתוך ה-logs",
+      ],
       correctAnswer: 0,
       explanation:
         "Metric alerts are built for speed and simple thresholds — cheap to evaluate every minute. KQL queries against Log Analytics are for rich, ad hoc or scheduled analysis: joining across tables, filtering by arbitrary fields, correlating events across resources — the tool you reach for once a metric alert tells you something is wrong and you need to know why.",
+      explanation_he:
+        "metric alerts בנויים למהירות ולספים פשוטים — זול להריץ אותם כל דקה. שאילתות KQL מול Log Analytics מיועדות לניתוח עשיר, אד-הוק או מתוזמן: חיבור (join) בין טבלאות, סינון לפי שדות שרירותיים, קישור אירועים בין משאבים — זהו הכלי שפונים אליו ברגע ש-metric alert מודיע שמשהו לא בסדר ורוצים להבין למה.",
       resourceTitle: "Log query overview",
       resourceUrl: "https://learn.microsoft.com/azure/azure-monitor/logs/log-query-overview",
       keywords: ["kql", "log analytics", "metric alert"],
@@ -317,15 +437,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is the purpose of a CloudWatch composite alarm?",
+      question_he: "מה מטרתו של composite alarm ב-CloudWatch?",
       options: [
         "It combines the state of multiple alarms with AND/OR logic to reduce noisy, redundant notifications",
         "It automatically resolves the underlying issue",
         "It replaces the need for any metric alarms",
         "It only works with billing metrics",
       ],
+      options_he: [
+        "הוא משלב את המצב של מספר alarms בלוגיקת AND/OR כדי לצמצם התראות רועשות ומיותרות",
+        "הוא פותר אוטומטית את הבעיה שבבסיס ההתראה",
+        "הוא מייתר את הצורך בכל metric alarm",
+        "הוא עובד רק עם מדדי חיוב (billing metrics)",
+      ],
       correctAnswer: 0,
       explanation:
         "Instead of paging on-call for every individual metric breach, a composite alarm fires only when a meaningful combination is true — e.g. high latency AND high error rate together, which is a much stronger signal of a real incident than either alone. This is a direct tool against alert fatigue.",
+      explanation_he:
+        "במקום להזעיק את הכונן על כל חריגה בודדת במדד, composite alarm מופעל רק כאשר מתקיים שילוב משמעותי — למשל latency גבוה יחד עם שיעור שגיאות גבוה, שילוב שהוא סימן הרבה יותר חזק לתקרית אמיתית מכל אחד מהם בנפרד. זהו כלי ישיר נגד alert fatigue.",
       resourceTitle: "Composite alarms",
       resourceUrl: "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Create_Composite_Alarm.html",
       keywords: ["composite alarm", "alert fatigue", "correlation"],
@@ -338,15 +467,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What happens when alert thresholds are set too sensitively (too low)?",
+      question_he: "מה קורה כאשר סף ההתראות (alert threshold) נקבע רגיש מדי (נמוך מדי)?",
       options: [
         "Alert fatigue — responders are flooded with low-value alerts and start ignoring or missing the ones that matter",
         "The system automatically becomes more secure",
         "Alerts stop firing entirely",
         "Storage costs are eliminated",
       ],
+      options_he: [
+        "alert fatigue — הכוננים מוצפים בהתראות בעלות ערך נמוך ומתחילים להתעלם או לפספס את אלה שבאמת חשובות",
+        "המערכת הופכת אוטומטית למאובטחת יותר",
+        "ההתראות מפסיקות להיפעל לחלוטין",
+        "עלויות האחסון מתאפסות",
+      ],
       correctAnswer: 0,
       explanation:
         "Alerting is a signal-to-noise problem: a threshold tuned too tight fires constantly on benign fluctuations, training the team to dismiss notifications on reflex — exactly the mechanism behind several well-known real-world incidents where a genuine alert was buried in noise. Tuning thresholds against real historical data is an ongoing discipline, not a one-time setup step.",
+      explanation_he:
+        "התראות הן בעיה של יחס אות-לרעש: סף שכוון רגיש מדי מופעל כל הזמן בעקבות תנודות שגרתיות ולא מזיקות, מה שמלמד את הצוות להתעלם מהתראות באופן אוטומטי — בדיוק המנגנון שעמד מאחורי כמה תקריות אמיתיות וידועות שבהן התראה אמיתית נטמעה ברעש. כיוונון סף מול נתונים היסטוריים אמיתיים הוא תרגול מתמשך, לא שלב הגדרה חד-פעמי.",
       resourceTitle: "Best practices to reduce alert fatigue (Microsoft Sentinel)",
       resourceUrl: "https://learn.microsoft.com/azure/sentinel/best-practices",
       keywords: ["alert fatigue", "threshold tuning", "signal to noise"],
@@ -360,15 +498,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a cloud budget used for?",
+      question_he: "למה משמש budget בענן?",
       options: [
         "Tracking planned spend and triggering alerts as actual or forecasted costs approach a threshold",
         "Automatically shutting down all resources at month end",
         "Negotiating lower prices with the cloud provider",
         "Encrypting billing data",
       ],
+      options_he: [
+        "מעקב אחר הוצאה מתוכננת והפעלת התראות כאשר ההוצאה בפועל או החזויה מתקרבת לסף מוגדר",
+        "כיבוי אוטומטי של כל המשאבים בסוף החודש",
+        "משא ומתן על מחירים נמוכים יותר מול ספק הענן",
+        "הצפנת נתוני החיוב",
+      ],
       correctAnswer: 0,
       explanation:
         "A budget is a monitoring construct, not an enforcement one: you define a spending threshold and get notified as you approach or exceed it (or as forecasted spend will). Stopping resources automatically requires separate automation wired to that notification — the budget itself only informs.",
+      explanation_he:
+        "budget הוא כלי ניטור, לא כלי אכיפה: מגדירים סף הוצאה ומקבלים התראה כשההוצאה מתקרבת אליו או חורגת ממנו (או כאשר ההוצאה החזויה עתידה לחרוג). עצירה אוטומטית של משאבים דורשת אוטומציה נפרדת שמחוברת לאותה התראה — ה-budget עצמו רק מודיע.",
       resourceTitle: "Create, edit, or delete budgets (GCP)",
       resourceUrl: "https://cloud.google.com/billing/docs/how-to/budgets",
       keywords: ["budget", "cost alert", "spend threshold"],
@@ -381,15 +528,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is the AWS Free Tier?",
+      question_he: "מהו AWS Free Tier?",
       options: [
         "A set of limited usage allowances for many services offered at no charge, mainly for new accounts and light use",
         "Unlimited free usage of every AWS service forever",
         "A discount available only to enterprise customers",
         "A free upgrade to unlimited support",
       ],
+      options_he: [
+        "מכסות שימוש מוגבלות עבור שירותים רבים, המוצעות ללא עלות, בעיקר עבור חשבונות חדשים ושימוש קל",
+        "שימוש חינמי וללא הגבלה בכל שירותי AWS לצמיתות",
+        "הנחה הזמינה רק ללקוחות ארגוניים",
+        "שדרוג חינמי לתמיכה ללא הגבלה",
+      ],
       correctAnswer: 0,
       explanation:
         "Free Tier offers capped monthly allowances (e.g. a certain number of EC2 hours or Lambda invocations) — great for learning and prototyping, but usage beyond the cap bills normally, and some offers are 12-months-from-signup only. It's a bounded on-ramp, not a way to run production workloads for free indefinitely.",
+      explanation_he:
+        "Free Tier מציע מכסות חודשיות מוגבלות (למשל מספר מסוים של שעות EC2 או הפעלות Lambda) — מצוין ללמידה ולבניית אבטיפוס, אך שימוש מעבר למכסה מחויב כרגיל, וחלק מההצעות תקפות רק 12 חודשים מרגע ההרשמה. זוהי נקודת כניסה מוגבלת, לא דרך להריץ עומסי עבודה בפרודקשן בחינם לצמיתות.",
       resourceTitle: "AWS Free Tier",
       resourceUrl: "https://aws.amazon.com/free/",
       keywords: ["free tier", "usage allowance", "new accounts"],
@@ -402,10 +558,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "A cost alert notifies stakeholders when spending is trending toward or past a defined limit, but does not stop resources on its own.",
+      question_he: "התראת עלות (cost alert) מודיעה לבעלי עניין כאשר ההוצאה מתקרבת לגבול מוגדר או חורגת ממנו, אך אינה עוצרת משאבים בעצמה.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Cost alerts are informational by design — someone still has to act on them, whether that's a human reviewing spend or an automated action you've separately configured to respond to the notification. Confusing an alert for an enforcement mechanism is a common and costly misunderstanding.",
+      explanation_he:
+        "התראות עלות הן אינפורמטיביות מעצם עיצובן — עדיין נדרש מישהו לפעול לפיהן, בין אם זה אדם שבודק את ההוצאה או פעולה אוטומטית שהוגדרה בנפרד כדי להגיב להתראה. בלבול בין התראה למנגנון אכיפה הוא טעות נפוצה ויקרה.",
       resourceTitle: "Cost alerts (Microsoft Cost Management)",
       resourceUrl: "https://learn.microsoft.com/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending",
       keywords: ["cost alert", "notification only", "no automatic action"],
@@ -418,15 +578,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does \"showback\" mean in cloud cost management?",
+      question_he: "מה המשמעות של \"showback\" בניהול עלויות ענן?",
       options: [
         "Reporting cost usage back to each team so they see their own spend, without necessarily billing them internally",
         "Refunding unused cloud spend to customers",
         "Hiding costs from all teams except finance",
         "A discount program for long-term customers",
       ],
+      options_he: [
+        "דיווח על צריכת עלויות בחזרה לכל צוות כך שהוא רואה את ההוצאה שלו, מבלי בהכרח לחייב אותו פנימית",
+        "החזר כספי על הוצאת ענן שלא נוצלה ללקוחות",
+        "הסתרת עלויות מכל הצוותים למעט הכספים",
+        "תוכנית הנחות ללקוחות ותיקים",
+      ],
       correctAnswer: 0,
       explanation:
         "Showback surfaces cost visibility per team (via tags/labels) so people see the financial impact of their own usage — a behavior-change lever without actually moving money between budgets. \"Chargeback\" goes further and actually bills teams internally; both depend entirely on consistent tagging to work.",
+      explanation_he:
+        "showback חושף נראות עלויות ברמת הצוות (באמצעות tags/labels) כך שאנשים רואים את ההשפעה הכספית של הצריכה שלהם עצמם — מנוף לשינוי התנהגות מבלי להעביר בפועל כסף בין תקציבים. \"chargeback\" הולך צעד קדימה ומחייב את הצוותים בפועל באופן פנימי; שני המנגנונים תלויים לחלוטין בתיוג עקבי כדי לעבוד.",
       resourceTitle: "Cost management fundamentals",
       resourceUrl: "https://cloud.google.com/billing/docs/how-to/reports",
       keywords: ["showback", "chargeback", "cost visibility"],
@@ -439,15 +608,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does \"right-sizing\" mean in cloud cost optimization?",
+      question_he: "מה המשמעות של \"right-sizing\" באופטימיזציית עלויות בענן?",
       options: [
         "Adjusting resource size (VM type, disk size) to match actual measured usage instead of guessing too large",
         "Always choosing the largest available instance for safety",
         "Resizing browser windows for cost dashboards",
         "A one-time action performed only at initial deployment",
       ],
+      options_he: [
+        "התאמת גודל המשאב (סוג VM, גודל דיסק) לצריכה בפועל שנמדדה, במקום ניחוש שגורם לגודל מוגזם",
+        "בחירה תמיד במופע הגדול ביותר הזמין מטעמי ביטחון",
+        "שינוי גודל חלונות דפדפן עבור לוחות מחוונים של עלויות",
+        "פעולה חד-פעמית המבוצעת רק בעת הפריסה הראשונית",
+      ],
       correctAnswer: 0,
       explanation:
         "Right-sizing means using real utilization data — CPU, memory, IOPS over time — to pick (or resize to) the smallest instance that comfortably meets demand, since over-provisioned \"just in case\" sizing is one of the most common sources of cloud waste. It's an ongoing practice, not a one-time launch decision, because workload demand changes over time.",
+      explanation_he:
+        "right-sizing פירושו שימוש בנתוני ניצול אמיתיים — CPU, זיכרון, IOPS לאורך זמן — כדי לבחור (או לשנות גודל ל) המופע הקטן ביותר שעונה בנוחות על הביקוש, שכן הקצאה מוגזמת \"ליתר ביטחון\" היא אחד ממקורות הבזבוז הנפוצים ביותר בענן. זהו תרגול מתמשך ולא החלטה חד-פעמית בזמן ההשקה, כי הביקוש לעומס העבודה משתנה עם הזמן.",
       resourceTitle: "Right-sizing recommendations (AWS Compute Optimizer)",
       resourceUrl: "https://docs.aws.amazon.com/compute-optimizer/latest/ug/what-is-compute-optimizer.html",
       keywords: ["right-sizing", "utilization", "waste reduction"],
@@ -460,15 +638,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is the purpose of cost allocation tags in AWS?",
+      question_he: "מה מטרתם של cost allocation tags ב-AWS?",
       options: [
         "They let billing reports be broken down by team, project or environment based on tag values",
         "They are required for a resource to be created",
         "They automatically apply Savings Plans discounts",
         "They control which region a resource runs in",
       ],
+      options_he: [
+        "הם מאפשרים לפרק דוחות חיוב לפי צוות, פרויקט או סביבה, בהתבסס על ערכי התגיות",
+        "הם נדרשים כדי שניתן יהיה ליצור משאב כלשהו",
+        "הם מחילים אוטומטית הנחות Savings Plans",
+        "הם קובעים באיזה region המשאב פועל",
+      ],
       correctAnswer: 0,
       explanation:
         "Once activated in Billing, cost allocation tags let Cost Explorer and billing reports group spend by whatever key you tagged with — team, project, cost-center — turning one undifferentiated bill into per-team visibility. Untagged resources simply can't be attributed this way, which is why tagging discipline is a cost-governance prerequisite, not an afterthought.",
+      explanation_he:
+        "לאחר הפעלה במסך ה-Billing, cost allocation tags מאפשרים ל-Cost Explorer ולדוחות החיוב לקבץ הוצאה לפי כל מפתח שתויג — צוות, פרויקט, מרכז עלות — והופכים חשבונית אחת בלתי מובחנת לנראות ברמת הצוות. משאבים שלא תויגו פשוט לא ניתנים לשיוך בדרך זו, ולכן משמעת תיוג היא תנאי מוקדם לממשל עלויות ולא מחשבה שנייה.",
       resourceTitle: "Using cost allocation tags",
       resourceUrl: "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html",
       keywords: ["cost allocation tags", "billing breakdown"],
@@ -481,15 +668,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "If your usage exceeds the hourly commitment of a Compute Savings Plan, how is the excess billed?",
+      question_he: "אם הצריכה חורגת מההתחייבות השעתית של Compute Savings Plan, כיצד מחויב העודף?",
       options: [
         "At standard On-Demand rates, while usage up to the commitment still gets the discounted rate",
         "The entire month reverts to On-Demand pricing",
         "Excess usage is blocked until the next billing cycle",
         "You are charged double the On-Demand rate as a penalty",
       ],
+      options_he: [
+        "לפי תעריפי On-Demand רגילים, בעוד שהצריכה עד גובה ההתחייבות עדיין מקבלת את התעריף המוזל",
+        "החודש כולו חוזר לתמחור On-Demand",
+        "הצריכה העודפת נחסמת עד למחזור החיוב הבא",
+        "מחויבים פי שניים מתעריף On-Demand כקנס",
+      ],
       correctAnswer: 0,
       explanation:
         "Savings Plans discount usage up to your committed $/hour; anything above that commitment simply bills at normal On-Demand rates — there's no penalty and no all-or-nothing cliff. This is why sizing a commitment conservatively (below your typical baseline) is low-risk: you always keep the discount on your committed floor and pay standard rates on the rest.",
+      explanation_he:
+        "Savings Plans מעניקים הנחה על צריכה עד לגובה ההתחייבות ב-$/שעה; כל מה שמעבר לכך מחויב פשוט בתעריפי On-Demand רגילים — אין קנס ואין מצב של הכל-או-כלום. זו הסיבה שקביעת התחייבות שמרנית (מתחת לבסיס הצריכה הטיפוסי) היא סיכון נמוך: תמיד שומרים על ההנחה עד רצפת ההתחייבות ומשלמים תעריף רגיל על היתר.",
       resourceTitle: "How Savings Plans apply to your usage",
       resourceUrl: "https://docs.aws.amazon.com/savingsplans/latest/userguide/what-is-savings-plans.html",
       keywords: ["savings plans", "commitment overage", "on-demand"],
@@ -502,15 +698,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What does Azure Cost Management anomaly detection do?",
+      question_he: "מה עושה תכונת anomaly detection ב-Azure Cost Management?",
       options: [
         "Uses machine learning on historical spend patterns to flag unusual cost spikes that a static budget threshold might miss",
         "Automatically deletes resources causing high cost",
         "Only detects anomalies in network traffic, not cost",
         "Replaces the need for budgets entirely",
       ],
+      options_he: [
+        "משתמשת בלמידת מכונה על דפוסי הוצאה היסטוריים כדי לסמן קפיצות עלות חריגות שסף budget קבוע עלול לפספס",
+        "מוחקת אוטומטית משאבים הגורמים לעלות גבוהה",
+        "מזהה חריגות רק בתעבורת רשת, לא בעלות",
+        "מייתרת לחלוטין את הצורך ב-budgets",
+      ],
       correctAnswer: 0,
       explanation:
         "A fixed budget threshold can't tell the difference between predictable growth and a genuine spike — anomaly detection instead learns your normal spending pattern and flags deviations from it, catching problems (a runaway resource, a misconfigured autoscaler) days before a static threshold would even trigger.",
+      explanation_he:
+        "סף budget קבוע לא יודע להבחין בין צמיחה צפויה לבין קפיצה אמיתית — anomaly detection לעומת זאת לומד את דפוס ההוצאה הרגיל ומסמן סטיות ממנו, ותופס בעיות (משאב שיצא משליטה, autoscaler שהוגדר שגוי) ימים לפני שסף קבוע היה בכלל מופעל.",
       resourceTitle: "Cost anomaly detection",
       resourceUrl: "https://learn.microsoft.com/azure/cost-management-billing/understand/analyze-unexpected-charges",
       keywords: ["anomaly detection", "cost spike", "machine learning"],
@@ -523,10 +728,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "true-false",
       question: "Data transferred out of a cloud region or to the internet (egress) is commonly billed, and can become a significant, easily overlooked cost.",
+      question_he: "נתונים המועברים החוצה מ-region בענן או לאינטרנט (egress) בדרך כלל מחויבים, ויכולים להפוך לעלות משמעותית שקל לפספס.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Ingress is typically free in every major cloud, but egress to the internet, to another region, or between certain services is metered — and architectures that move large volumes of data across those boundaries (multi-region replication, frequent cross-cloud transfers) can accumulate costs that dwarf compute. Egress-awareness belongs in architecture reviews, not just the bill.",
+      explanation_he:
+        "ingress בדרך כלל חינמי בכל ענן מרכזי, אך egress לאינטרנט, ל-region אחר, או בין שירותים מסוימים נמדד ומחויב — וארכיטקטורות שמעבירות כמויות גדולות של נתונים דרך גבולות אלה (שכפול רב-אזורי, העברות תכופות בין עננים) יכולות לצבור עלויות שמאפילות על עלות החישוב. מודעות ל-egress שייכת לביקורות ארכיטקטורה, לא רק לחשבונית.",
       resourceTitle: "Network pricing",
       resourceUrl: "https://cloud.google.com/vpc/network-pricing",
       keywords: ["egress cost", "data transfer", "hidden cost"],
@@ -539,15 +748,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is a key risk of NOT implementing chargeback or showback in a large cloud organization?",
+      question_he: "מהו סיכון מרכזי באי-יישום chargeback או showback בארגון ענן גדול?",
       options: [
         "Teams have no financial feedback loop, so wasteful usage goes unnoticed and unaddressed until the aggregate bill is already large",
         "The cloud provider will refuse to bill the organization",
         "Resources become more secure by default",
         "It has no meaningful downside at any scale",
       ],
+      options_he: [
+        "לצוותים אין לולאת משוב כספית, כך ששימוש בזבזני נשאר בלתי מבוחן ובלתי מטופל עד שהחשבונית המצטברת כבר גדולה",
+        "ספק הענן יסרב לחייב את הארגון",
+        "המשאבים הופכים מאובטחים יותר כברירת מחדל",
+        "אין לכך שום חיסרון משמעותי בשום היקף",
+      ],
       correctAnswer: 0,
       explanation:
         "Without visibility into their own spend, teams have no incentive to right-size, clean up unused resources, or question a runaway cost — the classic 'tragedy of the commons' applied to a shared cloud bill. Cost governance failures are rarely one dramatic event; they're the slow accumulation of unaccountable spend across many teams.",
+      explanation_he:
+        "ללא נראות לתוך ההוצאה שלהם עצמם, לצוותים אין תמריץ לבצע right-sizing, לנקות משאבים שאינם בשימוש, או לתהות על עלות שיצאה משליטה — יישום קלאסי של \"טרגדיית הנחלה המשותפת\" על חשבונית ענן משותפת. כשלי ממשל עלויות הם לרוב לא אירוע דרמטי בודד; הם הצטברות איטית של הוצאה בלתי מבוקרת על פני צוותים רבים.",
       resourceTitle: "Cost Management best practices",
       resourceUrl: "https://learn.microsoft.com/azure/cloud-adoption-framework/govern/cost-management/",
       keywords: ["chargeback", "showback", "accountability"],
@@ -560,15 +778,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "How does consolidated billing under AWS Organizations help with volume-based cost savings?",
+      question_he: "כיצד consolidated billing תחת AWS Organizations מסייע בחיסכון עלויות מבוסס-נפח?",
       options: [
         "Usage across all linked accounts is combined, so the organization can reach volume discount tiers and share Savings Plans/RI discounts faster",
         "Each account still gets billed and discounted completely independently",
         "It only consolidates invoices with no pricing benefit",
         "It requires every account to use identical resource types",
       ],
+      options_he: [
+        "הצריכה בכל החשבונות המקושרים משולבת יחד, כך שהארגון יכול להגיע למדרגות הנחת נפח ולשתף הנחות Savings Plans/RI מהר יותר",
+        "כל חשבון עדיין מחויב ומקבל הנחה באופן עצמאי לחלוטין",
+        "היא רק מאחדת חשבוניות ללא תועלת תמחורית",
+        "היא דורשת שכל חשבון ישתמש בסוגי משאבים זהים",
+      ],
       correctAnswer: 0,
       explanation:
         "Combining usage across all member accounts means volume tiers (and unused Reserved Instance / Savings Plan discounts) are shared organization-wide instead of being stranded in whichever single account happened to purchase them — a meaningful benefit that's invisible if you only look at one account's bill in isolation.",
+      explanation_he:
+        "שילוב הצריכה בכל חשבונות החברים משמעו שמדרגות נפח (וגם הנחות Reserved Instance / Savings Plan שלא נוצלו) משותפות בכל הארגון במקום להיתקע דווקא בחשבון הבודד שרכש אותן — יתרון משמעותי שנשאר בלתי נראה אם בוחנים רק את החשבונית של חשבון אחד בבידוד.",
       resourceTitle: "Consolidated billing for AWS Organizations",
       resourceUrl: "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/consolidated-billing.html",
       keywords: ["consolidated billing", "volume discount", "shared savings plans"],
@@ -581,15 +808,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is the advantage of a flexible committed use discount over a resource-based one in GCP?",
+      question_he: "מהו היתרון של flexible committed use discount לעומת discount מבוסס-משאב ב-GCP?",
       options: [
         "It applies the commitment's discount across a spend category (like general-purpose compute) rather than locking to one specific machine type and region",
         "It costs more but requires no commitment period",
         "It is only usable for storage, never compute",
         "It automatically renews at a higher discount rate",
       ],
+      options_he: [
+        "ההנחה מוחלת על פני קטגוריית הוצאה שלמה (כמו compute כללי) במקום להינעל לסוג מכונה ו-region ספציפיים בלבד",
+        "היא עולה יותר אך אינה דורשת תקופת התחייבות",
+        "היא ניתנת לשימוש רק עבור אחסון, לעולם לא עבור compute",
+        "היא מתחדשת אוטומטית בשיעור הנחה גבוה יותר",
+      ],
       correctAnswer: 0,
       explanation:
         "A resource-based commitment locks in a discount for one exact machine family/region combination — great if your footprint truly never changes. A flexible commitment applies across a broader compute spend category, so the discount keeps applying even as you shift machine types or regions, trading a slightly smaller discount for real adaptability.",
+      explanation_he:
+        "התחייבות מבוססת-משאב נועלת הנחה עבור שילוב מדויק אחד של משפחת מכונה ו-region — מצוין אם טביעת הרגל שלכם באמת לעולם לא משתנה. התחייבות גמישה חלה על קטגוריית הוצאת compute רחבה יותר, כך שההנחה ממשיכה לחול גם כשמשנים סוגי מכונה או regions, במחיר של הנחה מעט קטנה יותר תמורת גמישות אמיתית.",
       resourceTitle: "Committed use discounts",
       resourceUrl: "https://cloud.google.com/compute/docs/instances/committed-use-discounts-overview",
       keywords: ["committed use discount", "flexible cud", "resource-based cud"],
@@ -603,15 +839,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does Recovery Time Objective (RTO) measure?",
+      question_he: "מה מודד Recovery Time Objective (RTO)?",
       options: [
         "The maximum acceptable time to restore service after a disruption",
         "The maximum amount of data loss acceptable, measured in time",
         "The number of backups taken per day",
         "The physical distance between datacenters",
       ],
+      options_he: [
+        "את הזמן המרבי המקובל לשחזור השירות לאחר שיבוש",
+        "את כמות אובדן הנתונים המרבית המקובלת, נמדדת בזמן",
+        "את מספר הגיבויים הנלקחים ביום",
+        "את המרחק הפיזי בין מרכזי הנתונים",
+      ],
       correctAnswer: 0,
       explanation:
         "RTO answers \"how long can we be down?\" — it drives decisions like whether you need hot standby infrastructure (fast RTO, expensive) or can rebuild from backups over hours (slow RTO, cheap). It's a business decision expressed as an engineering target, not a purely technical measurement.",
+      explanation_he:
+        "RTO עונה על השאלה \"כמה זמן אפשר להיות מושבתים?\" — הוא מכתיב החלטות כמו האם נדרשת תשתית hot standby (RTO מהיר, יקר) או שניתן לבנות מחדש מגיבויים במשך שעות (RTO איטי, זול). זוהי החלטה עסקית המתורגמת ליעד הנדסי, לא מדד טכני גרידא.",
       resourceTitle: "Disaster recovery: RTO and RPO",
       resourceUrl: "https://learn.microsoft.com/azure/well-architected/reliability/disaster-recovery",
       keywords: ["rto", "recovery time objective", "downtime tolerance"],
@@ -624,15 +869,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does Recovery Point Objective (RPO) measure?",
+      question_he: "מה מודד Recovery Point Objective (RPO)?",
       options: [
         "The maximum acceptable amount of data loss, measured as time since the last recoverable copy",
         "The time it takes to restore a service",
         "The number of Availability Zones a region has",
         "The cost of a backup solution",
       ],
+      options_he: [
+        "את כמות אובדן הנתונים המרבית המקובלת, נמדדת כזמן שחלף מאז העותק הניתן לשחזור האחרון",
+        "את הזמן הנדרש לשחזור שירות",
+        "את מספר ה-Availability Zones ש-region מסוים כולל",
+        "את עלותו של פתרון גיבוי",
+      ],
       correctAnswer: 0,
       explanation:
         "RPO answers \"how much data can we afford to lose?\" — an RPO of 1 hour means backups/replication must happen at least that often, since anything since the last recovery point is gone in a disaster. RTO and RPO are the two numbers that should drive every backup and replication design decision, not be an afterthought.",
+      explanation_he:
+        "RPO עונה על השאלה \"כמה נתונים אפשר להרשות לעצמנו לאבד?\" — RPO של שעה אחת אומר שגיבויים/שכפול חייבים להתבצע לפחות בתדירות זו, שכן כל מה שקרה מאז נקודת השחזור האחרונה אבד באסון. RTO ו-RPO הם שני המספרים שאמורים להנחות כל החלטת עיצוב של גיבוי ושכפול, לא מחשבה שנייה.",
       resourceTitle: "Disaster recovery: RTO and RPO",
       resourceUrl: "https://learn.microsoft.com/azure/well-architected/reliability/disaster-recovery",
       keywords: ["rpo", "recovery point objective", "data loss tolerance"],
@@ -645,15 +899,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a single point of failure (SPOF)?",
+      question_he: "מהו single point of failure (SPOF)?",
       options: [
         "A component whose failure alone would bring down the whole system, with no redundant alternative",
         "A backup that is stored in only one region",
         "A firewall rule that blocks all traffic",
         "The first server ever deployed in an environment",
       ],
+      options_he: [
+        "רכיב שכשלונו לבדו יפיל את כל המערכת, ללא חלופה מיותרת (redundant)",
+        "גיבוי המאוחסן ב-region בודד בלבד",
+        "כלל firewall שחוסם את כל התעבורה",
+        "השרת הראשון שנפרס אי-פעם בסביבה",
+      ],
       correctAnswer: 0,
       explanation:
         "A single database instance with no replica, a lone NAT gateway, one on-call engineer with undocumented knowledge — all are SPOFs: remove them and the whole system stops. Resilient architecture is largely the practice of finding and eliminating SPOFs through redundancy, whether that's multiple AZs, multiple replicas, or documented runbooks.",
+      explanation_he:
+        "מופע מסד נתונים בודד ללא replica, NAT gateway יחיד, מהנדס כונן יחיד עם ידע לא מתועד — כולם SPOF: הסירו אותם והמערכת כולה נעצרת. ארכיטקטורה עמידה היא במידה רבה תרגול של איתור וביטול SPOF-ים באמצעות יתירות (redundancy), בין אם זה באמצעות מספר AZs, מספר replicas, או runbooks מתועדים.",
       resourceTitle: "Reliability design principles (Azure Well-Architected)",
       resourceUrl: "https://learn.microsoft.com/azure/well-architected/reliability/principles",
       keywords: ["single point of failure", "spof", "redundancy"],
@@ -666,10 +929,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "Taking regular backups protects against data loss from accidental deletion, corruption, or ransomware — not just hardware failure.",
+      question_he: "ביצוע גיבויים סדירים מגן מפני אובדן נתונים כתוצאה ממחיקה בשוגג, השחתת נתונים, או ransomware — ולא רק מפני תקלת חומרה.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Cloud storage redundancy already protects against hardware failure (a disk dying) — backups exist for the failure modes redundancy doesn't cover: a person deleting the wrong table, an application bug corrupting data, or ransomware encrypting it. Because redundancy instantly replicates a mistake too, backups (ideally on a separate, immutable copy) are the actual defense against those scenarios.",
+      explanation_he:
+        "יתירות (redundancy) של אחסון בענן כבר מגנה מפני תקלת חומרה (דיסק שמת) — גיבויים קיימים עבור אופני הכשל שהיתירות אינה מכסה: אדם שמוחק את הטבלה הלא נכונה, באג באפליקציה שמשחית נתונים, או ransomware שמצפין אותם. מכיוון שהיתירות משכפלת מיידית גם טעות, גיבויים (רצוי על עותק נפרד ובלתי ניתן לשינוי) הם ההגנה האמיתית מפני תרחישים אלה.",
       resourceTitle: "Azure Backup overview",
       resourceUrl: "https://learn.microsoft.com/azure/backup/backup-overview",
       keywords: ["backup", "ransomware", "accidental deletion"],
@@ -682,15 +949,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a disaster recovery (DR) plan?",
+      question_he: "מהי תוכנית disaster recovery (DR)?",
       options: [
         "A documented, tested strategy for restoring systems and data after a major disruption, within agreed RTO/RPO targets",
         "A plan for handling customer support tickets",
         "An insurance policy against cloud provider outages",
         "A single backup file stored offline",
       ],
+      options_he: [
+        "אסטרטגיה מתועדת ונבדקת לשחזור מערכות ונתונים לאחר שיבוש משמעותי, במסגרת יעדי RTO/RPO מוסכמים",
+        "תוכנית לטיפול בפניות תמיכת לקוחות",
+        "פוליסת ביטוח מפני תקלות אצל ספק הענן",
+        "קובץ גיבוי בודד המאוחסן במצב offline",
+      ],
       correctAnswer: 0,
       explanation:
         "A DR plan is more than backups — it defines who does what, in what order, to bring services back within the RTO/RPO the business agreed to, and it's only trustworthy if it has actually been tested. An untested DR plan is a hypothesis, not a plan.",
+      explanation_he:
+        "תוכנית DR היא הרבה מעבר לגיבויים — היא מגדירה מי עושה מה, ובאיזה סדר, כדי להחזיר שירותים לפעולה במסגרת ה-RTO/RPO שהעסק הסכים עליהם, והיא אמינה רק אם היא אכן נבדקה בפועל. תוכנית DR שלא נבדקה היא היפותזה, לא תוכנית.",
       resourceTitle: "Disaster recovery options in the cloud",
       resourceUrl: "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html",
       keywords: ["disaster recovery", "dr plan", "rto rpo"],
@@ -703,15 +979,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is the key difference between a backup and a snapshot?",
+      question_he: "מהו ההבדל המרכזי בין backup ל-snapshot?",
       options: [
         "A snapshot is typically a point-in-time disk image tied to the same platform/region; a backup is often policy-managed, retained longer, and may be portable elsewhere",
         "They are identical in every cloud",
         "Snapshots are always stored off-cloud",
         "Backups can only be taken once per resource",
       ],
+      options_he: [
+        "snapshot הוא בדרך כלל תמונת דיסק בנקודת זמן מסוימת, הקשורה לאותה פלטפורמה/region; backup לרוב מנוהל לפי policy, נשמר לזמן ארוך יותר, וייתכן שהוא ניתן להעברה למקום אחר",
+        "הם זהים לחלוטין בכל ענן",
+        "snapshots תמיד מאוחסנים מחוץ לענן",
+        "ניתן לבצע backup רק פעם אחת לכל משאב",
+      ],
       correctAnswer: 0,
       explanation:
         "Snapshots are fast, incremental, and great for quick rollback (undo the last deployment) but are usually coupled to the same disk/region/platform. Backup solutions add scheduling, longer retention policies, and sometimes cross-region or cross-account copies — a different tool for a different recovery scenario, and many designs use both together.",
+      explanation_he:
+        "snapshots הם מהירים, אינקרמנטליים, ומצוינים לרולבק מהיר (ביטול הפריסה האחרונה) אך בדרך כלל צמודים לאותו דיסק/region/פלטפורמה. פתרונות backup מוסיפים תזמון, מדיניות שמירה ארוכה יותר, ולעיתים עותקים חוצי-region או חוצי-חשבון — כלי שונה לתרחיש שחזור שונה, ועיצובים רבים משתמשים בשניהם יחד.",
       resourceTitle: "Persistent disk snapshots",
       resourceUrl: "https://cloud.google.com/compute/docs/disks/snapshots",
       keywords: ["snapshot vs backup", "point-in-time", "retention"],
@@ -724,15 +1009,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is the difference between active-active and active-passive disaster recovery architectures?",
+      question_he: "מה ההבדל בין ארכיטקטורת disaster recovery מסוג active-active לבין active-passive?",
       options: [
         "Active-active runs both sites serving traffic simultaneously; active-passive keeps a standby site idle until failover",
         "Active-passive is always cheaper and faster to fail over",
         "Active-active only works within a single Availability Zone",
         "They describe the same architecture with different names",
       ],
+      options_he: [
+        "ב-active-active שני האתרים מגישים תעבורה בו-זמנית; ב-active-passive האתר הגיבוי נשאר סרק עד למעבר (failover)",
+        "active-passive תמיד זולה יותר ומהירה יותר במעבר",
+        "active-active עובד רק בתוך Availability Zone בודד",
+        "שתיהן מתארות אותה ארכיטקטורה בשמות שונים",
+      ],
       correctAnswer: 0,
       explanation:
         "Active-active gives near-zero RTO because the secondary is already live and serving traffic — at the cost of running (and paying for) full duplicate capacity continuously, plus harder data-consistency problems. Active-passive is cheaper to run day to day but slower to fail over, since the standby needs to be scaled up and made current before serving traffic. Neither is universally better — it's an RTO/RPO-versus-cost tradeoff.",
+      explanation_he:
+        "active-active מעניקה RTO קרוב לאפס כי האתר המשני כבר פעיל ומגיש תעבורה — במחיר של הרצה (ותשלום) על קיבולת כפולה מלאה באופן רציף, בתוספת בעיות עקביות נתונים מורכבות יותר. active-passive זולה יותר להרצה יומיומית אך איטית יותר במעבר, מכיוון שהאתר הגיבוי צריך להיות מוגדל ומעודכן לפני שהוא יכול להגיש תעבורה. אף אחת מהן אינה עדיפה באופן גורף — זהו טרייד-אוף בין RTO/RPO לעלות.",
       resourceTitle: "Disaster recovery architectures",
       resourceUrl: "https://learn.microsoft.com/azure/well-architected/reliability/disaster-recovery",
       keywords: ["active-active", "active-passive", "dr architecture"],
@@ -745,10 +1039,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "Backups should be periodically tested with actual restore drills, not just assumed to work because the backup job reports success.",
+      question_he: "יש לבדוק גיבויים מעת לעת באמצעות תרגילי שחזור בפועל, ולא רק להניח שהם עובדים כי משימת הגיבוי מדווחת על הצלחה.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "A backup job reporting \"success\" only confirms data was written somewhere — it says nothing about whether that data can actually be restored into a working system under pressure. Untested backups are a common cause of failed disaster recovery: the first time anyone tries to restore is during a real incident, and that's exactly when surprises are most expensive.",
+      explanation_he:
+        "משימת גיבוי שמדווחת \"הצלחה\" רק מאשרת שהנתונים נכתבו למקום כלשהו — היא לא אומרת דבר על כך שאותם נתונים אכן ניתנים לשחזור למערכת פעילה תחת לחץ. גיבויים שלא נבדקו הם גורם נפוץ לכישלון disaster recovery: הפעם הראשונה שמישהו מנסה לשחזר היא במהלך תקרית אמיתית, ובדיוק אז ההפתעות הן היקרות ביותר.",
       resourceTitle: "Testing your disaster recovery plan",
       resourceUrl: "https://learn.microsoft.com/azure/well-architected/reliability/testing-strategy",
       keywords: ["restore testing", "backup validation", "dr drill"],
@@ -761,15 +1059,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is the purpose of chaos engineering?",
+      question_he: "מהי מטרתה של chaos engineering?",
       options: [
         "Deliberately injecting controlled failures into a system to verify it actually degrades or recovers as designed",
         "Randomly deleting production data to test backups",
         "Introducing bugs into code before release",
         "A method for generating random test data",
       ],
+      options_he: [
+        "הזרקה מכוונת של כשלים מבוקרים למערכת כדי לוודא שהיא אכן נחלשת או מתאוששת כפי שתוכנן",
+        "מחיקה אקראית של נתוני פרודקשן כדי לבדוק גיבויים",
+        "הכנסת באגים לקוד לפני שחרור",
+        "שיטה ליצירת נתוני בדיקה אקראיים",
+      ],
       correctAnswer: 0,
       explanation:
         "Chaos engineering runs planned, controlled failure experiments (kill an instance, add network latency, saturate a dependency) in a monitored way to validate that redundancy and failover actually work as assumed — because assumptions about resilience are frequently wrong until tested under real failure conditions. It's the opposite of reckless: hypothesis-driven, scoped, and reversible.",
+      explanation_he:
+        "chaos engineering מריצה ניסויי כשל מתוכננים ומבוקרים (הריגת מופע, הוספת latency ברשת, העמסת תלות עד רוויה) באופן מנוטר כדי לאמת שהיתירות וה-failover אכן פועלים כמצופה — כי הנחות לגבי עמידות שגויות לעיתים קרובות עד שהן נבדקות בתנאי כשל אמיתיים. זהו ההיפך מפזיזות: מונחה-היפותזה, מוגבל בהיקף, וניתן להיפוך.",
       resourceTitle: "Chaos engineering (AWS)",
       resourceUrl: "https://aws.amazon.com/blogs/architecture/verify-the-resilience-of-your-workloads-using-chaos-engineering/",
       keywords: ["chaos engineering", "fault injection", "resilience testing"],
@@ -782,15 +1089,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is the value of running a \"game day\" exercise?",
+      question_he: "מה הערך של הרצת תרגיל \"game day\"?",
       options: [
         "It rehearses the team's incident response to a simulated failure, revealing gaps in tooling, runbooks and communication before a real incident does",
         "It is a purely social team-building event with no operational content",
         "It replaces the need for monitoring and alerting",
         "It is only relevant for security teams, not operations",
       ],
+      options_he: [
+        "הוא מתרגל את תגובת הצוות לתקרית מדומה, וחושף פערים בכלים, ב-runbooks ובתקשורת לפני שתקרית אמיתית תעשה זאת",
+        "הוא אירוע גיבוש חברתי טהור וללא תוכן תפעולי",
+        "הוא מייתר את הצורך בניטור והתראות",
+        "הוא רלוונטי רק לצוותי אבטחה, לא לתפעול",
+      ],
       correctAnswer: 0,
       explanation:
         "A game day simulates an incident (a region outage, a dependency failure) end to end — paging, diagnosis, failover, communication — so that the gaps (a runbook that's out of date, a dashboard no one remembers exists, a missing permission) surface in a low-stakes drill instead of during a real 3am outage. It complements chaos engineering by testing the humans and process, not just the system.",
+      explanation_he:
+        "game day מדמה תקרית (תקלת region, כשל בתלות) מקצה לקצה — הזעקה, אבחון, failover, תקשורת — כך שהפערים (runbook לא מעודכן, dashboard ששכחו שקיים, הרשאה חסרה) עולים במסגרת תרגיל בסיכון נמוך במקום במהלך תקלה אמיתית בשעה 3 לפנות בוקר. הוא משלים את chaos engineering בכך שהוא בוחן את האנשים והתהליך, לא רק את המערכת.",
       resourceTitle: "Testing your disaster recovery plan",
       resourceUrl: "https://learn.microsoft.com/azure/well-architected/reliability/testing-strategy",
       keywords: ["game day", "incident response drill", "runbook validation"],
@@ -803,15 +1119,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Why do canary and rolling deployment strategies limit \"blast radius\" compared to deploying to 100% of instances at once?",
+      question_he: "מדוע אסטרטגיות פריסה מסוג canary ו-rolling מצמצמות את \"blast radius\" בהשוואה לפריסה ל-100% מהמופעים בבת אחת?",
       options: [
         "They expose a new version to only a small subset of traffic or instances first, so a bad release affects few users and can be rolled back before wide impact",
         "They make deployments happen faster overall",
         "They eliminate the need for monitoring during a deployment",
         "They only apply to database migrations",
       ],
+      options_he: [
+        "הן חושפות גרסה חדשה תחילה רק לתת-קבוצה קטנה של תעבורה או מופעים, כך שגרסה פגומה משפיעה על מעט משתמשים וניתן לבצע rollback לפני השפעה רחבה",
+        "הן גורמות לפריסות לקרות מהר יותר בסך הכול",
+        "הן מייתרות את הצורך בניטור במהלך פריסה",
+        "הן חלות רק על מיגרציות של מסדי נתונים",
+      ],
       correctAnswer: 0,
       explanation:
         "Blast radius is how much of the system a single failure can affect. A canary release sends a small traffic percentage to the new version and watches error rates before continuing — if something's wrong, only that small slice of users was ever affected, and rollback is cheap. An all-at-once deployment has no such containment: any bug in the new version instantly affects everyone.",
+      explanation_he:
+        "blast radius הוא היקף המערכת שכשל בודד עלול להשפיע עליו. פריסת canary שולחת אחוז קטן מהתעבורה לגרסה החדשה ועוקבת אחר שיעורי שגיאות לפני שהיא ממשיכה — אם משהו לא בסדר, רק אותה פרוסה קטנה של משתמשים הושפעה אי-פעם, ו-rollback זול. פריסה חד-פעמית לכולם חסרת בלימה כזו: כל באג בגרסה החדשה משפיע מיידית על כולם.",
       resourceTitle: "Progressive delivery patterns",
       resourceUrl: "https://cloud.google.com/architecture/application-deployment-and-testing-strategies",
       keywords: ["blast radius", "canary deployment", "rolling deployment"],
@@ -824,10 +1149,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "true-false",
       question: "Achieving a Recovery Point Objective (RPO) of zero — no data loss whatsoever — is technically possible but typically very expensive and complex.",
+      question_he: "השגת Recovery Point Objective (RPO) של אפס — כלומר ללא אובדן נתונים כלל — אפשרית מבחינה טכנית אך בדרך כלל יקרה ומורכבת מאוד.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "RPO zero requires synchronous replication to a second location before any write is acknowledged — which adds latency to every write and demands infrastructure (and often application redesign) capable of surviving a failure mid-transaction without losing anything in flight. Most systems deliberately choose a small non-zero RPO because the cost and complexity of true zero rarely matches the actual business need.",
+      explanation_he:
+        "RPO אפס דורש שכפול סינכרוני למיקום שני לפני שכל כתיבה מאושרת — מה שמוסיף latency לכל כתיבה ודורש תשתית (ולעיתים קרובות עיצוב מחדש של האפליקציה) שמסוגלת לשרוד כשל באמצע טרנזקציה בלי לאבד דבר שהיה בתהליך. רוב המערכות בוחרות במכוון ב-RPO קטן שאינו אפס, כי העלות והמורכבות של אפס אמיתי לעיתים רחוקות תואמות את הצורך העסקי בפועל.",
       resourceTitle: "Choosing an RPO/RTO target",
       resourceUrl: "https://learn.microsoft.com/azure/well-architected/reliability/disaster-recovery",
       keywords: ["rpo zero", "synchronous replication", "cost of resilience"],

@@ -15,15 +15,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is single sign-on (SSO)?",
+      question_he: "מהו Single Sign-On (SSO)?",
       options: [
         "Authenticating once with a central identity provider and accessing many applications without separate logins",
         "Using one password for every website",
         "A password manager browser extension",
         "Logging in from only one device",
       ],
+      options_he: [
+        "התחברות פעם אחת מול ספק זהויות מרכזי (IdP) וגישה למגוון אפליקציות בלי צורך בהתחברות נפרדת לכל אחת",
+        "שימוש באותה סיסמה בכל אתר",
+        "תוסף דפדפן לניהול סיסמאות",
+        "התחברות ממכשיר אחד בלבד",
+      ],
       correctAnswer: 0,
       explanation:
         "SSO centralizes authentication at an identity provider (IdP); applications trust the IdP's assertion instead of holding their own credentials. That's categorically different from reusing one password everywhere — with SSO, apps never see a password at all, and security controls (MFA, risk policies, revocation) live in exactly one place.",
+      explanation_he:
+        "SSO מרכז את תהליך האימות אצל ספק הזהויות (IdP); האפליקציות סומכות על ה-assertion שהוא מנפיק במקום להחזיק אישורי התחברות משלהן. זה שונה במהותו משימוש חוזר באותה סיסמה בכל מקום — ב-SSO האפליקציות בכלל לא נחשפות לסיסמה, ובקרות האבטחה (MFA, מדיניות סיכון, ביטול הרשאות) מרוכזות במקום אחד בלבד.",
       resourceTitle: "What is SSO? (Microsoft Entra)",
       resourceUrl: "https://learn.microsoft.com/entra/identity/enterprise-apps/what-is-single-sign-on",
       keywords: ["sso", "single sign-on", "idp"],
@@ -36,15 +45,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does identity federation mean?",
+      question_he: "מה המשמעות של Identity Federation?",
       options: [
         "A trust relationship where one system accepts identities authenticated by another — users prove who they are once, at their home IdP",
         "Merging two user databases into one",
         "Copying passwords between systems nightly",
         "A group of administrators who share an account",
       ],
+      options_he: [
+        "יחס אמון שבו מערכת אחת מקבלת זהויות שאומתו על ידי מערכת אחרת — המשתמשים מוכיחים מי הם פעם אחת, אצל ה-IdP הביתי שלהם",
+        "מיזוג של שני מאגרי משתמשים לאחד",
+        "העתקת סיסמאות בין מערכות מדי לילה",
+        "קבוצת מנהלי מערכת שחולקים חשבון משותף",
+      ],
       correctAnswer: 0,
       explanation:
         "Federation is trust, not synchronization: the service provider (SP) cryptographically trusts assertions issued by the identity provider, so no credentials are copied or shared — only signed statements like 'this is alice@corp, authenticated with MFA at 09:14'. This is how a company's Entra ID or Okta signs employees into AWS, Salesforce or GitHub without those services storing corp passwords.",
+      explanation_he:
+        "Federation מבוסס על אמון, לא על סנכרון: ספק השירות (SP) סומך באופן קריפטוגרפי על assertions שמונפקים על ידי ספק הזהויות, כך שאף אישור התחברות לא מועתק או משותף — רק הצהרות חתומות כגון 'זו alice@corp, אומתה עם MFA בשעה 09:14'. כך בדיוק Entra ID או Okta של חברה מחברים עובדים ל-AWS, Salesforce או GitHub בלי שהשירותים האלה אי פעם יאחסנו את סיסמאות הארגון.",
       resourceTitle: "Federated identity (Microsoft identity platform)",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/federation",
       keywords: ["federation", "trust", "idp", "sp"],
@@ -57,15 +75,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "How do SAML and OIDC compare?",
+      question_he: "איך משווים בין SAML ל-OIDC?",
       options: [
         "SAML is the older XML-based enterprise protocol; OIDC is a JSON/REST protocol built on OAuth 2.0, dominant in modern and mobile apps",
         "SAML is for machines, OIDC for humans only",
         "OIDC is proprietary to Google",
         "They cannot both be used by the same identity provider",
       ],
+      options_he: [
+        "SAML הוא הפרוטוקול הארגוני הוותיק יותר, מבוסס XML; OIDC הוא פרוטוקול JSON/REST הבנוי על OAuth 2.0, והדומיננטי באפליקציות מודרניות וניידות",
+        "SAML מיועד למכונות בלבד, ו-OIDC לבני אדם בלבד",
+        "OIDC הוא פרוטוקול קנייני של Google",
+        "לא ניתן להשתמש בשניהם אצל אותו ספק זהויות",
+      ],
       correctAnswer: 0,
       explanation:
         "Both solve federated sign-in; the difference is era and encoding. SAML (2005) exchanges signed XML assertions via browser redirects/POSTs — still everywhere in enterprise SaaS. OIDC layers an authentication identity token (a JWT) on OAuth 2.0's authorization flows — lighter, API-friendly, the default for anything new. Every serious IdP (Entra ID, Okta, Google) speaks both, per application.",
+      explanation_he:
+        "שני הפרוטוקולים פותרים את אותה בעיה — התחברות מאוחדת; ההבדל הוא בתקופה ובקידוד. SAML (2005) מחליף assertions חתומים בפורמט XML דרך redirect/POST בדפדפן — עדיין נפוץ מאוד ב-SaaS ארגוני. OIDC מוסיף שכבת אימות זהות (ID token בפורמט JWT) מעל תהליכי ההרשאה של OAuth 2.0 — קליל יותר, ידידותי ל-API, ובררת המחדל לכל דבר חדש. כל ספק זהויות רציני (Entra ID, Okta, Google) תומך בשניהם, בהתאם לאפליקציה.",
       resourceTitle: "SAML vs OIDC (Okta Developer)",
       resourceUrl: "https://developer.okta.com/docs/concepts/saml/",
       keywords: ["saml", "oidc", "protocols", "comparison"],
@@ -78,15 +105,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "In OIDC, what is the ID token?",
+      question_he: "מהו ה-ID token ב-OIDC?",
       options: [
         "A signed JWT asserting who the user is and how/when they authenticated — the artifact the app verifies to establish identity",
         "A random session cookie",
         "The user's password, encrypted",
         "A rate-limiting token for the API",
       ],
+      options_he: [
+        "JWT חתום שמעיד מי המשתמש וכיצד/מתי הוא אומת — הפריט שהאפליקציה מאמתת כדי לקבוע את הזהות",
+        "עוגיית session אקראית",
+        "הסיסמה של המשתמש, מוצפנת",
+        "טוקן להגבלת קצב בקשות ל-API",
+      ],
       correctAnswer: 0,
       explanation:
         "The ID token is OIDC's whole point: a JSON Web Token signed by the IdP carrying claims — subject, issuer, audience, auth time, MFA method. The app validates the signature against the IdP's published keys and trusts the claims; no password ever reaches it. Keep it distinct from the access token (for calling APIs) — conflating the two is a classic implementation bug.",
+      explanation_he:
+        "ה-ID token הוא כל הרעיון מאחורי OIDC: JWT חתום על ידי ה-IdP הנושא claims — subject, issuer, audience, זמן האימות, שיטת ה-MFA. האפליקציה מאמתת את החתימה מול המפתחות הפומביים של ה-IdP וסומכת על ה-claims; שום סיסמה לא מגיעה אליה בכלל. חשוב להבחין בינו לבין access token (המשמש לקריאה ל-API) — בלבול בין השניים הוא באג יישום קלאסי.",
       resourceTitle: "ID tokens (Microsoft identity platform)",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/id-tokens",
       keywords: ["id token", "jwt", "claims", "oidc"],
@@ -100,10 +136,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "Federating your corporate IdP into cloud consoles (e.g. Entra ID → AWS IAM Identity Center) means employees sign in with corporate credentials and lose access automatically when offboarded.",
+      question_he:
+        "Federation של ה-IdP הארגוני שלכם אל מסופי ניהול בענן (למשל Entra ID ← AWS IAM Identity Center) משמעו שעובדים מתחברים עם אישורי ההתחברות הארגוניים שלהם, ומאבדים גישה באופן אוטומטי בעת עזיבתם.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Console federation makes the corporate directory the single source of truth: sign-in happens at the IdP (with its MFA and conditional access), the cloud maps the assertion to roles/permission sets, and disabling the corporate account severs every federated cloud access at once. The unmanaged alternative — local cloud users per person — is how ex-employees keep working credentials for months.",
+      explanation_he:
+        "Federation של מסופי הענן הופך את הדירקטורי הארגוני למקור אמת יחיד: ההתחברות מתבצעת אצל ה-IdP (עם ה-MFA וה-conditional access שלו), הענן ממפה את ה-assertion לתפקידים/סטים של הרשאות, וניטרול החשבון הארגוני חותך בבת אחת את כל הגישה המאוגדת לענן. החלופה הבלתי מנוהלת — משתמשים מקומיים בענן לכל אדם — היא הדרך שבה עובדים לשעבר ממשיכים להחזיק אישורי התחברות פעילים במשך חודשים.",
       resourceTitle: "IAM Identity Center identity sources (AWS)",
       resourceUrl: "https://docs.aws.amazon.com/singlesignon/latest/userguide/manage-your-identity-source.html",
       keywords: ["console federation", "offboarding", "corporate idp"],
@@ -116,15 +157,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "In a federation flow, what are the IdP and SP roles?",
+      question_he: "מהם התפקידים של IdP ו-SP בתהליך federation?",
       options: [
         "The identity provider (IdP) authenticates users and issues assertions; the service provider (SP) is the application that consumes and trusts them",
         "The IdP hosts the application, the SP stores passwords",
         "Both terms describe the same server",
         "The SP authenticates users for the IdP",
       ],
+      options_he: [
+        "ספק הזהויות (IdP) מאמת משתמשים ומנפיק assertions; ספק השירות (SP) הוא האפליקציה שצורכת אותם וסומכת עליהם",
+        "ה-IdP מארח את האפליקציה, וה-SP מאחסן את הסיסמאות",
+        "שני המונחים מתארים את אותו שרת עצמו",
+        "ה-SP מאמת משתמשים עבור ה-IdP",
+      ],
       correctAnswer: 0,
       explanation:
         "Division of labor: the IdP (Entra ID, Okta, ADFS) owns credentials, MFA and session policy; the SP (the app — a cloud console, a SaaS tool) owns authorization of what the asserted identity may do. The dance: user hits SP → redirected to IdP → authenticates → returns with a signed assertion → SP validates and starts a session. Knowing who plays which role is step one of every SSO troubleshooting session.",
+      explanation_he:
+        "חלוקת התפקידים: ה-IdP (Entra ID, Okta, ADFS) אחראי על אישורי ההתחברות, ה-MFA ומדיניות ה-session; ה-SP (האפליקציה עצמה — מסוף ניהול בענן, כלי SaaS) אחראי על ההרשאה — מה מותר לזהות המאומתת לעשות. הריקוד: המשתמש פונה ל-SP ← מופנה ל-IdP ← מתאמת ← חוזר עם assertion חתום ← ה-SP מאמת אותו ופותח session. לדעת מי משחק איזה תפקיד זה הצעד הראשון בכל פתרון תקלות SSO.",
       resourceTitle: "SAML authentication flow (Microsoft Entra)",
       resourceUrl: "https://learn.microsoft.com/entra/identity-platform/single-sign-on-saml-protocol",
       keywords: ["idp", "sp", "assertion", "flow"],
@@ -137,15 +187,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "A GitHub Actions pipeline needs to deploy to your cloud. What is the modern, keyless approach?",
+      question_he: "צינור GitHub Actions צריך לפרוס לענן שלכם. מהי הגישה המודרנית וללא מפתחות (keyless)?",
       options: [
         "Workload identity federation: the pipeline presents its OIDC token, which the cloud exchanges for short-lived credentials based on a configured trust",
         "A service account key / access key stored as a repository secret",
         "A shared admin password in the pipeline YAML",
         "Deploying manually to avoid credentials",
       ],
+      options_he: [
+        "Workload identity federation: הצינור מציג את ה-OIDC token שלו, והענן מחליף אותו באישורי התחברות קצרי-חיים על בסיס אמון שהוגדר מראש",
+        "מפתח Service Account / access key שמאוחסן כ-secret במאגר הקוד",
+        "סיסמת מנהל משותפת בקובץ ה-YAML של הצינור",
+        "פריסה ידנית כדי להימנע מאישורי התחברות",
+      ],
       correctAnswer: 0,
       explanation:
         "GitHub signs an OIDC token stating exactly which repo/branch/workflow is running; Azure (federated credentials), AWS (OIDC provider + AssumeRoleWithWebIdentity) and GCP (workload identity federation) validate it against a trust you configured and mint minutes-long credentials scoped to one role. Nothing to store, leak, or rotate — repository-secret keys are precisely the artifact attackers hunt for in CI systems.",
+      explanation_he:
+        "GitHub חותם OIDC token שמציין בדיוק אילו repo/branch/workflow פועלים; Azure (federated credentials), AWS (OIDC provider ‏+‏ AssumeRoleWithWebIdentity) ו-GCP (workload identity federation) מאמתים אותו מול אמון שהוגדר מראש ומנפיקים אישורי התחברות שתקפים לדקות בודדות, מוגבלים ל-IAM Role אחד. אין מה לאחסן, לדלוף או לסובב — מפתחות המאוחסנים כ-secret במאגר קוד הם בדיוק הפריט שתוקפים מחפשים במערכות CI.",
       resourceTitle: "Workload identity federation (GCP)",
       resourceUrl: "https://cloud.google.com/iam/docs/workload-identity-federation",
       keywords: ["workload federation", "oidc", "ci/cd", "keyless"],
@@ -158,15 +217,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multi-select",
       question: "Which security benefits does centralized federation provide? (Select all that apply.)",
+      question_he: "אילו יתרונות אבטחה מספק federation מרוכז? (בחרו את כל התשובות הנכונות.)",
       options: [
         "MFA and conditional access enforced once, at the IdP, for every federated app",
         "Instant offboarding — disable one account, lose all federated access",
         "No password sprawl across dozens of applications",
         "It eliminates the need for authorization decisions in each app",
       ],
+      options_he: [
+        "אכיפת MFA ו-conditional access פעם אחת, אצל ה-IdP, עבור כל אפליקציה מאוגדת",
+        "off-boarding מיידי — ניטרול חשבון אחד שולל את כל הגישה המאוגדת",
+        "מניעת התפזרות סיסמאות על פני עשרות אפליקציות",
+        "ביטול הצורך בהחלטות הרשאה בכל אפליקציה בנפרד",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Federation concentrates authentication where it can be defended properly — one MFA rollout, one risk engine, one kill switch, zero per-app password databases to breach. What it deliberately does NOT centralize is authorization: each application still decides what the authenticated identity may do (roles, permission sets). AuthN travels with the assertion; authZ stays local — mixing those up produces either lockouts or over-privilege.",
+      explanation_he:
+        "Federation מרכז את האימות במקום שבו ניתן להגן עליו כראוי — פריסת MFA אחת, מנוע סיכון אחד, מתג כיבוי אחד, ואפס מאגרי סיסמאות פר-אפליקציה שאפשר לפרוץ אליהם. מה ש-Federation במכוון לא מרכז הוא ההרשאה (authorization): כל אפליקציה עדיין קובעת בעצמה מה מותר לזהות המאומתת לעשות (תפקידים, סטים של הרשאות). האימות (AuthN) נוסע יחד עם ה-assertion; ההרשאה (AuthZ) נשארת מקומית — בלבול בין השניים גורם לנעילות מיותרות או להרשאות יתר.",
       resourceTitle: "Zero Trust identity (Microsoft)",
       resourceUrl: "https://learn.microsoft.com/security/zero-trust/deploy/identity",
       keywords: ["central mfa", "offboarding", "authn vs authz"],
@@ -179,15 +247,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What does SCIM add alongside SSO protocols like SAML/OIDC?",
+      question_he: "מה SCIM מוסיף לצד פרוטוקולי SSO כמו SAML/OIDC?",
       options: [
         "Automated provisioning — creating, updating and deactivating user accounts and groups in applications from the directory",
         "Stronger encryption for assertions",
         "A replacement for MFA",
         "Faster sign-in redirects",
       ],
+      options_he: [
+        "פרוביז'ן אוטומטי — יצירה, עדכון והשבתה של חשבונות משתמשים וקבוצות באפליקציות, ישירות מהדירקטורי",
+        "הצפנה חזקה יותר עבור ה-assertions",
+        "תחליף ל-MFA",
+        "הפניות התחברות מהירות יותר",
+      ],
       correctAnswer: 0,
       explanation:
         "SSO answers 'can this person sign in?'; SCIM answers 'does their account exist there, with the right attributes and groups — and is it gone when they leave?'. It's a REST/JSON standard the IdP uses to push lifecycle events into apps. Without provisioning, federated environments accumulate orphaned accounts — sign-in may be blocked, but the account, its data and any app-local tokens linger.",
+      explanation_he:
+        "SSO עונה על השאלה 'האם האדם הזה יכול להתחבר?'; SCIM עונה על השאלה 'האם החשבון שלו קיים שם, עם המאפיינים והקבוצות הנכונים — והאם הוא נעלם כשהוא עוזב?'. זהו תקן REST/JSON שה-IdP משתמש בו כדי לדחוף אירועי מחזור חיים (lifecycle) לאפליקציות. בלי פרוביז'ן, סביבות מאוגדות צוברות חשבונות יתומים — ההתחברות אולי חסומה, אבל החשבון, הנתונים שלו וכל טוקן מקומי באפליקציה נשארים קיימים.",
       resourceTitle: "What is SCIM? (Microsoft Entra provisioning)",
       resourceUrl: "https://learn.microsoft.com/entra/identity/app-provisioning/user-provisioning",
       keywords: ["scim", "provisioning", "lifecycle", "deprovisioning"],
@@ -200,10 +277,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "true-false",
       question: "OIDC is built on top of OAuth 2.0, adding a standardized authentication (identity) layer to OAuth's authorization framework.",
+      question_he: "OIDC בנוי מעל OAuth 2.0, ומוסיף שכבת אימות (זהות) סטנדרטית מעל מסגרת ההרשאה של OAuth.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "OAuth 2.0 by itself only delegates access ('this app may read your calendar') — it never standardized proving who the user is, and apps abusing access tokens as login proofs caused real vulnerabilities. OIDC fixed that by defining the ID token, the userinfo endpoint and discovery on top of OAuth's flows. Hence the practical shorthand: OAuth for what you may do, OIDC for who you are.",
+      explanation_he:
+        "OAuth 2.0 כשלעצמו רק מאציל גישה ('לאפליקציה הזו מותר לקרוא את היומן שלך') — הוא מעולם לא הגדיר תקן להוכחת זהות המשתמש, ואפליקציות שניצלו access tokens כהוכחת התחברות גרמו לפרצות אבטחה אמיתיות. OIDC פתר את זה על ידי הגדרת ה-ID token, ה-userinfo endpoint ומנגנון ה-discovery מעל תהליכי OAuth. מכאן קיצור הדרך המעשי: OAuth בשביל מה מותר לך לעשות, OIDC בשביל מי אתה.",
       resourceTitle: "OpenID Connect overview",
       resourceUrl: "https://openid.net/developers/how-connect-works/",
       keywords: ["oidc", "oauth", "authentication layer"],

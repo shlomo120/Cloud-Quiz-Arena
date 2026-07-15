@@ -16,15 +16,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does Microsoft Entra Conditional Access do?",
+      question_he: "מה עושה Conditional Access של Microsoft Entra?",
       options: [
         "Evaluates signals like user, location, device and risk to decide whether to allow, block, or require MFA for a sign-in",
         "Performs the multi-factor authentication challenge itself",
         "Synchronizes on-premises passwords to the cloud",
         "Encrypts authentication tokens between services",
       ],
+      options_he: [
+        "מעריך אותות כמו המשתמש, המיקום, המכשיר ורמת הסיכון כדי להחליט אם לאפשר, לחסום או לדרוש MFA בכניסה",
+        "מבצע בעצמו את אתגר האימות הרב-גורמי (MFA)",
+        "מסנכרן סיסמאות מקומיות (on-premises) לענן",
+        "מצפין Token-ים של אימות בין שירותים",
+      ],
       correctAnswer: 0,
       explanation:
         "Conditional Access is a policy engine: 'if this user signs in from this location on this device with this risk level, then require MFA / require a compliant device / block'. It doesn't perform MFA itself — it decides when MFA (or stricter controls) must happen. Password sync is Entra Connect's job. It's the central place where Zero Trust access decisions are expressed in Azure.",
+      explanation_he:
+        "Conditional Access הוא מנוע מדיניות: 'אם המשתמש הזה מתחבר מהמיקום הזה, מהמכשיר הזה, ברמת הסיכון הזו — אז דרוש MFA / דרוש מכשיר תואם (compliant) / חסום'. הוא לא מבצע בעצמו את ה-MFA, אלא מחליט מתי צריך MFA (או בקרות מחמירות יותר). סנכרון סיסמאות הוא תפקידו של Entra Connect. זהו המקום המרכזי שבו מתקבלות החלטות גישה בגישת Zero Trust ב-Azure.",
       resourceTitle: "What is Conditional Access?",
       resourceUrl: "https://learn.microsoft.com/entra/identity/conditional-access/overview",
       keywords: ["conditional access", "mfa", "zero trust", "sign-in policy"],
@@ -38,10 +47,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "Microsoft Entra Privileged Identity Management (PIM) lets administrators activate privileged roles just-in-time for a limited period instead of holding them permanently.",
+      question_he:
+        "Privileged Identity Management (PIM) של Microsoft Entra מאפשר למנהלים להפעיל תפקידים בעלי הרשאות מיוחדות באופן just-in-time לפרק זמן מוגבל, במקום להחזיק בהן באופן קבוע.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "PIM converts standing privilege into eligible privilege: an admin is eligible for a role and activates it only when needed, optionally with approval, MFA and a time limit — after which it expires automatically. This shrinks the window an attacker can exploit a compromised admin account and produces an audit trail of every activation. Permanent Global Administrator assignments are exactly what PIM exists to eliminate.",
+      explanation_he:
+        "PIM הופך הרשאה קבועה (standing privilege) להרשאה זכאית (eligible): מנהל זכאי לתפקיד מסוים ומפעיל אותו רק כשצריך, לעיתים בכפוף לאישור, ל-MFA ולמגבלת זמן — ולאחר מכן ההרשאה פוקעת אוטומטית. כך מצטמצם החלון שבו תוקף יכול לנצל חשבון מנהל שנפרץ, ונוצר תיעוד ביקורת (audit trail) לכל הפעלה. הקצאות קבועות של Global Administrator הן בדיוק מה ש-PIM נועד לבטל.",
       resourceTitle: "What is Privileged Identity Management?",
       resourceUrl: "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure",
       keywords: ["pim", "just-in-time", "privileged access", "least privilege"],
@@ -54,15 +68,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What do Azure Virtual Machine Scale Sets provide?",
+      question_he: "מה מספקים Azure Virtual Machine Scale Sets?",
       options: [
         "A group of identical VMs that can automatically scale out and in based on demand",
         "A backup vault for virtual machine disks",
         "A tool for resizing a single VM without downtime",
         "A migration service for on-premises servers",
       ],
+      options_he: [
+        "קבוצה של VM-ים זהים שיכולים להתרחב ולהתכווץ אוטומטית בהתאם לביקוש",
+        "כספת גיבוי (backup vault) לדיסקים של VM-ים",
+        "כלי לשינוי גודל של VM בודד ללא downtime",
+        "שירות הגירה (migration) לשרתים מקומיים (on-premises)",
+      ],
       correctAnswer: 0,
       explanation:
         "A scale set manages a fleet of identical VMs from one model: autoscale rules add instances under load and remove them when idle, and instances can spread across Availability Zones for resilience. It's the Azure counterpart of an AWS Auto Scaling group. Resizing a single VM or backing up disks are different operations — scale sets are about elastic capacity for the whole fleet.",
+      explanation_he:
+        "Scale Set מנהל צי שלם של VM-ים זהים ממודל אחד: כללי autoscale מוסיפים instance-ים תחת עומס ומסירים אותם כשאין צורך, וניתן לפרוס את ה-instance-ים על פני מספר Availability Zone לצורך עמידות. זהו המקבילה ב-Azure ל-Auto Scaling group ב-AWS. שינוי גודל של VM בודד או גיבוי דיסקים הן פעולות שונות לגמרי — ה-Scale Set עוסק בקיבולת אלסטית עבור הצי כולו.",
       resourceTitle: "What are Virtual Machine Scale Sets?",
       resourceUrl: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/overview",
       keywords: ["scale sets", "autoscale", "fleet", "elasticity"],
@@ -75,7 +98,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "Which Azure service provides a managed Kubernetes cluster?",
+      question_he: "איזה שירות Azure מספק Cluster מנוהל של Kubernetes?",
       options: [
+        "Azure Container Registry",
+        "Azure Kubernetes Service (AKS)",
+        "Azure Functions",
+        "Azure Batch",
+      ],
+      options_he: [
         "Azure Container Registry",
         "Azure Kubernetes Service (AKS)",
         "Azure Functions",
@@ -84,6 +114,8 @@ CQA.data.registerPack({
       correctAnswer: 1,
       explanation:
         "AKS runs the Kubernetes control plane for you (free of charge) — you manage and pay for the worker nodes. Container Registry only stores images, Functions runs event-driven code without containers to orchestrate, and Batch schedules large-scale jobs. Every major cloud has this tier: AKS in Azure, EKS in AWS, GKE in GCP.",
+      explanation_he:
+        "AKS מריץ עבורכם את control plane של Kubernetes (ללא עלות) — אתם מנהלים ומשלמים רק על ה-Node-ים העובדים (worker nodes). Container Registry רק מאחסן images, Functions מריץ קוד מונע-אירועים (event-driven) בלי Container-ים לתזמר, ו-Batch מתזמן עבודות בקנה מידה גדול. לכל ענן מרכזי יש שכבה כזו: AKS ב-Azure, EKS ב-AWS ו-GKE ב-GCP.",
       resourceTitle: "What is Azure Kubernetes Service?",
       resourceUrl: "https://learn.microsoft.com/azure/aks/what-is-aks",
       keywords: ["aks", "kubernetes", "containers", "orchestration"],
@@ -96,15 +128,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multi-select",
       question: "Which capabilities does Azure App Service provide? (Select all that apply.)",
+      question_he: "אילו יכולות מספק Azure App Service? (בחרו את כל התשובות הנכונות.)",
       options: [
         "Deployment slots that can be swapped for zero-downtime releases",
         "Built-in autoscale rules",
         "Custom domains with managed TLS certificates",
         "Direct root access to the underlying host OS kernel",
       ],
+      options_he: [
+        "Deployment slots שניתן להחליף (swap) ביניהם לצורך שחרור גרסאות ללא downtime",
+        "כללי autoscale מובנים",
+        "דומיינים מותאמים אישית (custom domains) עם תעודות TLS מנוהלות",
+        "גישת root ישירה לגרעין (kernel) של מערכת ההפעלה של המארח (host)",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "App Service is a PaaS web host: slots let you warm up a staging version and swap it into production instantly (and swap back if it misbehaves), autoscale reacts to load, and custom domains get free managed certificates. What you give up is the host itself — the platform owns the OS, which is precisely why patching and kernel access aren't your problem or your option.",
+      explanation_he:
+        "App Service הוא שירות אחסון PaaS לאתרים: ה-slots מאפשרים לחמם גרסת staging ולהחליף אותה ל-production באופן מיידי (ואף לחזור אחורה אם משהו משתבש), autoscale מגיב לעומס, ולדומיינים מותאמים אישית ניתן לקבל תעודות מנוהלות בחינם. מה שמוותרים עליו הוא המארח (host) עצמו — הפלטפורמה בבעלותה על מערכת ההפעלה, ולכן patching וגישת kernel אינם בעיה שלכם, אבל גם לא אופציה שלכם.",
       resourceTitle: "App Service overview",
       resourceUrl: "https://learn.microsoft.com/azure/app-service/overview",
       keywords: ["app service", "deployment slots", "paas", "autoscale"],
@@ -117,15 +158,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "At which layer does Azure Load Balancer operate, and what does that imply?",
+      question_he: "באיזו שכבה פועל Azure Load Balancer, ומה המשמעות של כך?",
       options: [
         "Layer 7 — it can route based on URL paths and cookies",
         "Layer 4 — it distributes TCP/UDP traffic without inspecting HTTP content",
         "Layer 3 — it only forwards ICMP packets",
         "Layer 2 — it switches Ethernet frames between VMs",
       ],
+      options_he: [
+        "Layer 7 — הוא יכול לנתב לפי נתיבי URL ו-Cookie-ים",
+        "Layer 4 — הוא מפזר תעבורת TCP/UDP מבלי לבדוק את תוכן ה-HTTP",
+        "Layer 3 — הוא מעביר הלאה רק חבילות ICMP",
+        "Layer 2 — הוא מבצע switching של מסגרות Ethernet בין VM-ים",
+      ],
       correctAnswer: 1,
       explanation:
         "Azure Load Balancer is a layer-4 device: it spreads TCP/UDP flows across backends using a hash, fast and protocol-agnostic, but blind to HTTP. When you need URL-path routing, cookie affinity, TLS termination or a WAF, you step up to Application Gateway, Azure's layer-7 load balancer. Choosing between them is the first decision in any Azure load-balancing design.",
+      explanation_he:
+        "Azure Load Balancer הוא מכשיר ברמת Layer 4: הוא מפזר זרימות TCP/UDP בין ה-backend-ים באמצעות hash — מהיר ואגנוסטי לפרוטוקול, אך עיוור לתוכן HTTP. כשצריך ניתוב לפי נתיב URL, הצמדה (affinity) לפי Cookie, סיום TLS או WAF, עוברים ל-Application Gateway, ה-Load Balancer ברמת Layer 7 של Azure. הבחירה ביניהם היא ההחלטה הראשונה בכל תכנון load balancing ב-Azure.",
       resourceTitle: "What is Azure Load Balancer?",
       resourceUrl: "https://learn.microsoft.com/azure/load-balancer/load-balancer-overview",
       keywords: ["load balancer", "layer 4", "application gateway", "tcp"],
@@ -138,15 +188,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Why would you create a user-defined route (UDR) in an Azure route table?",
+      question_he: "מדוע ליצור מסלול מוגדר-משתמש (user-defined route, UDR) בטבלת מסלולים (route table) של Azure?",
       options: [
         "To assign public IP addresses to VMs automatically",
         "To override Azure's default system routing — for example, forcing all outbound traffic through a firewall appliance",
         "To speed up traffic between two VMs in the same subnet",
         "To enable DNS resolution inside the VNet",
       ],
+      options_he: [
+        "כדי להקצות כתובות IP ציבוריות ל-VM-ים באופן אוטומטי",
+        "כדי לעקוף את ניתוב המערכת (system routing) המובנה של Azure — למשל, לכפות שכל התעבורה היוצאת תעבור דרך התקן firewall",
+        "כדי להאיץ תעבורה בין שני VM-ים באותו Subnet",
+        "כדי לאפשר resolution של DNS בתוך ה-VNet",
+      ],
       correctAnswer: 1,
       explanation:
         "Azure routes VNet traffic automatically with system routes; UDRs let you override that when the defaults aren't what you want. The classic pattern is 0.0.0.0/0 → next hop: your Azure Firewall or NVA, so every packet leaving the subnet is inspected first. Same-subnet traffic never consults a route table, and DNS/public IPs are separate features entirely.",
+      explanation_he:
+        "Azure מנתב תעבורת VNet אוטומטית באמצעות system routes; UDR מאפשר לעקוף זאת כאשר ברירת המחדל אינה מה שרוצים. התבנית הקלאסית היא 0.0.0.0/0 → next hop אל Azure Firewall או NVA שלכם, כך שכל חבילה היוצאת מה-Subnet נבדקת קודם. תעבורה בתוך אותו Subnet לעולם לא בודקת את טבלת המסלולים, ו-DNS/IP ציבורי הן יכולות נפרדות לגמרי.",
       resourceTitle: "Virtual network traffic routing",
       resourceUrl: "https://learn.microsoft.com/azure/virtual-network/virtual-networks-udr-overview",
       keywords: ["udr", "route table", "forced tunneling", "nva"],
@@ -159,15 +218,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is the key difference between a Private Endpoint and a service endpoint for reaching Azure PaaS services?",
+      question_he: "מהו ההבדל המרכזי בין Private Endpoint לבין service endpoint לצורך גישה לשירותי PaaS של Azure?",
       options: [
         "A Private Endpoint gives the service a private IP inside your VNet; a service endpoint still targets the service's public endpoint over the Azure backbone",
         "Service endpoints are more secure because they encrypt traffic",
         "Private Endpoints only work for virtual machines",
         "They are identical features with different names",
       ],
+      options_he: [
+        "Private Endpoint נותן לשירות כתובת IP פרטית בתוך ה-VNet שלכם; service endpoint עדיין פונה ל-endpoint הציבורי של השירות דרך ה-backbone של Azure",
+        "service endpoints מאובטחים יותר כי הם מצפינים את התעבורה",
+        "Private Endpoint פועל רק עבור מכונות וירטואליות (VM)",
+        "מדובר באותה יכולת בדיוק, רק עם שם אחר",
+      ],
       correctAnswer: 0,
       explanation:
         "A Private Endpoint injects a NIC with a private IP from your subnet that maps to one specific resource (e.g. one storage account) — traffic never touches a public address, and it works from peered networks and on-premises. A service endpoint merely extends your subnet's identity to the service's public endpoint over the backbone. Private Endpoints are the stronger (and costlier) isolation and the basis of most 'no public internet' architectures.",
+      explanation_he:
+        "Private Endpoint מכניס כרטיס רשת (NIC) עם כתובת IP פרטית מה-Subnet שלכם, הממופה למשאב ספציפי אחד (למשל חשבון storage מסוים) — התעבורה לעולם לא נוגעת בכתובת ציבורית, וזה עובד גם מרשתות peered וגם מ-on-premises. service endpoint רק מרחיב את הזהות של ה-Subnet שלכם אל ה-endpoint הציבורי של השירות דרך ה-backbone. Private Endpoint מספק בידוד חזק יותר (ויקר יותר) והוא הבסיס לרוב הארכיטקטורות מסוג 'ללא אינטרנט ציבורי'.",
       resourceTitle: "What is a private endpoint?",
       resourceUrl: "https://learn.microsoft.com/azure/private-link/private-endpoint-overview",
       keywords: ["private endpoint", "private link", "service endpoint", "paas isolation"],
@@ -180,10 +248,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "Traffic over an Azure ExpressRoute circuit does not traverse the public internet.",
+      question_he: "תעבורה על גבי מעגל (circuit) של Azure ExpressRoute אינה עוברת דרך האינטרנט הציבורי.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "ExpressRoute is a dedicated private connection between your on-premises network and Microsoft, provisioned through a connectivity provider — packets ride private circuits, giving predictable latency and higher bandwidth than a VPN. The trade-off: note that ExpressRoute is private, not encrypted by default; if you need encryption you layer it on (IPsec, MACsec). AWS Direct Connect and GCP Cloud Interconnect are the equivalents.",
+      explanation_he:
+        "ExpressRoute הוא חיבור פרטי ייעודי בין הרשת המקומית (on-premises) שלכם לבין Microsoft, המוקם דרך ספק קישוריות (connectivity provider) — החבילות נעות על מעגלים פרטיים, מה שנותן latency צפוי ורוחב פס גבוה יותר מ-VPN. שימו לב: ExpressRoute הוא פרטי, אך אינו מוצפן כברירת מחדל; אם נדרשת הצפנה, מוסיפים אותה כשכבה נוספת (IPsec, MACsec). AWS Direct Connect ו-GCP Cloud Interconnect הם המקבילות.",
       resourceTitle: "What is Azure ExpressRoute?",
       resourceUrl: "https://learn.microsoft.com/azure/expressroute/expressroute-introduction",
       keywords: ["expressroute", "private connectivity", "hybrid", "circuit"],
@@ -196,15 +268,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does an Azure Blob Storage lifecycle management policy let you do?",
+      question_he: "מה מאפשרת מדיניות ניהול מחזור חיים (lifecycle management) ב-Azure Blob Storage?",
       options: [
         "Automatically move blobs to cooler tiers or delete them based on rules such as days since last modification",
         "Replicate blobs to another cloud provider",
         "Compress blobs to save space",
         "Scan blobs for malware on upload",
       ],
+      options_he: [
+        "להעביר blob-ים אוטומטית לרבדים (tiers) קרים יותר או למחוק אותם לפי כללים כמו מספר ימים מאז השינוי האחרון",
+        "לשכפל blob-ים לספק ענן אחר",
+        "לדחוס blob-ים כדי לחסוך במקום",
+        "לסרוק blob-ים לאיתור תוכנות זדוניות בעת ההעלאה",
+      ],
       correctAnswer: 0,
       explanation:
         "Lifecycle policies automate the tiering you'd otherwise forget: 'if not modified for 30 days → Cool; 90 days → Archive; 365 days → delete'. Rules can also use last-access time and filter by prefix. This is the main lever for storage cost optimization — data ages, and paying Hot-tier prices for cold data is one of the most common cloud cost leaks.",
+      explanation_he:
+        "מדיניות lifecycle מבצעת אוטומטית את מעבר הרבדים (tiering) שאחרת הייתם שוכחים: 'אם לא שונה 30 ימים → Cool; 90 ימים → Archive; 365 ימים → מחיקה'. הכללים יכולים להתבסס גם על זמן הגישה האחרון ולסנן לפי prefix. זהו המנוף העיקרי לאופטימיזציית עלויות אחסון — נתונים 'מתיישנים', ותשלום מחירי Hot-tier עבור נתונים קרים הוא אחד הדלפים הנפוצים ביותר בעלויות ענן.",
       resourceTitle: "Blob Storage lifecycle management",
       resourceUrl: "https://learn.microsoft.com/azure/storage/blobs/lifecycle-management-overview",
       keywords: ["lifecycle management", "tiering", "cost optimization", "blob"],
@@ -217,15 +298,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "How does geo-redundant storage (GRS) differ from locally redundant storage (LRS)?",
+      question_he: "במה שונה geo-redundant storage (GRS) מ-locally redundant storage (LRS)?",
       options: [
         "GRS keeps more copies within the same datacenter",
         "GRS asynchronously replicates your data to a paired region hundreds of kilometers away",
         "GRS encrypts data while LRS does not",
         "GRS is only available for virtual machine disks",
       ],
+      options_he: [
+        "GRS שומר יותר עותקים בתוך אותו מרכז נתונים (datacenter)",
+        "GRS משכפל את הנתונים שלכם באופן א-סינכרוני (asynchronously) ל-Region מותאם (paired region) במרחק מאות קילומטרים",
+        "GRS מצפין נתונים ואילו LRS לא",
+        "GRS זמין רק עבור דיסקים של מכונות וירטואליות",
+      ],
       correctAnswer: 1,
       explanation:
         "LRS keeps three synchronous copies inside one datacenter — cheap, but a datacenter-level disaster loses everything. GRS keeps those three copies and asynchronously replicates to Azure's paired region, surviving a regional outage (with a small potential data loss window due to async lag). All redundancy options encrypt data; the choice is purely about how many failure scenarios you pay to survive.",
+      explanation_he:
+        "LRS שומר שלושה עותקים סינכרוניים בתוך מרכז נתונים אחד — זול, אבל אסון ברמת מרכז הנתונים מאבד הכל. GRS שומר את שלושת העותקים האלה ומשכפל א-סינכרונית ל-Region המותאם (paired region) של Azure, ובכך שורד תקלה ברמת ה-Region (עם חלון קטן של אובדן נתונים אפשרי בשל השהיית ה-async). כל אפשרויות ה-redundancy מצפינות נתונים; הבחירה נוגעת אך ורק לכמה תרחישי כשל אתם מוכנים לשלם כדי לשרוד.",
       resourceTitle: "Azure Storage redundancy",
       resourceUrl: "https://learn.microsoft.com/azure/storage/common/storage-redundancy",
       keywords: ["grs", "lrs", "redundancy", "paired region"],
@@ -239,10 +329,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "Azure immutable blob storage can enforce a time-based retention policy during which blobs cannot be modified or deleted, even by the storage account owner.",
+      question_he:
+        "אחסון blob בלתי-ניתן-לשינוי (immutable) ב-Azure יכול לאכוף מדיניות שימור (retention) מבוססת-זמן, שבמהלכה לא ניתן לשנות או למחוק blob-ים — אפילו לא על ידי בעל חשבון האחסון.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Immutable storage implements WORM (write once, read many): with a locked time-based retention policy, no one — not the owner, not an administrator — can modify or delete blobs until the clock runs out; legal holds do the same without a fixed end date. This is how regulated industries meet retention rules like SEC 17a-4. AWS matches it with S3 Object Lock and GCP with Bucket Lock.",
+      explanation_he:
+        "אחסון immutable מממש את מודל WORM (כתיבה חד-פעמית, קריאה מרובה): כאשר מדיניות retention מבוססת-זמן נעולה (locked), אף אחד — לא הבעלים ולא מנהל מערכת — לא יכול לשנות או למחוק blob-ים עד שהזמן חולף; legal hold עושה את אותו הדבר, אך ללא תאריך סיום קבוע. כך תעשיות מוסדרות (regulated) עומדות בדרישות retention כמו SEC 17a-4. AWS מציע יכולת מקבילה עם S3 Object Lock, ו-GCP עם Bucket Lock.",
       resourceTitle: "Immutable storage for Azure Blob Storage",
       resourceUrl: "https://learn.microsoft.com/azure/storage/blobs/immutable-storage-overview",
       keywords: ["immutable", "worm", "retention policy", "compliance"],
@@ -255,15 +350,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does Microsoft Defender for Cloud primarily provide?",
+      question_he: "מה מספק Microsoft Defender for Cloud בעיקרו?",
       options: [
         "Security posture management (secure score, misconfiguration findings) plus threat protection for workloads",
         "A network firewall for filtering VNet traffic",
         "A password manager for cloud administrators",
         "Antivirus for employee laptops",
       ],
+      options_he: [
+        "ניהול מצב אבטחה (secure score, איתור misconfiguration) יחד עם הגנה מפני איומים (threat protection) עבור workloads",
+        "firewall רשתי לסינון תעבורת VNet",
+        "מנהל סיסמאות (password manager) עבור מנהלי ענן",
+        "אנטי-וירוס למחשבי עובדים",
+      ],
       correctAnswer: 0,
       explanation:
         "Defender for Cloud has two halves: CSPM — it continuously assesses your resources against best practices and rolls the result into a secure score with prioritized recommendations — and workload protection plans (for servers, storage, databases, containers…) that detect active threats. It assesses and alerts; it doesn't sit inline filtering packets — that's Azure Firewall and NSGs.",
+      explanation_he:
+        "ל-Defender for Cloud יש שני חלקים: CSPM — הוא מעריך ברציפות את המשאבים שלכם מול best practices ומגלגל את התוצאה ל-secure score עם המלצות מדורגות בעדיפות — ותוכניות הגנה על workloads (עבור שרתים, storage, מסדי נתונים, Container-ים ועוד) שמזהות איומים פעילים. הוא מעריך ומתריע; הוא לא יושב inline לסנן חבילות — זה תפקידם של Azure Firewall ושל NSG.",
       resourceTitle: "What is Microsoft Defender for Cloud?",
       resourceUrl: "https://learn.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction",
       keywords: ["defender for cloud", "cspm", "secure score", "threat protection"],
@@ -276,15 +380,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multi-select",
       question: "Which statements about Azure Firewall are correct? (Select all that apply.)",
+      question_he: "אילו מהקביעות הבאות לגבי Azure Firewall נכונות? (בחרו את כל התשובות הנכונות.)",
       options: [
         "It can filter outbound traffic by fully qualified domain name (FQDN)",
         "It can block traffic to/from known-malicious IPs using threat intelligence",
         "It is a managed, stateful service that scales automatically",
         "Deploying it makes network security groups unnecessary",
       ],
+      options_he: [
+        "הוא יכול לסנן תעבורה יוצאת לפי שם דומיין מלא (FQDN)",
+        "הוא יכול לחסום תעבורה מ/אל כתובות IP ידועות כזדוניות באמצעות threat intelligence",
+        "מדובר בשירות מנוהל, מונע-מצב (stateful), שמתרחב אוטומטית",
+        "פריסתו הופכת את NSG למיותרים",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Azure Firewall is a managed stateful firewall: application rules filter by FQDN (e.g. allow *.github.com only), threat-intelligence filtering blocks known-bad addresses, and Microsoft handles scaling and availability. It complements rather than replaces NSGs — the common design is defense in depth: NSGs for east-west micro-segmentation at subnets/NICs, the firewall as the centralized north-south control point in a hub VNet.",
+      explanation_he:
+        "Azure Firewall הוא firewall מנוהל ומונע-מצב (stateful): כללי application מסננים לפי FQDN (למשל, לאפשר רק *.github.com), סינון threat intelligence חוסם כתובות ידועות כרעות, ו-Microsoft מטפלת בהרחבה (scaling) ובזמינות. הוא משלים ולא מחליף את ה-NSG — התכנון הנפוץ הוא הגנה בעומק (defense in depth): NSG למיקרו-סגמנטציה מזרח-מערב ברמת ה-Subnet/NIC, וה-firewall כנקודת בקרה מרכזית צפון-דרום ב-VNet מסוג hub.",
       resourceTitle: "What is Azure Firewall?",
       resourceUrl: "https://learn.microsoft.com/azure/firewall/overview",
       keywords: ["azure firewall", "fqdn filtering", "threat intelligence", "hub and spoke"],
@@ -297,10 +410,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "Azure provides basic infrastructure-level DDoS protection for all resources at no extra charge.",
+      question_he: "Azure מספק הגנת DDoS בסיסית ברמת התשתית עבור כל המשאבים, ללא תוספת תשלום.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Every Azure region includes always-on infrastructure DDoS protection that absorbs common volumetric attacks against the platform — you get it without configuring anything. The paid tier (DDoS Network/IP Protection) adds adaptive tuning to your traffic patterns, attack telemetry, alerting and cost protection. Knowing which layer is free versus paid matters when someone claims 'Azure already protects us from DDoS'.",
+      explanation_he:
+        "בכל Region של Azure קיימת הגנת DDoS ברמת תשתית שפועלת תמיד ובולמת התקפות נפחיות (volumetric) נפוצות כנגד הפלטפורמה — מקבלים אותה ללא כל הגדרה. הרובד בתשלום (DDoS Network/IP Protection) מוסיף כיוונון אדפטיבי לתבניות התעבורה שלכם, טלמטריית התקפות, התרעות והגנת עלות. חשוב לדעת איזה רובד חינמי ואיזה בתשלום כשמישהו טוען ש'Azure כבר מגן עלינו מפני DDoS'.",
       resourceTitle: "Azure DDoS Protection overview",
       resourceUrl: "https://learn.microsoft.com/azure/ddos-protection/ddos-protection-overview",
       keywords: ["ddos", "infrastructure protection", "network security"],
@@ -313,15 +430,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What do Azure resource locks do?",
+      question_he: "מה עושים resource locks ב-Azure?",
       options: [
         "Encrypt a resource so only its owner can read it",
         "Prevent accidental modification (ReadOnly) or deletion (CanNotDelete) of resources, regardless of the user's RBAC permissions",
         "Reserve compute capacity for future use",
         "Freeze a resource's monthly cost",
       ],
+      options_he: [
+        "מצפינים משאב כך שרק הבעלים שלו יכול לקרוא אותו",
+        "מונעים שינוי בשוגג (ReadOnly) או מחיקה (CanNotDelete) של משאבים, ללא קשר להרשאות RBAC של המשתמש",
+        "שומרים קיבולת מחשוב לשימוש עתידי",
+        "מקפיאים את העלות החודשית של משאב",
+      ],
       correctAnswer: 1,
       explanation:
         "Locks are a safety interlock above RBAC: a CanNotDelete lock stops deletion and a ReadOnly lock stops any change, even for users who otherwise have full permissions — they must consciously remove the lock first. That extra deliberate step is the point: it turns 'oops, deleted the production VNet' into a two-step operation nobody performs by accident. Locks inherit down from subscription and resource-group scope.",
+      explanation_he:
+        "Lock הוא נעילת בטיחות מעל ה-RBAC: lock מסוג CanNotDelete עוצר מחיקה, ו-lock מסוג ReadOnly עוצר כל שינוי — גם עבור משתמשים שבמצב רגיל יש להם הרשאות מלאות — הם חייבים להסיר את ה-lock במודע קודם. הצעד הנוסף והמכוון הזה הוא בדיוק העניין: הוא הופך את 'אופס, מחקתי את ה-VNet של production' לפעולה דו-שלבית שאף אחד לא מבצע בטעות. Lock-ים עוברים בירושה מרמת ה-subscription וה-resource group.",
       resourceTitle: "Lock your resources to protect them",
       resourceUrl: "https://learn.microsoft.com/azure/azure-resource-manager/management/lock-resources",
       keywords: ["resource locks", "cannotdelete", "readonly", "accidental deletion"],
@@ -334,15 +460,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Which statement about Azure resource tags is correct?",
+      question_he: "איזו קביעה לגבי תגיות (tags) של משאבים ב-Azure נכונה?",
       options: [
         "Tags applied to a resource group are automatically inherited by its resources",
         "Tags are not inherited by default — Azure Policy can enforce or copy them if needed",
         "Every resource requires at least one tag",
         "Tags can only be assigned when a resource is created",
       ],
+      options_he: [
+        "תגיות שהוחלו על resource group עוברות אוטומטית בירושה למשאבים שבתוכו",
+        "תגיות אינן עוברות בירושה כברירת מחדל — Azure Policy יכול לאכוף או להעתיק אותן בעת הצורך",
+        "כל משאב חייב לפחות תגית אחת",
+        "ניתן להקצות תגיות רק בעת יצירת המשאב",
+      ],
       correctAnswer: 1,
       explanation:
         "The non-inheritance surprises many teams: tagging a resource group does nothing to the resources inside it, so cost reports 'by tag' quietly miss untagged resources. The standard fix is Azure Policy — a modify effect can copy tags from the resource group, or a deny effect can require tags at creation. Tags are optional and editable any time; their value is entirely in the discipline (usually policy-enforced) around them.",
+      explanation_he:
+        "אי-ההורשה מפתיעה צוותים רבים: תיוג resource group לא עושה דבר למשאבים שבתוכו, כך שדוחות עלות 'לפי תגית' מפספסים בשקט משאבים שלא תויגו. הפתרון הסטנדרטי הוא Azure Policy — אפקט modify יכול להעתיק תגיות מה-resource group, ואפקט deny יכול לדרוש תגיות בעת היצירה. תגיות הן אופציונליות וניתנות לעריכה בכל עת; הערך שלהן טמון כולו במשמעת (בדרך כלל נאכפת על ידי policy) שסביבן.",
       resourceTitle: "Use tags to organize your Azure resources",
       resourceUrl: "https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources",
       keywords: ["tags", "inheritance", "cost allocation", "azure policy"],
@@ -355,15 +490,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is Azure Monitor?",
+      question_he: "מהו Azure Monitor?",
       options: [
         "The platform service that collects metrics and logs from Azure resources and powers alerts and dashboards",
         "A tool that watches employee screen activity",
         "A service that monitors Azure datacenter temperatures",
         "A billing alert system only",
       ],
+      options_he: [
+        "שירות הפלטפורמה שאוסף מטריקות ולוגים ממשאבי Azure ומפעיל alerts ו-dashboards",
+        "כלי שעוקב אחר פעילות המסך של עובדים",
+        "שירות שמנטר את הטמפרטורה במרכזי הנתונים של Azure",
+        "מערכת התרעות חיוב (billing) בלבד",
+      ],
       correctAnswer: 0,
       explanation:
         "Azure Monitor is the umbrella observability service: platform metrics and the Activity Log arrive automatically, resource logs and VM guest telemetry arrive once you configure diagnostic settings, and on top sit alerts, dashboards, workbooks and Application Insights. Its AWS counterpart is CloudWatch and its GCP counterpart is Cloud Monitoring. Billing alerts live separately in Cost Management.",
+      explanation_he:
+        "Azure Monitor הוא שירות ה-observability הכולל: מטריקות פלטפורמה וה-Activity Log מגיעים אוטומטית, לוגי משאבים וטלמטריית guest של VM מגיעים לאחר הגדרת diagnostic settings, ומעל כל זה יושבים alerts, dashboards, workbooks ו-Application Insights. המקבילה שלו ב-AWS היא CloudWatch וב-GCP היא Cloud Monitoring. התרעות חיוב (billing) חיות בנפרד ב-Cost Management.",
       resourceTitle: "Azure Monitor overview",
       resourceUrl: "https://learn.microsoft.com/azure/azure-monitor/overview",
       keywords: ["azure monitor", "metrics", "logs", "observability"],
@@ -376,15 +520,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is a Log Analytics workspace used for?",
+      question_he: "למה משמש Log Analytics workspace?",
       options: [
         "Storing collected logs and querying them with the Kusto Query Language (KQL)",
         "Hosting static websites",
         "Editing Azure Resource Manager templates",
         "Managing user sign-in sessions",
       ],
+      options_he: [
+        "לאחסן לוגים שנאספו ולשאול אותם באמצעות Kusto Query Language (KQL)",
+        "לארח אתרים סטטיים",
+        "לערוך תבניות (templates) של Azure Resource Manager",
+        "לנהל sessions של כניסת משתמשים",
+      ],
       correctAnswer: 0,
       explanation:
         "A Log Analytics workspace is Azure Monitor's log store: diagnostic settings route resource logs, VM agents and Application Insights data into it, and you interrogate everything with KQL — a query language purpose-built for slicing time-series log data. Workspace design (how many, which region, access mode) is a real architectural decision because retention is billed per workspace and queries can't easily span misplaced data.",
+      explanation_he:
+        "Log Analytics workspace הוא מאגר הלוגים של Azure Monitor: diagnostic settings מנתבים אליו לוגי משאבים, סוכני (agents) VM ונתוני Application Insights, וכל זה נשאל באמצעות KQL — שפת שאילתות שנבנתה במיוחד לפרוסת נתוני לוג מסוג time-series. תכנון ה-workspace (כמה, באיזה Region, מצב גישה) הוא החלטה ארכיטקטונית ממשית, כי retention מחויב לפי workspace ושאילתות לא יכולות בקלות לחצות נתונים שנמצאים במקום הלא נכון.",
       resourceTitle: "Log Analytics workspace overview",
       resourceUrl: "https://learn.microsoft.com/azure/azure-monitor/logs/log-analytics-workspace-overview",
       keywords: ["log analytics", "kql", "workspace", "log queries"],
@@ -397,15 +550,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multi-select",
       question: "Which statements about the Azure Activity Log are correct? (Select all that apply.)",
+      question_he: "אילו מהקביעות הבאות לגבי Azure Activity Log נכונות? (בחרו את כל התשובות הנכונות.)",
       options: [
         "It records control-plane operations — who created, modified or deleted which resource",
         "Events are kept for 90 days by default and can be exported to a Log Analytics workspace for longer retention",
         "It exists at the subscription level without any setup",
         "It captures performance metrics from inside the guest OS of your VMs",
       ],
+      options_he: [
+        "הוא מתעד פעולות control-plane — מי יצר, שינה או מחק אילו משאבים",
+        "אירועים נשמרים כברירת מחדל 90 יום, וניתן לייצא אותם ל-Log Analytics workspace לצורך retention ארוך יותר",
+        "הוא קיים ברמת ה-subscription ללא כל הגדרה",
+        "הוא לוכד מטריקות ביצועים מתוך מערכת ההפעלה (guest OS) של ה-VM-ים שלכם",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "The Activity Log is the audit trail of the Azure control plane — every ARM operation, its caller, timestamp and outcome — available per subscription with zero configuration and 90 days of retention (export it for more). What it never contains is data-plane or in-guest telemetry: reading a blob, a SQL query, or VM CPU from inside the OS all require diagnostic settings or agents. It's Azure's answer to AWS CloudTrail.",
+      explanation_he:
+        "Activity Log הוא תיעוד הביקורת (audit trail) של control plane של Azure — כל פעולת ARM, מי ביצע אותה, חותמת הזמן והתוצאה — זמין לכל subscription ללא כל הגדרה ועם retention של 90 יום (ניתן לייצא לתקופה ארוכה יותר). מה שהוא לעולם לא מכיל הוא טלמטריית data-plane או מתוך ה-guest: קריאת blob, שאילתת SQL, או CPU של VM מתוך מערכת ההפעלה — כל אלה דורשים diagnostic settings או agents. זוהי התשובה של Azure ל-AWS CloudTrail.",
       resourceTitle: "Azure Monitor activity log",
       resourceUrl: "https://learn.microsoft.com/azure/azure-monitor/essentials/activity-log",
       keywords: ["activity log", "audit", "control plane", "retention"],
@@ -418,15 +580,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does Microsoft Cost Management let you do?",
+      question_he: "מה מאפשר Microsoft Cost Management לעשות?",
       options: [
         "Analyze spending, set budgets, and receive alerts when costs approach thresholds",
         "Automatically negotiate lower prices with Microsoft",
         "Delete unused resources without confirmation",
         "Convert your subscription to free tier",
       ],
+      options_he: [
+        "לנתח הוצאות, להגדיר תקציבים (budgets) ולקבל התרעות כשהעלויות מתקרבות לסף מסוים",
+        "לנהל משא ומתן אוטומטי על מחירים נמוכים יותר מול Microsoft",
+        "למחוק משאבים שאינם בשימוש ללא אישור",
+        "להמיר את ה-subscription שלכם לרובד חינמי (free tier)",
+      ],
       correctAnswer: 0,
       explanation:
         "Cost Management is the visibility layer: cost analysis slices spend by subscription, resource group, tag or service; budgets define thresholds; alerts fire as actual or forecasted spend approaches them. It informs decisions rather than taking them — a budget alert doesn't stop resources, it tells a human to act. Pairing budgets with well-enforced tags is what makes 'which team spent this?' answerable.",
+      explanation_he:
+        "Cost Management הוא שכבת הנראות (visibility): ניתוח עלויות פורס את ההוצאה לפי subscription, resource group, תגית (tag) או שירות; תקציבים מגדירים ספים; והתרעות מופעלות כשההוצאה בפועל או החזויה מתקרבת אליהם. הוא מספק מידע להחלטות ולא מקבל אותן בעצמו — התרעת תקציב לא עוצרת משאבים, היא רק מודיעה לבן אדם לפעול. שילוב תקציבים עם תגיות שנאכפות היטב הוא מה שהופך את השאלה 'איזו קבוצה הוציאה את זה?' לניתנת למענה.",
       resourceTitle: "What is Microsoft Cost Management?",
       resourceUrl: "https://learn.microsoft.com/azure/cost-management-billing/costs/overview-cost-management",
       keywords: ["cost management", "budgets", "cost analysis", "alerts"],
@@ -439,15 +610,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "When do Azure Reservations make financial sense?",
+      question_he: "מתי יש היגיון כלכלי ב-Azure Reservations?",
       options: [
         "For workloads with unpredictable, spiky usage",
         "For steady, predictable workloads you'll run for at least a year — committing 1 or 3 years buys a discount of up to ~72%",
         "For development VMs that run a few hours a month",
         "Only for storage accounts",
       ],
+      options_he: [
+        "עבור workloads עם שימוש בלתי-צפוי ומשתנה (spiky)",
+        "עבור workloads יציבים וצפויים שירוצו לפחות שנה — התחייבות ל-1 או 3 שנים קונה הנחה של עד כ-72%",
+        "עבור VM-ים לפיתוח שרצים כמה שעות בחודש",
+        "רק עבור חשבונות storage",
+      ],
       correctAnswer: 1,
       explanation:
         "A reservation trades flexibility for price: you commit to a VM family/region (or other services — SQL, Cosmos DB, storage) for 1 or 3 years and pay far less than pay-as-you-go. That math only works when the workload actually runs continuously; reserved capacity idling is money burned. Spiky and short-lived workloads should stay pay-as-you-go or use Spot — the AWS equivalents are Reserved Instances and Savings Plans, GCP's are committed use discounts.",
+      explanation_he:
+        "Reservation מחליף גמישות בתמורה למחיר: מתחייבים למשפחת VM/Region מסוימים (או לשירותים אחרים — SQL, Cosmos DB, storage) ל-1 או 3 שנים ומשלמים הרבה פחות מ-pay-as-you-go. החישוב הזה מסתדר רק כשה-workload באמת רץ ברציפות; קיבולת reserved שעומדת בחוסר שימוש היא כסף שנשרף. workloads משתנים וקצרי-טווח צריכים להישאר ב-pay-as-you-go או להשתמש ב-Spot — המקבילות ב-AWS הן Reserved Instances ו-Savings Plans, וב-GCP הנחות committed use.",
       resourceTitle: "What are Azure Reservations?",
       resourceUrl: "https://learn.microsoft.com/azure/cost-management-billing/reservations/save-compute-costs-reservations",
       keywords: ["reservations", "commitment discount", "steady workloads"],
@@ -461,10 +641,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "Azure Spot VMs offer deep discounts but can be evicted whenever Azure needs the capacity back, so they suit interruptible workloads only.",
+      question_he:
+        "Azure Spot VMs מציעים הנחות עמוקות, אך ניתן לפנות (evict) אותם בכל עת שבה Azure זקוק לקיבולת בחזרה — ולכן הם מתאימים רק ל-workloads שניתנים להפרעה (interruptible).",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Spot VMs sell Azure's spare capacity at up to ~90% off, with the catch that a 30-second eviction notice is all you get when the platform reclaims them — there is no SLA. Batch jobs, CI agents, rendering and stateless workers thrive on Spot; anything that can't checkpoint and resume doesn't belong there. All three clouds run this model (AWS Spot Instances, GCP Spot VMs), and mature cost strategies combine spot, reservations and pay-as-you-go deliberately.",
+      explanation_he:
+        "Spot VMs מוכרים את קיבולת העודפים של Azure בהנחה של עד כ-90%, כשה'תפיסה' היא שקבלים רק 30 שניות של התרעת פינוי (eviction) כאשר הפלטפורמה דורשת אותם בחזרה — אין SLA. עבודות batch, סוכני (agents) CI, rendering ו-workers חסרי מצב (stateless) פורחים על Spot; כל דבר שלא יכול לבצע checkpoint ולהתחדש לא שייך שם. כל שלושת העננים מריצים את המודל הזה (AWS Spot Instances, GCP Spot VMs), ואסטרטגיות עלות בשלות משלבות spot, reservations ו-pay-as-you-go באופן מכוון.",
       resourceTitle: "Use Azure Spot Virtual Machines",
       resourceUrl: "https://learn.microsoft.com/azure/virtual-machines/spot-vms",
       keywords: ["spot vms", "eviction", "interruptible", "discount"],
@@ -477,15 +662,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What do fault domains and update domains provide in an Azure availability set?",
+      question_he: "מה מספקים fault domains ו-update domains ב-availability set של Azure?",
       options: [
         "Fault domains separate VMs across racks with independent power/network; update domains stagger planned maintenance reboots",
         "Fault domains replicate VMs to another region; update domains manage OS patching for you",
         "Both are billing categories for VM pricing",
         "They apply only to Azure Kubernetes Service",
       ],
+      options_he: [
+        "fault domains מפרידים VM-ים בין racks עם חשמל/רשת עצמאיים; update domains מפזרים לאורך זמן אתחולים (reboots) של תחזוקה מתוכננת",
+        "fault domains משכפלים VM-ים ל-Region אחר; update domains מנהלים עבורכם patching של מערכת ההפעלה",
+        "שניהם קטגוריות חיוב (billing) עבור תמחור VM",
+        "הם חלים רק על Azure Kubernetes Service",
+      ],
       correctAnswer: 0,
       explanation:
         "An availability set spreads VMs across fault domains (physically separate racks — a hardware failure takes out one rack, not all your VMs) and update domains (groups the platform reboots one at a time during maintenance). It protects within a single datacenter; Availability Zones extend the same idea across datacenters, and region pairs across regions. It never replicates or patches anything — it only controls placement.",
+      explanation_he:
+        "availability set פורס VM-ים בין fault domains (racks נפרדים פיזית — כשל חומרה מוציא מהמערך rack אחד, לא את כל ה-VM-ים שלכם) ו-update domains (קבוצות שהפלטפורמה מאתחלת אחת בכל פעם במהלך תחזוקה). זה מגן בתוך מרכז נתונים בודד; Availability Zone מרחיב את אותו הרעיון בין מרכזי נתונים, ו-region pairs בין Region-ים. הוא לעולם לא משכפל או מבצע patching לשום דבר — הוא רק שולט במיקום (placement).",
       resourceTitle: "Availability sets overview",
       resourceUrl: "https://learn.microsoft.com/azure/virtual-machines/availability-set-overview",
       keywords: ["availability set", "fault domain", "update domain", "placement"],
@@ -498,15 +692,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is the significance of Azure region pairs?",
+      question_he: "מה המשמעות של Azure region pairs?",
       options: [
         "They are two regions that share a single datacenter building",
         "Paired regions receive platform updates sequentially and are the target for geo-redundant replication like GRS",
         "They double your subscription's resource quotas",
         "They guarantee zero-latency traffic between the two regions",
       ],
+      options_he: [
+        "מדובר בשני Region-ים שחולקים מבנה מרכז נתונים אחד",
+        "Region-ים מותאמים (paired) מקבלים עדכוני פלטפורמה באופן רציף (sequential) והם היעד לשכפול geo-redundant כמו GRS",
+        "הם מכפילים את מכסות (quotas) המשאבים של ה-subscription שלכם",
+        "הם מבטיחים תעבורה ללא latency בין שני ה-Region-ים",
+      ],
       correctAnswer: 1,
       explanation:
         "Each Azure region is paired with another in the same geography (e.g. West Europe ↔ North Europe). The pairing carries real guarantees: planned platform updates roll to one region of the pair at a time, recovery efforts prioritize one region of each pair, and GRS storage replicates to the pair automatically. Designing DR around your region's pair aligns your plan with how Azure itself behaves during large-scale incidents — pairs are hundreds of kilometers apart, so latency is real, not zero.",
+      explanation_he:
+        "כל Region ב-Azure מותאם (paired) ל-Region אחר באותה גיאוגרפיה (למשל West Europe ↔ North Europe). להתאמה הזו יש התחייבויות ממשיות: עדכוני פלטפורמה מתוכננים מגיעים ל-Region אחד מהזוג בכל פעם, מאמצי התאוששות מתעדפים Region אחד מכל זוג, ואחסון GRS משוכפל אל בן הזוג באופן אוטומטי. תכנון DR סביב ה-Region המותאם שלכם מיישר את התוכנית שלכם עם האופן שבו Azure עצמו מתנהג באירועים בקנה מידה גדול — הזוגות מרוחקים מאות קילומטרים זה מזה, כך שה-latency הוא אמיתי ולא אפסי.",
       resourceTitle: "Azure cross-region replication",
       resourceUrl: "https://learn.microsoft.com/azure/reliability/cross-region-replication-azure",
       keywords: ["region pairs", "disaster recovery", "geo-redundancy", "sequential updates"],

@@ -16,15 +16,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What problem does Workload Identity Federation solve in Google Cloud?",
+      question_he: "איזו בעיה Workload Identity Federation פותר ב-Google Cloud?",
       options: [
         "It lets external workloads (GitHub Actions, AWS, on-premises) call Google Cloud APIs by exchanging their own tokens — without downloading service account keys",
         "It merges two Google Cloud organizations into one",
         "It synchronizes employee passwords with Google Workspace",
         "It federates VPC networks across projects",
       ],
+      options_he: [
+        "הוא מאפשר לעומסי עבודה חיצוניים (GitHub Actions, AWS, מקומיים) לקרוא ל-API-ים של Google Cloud על ידי החלפת הטוקנים שלהם - בלי צורך בהורדת מפתחות service account",
+        "הוא מאחד שני ארגונים (organizations) של Google Cloud לאחד",
+        "הוא מסנכרן סיסמאות עובדים עם Google Workspace",
+        "הוא מאחד רשתות VPC בין פרויקטים",
+      ],
       correctAnswer: 0,
       explanation:
         "Before federation, an external system needed an exported service account key — a long-lived credential that leaks. With Workload Identity Federation, the external workload presents its native token (an OIDC token from GitHub, an AWS role credential…), Google verifies it against a configured trust, and issues short-lived Google credentials in exchange. No stored secret anywhere. The same keyless principle AWS solves with OIDC-assumable roles and Azure with federated managed identities.",
+      explanation_he:
+        "לפני ה-federation, מערכת חיצונית הייתה זקוקה למפתח service account מיוצא - פרטי גישה ארוכי-טווח שעלולים לדלוף. עם Workload Identity Federation, עומס העבודה החיצוני מציג את הטוקן המקורי שלו (טוקן OIDC מ-GitHub, פרטי role של AWS...), Google מאמת אותו מול אמון (trust) מוגדר מראש, ומנפיק בתמורה פרטי גישה קצרי-טווח של Google. אין סוד מאוחסן בשום מקום. אותו עיקרון ללא-מפתחות פותר גם AWS עם roles שניתן לקבל (assume) דרך OIDC, ו-Azure עם managed identities מפדרלות.",
       resourceTitle: "Workload Identity Federation",
       resourceUrl: "https://cloud.google.com/iam/docs/workload-identity-federation",
       keywords: ["workload identity federation", "keyless", "oidc", "service account keys"],
@@ -38,10 +47,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "Google recommends avoiding the basic roles (Owner, Editor, Viewer) in production and using predefined or custom roles instead.",
+      question_he:
+        "Google ממליצה להימנע מתפקידי הבסיס (basic roles: Owner, Editor, Viewer) בסביבת ייצור, ולהשתמש בתפקידים מוגדרים מראש (predefined) או מותאמים אישית (custom) במקום.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Basic roles predate the modern IAM system and are dangerously broad — Editor holds modify permissions on nearly every service in the project, so one compromised Editor binding exposes everything. Predefined roles scope to a service and function (e.g. roles/storage.objectViewer); custom roles trim further when needed. An organization policy can even block basic-role grants outright. This mirrors the general least-privilege push in every cloud.",
+      explanation_he:
+        "תפקידי הבסיס קדמו למערכת ה-IAM המודרנית והם רחבים באופן מסוכן - Editor מחזיק הרשאות שינוי כמעט על כל שירות בפרויקט, כך שבינדינג יחיד של Editor שנפרץ חושף הכל. תפקידים מוגדרים מראש מוגבלים לשירות ולפעולה מסוימת (למשל roles/storage.objectViewer); תפקידים מותאמים אישית מצמצמים עוד יותר במידת הצורך. Organization Policy יכולה אפילו לחסום מתן תפקידי בסיס לחלוטין. זה תואם את הדחיפה הכללית להרשאות מינימליות (least privilege) בכל ענן.",
       resourceTitle: "IAM roles overview",
       resourceUrl: "https://cloud.google.com/iam/docs/roles-overview",
       keywords: ["basic roles", "predefined roles", "least privilege", "editor"],
@@ -54,15 +68,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does a managed instance group (MIG) provide in Compute Engine?",
+      question_he: "מה מספק managed instance group (MIG) ב-Compute Engine?",
       options: [
         "A fleet of identical VMs with autoscaling, autohealing, and optional spread across zones",
         "A folder for organizing unrelated VMs",
         "A billing group that shares one invoice",
         "A group of VMs that share one IP address",
       ],
+      options_he: [
+        "צי של VM-ים זהים עם autoscaling, autohealing, ופיזור אופציונלי בין zones",
+        "תיקייה לארגון VM-ים לא קשורים",
+        "קבוצת חיוב שחולקת חשבונית אחת",
+        "קבוצת VM-ים שחולקים כתובת IP אחת",
+      ],
       correctAnswer: 0,
       explanation:
         "A MIG stamps VMs out of an instance template and keeps the fleet healthy: autoscaling follows load, autohealing recreates instances that fail health checks, and a regional MIG distributes across zones for resilience. It's GCP's counterpart to AWS Auto Scaling groups and Azure VM Scale Sets, and the unit that load balancers use as a backend. Rolling updates through the template give you controlled fleet upgrades.",
+      explanation_he:
+        "MIG יוצר VM-ים מתבנית instance (instance template) ושומר על תקינות הצי: autoscaling עוקב אחר העומס, autohealing יוצר מחדש instances שנכשלים בבדיקות health, ו-MIG אזורי (regional) מפזר בין zones לצורך עמידות. זהו המקבילה ב-GCP ל-AWS Auto Scaling groups ול-Azure VM Scale Sets, והיחידה שבה Load Balancer-ים משתמשים כ-backend. עדכונים מדורגים (rolling updates) דרך התבנית מאפשרים שדרוגי צי מבוקרים.",
       resourceTitle: "Instance groups",
       resourceUrl: "https://cloud.google.com/compute/docs/instance-groups",
       keywords: ["managed instance group", "autohealing", "autoscaling", "instance template"],
@@ -75,15 +98,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "How does GKE Autopilot differ from GKE Standard?",
+      question_he: "במה נבדל GKE Autopilot מ-GKE Standard?",
       options: [
         "Autopilot manages the nodes for you and bills per pod resource requests; Standard gives you node-level control and bills per node",
         "Autopilot is the free tier of GKE",
         "Autopilot only runs stateless workloads",
         "Standard clusters cannot use autoscaling",
       ],
+      options_he: [
+        "Autopilot מנהל עבורך את ה-nodes וגובה תשלום לפי בקשות המשאבים של ה-Pod-ים; Standard נותן לך שליטה ברמת ה-node וגובה תשלום לפי node",
+        "Autopilot היא שכבת החינם של GKE",
+        "Autopilot מריץ רק עומסי עבודה חסרי מצב (stateless)",
+        "אשכולות (clusters) מסוג Standard אינם יכולים להשתמש ב-autoscaling",
+      ],
       correctAnswer: 0,
       explanation:
         "Autopilot removes node management entirely — Google provisions, patches, scales and secures the nodes, and you pay for the CPU/memory your pods request rather than for whole nodes (idle node capacity stops being your cost problem). Standard keeps node pools under your control for special needs: custom machine types, GPUs with specific configs, privileged daemonsets. Autopilot is the recommended default; Standard is the escape hatch.",
+      explanation_he:
+        "Autopilot מסיר לחלוטין את ניהול ה-nodes - Google מקצה, מתקן ומאבטח את ה-nodes, ואתה משלם על ה-CPU/memory שה-Pod-ים שלך מבקשים ולא על nodes שלמים (קיבולת node לא פעילה מפסיקה להיות בעיית עלות שלך). Standard משאיר את מאגרי ה-nodes (node pools) תחת שליטתך לצרכים מיוחדים: סוגי מכונה מותאמים אישית, GPU-ים בתצורות ספציפיות, daemonsets מורשים (privileged). Autopilot הוא ברירת המחדל המומלצת; Standard הוא פתח המילוט.",
       resourceTitle: "GKE Autopilot overview",
       resourceUrl: "https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview",
       keywords: ["gke autopilot", "node management", "per-pod billing", "kubernetes"],
@@ -96,15 +128,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multi-select",
       question: "Which statements about Cloud Run are correct? (Select all that apply.)",
+      question_he: "אילו מהמשפטים על Cloud Run נכונים? (בחר את כל התשובות הנכונות.)",
       options: [
         "It runs stateless containers and scales instances with request volume, down to zero",
         "You can configure how many concurrent requests one instance handles",
         "Billing is based on resources used while handling requests (unless minimum instances are set)",
         "You must patch and maintain the underlying VMs yourself",
       ],
+      options_he: [
+        "הוא מריץ קונטיינרים חסרי מצב (stateless) ומבצע scale ל-instances לפי נפח הבקשות, עד לאפס",
+        "ניתן להגדיר כמה בקשות במקביל instance אחד מטפל בהן",
+        "החיוב מבוסס על המשאבים בהם נעשה שימוש בעת טיפול בבקשות (אלא אם הוגדר מספר מינימלי של instances)",
+        "עליך לתקן ולתחזק את ה-VM-ים הבסיסיים בעצמך",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Cloud Run is serverless containers: bring any container image that serves HTTP, and the platform handles infrastructure, scaling (including to zero) and TLS. The concurrency knob — up to 1000 concurrent requests per instance — distinguishes it from classic FaaS where one request = one instance, and directly shapes cost. There are no VMs for you to see or patch; that's precisely the layer Google absorbed. Azure Container Apps and AWS App Runner are the peers.",
+      explanation_he:
+        "Cloud Run הוא קונטיינרים ללא שרת (serverless): הבא כל image של קונטיינר שמגיש HTTP, והפלטפורמה מטפלת בתשתית, ב-scaling (כולל עד לאפס) וב-TLS. כפתור ה-concurrency - עד 1000 בקשות במקביל ל-instance אחד - מבדיל אותו מ-FaaS קלאסי שבו בקשה אחת = instance אחד, ומשפיע ישירות על העלות. אין VM-ים שאתה רואה או מתקן; זו בדיוק השכבה ש-Google ספגה. Azure Container Apps ו-AWS App Runner הם המקבילים.",
       resourceTitle: "What is Cloud Run?",
       resourceUrl: "https://cloud.google.com/run/docs/overview/what-is-cloud-run",
       keywords: ["cloud run", "concurrency", "scale to zero", "containers"],
@@ -117,15 +158,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does Cloud NAT provide?",
+      question_he: "מה מספק Cloud NAT?",
       options: [
         "Outbound internet access for VMs that have no external IP addresses",
         "Inbound load balancing for web traffic",
         "A VPN tunnel to on-premises networks",
         "DNS resolution inside a VPC network",
       ],
+      options_he: [
+        "גישה יוצאת (outbound) לאינטרנט עבור VM-ים שאין להם כתובות IP חיצוניות",
+        "איזון עומסים נכנס (inbound) לתעבורת web",
+        "מנהרת VPN לרשתות מקומיות (on-premises)",
+        "פענוח DNS בתוך רשת VPC",
+      ],
       correctAnswer: 0,
       explanation:
         "Cloud NAT lets internal-IP-only VMs fetch updates and call external APIs while remaining unreachable from the internet — the standard posture for anything that doesn't serve public traffic. It's fully managed and, unusually, implemented in the SDN fabric rather than as a choke-point appliance, so there's no bandwidth bottleneck instance to size. AWS NAT Gateway and Azure NAT Gateway serve the same purpose per subnet/VNet.",
+      explanation_he:
+        "Cloud NAT מאפשר ל-VM-ים עם כתובת IP פנימית בלבד להוריד עדכונים ולקרוא ל-API-ים חיצוניים תוך שהם נשארים בלתי נגישים מהאינטרנט - היציבה הסטנדרטית לכל דבר שלא משרת תעבורה ציבורית. הוא מנוהל במלואו, ובאופן חריג מיושם ברקמת ה-SDN עצמה ולא כמכשיר צוואר בקבוק, כך שאין instance של רוחב פס שצריך לגדל. AWS NAT Gateway ו-Azure NAT Gateway משרתים אותה מטרה לכל subnet/VNet.",
       resourceTitle: "Cloud NAT overview",
       resourceUrl: "https://cloud.google.com/nat/docs/overview",
       keywords: ["cloud nat", "egress", "no external ip", "outbound"],
@@ -138,15 +188,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is distinctive about GCP's global external Application Load Balancer?",
+      question_he: "מה ייחודי ב-Application Load Balancer הגלובלי החיצוני של GCP?",
       options: [
         "It requires one load balancer deployment per region",
         "A single anycast IP serves users worldwide, routing each request to the nearest healthy backend",
         "It only balances traffic inside one VPC",
         "It works only with Cloud Storage buckets",
       ],
+      options_he: [
+        "נדרשת פריסת load balancer אחת לכל region",
+        "כתובת anycast אחת משרתת משתמשים ברחבי העולם, ומנתבת כל בקשה ל-backend התקין הקרוב ביותר",
+        "הוא מאזן תעבורה רק בתוך VPC אחד",
+        "הוא עובד רק עם buckets של Cloud Storage",
+      ],
       correctAnswer: 1,
       explanation:
         "Google fronts the load balancer with its global edge network: one anycast IP is announced everywhere, users enter at the nearest point of presence, and traffic rides Google's backbone to the closest healthy backend — cross-region failover falls out of the design for free. In AWS and Azure, L7 load balancers (ALB, Application Gateway) are regional, and global steering needs an extra layer like CloudFront/Route 53 or Front Door. Backends can be MIGs, GKE, Cloud Run and, yes, buckets — but far from only buckets.",
+      explanation_he:
+        "Google מציבה לפני ה-load balancer את רשת הקצה (edge) הגלובלית שלה: כתובת anycast אחת מוכרזת בכל מקום, משתמשים נכנסים בנקודת הנוכחות הקרובה ביותר, והתעבורה רוכבת על ה-backbone של Google עד ל-backend התקין הקרוב ביותר - כשל-אובר בין regions נובע מהעיצוב בחינם. ב-AWS וב-Azure, load balancer-ים מסוג L7 (ALB, Application Gateway) הם regional, וניתוב גלובלי דורש שכבה נוספת כמו CloudFront/Route 53 או Front Door. ה-backend-ים יכולים להיות MIG-ים, GKE, Cloud Run וגם, כן, buckets - אבל בהחלט לא רק buckets.",
       resourceTitle: "Cloud Load Balancing overview",
       resourceUrl: "https://cloud.google.com/load-balancing/docs/load-balancing-overview",
       keywords: ["global load balancer", "anycast", "edge", "cross-region"],
@@ -159,15 +218,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What does enabling Private Google Access on a subnet do?",
+      question_he: "מה עושה הפעלת Private Google Access על subnet?",
       options: [
         "It gives VMs in the subnet private IPv4 addresses",
         "It lets VMs without external IPs reach Google APIs and services over Google's network",
         "It blocks all traffic to Google services",
         "It creates a private DNS zone for the subnet",
       ],
+      options_he: [
+        "היא נותנת ל-VM-ים ב-subnet כתובות IPv4 פרטיות",
+        "היא מאפשרת ל-VM-ים ללא כתובת IP חיצונית להגיע ל-API-ים ולשירותים של Google דרך הרשת של Google",
+        "היא חוסמת כל תעבורה לשירותי Google",
+        "היא יוצרת אזור DNS פרטי עבור ה-subnet",
+      ],
       correctAnswer: 1,
       explanation:
         "Without it, a VM with no external IP cannot call storage.googleapis.com at all — the APIs resolve to public addresses. Private Google Access flips a per-subnet setting so those calls travel Google's internal network instead, keeping VMs offline from the internet while still using GCS, BigQuery and friends. It's part of the same 'no public path to PaaS' family as Azure Private Endpoints and AWS VPC endpoints, though implemented as a subnet property rather than injected NICs.",
+      explanation_he:
+        "בלעדיה, VM ללא כתובת IP חיצונית לא יכול בכלל לקרוא ל-storage.googleapis.com - ה-API-ים מתורגמים לכתובות ציבוריות. Private Google Access הופך הגדרה ברמת ה-subnet כך שקריאות אלה עוברות ברשת הפנימית של Google במקום, ומשאיר את ה-VM-ים מנותקים מהאינטרנט תוך המשך שימוש ב-GCS, BigQuery וחבריהם. זה חלק מאותה משפחת 'אין נתיב ציבורי ל-PaaS' כמו Azure Private Endpoints ו-AWS VPC endpoints, אם כי מיושם כתכונת subnet ולא כ-NIC-ים מוזרקים.",
       resourceTitle: "Private Google Access",
       resourceUrl: "https://cloud.google.com/vpc/docs/private-google-access",
       keywords: ["private google access", "no external ip", "api access", "subnet setting"],
@@ -180,10 +248,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "You can expand a GCP subnet's primary IP range without recreating the subnet or the VMs inside it.",
+      question_he: "ניתן להרחיב את טווח ה-IP הראשי של subnet ב-GCP בלי ליצור מחדש את ה-subnet או את ה-VM-ים בתוכו.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "GCP allows in-place expansion of a subnet's primary CIDR (e.g. /24 → /22) with no downtime, as long as the new range doesn't overlap anything — a genuine operational mercy when a subnet fills up. Contrast AWS, where a subnet's CIDR is immutable after creation (you add more subnets or secondary VPC CIDRs instead). Under-sizing address plans is one of the most common cloud networking regrets; GCP just makes it cheaper to recover from.",
+      explanation_he:
+        "GCP מאפשרת הרחבה במקום (in-place) של ה-CIDR הראשי של subnet (למשל /24 → /22) ללא downtime, כל עוד הטווח החדש לא חופף לשום דבר אחר - חסד תפעולי אמיתי כש-subnet מתמלא. לעומת זאת ב-AWS, ה-CIDR של subnet קבוע לאחר היצירה (מוסיפים subnet-ים נוספים או CIDR-ים משניים ל-VPC במקום). תכנון כתובות בחסר הוא אחד החרטות הנפוצות ביותר ברשתות ענן; GCP פשוט מוזילה את ההתאוששות ממנו.",
       resourceTitle: "Create and manage VPC networks",
       resourceUrl: "https://cloud.google.com/vpc/docs/create-modify-vpc-networks",
       keywords: ["subnet expansion", "cidr", "ip planning"],
@@ -196,15 +268,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What can Cloud Storage Object Lifecycle Management rules do?",
+      question_he: "מה יכולים כללי Object Lifecycle Management של Cloud Storage לעשות?",
       options: [
         "Automatically change an object's storage class or delete it based on conditions like age or number of newer versions",
         "Move objects to a different cloud provider",
         "Encrypt objects after a retention period",
         "Rename objects on a schedule",
       ],
+      options_he: [
+        "לשנות אוטומטית את storage class של אובייקט או למחוק אותו בהתאם לתנאים כמו גיל או מספר גרסאות חדשות יותר",
+        "להעביר אובייקטים לספק ענן אחר",
+        "להצפין אובייקטים לאחר תקופת שימור",
+        "לשנות שמות אובייקטים לפי לוח זמנים",
+      ],
       correctAnswer: 0,
       explanation:
         "Lifecycle rules pair a condition (age, createdBefore, isLive, numNewerVersions…) with an action — SetStorageClass to step data down toward Nearline/Coldline/Archive, or Delete to expire it. The numNewerVersions condition is the idiomatic way to cap versioned-bucket growth, a cost leak teams often discover late. Same concept as S3 lifecycle configurations and Azure Blob lifecycle policies.",
+      explanation_he:
+        "כללי lifecycle מצמידים תנאי (age, createdBefore, isLive, numNewerVersions...) לפעולה - SetStorageClass כדי להעביר את הנתונים בהדרגה כלפי Nearline/Coldline/Archive, או Delete כדי לפוג אותם. התנאי numNewerVersions הוא הדרך המקובלת להגביל צמיחה של bucket עם versioning, דליפת עלות שצוותים לרוב מגלים מאוחר מדי. אותו רעיון בדיוק כמו lifecycle configurations של S3 ומדיניות ה-lifecycle של Azure Blob.",
       resourceTitle: "Object Lifecycle Management",
       resourceUrl: "https://cloud.google.com/storage/docs/lifecycle",
       keywords: ["lifecycle", "storage class", "versioning", "expiration"],
@@ -217,15 +298,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a Persistent Disk in Google Cloud?",
+      question_he: "מהו Persistent Disk ב-Google Cloud?",
       options: [
         "Object storage for media files",
         "Durable block storage that attaches to Compute Engine VMs as disks",
         "A local SSD physically attached to the host",
         "A file share for multiple VMs over NFS",
       ],
+      options_he: [
+        "אחסון אובייקטים (object storage) לקבצי מדיה",
+        "אחסון בלוקים (block storage) עמיד המחובר ל-VM-ים של Compute Engine כדיסקים",
+        "SSD מקומי המחובר פיזית למארח",
+        "שיתוף קבצים (file share) עבור מספר VM-ים דרך NFS",
+      ],
       correctAnswer: 1,
       explanation:
         "Persistent Disk is the network-attached block layer under Compute Engine — boot and data disks that survive VM deletion (if configured), resize online, and snapshot to Cloud Storage. Local SSDs are the different beast in option three: physically attached, blazing fast, but ephemeral. File-over-NFS is Filestore. The block/object/file triad maps directly to EBS/S3/EFS in AWS and Disk/Blob/Files in Azure.",
+      explanation_he:
+        "Persistent Disk היא שכבת ה-block המחוברת ברשת מתחת ל-Compute Engine - דיסקי אתחול ונתונים ששורדים מחיקת VM (אם הוגדר כך), משנים גודל בזמן אמת, ומבצעים snapshot ל-Cloud Storage. Local SSD-ים הם היצור השונה באפשרות השלישית: מחוברים פיזית, מהירים מאוד, אך זמניים (ephemeral). שיתוף קבצים דרך NFS הוא Filestore. השילוש block/object/file מתאים ישירות ל-EBS/S3/EFS ב-AWS ול-Disk/Blob/Files ב-Azure.",
       resourceTitle: "About disks",
       resourceUrl: "https://cloud.google.com/compute/docs/disks",
       keywords: ["persistent disk", "block storage", "snapshots"],
@@ -239,10 +329,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "Once a Cloud Storage retention policy is locked with Bucket Lock, the retention period cannot be reduced or removed — objects are WORM-protected until they age past it.",
+      question_he:
+        "לאחר ש-retention policy של Cloud Storage ננעל באמצעות Bucket Lock, לא ניתן לקצר או להסיר את תקופת השימור - האובייקטים מוגנים ב-WORM עד שהם עוברים את גיל השימור.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Bucket Lock is deliberately irreversible: locking the retention policy is permanent, and every object in the bucket becomes undeletable and unmodifiable until it exceeds the retention age — even for project owners; you can lengthen the period but never shorten it. Locking a policy is therefore a decision to treat the bucket as regulatory archive for good. S3 Object Lock compliance mode and Azure locked immutability policies make the same one-way promise.",
+      explanation_he:
+        "Bucket Lock הוא בלתי הפיך במכוון: נעילת ה-retention policy היא קבועה, וכל אובייקט ב-bucket הופך לבלתי ניתן למחיקה או לשינוי עד שהוא חורג מגיל השימור - אפילו עבור בעלי הפרויקט; ניתן להאריך את התקופה אך לעולם לא לקצר אותה. נעילת מדיניות היא לכן החלטה להתייחס ל-bucket כארכיון רגולטורי לצמיתות. מצב ה-compliance של S3 Object Lock ומדיניות ה-immutability הנעולה של Azure נותנים אותה הבטחה חד-כיוונית.",
       resourceTitle: "Bucket Lock",
       resourceUrl: "https://cloud.google.com/storage/docs/bucket-lock",
       keywords: ["bucket lock", "retention policy", "worm", "compliance"],
@@ -255,15 +350,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does using customer-managed encryption keys (CMEK) with Cloud KMS give you?",
+      question_he: "מה מקבלים בשימוש במפתחות הצפנה מנוהלים על ידי הלקוח (CMEK) עם Cloud KMS?",
       options: [
         "Faster encryption than Google's default",
         "Control over the key that protects a service's data — including the ability to disable or destroy it, cutting off access to the data",
         "Encryption for data that Google otherwise stores unencrypted",
         "Free key storage",
       ],
+      options_he: [
+        "הצפנה מהירה יותר מברירת המחדל של Google",
+        "שליטה במפתח המגן על הנתונים של השירות - כולל היכולת להשבית או להשמיד אותו, ולחסום בכך את הגישה לנתונים",
+        "הצפנה על נתונים ש-Google אחרת מאחסנת ללא הצפנה",
+        "אחסון מפתחות בחינם",
+      ],
       correctAnswer: 1,
       explanation:
         "Google already encrypts everything at rest — CMEK isn't about adding encryption but about who holds the switch. Point a service (GCS, BigQuery, disks…) at your Cloud KMS key and you control rotation, IAM on the key, audit of every use, and the kill switch: disable the key and the data becomes unreadable to everyone, including the service. That control is what compliance regimes usually mean by 'customer-managed keys'. Azure's Key Vault CMK and AWS KMS customer-managed keys are the same lever.",
+      explanation_he:
+        "Google כבר מצפינה הכל at rest - CMEK אינו עוסק בהוספת הצפנה אלא בשאלה מי מחזיק במתג. מצביעים עם שירות (GCS, BigQuery, דיסקים...) על מפתח Cloud KMS שלך, ואתה שולט ב-rotation, ב-IAM על המפתח, בביקורת (audit) של כל שימוש, ובמתג הכיבוי: השבת את המפתח והנתונים הופכים לבלתי קריאים לכולם, כולל השירות עצמו. שליטה זו היא מה שמשטרי ציות בדרך כלל מתכוונים אליו ב-'מפתחות מנוהלים על ידי הלקוח'. Key Vault CMK של Azure ומפתחות מנוהלים על ידי הלקוח של AWS KMS הם אותו מנוף בדיוק.",
       resourceTitle: "Customer-managed encryption keys (CMEK)",
       resourceUrl: "https://cloud.google.com/kms/docs/cmek",
       keywords: ["cmek", "cloud kms", "key control", "encryption"],
@@ -276,15 +380,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multi-select",
       question: "Which capabilities does Security Command Center provide? (Select all that apply.)",
+      question_he: "אילו יכולות מספק Security Command Center? (בחר את כל התשובות הנכונות.)",
       options: [
         "A centralized inventory of assets across your organization",
         "Findings for misconfigurations, such as public buckets or open firewall rules",
         "Threat detection capabilities in its Premium tier",
         "Replacement of VPC firewall rules with its own enforcement",
       ],
+      options_he: [
+        "מלאי (inventory) מרכזי של נכסים בכל הארגון שלך",
+        "ממצאים (findings) עבור תצורות שגויות, כמו buckets ציבוריים או כללי firewall פתוחים",
+        "יכולות זיהוי איומים (threat detection) בשכבת ה-Premium שלה",
+        "החלפת כללי VPC firewall באכיפה משלה",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "SCC is GCP's security posture hub: it inventories resources organization-wide, continuously flags misconfigurations (Security Health Analytics), and — in Premium — adds threat detection like Event Threat Detection and Container Threat Detection over logs. Like its cousins (Microsoft Defender for Cloud, a combination of AWS Security Hub + GuardDuty), it observes and reports; enforcement stays with the underlying controls such as firewall rules, IAM and organization policies.",
+      explanation_he:
+        "SCC הוא מרכז עמדת האבטחה (security posture) של GCP: הוא ממפה משאבים בכל הארגון, מסמן ברציפות תצורות שגויות (Security Health Analytics), ובשכבת ה-Premium מוסיף זיהוי איומים כמו Event Threat Detection ו-Container Threat Detection מעל הלוגים. כמו בני דודיו (Microsoft Defender for Cloud, שילוב של AWS Security Hub עם GuardDuty), הוא מתבונן ומדווח; האכיפה נשארת בידי הבקרות הבסיסיות כמו כללי firewall, IAM ומדיניות ארגונית (organization policies).",
       resourceTitle: "Security Command Center overview",
       resourceUrl: "https://cloud.google.com/security-command-center/docs/security-command-center-overview",
       keywords: ["security command center", "posture", "findings", "threat detection"],
@@ -297,10 +410,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "Google Cloud encrypts customer data at rest by default, with no configuration required.",
+      question_he: "Google Cloud מצפינה נתוני לקוחות at rest כברירת מחדל, ללא צורך בהגדרה כלשהי.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Everything written to Google Cloud storage layers is encrypted with AES-256 before it touches disk, with keys managed and rotated by Google — there is no off switch and nothing to enable. The escalation ladder is about key control, not whether encryption happens: default Google-managed keys → CMEK via Cloud KMS → customer-supplied keys. AWS and Azure now encrypt most services at rest by default too; the differentiator across clouds is key ownership options.",
+      explanation_he:
+        "כל דבר שנכתב לשכבות האחסון של Google Cloud מוצפן ב-AES-256 לפני שהוא נוגע בדיסק, כאשר המפתחות מנוהלים ומתחלפים (rotated) על ידי Google - אין מתג כיבוי ואין מה להפעיל. סולם ההסלמה נוגע לשליטה במפתח, לא לשאלה אם ההצפנה מתרחשת: מפתחות מנוהלי-Google כברירת מחדל → CMEK דרך Cloud KMS → מפתחות שסופקו על ידי הלקוח. גם AWS וגם Azure מצפינים כיום את רוב השירותים at rest כברירת מחדל; ההבדל בין הענקים הוא באפשרויות הבעלות על המפתח.",
       resourceTitle: "Default encryption at rest",
       resourceUrl: "https://cloud.google.com/docs/security/encryption/default-encryption",
       keywords: ["encryption at rest", "default encryption", "aes-256"],
@@ -313,15 +430,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is the difference between labels and network tags in Google Cloud?",
+      question_he: "מה ההבדל בין labels ל-network tags ב-Google Cloud?",
       options: [
         "They are interchangeable names for the same feature",
         "Labels are key-value metadata used for organization and cost reporting; network tags are strings on VMs that firewall rules and routes can target",
         "Labels apply only to storage; network tags apply only to databases",
         "Network tags are billed, labels are free",
       ],
+      options_he: [
+        "הם שמות שניתן להחליף ביניהם עבור אותה תכונה",
+        "Labels הם מטא-דאטה מסוג key-value המשמשים לארגון ולדיווח עלויות; network tags הם מחרוזות על VM-ים שכללי firewall ומסלולים (routes) יכולים למקד אליהן",
+        "Labels חלים רק על אחסון; network tags חלים רק על מסדי נתונים",
+        "Network tags מחויבים בתשלום, labels חינם",
+      ],
       correctAnswer: 1,
       explanation:
         "Two similarly-named features with disjoint jobs: labels (env=prod, team=payments) attach to nearly any resource and flow into billing exports — they're how you slice cost by team or environment. Network tags exist only on VM instances and act as selectors for firewall rules and routes ('allow :443 to instances tagged web'). Because anyone who can edit an instance can change its tags, security-sensitive firewalling increasingly prefers service-account targeting over tags.",
+      explanation_he:
+        "שתי תכונות עם שמות דומים ותפקידים נפרדים לגמרי: labels (env=prod, team=payments) מצורפים כמעט לכל משאב וזורמים לתוך billing exports - כך פורסים עלות לפי צוות או סביבה. Network tags קיימים רק על instances של VM ומשמשים כברירת מיקוד (selectors) עבור כללי firewall ומסלולים ('allow :443 to instances tagged web'). מכיוון שכל מי שיכול לערוך instance יכול לשנות את ה-tags שלו, מיקוד firewall רגיש לאבטחה מעדיף יותר ויותר מיקוד לפי service account על פני tags.",
       resourceTitle: "Labels overview",
       resourceUrl: "https://cloud.google.com/resource-manager/docs/labels-overview",
       keywords: ["labels", "network tags", "cost attribution", "firewall targeting"],
@@ -334,15 +460,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What do IAM Conditions add to a role binding?",
+      question_he: "מה IAM Conditions מוסיפים לבינדינג (binding) של תפקיד?",
       options: [
         "Nothing — bindings are always unconditional",
         "Attribute-based constraints, such as making the binding valid only until a date or only for resources whose names match a prefix",
         "A requirement that two admins approve every use of the role",
         "Automatic role upgrades based on usage",
       ],
+      options_he: [
+        "שום דבר - בינדינגים הם תמיד ללא תנאי",
+        "אילוצים מבוססי-מאפיינים (attribute-based), כמו הפיכת הבינדינג לתקף רק עד תאריך מסוים או רק עבור משאבים ששמם תואם לתחילית (prefix) מסוימת",
+        "דרישה ששני מנהלי מערכת יאשרו כל שימוש בתפקיד",
+        "שדרוגי תפקיד אוטומטיים בהתאם לשימוש",
+      ],
       correctAnswer: 1,
       explanation:
         "A condition turns 'user → role → resource' into 'user → role → resource, when…': expressions over time (expire this contractor's access on a date), resource attributes (only buckets whose names start with dev-) or request context. It's how time-boxed and scoped access is expressed natively instead of via calendar reminders to remove bindings. Approval workflows are a different feature (Privileged Access Manager); conditions evaluate silently at request time.",
+      explanation_he:
+        "תנאי הופך את 'משתמש → תפקיד → משאב' ל-'משתמש → תפקיד → משאב, כאשר...': ביטויים על בסיס זמן (פוג את הגישה של הקבלן הזה בתאריך מסוים), מאפייני משאב (רק buckets ששמם מתחיל ב-dev-) או הקשר הבקשה (request context). כך מבטאים גישה מוגבלת בזמן ובהיקף באופן טבעי, במקום באמצעות תזכורות ביומן להסיר בינדינגים. תהליכי אישור הם תכונה שונה (Privileged Access Manager); תנאים מוערכים בשקט בזמן הבקשה.",
       resourceTitle: "Overview of IAM Conditions",
       resourceUrl: "https://cloud.google.com/iam/docs/conditions-overview",
       keywords: ["iam conditions", "attribute-based", "time-bound access"],
@@ -355,15 +490,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does Google Cloud Monitoring provide?",
+      question_he: "מה מספק Google Cloud Monitoring?",
       options: [
         "Metrics collection, dashboards, uptime checks and alerting for your Google Cloud resources",
         "A service that audits who changed IAM policies",
         "Automatic cost reduction recommendations",
         "Source code monitoring for bugs",
       ],
+      options_he: [
+        "איסוף מדדים (metrics), דשבורדים, בדיקות uptime והתראות (alerting) עבור המשאבים שלך ב-Google Cloud",
+        "שירות שמבקר מי שינה מדיניות IAM",
+        "המלצות אוטומטיות להפחתת עלויות",
+        "ניטור קוד מקור לאיתור באגים",
+      ],
       correctAnswer: 0,
       explanation:
         "Cloud Monitoring (the former Stackdriver) is GCP's metrics-and-alerting layer: platform metrics arrive automatically, the Ops Agent adds VM guest metrics, uptime checks probe endpoints from around the world, and alerting policies notify when conditions breach. Audit trails are Cloud Audit Logs' domain, and log storage/search is Cloud Logging — the three together mirror what Azure bundles under Azure Monitor and AWS under CloudWatch + CloudTrail.",
+      explanation_he:
+        "Cloud Monitoring (לשעבר Stackdriver) הוא שכבת המדדים וההתראות של GCP: מדדי פלטפורמה מגיעים אוטומטית, ה-Ops Agent מוסיף מדדי guest של VM, בדיקות uptime בוחנות endpoints מרחבי העולם, ומדיניות ההתראות (alerting policies) מודיעה כאשר תנאים מופרים. מסלולי ביקורת (audit trails) הם תחומם של Cloud Audit Logs, ואחסון/חיפוש לוגים הוא Cloud Logging - השלושה יחד משקפים את מה ש-Azure מאגד תחת Azure Monitor ו-AWS תחת CloudWatch עם CloudTrail.",
       resourceTitle: "Cloud Monitoring overview",
       resourceUrl: "https://cloud.google.com/monitoring/docs",
       keywords: ["cloud monitoring", "metrics", "uptime checks", "alerting"],
@@ -376,15 +520,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Which statement about Cloud Audit Logs is correct?",
+      question_he: "איזה משפט על Cloud Audit Logs נכון?",
       options: [
         "All audit log types are disabled until you enable them",
         "Admin Activity logs are always on and free; Data Access logs are mostly disabled by default because of their volume",
         "Audit logs are only available in the Premium tier",
         "Audit logs capture VM CPU utilization",
       ],
+      options_he: [
+        "כל סוגי לוגי הביקורת מושבתים עד שמפעילים אותם",
+        "לוגי Admin Activity תמיד פעילים וללא תשלום; לוגי Data Access מושבתים ברובם כברירת מחדל בשל נפחם",
+        "לוגי ביקורת זמינים רק בשכבת Premium",
+        "לוגי ביקורת לוכדים ניצול CPU של VM",
+      ],
       correctAnswer: 1,
       explanation:
         "The split is deliberate: Admin Activity logs (who changed configuration or IAM) are always written, unchargeable and undeletable — the baseline audit trail. Data Access logs (who read/wrote which data) can be enormous, so outside BigQuery they're off until you opt in per service, and they do bill. Knowing this default matters in incident response: config changes are always reconstructable; data reads are only there if someone enabled them beforehand.",
+      explanation_he:
+        "החלוקה מכוונת: לוגי Admin Activity (מי שינה תצורה או IAM) תמיד נכתבים, ללא תשלום ובלתי ניתנים למחיקה - מסלול הביקורת הבסיסי. לוגי Data Access (מי קרא/כתב אילו נתונים) יכולים להיות עצומים, ולכן מחוץ ל-BigQuery הם כבויים עד שבוחרים להפעיל אותם (opt in) לכל שירות, והם אכן מחויבים בתשלום. הכרת ברירת המחדל הזו חשובה בתגובה לאירועים: שינויי תצורה תמיד ניתנים לשחזור; קריאות נתונים קיימות רק אם מישהו הפעיל אותן מראש.",
       resourceTitle: "Cloud Audit Logs overview",
       resourceUrl: "https://cloud.google.com/logging/docs/audit",
       keywords: ["audit logs", "admin activity", "data access", "defaults"],
@@ -397,15 +550,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multi-select",
       question: "Which statements about GCP VPC Flow Logs are correct? (Select all that apply.)",
+      question_he: "אילו מהמשפטים על GCP VPC Flow Logs נכונים? (בחר את כל התשובות הנכונות.)",
       options: [
         "They are enabled per subnet",
         "They record samples of network flows, not every packet",
         "Records are sent to Cloud Logging for querying and export",
         "They capture full packet payloads for deep inspection",
       ],
+      options_he: [
+        "הם מופעלים לכל subnet",
+        "הם רושמים דגימות (samples) של זרימות רשת, לא כל חבילה (packet)",
+        "הרשומות נשלחות ל-Cloud Logging לצורך שאילתות וייצוא",
+        "הם לוכדים את מטען החבילה (payload) המלא לבדיקה מעמיקה",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "GCP flow logs are a subnet-level setting: once on, sampled flow records (5-tuple, bytes, RTT, geographic annotations) stream into Cloud Logging, where you query them or export to BigQuery for analysis. Sampling keeps the data affordable — the interval and sample rate are tunable — and payloads are never captured; that would be Packet Mirroring. The design matches AWS Flow Logs' 'metadata, not packets' philosophy with different enablement granularity.",
+      explanation_he:
+        "Flow logs ב-GCP הם הגדרה ברמת ה-subnet: לאחר הפעלה, רשומות זרימה מדוגמות (5-tuple, בייטים, RTT, הערות גיאוגרפיות) זורמות ל-Cloud Logging, שם ניתן לשאול אותן או לייצא ל-BigQuery לניתוח. הדגימה (sampling) שומרת על עלות סבירה - המרווח וקצב הדגימה ניתנים לכוונון - ומטענים (payloads) לעולם לא נלכדים; זה תפקידו של Packet Mirroring. העיצוב תואם את פילוסופיית 'מטא-דאטה, לא חבילות' של AWS Flow Logs עם גרנולריות הפעלה שונה.",
       resourceTitle: "VPC Flow Logs overview",
       resourceUrl: "https://cloud.google.com/vpc/docs/flow-logs",
       keywords: ["vpc flow logs", "sampling", "cloud logging", "network telemetry"],
@@ -418,15 +580,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "How do you get notified before a Google Cloud project overspends?",
+      question_he: "כיצד מקבלים התראה לפני שפרויקט ב-Google Cloud חורג מתקציב?",
       options: [
         "Google automatically freezes projects at $100",
         "Create a budget on the billing account with alert thresholds — notifications fire as actual or forecasted spend crosses them",
         "Costs cannot be monitored until the invoice arrives",
         "Enable the free tier, which caps all spending",
       ],
+      options_he: [
+        "Google מקפיאה פרויקטים אוטומטית ב-$100",
+        "יוצרים budget בחשבון החיוב (billing account) עם ספי התראה - התראות נשלחות כאשר ההוצאה בפועל או החזויה חוצה אותם",
+        "לא ניתן לנטר עלויות עד שהחשבונית מגיעה",
+        "מפעילים את שכבת החינם, שמגבילה את כל ההוצאות",
+      ],
       correctAnswer: 1,
       explanation:
         "Budgets attach to a billing account (scopable to projects/services) with thresholds like 50/90/100% — each firing email or Pub/Sub notifications, and the forecasted-spend option warns before the money is actually gone. Crucially, a budget never stops resources by itself; automated shutdowns require you to wire the Pub/Sub notification to your own logic. Billing reports and BigQuery export cover the analysis side, like AWS Cost Explorer and Azure Cost Management.",
+      explanation_he:
+        "Budgets מצורפים לחשבון חיוב (ניתן לצמצם לפרויקטים/שירותים) עם ספים כמו 50/90/100% - כל אחד מפעיל התראות email או Pub/Sub, ואפשרות ההוצאה החזויה מתריעה עוד לפני שהכסף אבד בפועל. חשוב לציין: budget לעולם אינו עוצר משאבים בעצמו; כיבוי אוטומטי דורש חיבור התראת ה-Pub/Sub ללוגיקה משלך. דוחות חיוב וייצוא ל-BigQuery מכסים את צד הניתוח, בדומה ל-AWS Cost Explorer ול-Azure Cost Management.",
       resourceTitle: "Create, edit, or delete budgets and budget alerts",
       resourceUrl: "https://cloud.google.com/billing/docs/how-to/budgets",
       keywords: ["budgets", "billing alerts", "forecasted spend"],
@@ -439,15 +610,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Which Google Cloud discount applies automatically, with no commitment required?",
+      question_he: "איזו הנחה ב-Google Cloud חלה אוטומטית, ללא צורך במחויבות (commitment)?",
       options: [
         "Committed use discounts",
         "Sustained use discounts — running a VM for a large share of the month earns a discount by itself",
         "Spot pricing",
         "Free tier credits",
       ],
+      options_he: [
+        "הנחות Committed use",
+        "הנחות Sustained use - הרצת VM לחלק גדול מהחודש מזכה בהנחה מעצמה",
+        "תמחור Spot",
+        "קרדיטים של שכבת החינם",
+      ],
       correctAnswer: 1,
       explanation:
         "Sustained use discounts are GCP's quiet differentiator: run a general-purpose VM beyond ~25% of the month and the incremental usage is billed at automatically increasing discounts — no purchase, no planning, no expiry to manage. Committed use discounts go deeper but require a 1- or 3-year commitment (that's the answer's opposite), and Spot requires accepting preemption. AWS and Azure have no automatic equivalent; steady usage there earns nothing without buying commitments.",
+      explanation_he:
+        "הנחות Sustained use הן הבידול השקט של GCP: מריצים VM כללי מעבר לכ-25% מהחודש, והשימוש הנוסף מחויב בהנחות שגדלות אוטומטית - ללא רכישה, ללא תכנון, ללא תפוגה לניהול. הנחות Committed use מעמיקות יותר אך דורשות מחויבות לשנה אחת או שלוש (זה ההפך המדויק מהתשובה הנכונה), ו-Spot דורש הסכמה ל-preemption. ל-AWS ול-Azure אין מקבילה אוטומטית; שימוש יציב שם לא מזכה בכלום ללא רכישת מחויבויות.",
       resourceTitle: "Sustained use discounts",
       resourceUrl: "https://cloud.google.com/compute/docs/sustained-use-discounts",
       keywords: ["sustained use", "automatic discount", "committed use"],
@@ -461,10 +641,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "GCP Spot VMs offer large discounts but can be preempted by Compute Engine at any time, and carry no availability SLA.",
+      question_he:
+        "GCP Spot VMs מציעים הנחות גדולות אך יכולים להיות מופסקים (preempted) על ידי Compute Engine בכל עת, וללא SLA לזמינות.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Spot VMs (successors of preemptible VMs, minus the old 24-hour cap) run on spare capacity at 60–91% off, with a 30-second preemption warning when Compute Engine wants the capacity back. No SLA means architecture must assume loss: checkpointing batch jobs, stateless workers behind MIGs that re-create instances, and never single points of failure. The tri-cloud pattern holds — AWS Spot (2-minute notice) and Azure Spot (30 seconds) sell the same trade.",
+      explanation_he:
+        "Spot VMs (יורשי ה-preemptible VMs, ללא התקרה הישנה של 24 שעות) רצים על קיבולת פנויה בהנחה של 60-91%, עם אזהרת preemption של 30 שניות כאשר Compute Engine רוצה את הקיבולת בחזרה. היעדר SLA משמעו שהארכיטקטורה חייבת להניח אובדן: checkpointing למשימות batch, workers חסרי מצב (stateless) מאחורי MIG-ים שיוצרים instances מחדש, ולעולם לא נקודת כשל יחידה. הדפוס התלת-ענני מתקיים - AWS Spot (התראה של 2 דקות) ו-Azure Spot (30 שניות) מוכרים את אותה עסקה.",
       resourceTitle: "Spot VMs",
       resourceUrl: "https://cloud.google.com/compute/docs/instances/spot",
       keywords: ["spot vms", "preemption", "discount", "no sla"],
@@ -477,15 +662,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "A Compute Engine VM instance is a resource of which scope?",
+      question_he: "instance של VM ב-Compute Engine הוא משאב באיזה scope?",
       options: [
         "Global — it can move between regions freely",
         "Regional — it spans all zones in its region",
         "Zonal — it lives in exactly one zone",
         "Multi-regional — it is replicated across continents",
       ],
+      options_he: [
+        "Global - הוא יכול לעבור בין regions באופן חופשי",
+        "Regional - הוא פרוש על כל ה-zones ב-region שלו",
+        "Zonal - הוא חי בדיוק ב-zone אחד",
+        "Multi-regional - הוא משוכפל בין יבשות",
+      ],
       correctAnswer: 2,
       explanation:
         "Scope determines blast radius: a VM (like a standard persistent disk) is zonal — a zone outage takes it down. Subnets and regional MIGs are regional; images, snapshots and the VPC network itself are global. Designing for availability in GCP means consciously stepping zonal resources up: regional MIGs spread VMs across zones, regional disks replicate across two zones, and global load balancing spans regions. Knowing each resource's scope is the foundation of that design.",
+      explanation_he:
+        "ה-scope קובע את רדיוס הנזק (blast radius): VM (כמו persistent disk סטנדרטי) הוא zonal - תקלה ב-zone מפילה אותו. Subnets ו-MIG-ים אזוריים (regional) הם regional; images, snapshots ורשת ה-VPC עצמה הם global. תכנון לזמינות ב-GCP משמעו לשדרג במודע משאבים מ-zonal כלפי מעלה: MIG-ים אזוריים פורסים VM-ים בין zones, דיסקים אזוריים משכפלים בין שני zones, ו-load balancing גלובלי פרוש על פני regions. הכרת ה-scope של כל משאב היא הבסיס לתכנון הזה.",
       resourceTitle: "Regions and zones",
       resourceUrl: "https://cloud.google.com/compute/docs/regions-zones",
       keywords: ["zonal", "regional", "global", "resource scope"],
@@ -498,15 +692,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What does a regional persistent disk provide?",
+      question_he: "מה מספק regional persistent disk?",
       options: [
         "A disk that is asynchronously backed up to another region nightly",
         "Synchronous replication of the disk across two zones in the same region, allowing failover attachment if a zone fails",
         "A disk shared read-write by VMs in different regions",
         "Faster IOPS than zonal disks",
       ],
+      options_he: [
+        "דיסק שמגובה באופן אסינכרוני ל-region אחר מדי לילה",
+        "שכפול (replication) סינכרוני של הדיסק בין שני zones באותו region, המאפשר חיבור failover אם zone נכשל",
+        "דיסק המשותף לקריאה-כתיבה על ידי VM-ים ב-regions שונים",
+        "IOPS מהיר יותר מדיסקים zonal-ים",
+      ],
       correctAnswer: 1,
       explanation:
         "A regional PD writes every block to two zones synchronously, so when the VM's zone fails you force-attach the same disk to a replacement VM in the other zone — RPO zero for the disk, minutes of RTO for the workload. The price is double storage cost and a modest write-latency overhead, not extra speed. Cross-region protection still needs snapshots or application-level replication; this is the zonal-failure tool, comparable in intent to AWS RDS Multi-AZ storage behavior.",
+      explanation_he:
+        "regional PD כותב כל בלוק לשני zones באופן סינכרוני, כך שכאשר ה-zone של ה-VM נכשל, ניתן לחבר בכפייה (force-attach) את אותו דיסק ל-VM חלופי ב-zone השני - RPO אפס עבור הדיסק, ו-RTO של דקות עבור עומס העבודה. המחיר הוא עלות אחסון כפולה ותקורת latency כתיבה מתונה, לא מהירות נוספת. הגנה בין-regions עדיין דורשת snapshots או שכפול ברמת האפליקציה; זהו כלי לכשל zonal, בעל כוונה דומה להתנהגות האחסון של AWS RDS Multi-AZ.",
       resourceTitle: "About regional persistent disks",
       resourceUrl: "https://cloud.google.com/compute/docs/disks/regional-persistent-disk",
       keywords: ["regional persistent disk", "synchronous replication", "zone failure", "failover"],

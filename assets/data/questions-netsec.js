@@ -16,15 +16,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is the core function of a firewall?",
+      question_he: "מה התפקיד המרכזי של חומת אש?",
       options: [
         "Allowing or denying traffic based on rules about source, destination, port and protocol",
         "Encrypting all network traffic",
         "Assigning IP addresses to devices",
         "Caching web content for speed",
       ],
+      options_he: [
+        "קביעה אם לאפשר או לחסום תעבורה על סמך כללים הנוגעים למקור, יעד, פורט ופרוטוקול",
+        "הצפנת כל תעבורת הרשת",
+        "הקצאת כתובות IP למכשירים",
+        "שמירה במטמון של תוכן אתרים לצורך מהירות",
+      ],
       correctAnswer: 0,
       explanation:
         "A firewall is a policy enforcement point for traffic: packets matching allow rules pass, everything else is denied (in a sane configuration). Classic firewalls decide on L3/L4 attributes; next-generation ones add application awareness and inspection. Encryption, addressing and caching are separate functions — TLS/VPN, DHCP and CDNs respectively.",
+      explanation_he:
+        "חומת אש היא נקודת אכיפת מדיניות עבור תעבורה: חבילות שתואמות לכללי היתר עוברות, וכל השאר נחסם (בתצורה תקינה). חומות אש קלאסיות מקבלות החלטות על סמך מאפייני L3/L4, בעוד שחומות אש מהדור הבא (Next-Generation) מוסיפות מודעות ליישומים ובדיקה מעמיקה. הצפנה, הקצאת כתובות ושמירה במטמון הן פונקציות נפרדות לגמרי — בהתאמה TLS/VPN, DHCP ו-CDN.",
       resourceTitle: "What is a firewall? (Cloudflare Learning)",
       resourceUrl: "https://www.cloudflare.com/learning/security/what-is-a-firewall/",
       keywords: ["firewall", "allow deny", "policy enforcement"],
@@ -37,15 +46,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "Azure NSGs, AWS security groups and GCP VPC firewall rules all belong to which category?",
+      question_he: "NSGs ב-Azure, security groups ב-AWS וכללי VPC firewall ב-GCP שייכים כולם לאיזו קטגוריה?",
       options: [
         "Built-in, free packet filters that control traffic close to the workload",
         "Managed WAF services for HTTP applications",
         "Paid next-generation firewall appliances",
         "VPN termination services",
       ],
+      options_he: [
+        "מסנני חבילות מובנים וחינמיים ששולטים בתעבורה קרוב מאוד לעומס העבודה",
+        "שירותי WAF מנוהלים עבור יישומי HTTP",
+        "מכשירי חומת אש מהדור הבא בתשלום",
+        "שירותי סיום VPN",
+      ],
       correctAnswer: 0,
       explanation:
         "All three are the native micro-filtering layer: stateful rules evaluated at the workload's NIC/subnet, included with the platform at no charge, and the first line of segmentation everyone should configure. WAFs (layer 7) and managed firewall appliances (Azure Firewall, AWS Network Firewall, GCP NGFW) are separate, paid layers stacked on top for HTTP protection and centralized inspection.",
+      explanation_he:
+        "שלושתם הם שכבת המיקרו-סינון הטבעית: כללים stateful שמוערכים ברמת ה-NIC/הסאבנט של העומס, כלולים בפלטפורמה ללא עלות נוספת, והם קו ההגנה הראשון של הסגמנטציה שכל אחד צריך להגדיר. WAF (שכבה 7) ומכשירי חומת אש מנוהלים (Azure Firewall, AWS Network Firewall, GCP NGFW) הן שכבות נפרדות בתשלום שמתווספות מעליהם להגנת HTTP ובדיקה מרוכזת.",
       resourceTitle: "Compare network security across clouds (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/architecture/aws-professional/networking",
       keywords: ["nsg", "security group", "firewall rules", "packet filter"],
@@ -58,10 +76,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "Default-deny inbound — nothing enters unless a rule explicitly allows it — is the safest baseline posture.",
+      question_he: "מדיניות default-deny לתעבורה נכנסת — שכלום לא נכנס אלא אם כלל מפורש מתיר זאת — היא הבסיס הבטוח ביותר.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Default-deny means exposure only happens by deliberate decision, and every open path is documented by the rule that opened it. All three major clouds ship this baseline for inbound traffic. The inverse — default-allow with deny exceptions — requires you to predict every attack path in advance, which no one can. The same principle increasingly applies to outbound in mature environments.",
+      explanation_he:
+        "Default-deny אומר שחשיפה מתרחשת רק כתוצאה מהחלטה מכוונת, וכל נתיב פתוח מתועד על ידי הכלל שפתח אותו. שלושת ספקי הענן הגדולים מספקים בסיס זה עבור תעבורה נכנסת כברירת מחדל. ההפך — default-allow עם חריגי מניעה — מחייב לחזות מראש כל נתיב התקפה אפשרי, דבר שאף אחד לא מסוגל לעשות. אותו עיקרון חל יותר ויותר גם על תעבורה יוצאת בסביבות בשלות.",
       resourceTitle: "Network security best practices (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/security/fundamentals/network-best-practices",
       keywords: ["default deny", "baseline", "posture"],
@@ -74,15 +96,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does a Web Application Firewall (WAF) protect against?",
+      question_he: "מפני מה מגנה חומת אש ליישומי אינטרנט (WAF)?",
       options: [
         "Application-layer attacks on HTTP traffic, such as SQL injection and cross-site scripting",
         "Port scans against SSH",
         "Physical access to servers",
         "Weak passwords in your user database",
       ],
+      options_he: [
+        "התקפות בשכבת היישום על תעבורת HTTP, כגון הזרקת SQL וכתיבת סקריפטים חוצת אתרים (XSS)",
+        "סריקות פורטים כנגד SSH",
+        "גישה פיזית לשרתים",
+        "סיסמאות חלשות במסד נתוני המשתמשים",
+      ],
       correctAnswer: 0,
       explanation:
         "A WAF inspects HTTP requests themselves — parameters, headers, bodies — against rule sets like the OWASP Core Rule Set, blocking injection, XSS and similar exploits that a port-level firewall passes untouched (it's all just allowed :443 traffic to a network filter). Azure WAF, AWS WAF and GCP Cloud Armor attach to the L7 entry points. A WAF mitigates but never replaces fixing vulnerable code.",
+      explanation_he:
+        "WAF בודק את בקשות ה-HTTP עצמן — פרמטרים, כותרות, גוף ההודעה — מול מערכי כללים כגון OWASP Core Rule Set, וחוסם הזרקות, XSS והתקפות דומות שחומת אש ברמת הפורט מעבירה ללא בעיה (מבחינתה זו סתם תעבורת :443 מותרת). Azure WAF, AWS WAF ו-GCP Cloud Armor מתחברים לנקודות הכניסה בשכבה 7. WAF מקטין סיכון אך לעולם אינו מחליף תיקון של קוד פגיע.",
       resourceTitle: "What is AWS WAF?",
       resourceUrl: "https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html",
       keywords: ["waf", "owasp", "sql injection", "xss"],
@@ -95,15 +126,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "A web app behind a load balancer needs protection from SQL injection AND restriction of which VMs its database accepts connections from. What combination is right?",
+      question_he: "יישום אינטרנט מאחורי Load Balancer זקוק להגנה מפני הזרקת SQL וגם להגבלה של אילו מכונות וירטואליות מסד הנתונים שלו מקבל חיבורים מהן. מהו השילוב הנכון?",
       options: [
         "A WAF handles both requirements",
         "A WAF at the entry point for the injection attacks; security groups/NSG rules for database access restriction",
         "Security groups handle both requirements",
         "Neither is needed if TLS is enabled",
       ],
+      options_he: [
+        "WAF מטפל בשתי הדרישות",
+        "WAF בנקודת הכניסה עבור התקפות ההזרקה; כללי security groups/NSG עבור הגבלת הגישה למסד הנתונים",
+        "security groups מטפלים בשתי הדרישות",
+        "אף אחד מהם אינו נדרש אם TLS מופעל",
+      ],
       correctAnswer: 1,
       explanation:
         "Different layers see different things: SQL injection lives inside legitimate-looking HTTP requests — only an L7 WAF can spot it; database reachability is a network question — exactly what NSG/security-group rules ('port 5432 only from the app tier') express. A WAF never sees the DB connection, and a packet filter never reads the HTTP body. TLS encrypts the attack; it doesn't stop it.",
+      explanation_he:
+        "שכבות שונות רואות דברים שונים: הזרקת SQL מסתתרת בתוך בקשות HTTP שנראות לגיטימיות — רק WAF בשכבה 7 יכול לזהות אותה; נגישות מסד הנתונים היא שאלה של רשת — בדיוק מה שכללי NSG/security group מבטאים ('פורט 5432 רק משכבת האפליקציה'). WAF לעולם לא רואה את חיבור מסד הנתונים, ומסנן חבילות לעולם לא קורא את גוף ה-HTTP. TLS מצפין את ההתקפה; הוא לא עוצר אותה.",
       resourceTitle: "Azure WAF overview",
       resourceUrl: "https://learn.microsoft.com/azure/web-application-firewall/overview",
       keywords: ["waf vs security group", "layers", "defense in depth"],
@@ -116,15 +156,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is the purpose of a bastion host (jump box)?",
+      question_he: "מהי מטרתו של bastion host (jump box)?",
       options: [
         "A single hardened, audited entry point for administrative access, so VMs never expose SSH/RDP directly to the internet",
         "A server that hosts the company website",
         "A backup server for disaster recovery",
         "A honeypot to attract attackers",
       ],
+      options_he: [
+        "נקודת כניסה מנהלתית יחידה, מחוזקת ומבוקרת, כך שמכונות וירטואליות לעולם לא חושפות SSH/RDP ישירות לאינטרנט",
+        "שרת שמארח את אתר האינטרנט של החברה",
+        "שרת גיבוי לצורך התאוששות מאסון",
+        "honeypot למשיכת תוקפים",
+      ],
       correctAnswer: 0,
       explanation:
         "Instead of scattering ports 22/3389 across the internet, admins traverse one fortified, logged chokepoint that reaches internal VMs over private addresses. Clouds now offer it managed — Azure Bastion, AWS Session Manager, GCP IAP — which even remove the public entry point entirely by tunneling through the provider's control plane with IAM-based auth and session recording. Direct RDP-from-anywhere is a top compromise vector.",
+      explanation_he:
+        "במקום לפזר את פורטים 22/3389 ברחבי האינטרנט, מנהלי המערכת עוברים דרך צוואר בקבוק מבוצר ומתועד אחד, שמגיע למכונות הפנימיות דרך כתובות פרטיות. הענן מציע כיום גרסאות מנוהלות לכך — Azure Bastion, AWS Session Manager, GCP IAP — שאף מסירות לגמרי את נקודת הכניסה הציבורית, על ידי מנהור דרך מישור הבקרה של הספק עם אימות מבוסס IAM ותיעוד סשן. RDP חשוף לכל האינטרנט הוא אחד מווקטורי הפריצה המובילים.",
       resourceTitle: "What is Azure Bastion?",
       resourceUrl: "https://learn.microsoft.com/azure/bastion/bastion-overview",
       keywords: ["bastion", "jump box", "admin access", "ssh rdp"],
@@ -137,10 +186,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "Exposing SSH (port 22) to 0.0.0.0/0 is acceptable as long as the password is strong.",
+      question_he: "חשיפת SSH (פורט 22) ל-0.0.0.0/0 מקובלת כל עוד הסיסמה חזקה.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: false,
       explanation:
         "An internet-exposed SSH port gets brute-forced within minutes of existing, and a strong password doesn't help against credential stuffing, leaked keys or the next OpenSSH CVE. Correct posture layers: key-based auth (passwords off), source-IP restriction if exposure is truly required, and preferably no exposure at all — bastion services or identity-based tunnels. 'Strong password' is never the compensating control for reachability.",
+      explanation_he:
+        "פורט SSH החשוף לאינטרנט עובר ניסיונות פריצת כוח גס (brute-force) תוך דקות מרגע קיומו, וסיסמה חזקה לא עוזרת מול credential stuffing, מפתחות שדלפו או ה-CVE הבא של OpenSSH. התנוחה הנכונה כוללת שכבות: אימות מבוסס מפתח (ביטול סיסמאות), הגבלת כתובת IP מקור אם חשיפה באמת נדרשת, ורצוי אפס חשיפה — שירותי bastion או מנהור מבוסס זהות. 'סיסמה חזקה' לעולם אינה הפיצוי המקביל לנגישות.",
       resourceTitle: "Security best practices for administrative access (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/security/fundamentals/network-best-practices",
       keywords: ["ssh exposure", "0.0.0.0/0", "brute force"],
@@ -153,15 +206,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multi-select",
       question: "What does network segmentation achieve? (Select all that apply.)",
+      question_he: "מה משיגה סגמנטציית רשת? (בחר את כל התשובות הנכונות.)",
       options: [
         "Limits lateral movement after a single system is compromised",
         "Contains the blast radius of an incident to one segment",
         "Lets different trust levels (web / app / data) have different rules",
         "Increases network throughput",
       ],
+      options_he: [
+        "מגבילה תנועה רוחבית (lateral movement) לאחר שמערכת בודדת נפרצה",
+        "מכילה את רדיוס הפגיעה של אירוע לסגמנט אחד בלבד",
+        "מאפשרת לרמות אמון שונות (web / app / data) כללים שונים",
+        "מגדילה את תפוקת הרשת",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Segmentation assumes breach: when (not if) one host falls, the attacker's next hop should hit a wall — the web tier can't open connections to arbitrary internal systems, the data tier accepts traffic only from the app tier. Each boundary is also an audit and detection point. Throughput is unaffected; segmentation is a security economics tool, converting one big compromise into a small contained one.",
+      explanation_he:
+        "סגמנטציה מניחה שהפריצה תקרה: כאשר (לא אם) מארח אחד נופל, הצעד הבא של התוקף אמור להיתקל בקיר — שכבת ה-web לא יכולה לפתוח חיבורים למערכות פנימיות שרירותיות, ושכבת ה-data מקבלת תעבורה רק משכבת ה-app. כל גבול הוא גם נקודת ביקורת וזיהוי. התפוקה אינה מושפעת; סגמנטציה היא כלי לכלכלת אבטחה, שהופך פריצה גדולה אחת לפריצה קטנה ומוכלת.",
       resourceTitle: "Implement network segmentation (Azure Well-Architected)",
       resourceUrl: "https://learn.microsoft.com/azure/well-architected/security/networking",
       keywords: ["segmentation", "lateral movement", "blast radius", "tiers"],
@@ -174,15 +236,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What do \"north-south\" and \"east-west\" traffic mean?",
+      question_he: "מה משמעות תעבורת \"north-south\" ו-\"east-west\"?",
       options: [
         "North-south crosses the network boundary (in/out of the environment); east-west moves laterally between systems inside it",
         "North-south is IPv6, east-west is IPv4",
         "They refer to traffic between geographic regions",
         "North-south is encrypted, east-west is not",
       ],
+      options_he: [
+        "תעבורת north-south חוצה את גבול הרשת (כניסה/יציאה מהסביבה); תעבורת east-west נעה באופן רוחבי בין מערכות בתוך הסביבה",
+        "north-south הוא IPv6, ו-east-west הוא IPv4",
+        "הם מתייחסים לתעבורה בין אזורים גאוגרפיים",
+        "north-south מוצפנת, east-west אינה מוצפנת",
+      ],
       correctAnswer: 0,
       explanation:
         "The compass metaphor maps to threat models: north-south (internet ↔ environment) is where perimeter controls — WAF, DDoS protection, edge firewalls — live; east-west (server ↔ server inside) is where lateral movement happens and where segmentation, micro-filtering and flow-log monitoring matter. Modern breaches mostly exploit weak east-west controls after slipping one north-south door.",
+      explanation_he:
+        "מטאפורת המצפן ממופה למודלי איום: north-south (אינטרנט ↔ סביבה) הוא המקום שבו חיים בקרות היקפיות — WAF, הגנת DDoS, חומות אש בקצה; east-west (שרת ↔ שרת בתוך הסביבה) הוא המקום שבו מתרחשת תנועה רוחבית ושבו סגמנטציה, מיקרו-סינון וניטור flow-log חשובים. פריצות מודרניות ברובן מנצלות בקרות east-west חלשות אחרי שחדרו דלת north-south אחת.",
       resourceTitle: "Network security strategies (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/well-architected/security/networking",
       keywords: ["north-south", "east-west", "lateral movement"],
@@ -195,15 +266,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is the practical difference between stateful and stateless traffic filtering?",
+      question_he: "מהו ההבדל המעשי בין סינון תעבורה stateful לבין סינון stateless?",
       options: [
         "A stateful filter tracks connections and automatically admits return traffic; a stateless filter evaluates every packet in isolation, needing explicit rules both ways",
         "Stateful filters are hardware, stateless are software",
         "Stateless filters are always more secure",
         "Stateful filters cannot block traffic",
       ],
+      options_he: [
+        "מסנן stateful עוקב אחר חיבורים ומאפשר אוטומטית לתעבורת החזרה לחזור; מסנן stateless בוחן כל חבילה בנפרד ודורש כללים מפורשים בשני הכיוונים",
+        "מסננים stateful הם חומרה, ו-stateless הם תוכנה",
+        "מסננים stateless תמיד בטוחים יותר",
+        "מסננים stateful אינם יכולים לחסום תעבורה",
+      ],
       correctAnswer: 0,
       explanation:
         "State means memory: allow outbound :443 on a stateful filter (security group, NSG, GCP rules) and the responses flow back automatically because the connection is tracked. A stateless filter (AWS NACLs) sees each packet cold — forget the ephemeral-port return rule and replies die. Stateful is simpler and the cloud default; stateless survives as a blunt subnet-level backstop.",
+      explanation_he:
+        "State פירושו זיכרון: אפשר תעבורה יוצאת ל-:443 במסנן stateful (security group, NSG, כללי GCP) והתגובות חוזרות אוטומטית כי החיבור נעקב. מסנן stateless (AWS NACLs) רואה כל חבילה בנפרד וללא הקשר — אם שוכחים את כלל ההחזרה של פורט אפמרלי, התשובות נחסמות. stateful פשוט יותר והוא ברירת המחדל בענן; stateless נשאר כקו הגנה גס ברמת הסאבנט.",
       resourceTitle: "Security groups vs network ACLs (AWS)",
       resourceUrl: "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html",
       keywords: ["stateful", "stateless", "connection tracking"],
@@ -216,15 +296,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What distinguishes a next-generation firewall (NGFW) from a traditional L3/L4 firewall?",
+      question_he: "מה מייחד חומת אש מהדור הבא (NGFW) מחומת אש מסורתית ברמת L3/L4?",
       options: [
         "Application awareness, intrusion detection/prevention, and optionally TLS inspection — decisions based on what the traffic is, not just where it goes",
         "Faster packet forwarding only",
         "It runs exclusively on-premises",
         "It replaces the need for identity management",
       ],
+      options_he: [
+        "מודעות ליישומים, גילוי/מניעת חדירות, ואופציונלית בדיקת TLS — החלטות המבוססות על מהות התעבורה ולא רק על יעדה",
+        "העברת חבילות מהירה יותר בלבד",
+        "היא פועלת אך ורק בסביבה מקומית (on-premises)",
+        "היא מחליפה את הצורך בניהול זהויות",
+      ],
       correctAnswer: 0,
       explanation:
         "An NGFW can tell that the stream on port 443 is actually SSH tunneling or a specific SaaS app, match traffic against exploit signatures (IDS/IPS), and — where policy allows — decrypt TLS for inspection. Cloud incarnations include Azure Firewall Premium, AWS Network Firewall and GCP's NGFW tiers. The trade-offs are cost, latency and the governance weight of decrypting user traffic.",
+      explanation_he:
+        "NGFW מסוגלת לזהות שהזרם בפורט 443 הוא בעצם מנהור SSH או יישום SaaS מסוים, להשוות תעבורה מול חתימות ניצול (IDS/IPS), ו-כאשר המדיניות מתירה - לפענח TLS לצורך בדיקה. גרסאות ענן כוללות את Azure Firewall Premium, AWS Network Firewall ורמות ה-NGFW של GCP. הפשרות הן עלות, השהיה (latency) ומשקל הממשל הכרוך בפענוח תעבורת משתמשים.",
       resourceTitle: "Azure Firewall Premium features",
       resourceUrl: "https://learn.microsoft.com/azure/firewall/premium-features",
       keywords: ["ngfw", "idps", "tls inspection", "application aware"],
@@ -237,15 +326,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multi-select",
       question: "Which mechanisms implement egress control? (Select all that apply.)",
+      question_he: "אילו מנגנונים מממשים בקרת egress? (בחר את כל התשובות הנכונות.)",
       options: [
         "FQDN/URL allow-lists on a cloud firewall (only approved destinations resolve and pass)",
         "Routing all outbound through an inspection proxy",
         "Deny-by-default outbound rules with explicit exceptions",
         "A NAT gateway by itself",
       ],
+      options_he: [
+        "רשימות היתר (allow-list) של FQDN/URL בחומת אש בענן (רק יעדים מאושרים נפתרים ועוברים)",
+        "ניתוב כל התעבורה היוצאת דרך proxy לבדיקה",
+        "כללי deny-by-default עבור תעבורה יוצאת עם חריגים מפורשים",
+        "NAT Gateway בפני עצמו",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Egress control means outbound traffic needs permission: FQDN rules ('allow *.ubuntu.com, deny else'), forced tunneling through a proxy/firewall that inspects and logs, and outbound default-deny where the platform supports it. NAT alone is the common misconception — it translates addresses but happily forwards everything, providing zero filtering. Exfiltration prevention lives or dies on this distinction.",
+      explanation_he:
+        "בקרת egress פירושה שתעבורה יוצאת זקוקה להיתר: כללי FQDN ('allow *.ubuntu.com, deny else'), מנהור כפוי דרך proxy/חומת אש שבודקים ומתעדים, ו-outbound default-deny במקומות שהפלטפורמה תומכת בכך. NAT לבדו הוא הטעות הנפוצה - הוא מתרגם כתובות אך מעביר הלאה הכול ברצון, ללא כל סינון. מניעת exfiltration (הדלפת מידע) תלויה לחלוטין בהבחנה הזו.",
       resourceTitle: "Azure Firewall FQDN filtering",
       resourceUrl: "https://learn.microsoft.com/azure/firewall/features",
       keywords: ["egress control", "fqdn filtering", "forced tunneling", "proxy"],
@@ -258,15 +356,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is the core principle of Zero Trust networking?",
+      question_he: "מהו העיקרון המרכזי של רשתות Zero Trust?",
       options: [
         "Never trust based on network location — verify every request explicitly using identity, device and context, even inside the perimeter",
         "Trust nothing outside the firewall, everything inside it",
         "Encrypt all traffic and nothing else is needed",
         "Remove all firewalls since they are obsolete",
       ],
+      options_he: [
+        "לעולם לא לתת אמון על סמך מיקום ברשת — לאמת כל בקשה במפורש לפי זהות, מכשיר והקשר, גם בתוך ההיקף (perimeter)",
+        "לא לתת אמון לכלום מחוץ לחומת האש, ולתת אמון לכל מה שבתוכה",
+        "להצפין את כל התעבורה, ואין צורך בדבר נוסף",
+        "להסיר את כל חומות האש מכיוון שהן מיושנות",
+      ],
       correctAnswer: 0,
       explanation:
         "Zero Trust inverts the castle-and-moat: being 'inside the network' grants nothing, because insiders get phished and perimeters get breached. Every access is authenticated, authorized and evaluated in context (who, what device, what health, from where), with least privilege and micro-segmentation limiting what any single identity or host can touch. Firewalls remain — as one enforcement layer among several, not as the definition of trust.",
+      explanation_he:
+        "Zero Trust הופך את מודל 'הטירה והתעלה' על פיו: להיות 'בתוך הרשת' לא מעניק דבר, כי גם משתמשים פנימיים נופלים לפישינג וגם ה-perimeter נפרץ. כל גישה מאומתת, מורשית ומוערכת בהקשר (מי, איזה מכשיר, מה מצבו, מאיפה), כאשר least privilege ומיקרו-סגמנטציה מגבילים מה כל זהות או מארח בודדים יכולים לגעת בו. חומות אש עדיין קיימות - כשכבת אכיפה אחת מבין כמה, לא כהגדרה של אמון.",
       resourceTitle: "Zero Trust architecture (Microsoft)",
       resourceUrl: "https://learn.microsoft.com/security/zero-trust/zero-trust-overview",
       keywords: ["zero trust", "verify explicitly", "least privilege"],
@@ -279,15 +386,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "How would you detect that something is port-scanning your cloud network?",
+      question_he: "כיצד תזהו שמישהו מבצע port-scanning ברשת הענן שלכם?",
       options: [
         "Flow logs showing one source hitting many ports/hosts with mostly denied or unanswered connections",
         "CPU utilization graphs",
         "Monthly billing reports",
         "Scans cannot be detected in cloud environments",
       ],
+      options_he: [
+        "flow logs שמראים מקור אחד הפוגע בהרבה פורטים/מארחים, כאשר רוב החיבורים נחסמים או ללא מענה",
+        "גרפים של ניצול CPU",
+        "דוחות חיוב חודשיים",
+        "לא ניתן לזהות סריקות בסביבות ענן",
+      ],
       correctAnswer: 0,
       explanation:
         "A scan has an unmistakable flow-log signature: a single source fanning out across ports and addresses, mostly hitting REJECT/deny entries. That's why flow logs (VPC Flow Logs, NSG flow logs) feed threat detection services — GuardDuty literally ships 'port probe' findings from this data. No flow logs means scans, sweeps and lateral movement all happen invisibly.",
+      explanation_he:
+        "לסריקה יש חתימת flow-log ברורה וחד-משמעית: מקור בודד המתפזר על פני פורטים וכתובות רבות, ופוגע בעיקר ברשומות REJECT/deny. זו הסיבה ש-flow logs (VPC Flow Logs, NSG flow logs) מזינים שירותי גילוי איומים - GuardDuty מפיק ממש ממצאי 'port probe' מהנתונים האלה. ללא flow logs, סריקות, מעברי סריקה ותנועה רוחבית מתרחשים כולם בצורה בלתי נראית.",
       resourceTitle: "VPC Flow Logs (AWS)",
       resourceUrl: "https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html",
       keywords: ["port scan", "flow logs", "detection"],
@@ -301,10 +417,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "Inspecting TLS traffic requires the firewall to terminate and re-encrypt connections, which has both operational and privacy implications.",
+      question_he:
+        "בדיקת תעבורת TLS מחייבת את חומת האש לסיים (terminate) ולהצפין מחדש את החיבורים, ולכך יש השלכות תפעוליות ופרטיות כאחד.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Encrypted traffic is opaque by design, so TLS inspection makes the firewall a deliberate man-in-the-middle: it terminates the session with its own certificate (which every client must trust), inspects plaintext, and re-encrypts onward. That surfaces malware in HTTPS — and simultaneously creates a high-value decryption point, breaks certificate pinning, and raises real privacy/regulatory questions. It's a scoped policy decision, never a default.",
+      explanation_he:
+        "תעבורה מוצפנת אטומה מעצם טבעה, ולכן בדיקת TLS הופכת את חומת האש ל-man-in-the-middle מכוון: היא מסיימת (terminate) את הסשן עם התעודה שלה עצמה (שכל לקוח חייב לתת בה אמון), בודקת את הטקסט הגלוי, ומצפינה מחדש להמשך הדרך. כך נחשפת תוכנה זדונית בתוך HTTPS - ובו-זמנית נוצרת נקודת פענוח בעלת ערך גבוה, נשברת נעילת התעודה (certificate pinning), ועולות שאלות אמיתיות של פרטיות ורגולציה. זו החלטת מדיניות מוגדרת-היקף, ולעולם לא ברירת מחדל.",
       resourceTitle: "TLS inspection (Azure Firewall Premium)",
       resourceUrl: "https://learn.microsoft.com/azure/firewall/premium-features",
       keywords: ["tls inspection", "mitm", "decrypt"],
@@ -317,15 +438,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "How does least privilege apply to firewall rules?",
+      question_he: "כיצד עקרון least privilege חל על כללי חומת אש?",
       options: [
         "Each rule should allow the narrowest source, destination, port and protocol the use case needs — nothing broader",
         "Only administrators should be allowed network access",
         "All rules should use port ranges for flexibility",
         "Least privilege only applies to user accounts",
       ],
+      options_he: [
+        "כל כלל צריך לאפשר את המקור, היעד, הפורט והפרוטוקול הצרים ביותר שהתרחיש דורש - ולא יותר מכך",
+        "רק מנהלי מערכת צריכים לקבל גישה לרשת",
+        "כל הכללים צריכים להשתמש בטווחי פורטים לצורך גמישות",
+        "least privilege חל רק על חשבונות משתמשים",
+      ],
       correctAnswer: 0,
       explanation:
         "'App tier → DB tier on 5432' beats 'VNet → any on any' because every unnecessary breadth in a rule is standing attack surface waiting for a use. Least privilege is a universal principle — identities, APIs, and network rules alike. The practical failure mode is rule rot: broad temporary rules that never get removed, which is why rule review belongs in governance.",
+      explanation_he:
+        "'App tier → DB tier על פורט 5432' עדיף על 'VNet → any על any', כי כל רוחב מיותר בכלל הוא משטח התקפה עומד וממתין לניצול. least privilege הוא עיקרון אוניברסלי - זהויות, APIs וכללי רשת כולם כפופים לו. תבנית הכשל המעשית היא 'ריקבון כללים' (rule rot): כללים זמניים רחבים שלעולם לא מוסרים, וזו הסיבה שבדיקת כללים תקופתית שייכת לתחום הממשל (governance).",
       resourceTitle: "Network security best practices (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/security/fundamentals/network-best-practices",
       keywords: ["least privilege", "narrow rules", "rule hygiene"],
@@ -338,15 +468,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "An inbound HTTPS request to a well-architected cloud web app typically passes which layers, in order?",
+      question_he: "בקשת HTTPS נכנסת ליישום אינטרנט בענן הבנוי היטב עוברת בדרך כלל אילו שכבות, לפי הסדר?",
       options: [
         "Edge protections (DDoS/WAF) → load balancer → network filtering (NSG/security group) → the workload",
         "The workload first, then the firewall for logging",
         "DNS → database → cache → workload",
         "There is only ever one security layer per request",
       ],
+      options_he: [
+        "הגנות קצה (DDoS/WAF) → Load Balancer → סינון רשת (NSG/security group) → העומס עצמו",
+        "העומס תחילה, ולאחר מכן חומת האש לצורך תיעוד",
+        "DNS → מסד נתונים → מטמון (cache) → העומס",
+        "קיימת תמיד שכבת אבטחה אחת בלבד לכל בקשה",
+      ],
       correctAnswer: 0,
       explanation:
         "Defense in depth is literally sequential: volumetric attacks die at the DDoS layer, HTTP exploits at the WAF, the LB terminates TLS and picks a healthy backend, and micro-filters verify the flow is expected (LB → app port only) before the packet reaches the app. Each layer covers the others' blind spots, and each is a logging point — an investigation can trace one request through all of them.",
+      explanation_he:
+        "Defense in depth הוא ממש רציף: התקפות נפח נעצרות בשכבת ה-DDoS, ניצולי HTTP נעצרים ב-WAF, ה-Load Balancer מבצע TLS Termination ובוחר backend תקין, ומסנני המיקרו מוודאים שהזרימה צפויה (Load Balancer → פורט האפליקציה בלבד) לפני שהחבילה מגיעה לאפליקציה. כל שכבה מכסה את נקודות העיוורון של האחרות, וכל שכבה היא נקודת תיעוד - חקירה יכולה לעקוב אחר בקשה בודדת דרך כל השכבות.",
       resourceTitle: "Azure Well-Architected — networking security",
       resourceUrl: "https://learn.microsoft.com/azure/well-architected/security/networking",
       keywords: ["defense in depth", "layers", "request path"],
@@ -359,15 +498,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is microsegmentation?",
+      question_he: "מהי מיקרו-סגמנטציה (microsegmentation)?",
       options: [
         "Enforcing traffic policy at the level of individual workloads (VMs, pods) rather than whole networks or subnets",
         "Splitting one subnet into two",
         "Using very small CIDR blocks everywhere",
         "A marketing name for VLANs",
       ],
+      options_he: [
+        "אכיפת מדיניות תעבורה ברמת עומסי עבודה בודדים (מכונות וירטואליות, pods) ולא ברמת רשתות או סאבנטים שלמים",
+        "פיצול סאבנט אחד לשניים",
+        "שימוש בבלוקי CIDR קטנים מאוד בכל מקום",
+        "שם שיווקי ל-VLANs",
+      ],
       correctAnswer: 0,
       explanation:
         "Traditional segmentation draws borders around subnets; microsegmentation draws them around each workload — 'this VM talks to that VM on this port, nothing else', enforced by per-NIC security groups, identity/tag-based rules or Kubernetes NetworkPolicies. Lateral movement then requires defeating a policy at every hop instead of roaming freely within a zone. The cost is policy management at scale, which is why tooling and labels matter.",
+      explanation_he:
+        "סגמנטציה מסורתית מציבה גבולות סביב סאבנטים; מיקרו-סגמנטציה מציבה אותם סביב כל עומס עבודה בנפרד - 'מכונה וירטואלית זו מדברת עם מכונה וירטואלית אחרת בפורט הזה בלבד, ותו לא', ומדיניות זו נאכפת דרך security groups לכל NIC, כללים מבוססי זהות/תגית או Network Policy ב-Kubernetes. תנועה רוחבית מחייבת אז לגבור על מדיניות בכל קפיצה, במקום לנוע בחופשיות בתוך אזור. המחיר הוא ניהול מדיניות בקנה מידה גדול, ולכן כלים ותיוג (labels) חשובים כל כך.",
       resourceTitle: "Microsegmentation guidance (Microsoft Zero Trust)",
       resourceUrl: "https://learn.microsoft.com/security/zero-trust/deploy/networks",
       keywords: ["microsegmentation", "workload-level", "lateral movement"],
@@ -380,15 +528,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "In an Azure NSG, a rule with priority 100 allows all inbound traffic. What happens to the deny rules at priorities 200–400?",
+      question_he: "ב-NSG של Azure, כלל בעדיפות 100 מתיר את כל התעבורה הנכנסת. מה קורה לכללי ה-deny בעדיפויות 200–400?",
       options: [
         "They still apply to matching traffic",
         "They never see the traffic — rules evaluate in priority order and processing stops at the first match, so the broad allow at 100 short-circuits everything below",
         "Azure merges all rules intelligently",
         "Deny rules always override allow rules",
       ],
+      options_he: [
+        "הם עדיין חלים על תעבורה תואמת",
+        "הם לעולם לא רואים את התעבורה - הכללים מוערכים לפי סדר עדיפות, וההערכה נעצרת בהתאמה הראשונה, כך שה-allow הרחב בעדיפות 100 מקצר-מעגל (short-circuit) את כל מה שמתחתיו",
+        "Azure ממזגת את כל הכללים בצורה חכמה",
+        "כללי deny תמיד גוברים על כללי allow",
+      ],
       correctAnswer: 1,
       explanation:
         "NSG evaluation is strictly first-match-wins by ascending priority number, so one careless 'allow any/any' at a low number silently disables every carefully crafted deny below it. Unlike AWS IAM, there is no 'explicit deny always wins' here — order is everything. Auditing NSGs therefore starts at the lowest priorities, and broad allows belong at high numbers if they must exist at all.",
+      explanation_he:
+        "הערכת NSG היא בהחלט first-match-wins לפי סדר עולה של מספרי עדיפות, כך שכלל 'allow any/any' לא זהיר במספר נמוך משבית באופן שקט כל כלל deny מדויק שמתחתיו. בניגוד ל-AWS IAM, אין כאן עיקרון של 'deny מפורש תמיד מנצח' - הסדר הוא הכול. ביקורת NSG לכן מתחילה מהעדיפויות הנמוכות ביותר, וכללי allow רחבים צריכים להימצא במספרים גבוהים אם בכלל יש בהם צורך.",
       resourceTitle: "How network security groups filter traffic",
       resourceUrl: "https://learn.microsoft.com/azure/virtual-network/network-security-group-how-it-works",
       keywords: ["nsg priority", "first match", "rule order"],
@@ -401,15 +558,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multi-select",
       question: "Which network signals suggest a VM may be compromised? (Select all that apply.)",
+      question_he: "אילו אותות רשת מרמזים שמכונה וירטואלית עשויה להיות נגועה? (בחר את כל התשובות הנכונות.)",
       options: [
         "Outbound connections to unfamiliar destinations or on unusual ports",
         "A sudden spike in outbound data volume in flow logs",
         "Repeated denied-connection attempts toward internal systems (lateral probing)",
         "High disk usage on its data volume",
       ],
+      options_he: [
+        "חיבורים יוצאים ליעדים לא מוכרים או בפורטים חריגים",
+        "עלייה פתאומית בנפח הנתונים היוצאים ב-flow logs",
+        "ניסיונות חיבור חוזרים ונחסמים כלפי מערכות פנימיות (בדיקת נתיבים רוחבית - lateral probing)",
+        "ניצול גבוה של דיסק בכרך הנתונים שלה",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Compromise shows up on the wire: beaconing to new external hosts (C2), bulk egress (exfiltration), and denied fan-out toward internal targets (an attacker mapping the environment) are the classic triad that flow-log analytics and services like GuardDuty alert on. Disk filling up is an ops symptom with a hundred innocent causes — signal quality is about behavior change at the network boundary.",
+      explanation_he:
+        "פריצה מתגלה על גבי הרשת: איתות (beaconing) למארחים חיצוניים חדשים (C2), egress מסיבי (הדלפת מידע - exfiltration), והתפזרות ניסיונות חסומים כלפי יעדים פנימיים (תוקף הממפה את הסביבה) הם השלישייה הקלאסית שעליה מתריעים ניתוחי flow-log ושירותים כמו GuardDuty. דיסק שמתמלא הוא תסמין תפעולי עם מאה סיבות חפות מפשע - איכות האות נמדדת בשינוי התנהגות בגבול הרשת.",
       resourceTitle: "GuardDuty finding types (AWS)",
       resourceUrl: "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html",
       keywords: ["compromise indicators", "c2", "exfiltration", "lateral probing"],

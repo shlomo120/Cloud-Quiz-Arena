@@ -20,10 +20,10 @@ CQA.data.registerPack({
       question_he:
         "מהנדס אבטחה מגדיר NSG כך שכל תעבורת ה-inbound חסומה כברירת מחדל, אך לא נוספים כללי outbound מעבר לכלל ברירת המחדל של allow-all ב-egress. מה מתאר בצורה הטובה ביותר את הסיכון הנובע מכך?",
       options: [
-        "אין סיכון כי חסימת inbound מגנה על המשאב באופן מלא",
+        "There is no risk, because blocking inbound traffic fully protects the resource",
         "A compromised workload could freely send data to any external destination, since egress traffic is not restricted",
-        "תעבורת outbound נחסמת אוטומטית בכל פעם שתעבורת inbound חסומה",
-        "כללי egress רלוונטיים רק לרשתות on-premises ולא ל-VNet/VPC בענן",
+        "Outbound traffic is automatically blocked whenever inbound traffic is blocked",
+        "Egress rules are only relevant for on-premises networks, not for cloud VNets/VPCs",
       ],
       options_he: [
         "אין סיכון כי חסימת inbound מגנה על המשאב באופן מלא",
@@ -76,10 +76,10 @@ CQA.data.registerPack({
       question_he:
         "מה מבין הבאים WAF יכול לבדוק בעוד שחומת אש רשתית מסורתית, הפועלת מתחת לשכבת האפליקציה, בדרך כלל אינה יכולה?",
       options: [
-        "כתובות IP מקור ויעד",
-        "מספרי פורט TCP",
+        "Source and destination IP addresses",
+        "TCP port numbers",
         "HTTP request contents such as headers, cookies, and query strings",
-        "סוג הפרוטוקול בכותרת חבילת ה-IP",
+        "The protocol type in the IP packet header",
       ],
       options_he: [
         "כתובות IP מקור ויעד",
@@ -108,10 +108,10 @@ CQA.data.registerPack({
       question_he:
         "מה המטרה העיקרית מבחינת אבטחה בפריסת bastion host (jump box) ברשת ענן?",
       options: [
-        "לבצע איזון עומסים (load balancing) בין שרתי אפליקציה",
+        "To perform load balancing between application servers",
         "To provide a single, hardened, monitored entry point for administrative access instead of exposing management ports on every instance",
-        "להצפין נתונים במנוחה (at rest) בכל המכונות המנוהלות",
-        "לשמש כ-DNS resolver עבור subnets פרטיים",
+        "To encrypt data at rest on all managed machines",
+        "To act as a DNS resolver for private subnets",
       ],
       options_he: [
         "לבצע איזון עומסים (load balancing) בין שרתי אפליקציה",
@@ -141,10 +141,10 @@ CQA.data.registerPack({
       question_he:
         "צוות מתכנן כללי security group עבור שרתי אפליקציה שאמורים להיות נגישים רק מ-load balancer ספציפי. איזו גישה עוקבת אחר עקרון החשיפה המינימלית (least exposure)?",
       options: [
-        "לאפשר את כל תעבורת ה-inbound ולסמוך על כך שהאפליקציה תדחה בקשות לא מורשות",
-        "לפתוח את פורט האפליקציה לכל טווח ה-CIDR של ה-VPC/VNet לנוחות",
+        "Allow all inbound traffic and trust that the application will reject unauthorized requests",
+        "Open the application port to the entire CIDR range of the VPC/VNet for convenience",
         "Allow inbound traffic on the application port only from the load balancer's security group or specific IP range, and deny everything else",
-        "לאפשר תעבורת inbound מ-0.0.0.0/0 אך לדרוש אימות ברמת האפליקציה",
+        "Allow inbound traffic from 0.0.0.0/0 but require authentication at the application layer",
       ],
       options_he: [
         "לאפשר את כל תעבורת ה-inbound ולסמוך על כך שהאפליקציה תדחה בקשות לא מורשות",
@@ -174,10 +174,10 @@ CQA.data.registerPack({
       question_he:
         "חברת קמעונאות ממקמת את שכבת ה-web, שכבת האפליקציה ושכבת מסד הנתונים ב-subnet שטוח יחיד המוגן על ידי security group אחד המתיר את כל התעבורה ביניהם. מהו הסיכון העיקרי בעיצוב זה בהשוואה לעיצוב מפולח עם אזורים לכל שכבה?",
       options: [
-        "לרשתות שטוחות תמיד יש latency גבוה יותר",
+        "Flat networks always have higher latency",
         "If any single tier is compromised, an attacker has unrestricted network access to move laterally into other tiers",
-        "רשתות שטוחות אינן יכולות לתמוך ב-load balancers",
-        "פילוח רשתי (segmentation) שימושי רק לצורכי compliance ולא לאבטחה",
+        "Flat networks cannot support load balancers",
+        "Network segmentation is only useful for compliance purposes, not security",
       ],
       options_he: [
         "לרשתות שטוחות תמיד יש latency גבוה יותר",
@@ -206,10 +206,10 @@ CQA.data.registerPack({
       question_he:
         "צוות זקוק לכך שאפליקציה תגיע לשירות מסד נתונים מנוהל מבלי שהתעבורה תעבור אי פעם דרך האינטרנט הציבורי, ומבלי לתחזק רשימת כתובות IP ציבוריות מותרות. איזו גישה עונה בצורה הטובה ביותר על הדרישה?",
       options: [
-        "להגדיר את נקודת הקצה הציבורית של מסד הנתונים עם allow-list המכיל את כתובות ה-IP היוצאות של האפליקציה",
+        "Configure the database's public endpoint with an allow-list containing the application's outbound IP addresses",
         "Use a private endpoint / private link so the database is reachable via a private IP within the virtual network",
-        "לפתוח את חומת האש של מסד הנתונים ל-0.0.0.0/0 ולהסתמך על סיסמת האפליקציה",
-        "להשתמש ב-NAT gateway כדי להסוות את כתובת ה-IP של האפליקציה",
+        "Open the database's firewall to 0.0.0.0/0 and rely on the application's password",
+        "Use a NAT gateway to mask the application's IP address",
       ],
       options_he: [
         "להגדיר את נקודת הקצה הציבורית של מסד הנתונים עם allow-list המכיל את כתובות ה-IP היוצאות של האפליקציה",
@@ -241,7 +241,7 @@ CQA.data.registerPack({
       options: [
         "Detecting unexpected traffic patterns that may indicate data exfiltration",
         "Troubleshooting why a security group/NSG rule is unexpectedly blocking traffic",
-        "לחסום באופן אוטומטי תעבורה זדונית בזמן אמת ללא שום כלי נוסף",
+        "Automatically blocking malicious traffic in real time with no additional tooling",
         "Providing evidence for post-incident forensic analysis",
       ],
       options_he: [
@@ -294,10 +294,10 @@ CQA.data.registerPack({
       question_he:
         "ל-NSG יש שני כללים: כלל 100 חוסם את כל תעבורת ה-inbound מ-10.0.0.0/16, וכלל 200 מתיר תעבורת inbound מ-10.0.1.5 בפורט 443. תעבורה מגיעה מ-10.0.1.5 בפורט 443. מה קורה, ומדוע?",
       options: [
-        "התעבורה מותרת, כי כלל 200 ספציפי יותר מכלל 100",
+        "The traffic is allowed, because Rule 200 is more specific than Rule 100",
         "The traffic is denied, because NSGs evaluate rules in priority order and Rule 100 (lower priority number, evaluated first) matches and denies it before Rule 200 is considered",
-        "התעבורה מותרת, כי כללי allow תמיד גוברים על כללי deny",
-        "שני הכללים חלים והתעבורה נרשמת בלוג פעמיים אך אינה נחסמת",
+        "The traffic is allowed, because allow rules always override deny rules",
+        "Both rules apply and the traffic is logged twice but not blocked",
       ],
       options_he: [
         "התעבורה מותרת, כי כלל 200 ספציפי יותר מכלל 100",
@@ -328,9 +328,9 @@ CQA.data.registerPack({
         "ב-subnet נעשה שימוש ב-network ACL stateless. כלל inbound מתיר תעבורה בפורט 443 מהאינטרנט, אך המנהלים שכחו להוסיף כלל outbound המתיר תעבורה לפורטים אפמריים 1024-65535. מה התסמין הסביר?",
       options: [
         "Inbound connections on port 443 will succeed, but the server won't be able to send return traffic back to clients, causing failed or hanging connections",
-        "אין השפעה, כי ACL-ים stateless עוקבים אחר מצב החיבור באופן פנימי בכל זאת",
-        "תעבורת inbound בפורט 443 תיחסם לחלוטין",
-        "רק תעבורת IPv6 תושפע מכך",
+        "There is no effect, because stateless ACLs still track connection state internally",
+        "Inbound traffic on port 443 will be completely blocked",
+        "Only IPv6 traffic will be affected",
       ],
       options_he: [
         "חיבורי inbound בפורט 443 יצליחו, אך השרת לא יוכל לשלוח תעבורת תשובה חזרה ללקוחות, מה שיגרום לחיבורים כושלים או תקועים",
@@ -360,10 +360,10 @@ CQA.data.registerPack({
       question_he:
         "אפליקציה שנמצאת מאחורי גם חומת אש רשתית (המתירה רק פורט 443) וגם WAF, נפגעת מהתקפת SQL injection המוטמעת בבקשת HTTPS POST שנראית לגיטימית. חומת האש הרשתית אינה מזהה דבר חריג. מדוע זה צפוי, ומה אמור לתפוס את ההתקפה?",
       options: [
-        "חומת האש הרשתית נכשלה כי הייתה אמורה לפענח TLS ולבדוק את ה-payload; ה-WAF מיותר",
+        "The network firewall failed because it was supposed to decrypt TLS and inspect the payload; the WAF is redundant",
         "The network firewall operates below the application layer and only sees permitted ports/protocols, not HTTP payload content — this is precisely what the WAF, which inspects HTTP request bodies and applies rules like SQLi signatures, is designed to catch",
-        "SQL injection לא ניתן לזיהוי על ידי אף בקרת היקף ודורש רק validation ברמת האפליקציה",
-        "שני ההתקנים היו אמורים לחסום את זה באופן זהה מכיוון שהם בודקים את אותה תעבורה",
+        "SQL injection cannot be detected by any perimeter control and requires only application-level validation",
+        "Both devices should have blocked this identically since they inspect the same traffic",
       ],
       options_he: [
         "חומת האש הרשתית נכשלה כי הייתה אמורה לפענח TLS ולבדוק את ה-payload; ה-WAF מיותר",
@@ -393,7 +393,7 @@ CQA.data.registerPack({
         "מה מבין הבאים מהווה טכניקה יעילה להכלת תנועה רוחבית (lateral movement, east-west) לאחר שתוקף פורץ למארח בודד בסביבה מפולחת? (בחר את כל האפשרויות הרלוונטיות)",
       options: [
         "Applying per-workload security groups so only explicitly required ports/peers are reachable, even within the same subnet",
-        "להסתמך אך ורק על חומת האש בהיקף (perimeter) מכיוון שתעבורה פנימית כבר 'מהימנה'",
+        "Relying solely on the perimeter firewall, since internal traffic is already 'trusted'",
         "Using network policies (e.g., Kubernetes NetworkPolicy) to restrict pod-to-pod communication to only necessary services",
         "Deploying host-based or micro-segmentation controls that enforce zero-trust rules regardless of network topology",
       ],
@@ -425,10 +425,10 @@ CQA.data.registerPack({
       question_he:
         "צוות אבטחה מבחין ש-VM שנפרץ בתוך subnet פרטי שולח כמויות גדולות של נתונים לכתובת IP חיצונית לא מוכרת דרך פורט 443, במסווה של תעבורת HTTPS רגילה. איזו בקרה, אם הוגדרה כראוי מראש, הייתה יעילה ביותר במניעת ה-exfiltration הזו?",
       options: [
-        "כלל NSG ל-inbound שחוסם RDP מהאינטרנט",
+        "An inbound NSG rule blocking RDP from the internet",
         "An egress rule/firewall policy restricting outbound traffic to only known, required destinations (e.g., via an explicit allow-list or forced routing through an inspected egress firewall)",
-        "הפעלת TLS על ה-API-ים הפנימיים של האפליקציה",
-        "WAF המגן על ה-load balancer הפונה החוצה",
+        "Enabling TLS on the application's internal APIs",
+        "A WAF protecting the outward-facing load balancer",
       ],
       options_he: [
         "כלל NSG ל-inbound שחוסם RDP מהאינטרנט",

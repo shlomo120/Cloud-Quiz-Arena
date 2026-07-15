@@ -15,15 +15,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is the key difference between a container and a virtual machine?",
+      question_he: "מה ההבדל המרכזי בין container ל-virtual machine?",
       options: [
         "Containers share the host's OS kernel and isolate at the process level; VMs each run a full OS on virtualized hardware",
         "Containers are always more secure than VMs",
         "VMs start faster than containers",
         "Containers cannot run on cloud VMs",
       ],
+      options_he: [
+        "Containers חולקים את kernel מערכת ההפעלה של ה-host ומבודדים ברמת התהליך; VMs כל אחד מריץ מערכת הפעלה מלאה על חומרה מוירטואלית",
+        "Containers תמיד מאובטחים יותר מ-VMs",
+        "VMs עולים מהר יותר מ-containers",
+        "Containers לא יכולים לרוץ על VMs בענן",
+      ],
       correctAnswer: 0,
       explanation:
         "A container is an isolated process tree (namespaces + cgroups) on a shared kernel — megabytes and milliseconds; a VM boots its own OS — gigabytes and minutes, but with a hardware-enforced boundary. That's also the security nuance: kernel sharing means a kernel exploit can cross containers, which is why hostile multi-tenancy still reaches for VMs or sandboxed runtimes. In practice clouds run your containers inside VMs anyway.",
+      explanation_he:
+        "container הוא עץ תהליכים מבודד (namespaces + cgroups) על kernel משותף — מגה-בייטים ומילישניות; VM מאתחל מערכת הפעלה משלו — גיגה-בייטים ודקות, אך עם גבול המאוכף בחומרה. זו גם הנקודה העדינה מבחינת אבטחה: שיתוף kernel אומר שניצול פרצה ב-kernel יכול לחצות בין containers, ולכן ריבוי-דיירים עוין עדיין פונה ל-VMs או runtimes מבודדים (sandboxed). בפועל, ספקי הענן מריצים את ה-containers שלכם בתוך VMs בכל מקרה.",
       resourceTitle: "What is a container? (Docker)",
       resourceUrl: "https://www.docker.com/resources/what-container/",
       keywords: ["container vs vm", "kernel", "isolation"],
@@ -36,15 +45,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is the relationship between a container image and a container?",
+      question_he: "מה הקשר בין container image ל-container?",
       options: [
         "The image is an immutable, layered template; a container is a running instance created from it",
         "They are the same thing",
         "The container is the template, the image is the instance",
         "Images can only exist inside Kubernetes",
       ],
+      options_he: [
+        "ה-image הוא תבנית בלתי ניתנת לשינוי (immutable) ומשוכבת; container הוא מופע רץ שנוצר ממנה",
+        "אלה אותו הדבר",
+        "ה-container הוא התבנית, ה-image הוא המופע",
+        "images יכולים להתקיים רק בתוך Kubernetes",
+      ],
       correctAnswer: 0,
       explanation:
         "Class and object: one image (filesystem layers + metadata like entrypoint) spawns any number of identical containers, each adding only a thin writable layer at runtime. Immutability is the operational superpower — the exact artifact you tested is the artifact in production, and 'patching' means building and rolling a new image, never editing a live container.",
+      explanation_he:
+        "מחלקה ואובייקט: image אחד (שכבות מערכת קבצים + metadata כמו entrypoint) מייצר כל מספר של containers זהים, כשכל אחד מוסיף רק שכבת כתיבה דקה בזמן ריצה. אי-השינוי (immutability) הוא כוח-העל התפעולי — הארטיפקט המדויק שנבדק הוא הארטיפקט שרץ בפרודקשן, ו'תיקון' (patching) פירושו בניית והפצת image חדש, ולעולם לא עריכה של container חי.",
       resourceTitle: "Docker overview",
       resourceUrl: "https://docs.docker.com/get-started/overview/",
       keywords: ["image", "container", "layers", "immutable"],
@@ -57,15 +75,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "Which row matches each cloud's managed container registry?",
+      question_he: "איזו שורה מתאימה בכל ענן ל-registry הניהולי (managed container registry) שלו?",
       options: [
         "Azure Container Registry — Amazon ECR — Google Artifact Registry",
         "Azure Files — Amazon S3 — Cloud Storage",
         "AKS — EKS — GKE",
         "Docker Hub is the only registry that exists",
       ],
+      options_he: [
+        "Azure Container Registry — Amazon ECR — Google Artifact Registry",
+        "Azure Files — Amazon S3 — Cloud Storage",
+        "AKS — EKS — GKE",
+        "Docker Hub הוא ה-registry היחיד שקיים",
+      ],
       correctAnswer: 0,
       explanation:
         "ACR, ECR and Artifact Registry store and serve your images close to your compute, with IAM-integrated access control, geo-replication options and vulnerability scanning hooks. Row three is the Kubernetes services that PULL from these registries, and object storage is what registries use underneath, not a registry itself. Public registries like Docker Hub remain sources for base images — with rate limits and supply-chain caution.",
+      explanation_he:
+        "ACR, ECR ו-Artifact Registry מאחסנים ומגישים את ה-images שלכם קרוב לחישוב שלכם, עם בקרת גישה משולבת IAM, אפשרויות שכפול גיאוגרפי (geo-replication) וחיבורי סריקת פגיעויות. השורה השלישית היא שירותי Kubernetes שמבצעים pull מה-registries האלה, ואחסון אובייקטים הוא מה ש-registries משתמשים בו מתחת למכסה המנוע, לא registry בפני עצמו. registries ציבוריים כמו Docker Hub נשארים מקורות עבור base images — עם מגבלות קצב (rate limits) וזהירות בשרשרת האספקה.",
       resourceTitle: "Azure Container Registry overview",
       resourceUrl: "https://learn.microsoft.com/azure/container-registry/container-registry-intro",
       keywords: ["acr", "ecr", "artifact registry", "registries"],
@@ -78,15 +105,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Why is pulling an image by digest (@sha256:…) stronger than pulling by tag?",
+      question_he: "מדוע pull של image לפי digest (@sha256:…) חזק יותר מ-pull לפי tag?",
       options: [
         "A digest is a content hash identifying exactly one immutable image; a tag is a movable pointer that can silently change what it references",
         "Digests download faster",
         "Tags are deprecated",
         "Digests skip authentication",
       ],
+      options_he: [
+        "digest הוא hash תוכן המזהה image בלתי ניתן לשינוי אחד ויחיד; tag הוא מצביע נייד שיכול לשנות בשקט את מה שהוא מצביע אליו",
+        "digests מורידים מהר יותר",
+        "tags הוצאו משימוש (deprecated)",
+        "digests מדלגים על אימות (authentication)",
+      ],
       correctAnswer: 0,
       explanation:
         "myapp:v1.2 is a label someone can repoint — push a different image to the same tag and every future pull gets different bytes, deliberately or maliciously. The digest is the SHA-256 of the content itself: it can't drift, so 'what exactly is running?' has a cryptographic answer. Supply-chain-conscious pipelines resolve tags to digests at build time and deploy by digest ever after.",
+      explanation_he:
+        "myapp:v1.2 היא תווית שמישהו יכול למקם מחדש — לדחוף image אחר לאותו tag וכל pull עתידי יקבל בייטים שונים, בכוונה או בזדון. ה-digest הוא ה-SHA-256 של התוכן עצמו: הוא לא יכול לנדוד, כך של'מה בדיוק רץ?' יש תשובה קריפטוגרפית. pipelines המודעים לשרשרת האספקה פותרים tags ל-digests בזמן build ופורסים לפי digest מכאן ואילך.",
       resourceTitle: "Image pull by digest (Kubernetes images)",
       resourceUrl: "https://kubernetes.io/docs/concepts/containers/images/",
       keywords: ["digest", "tag", "immutability", "supply chain"],
@@ -99,10 +135,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "The :latest tag guarantees you are running the newest published version of an image.",
+      question_he: "ה-tag :latest מבטיח שאתם מריצים את הגרסה החדשה ביותר שפורסמה של image.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: false,
       explanation:
         "latest is just a tag name with no magic — it points wherever the publisher last pushed it (which may not be the newest release at all), and your node may keep serving a stale cached copy depending on pull policy. In production, :latest means 'I don't know what's running and can't reproduce it'. Pin explicit versions, or better, digests; let update tooling propose bumps deliberately.",
+      explanation_he:
+        "latest הוא סתם שם tag ללא קסם — הוא מצביע לאן שהמפרסם דחף אליו לאחרונה (מה שאולי אינו הגרסה החדשה ביותר בכלל), וה-node שלכם עשוי להמשיך להגיש עותק שמור (cached) מיושן בהתאם למדיניות ה-pull. בפרודקשן, :latest פירושו 'אני לא יודע מה רץ ולא יכול לשחזר את זה'. יש להצמיד (pin) גרסאות מפורשות, או עדיף, digests; ולתת לכלי העדכון להציע קפיצות בכוונה תחילה.",
       resourceTitle: "Image tags and pull policy (Kubernetes)",
       resourceUrl: "https://kubernetes.io/docs/concepts/containers/images/",
       keywords: ["latest tag", "pinning", "reproducibility"],
@@ -115,15 +155,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multi-select",
       question: "Which are container image hardening practices? (Select all that apply.)",
+      question_he: "אילו מהבאים הם נהלי חיזוק (hardening) של container images? (בחרו את כל התשובות הרלוונטיות.)",
       options: [
         "Use minimal base images (distroless, alpine) to shrink the attack surface",
         "Run the process as a non-root user",
         "Scan images for known CVEs before and after deployment",
         "Bake credentials into the image so the app starts faster",
       ],
+      options_he: [
+        "שימוש ב-base images מינימליים (distroless, alpine) כדי לצמצם את משטח ההתקפה",
+        "הרצת התהליך כמשתמש non-root",
+        "סריקת images לאיתור CVEs ידועים לפני ואחרי הפריסה",
+        "הטמעת credentials בתוך ה-image כדי שהאפליקציה תעלה מהר יותר",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Every binary in the image is attack surface an exploit can leverage — minimal bases remove shells, package managers and hundreds of CVEs at a stroke; non-root limits what a compromised process can do; scanning catches known-vulnerable layers continuously (new CVEs appear after you ship). Baked-in credentials are the anti-practice: images get pulled, cached, pushed to registries — a secret in a layer is a secret published. Inject at runtime from a secret store.",
+      explanation_he:
+        "כל בינארי ב-image הוא משטח התקפה שניצול יכול למנף — base images מינימליים מסירים shells, מנהלי חבילות ומאות CVEs במכה אחת; non-root מגביל את מה שתהליך שנפרץ יכול לעשות; סריקה תופסת שכבות פגיעות ידועות באופן רציף (CVEs חדשים מופיעים אחרי שכבר שילחתם). credentials מוטמעים הם הפרקטיקה ההפוכה: images נמשכים (pulled), נשמרים ב-cache, נדחפים ל-registries — סוד בתוך שכבה הוא סוד שפורסם. יש להזריק בזמן ריצה ממחסן secrets.",
       resourceTitle: "Container security best practices (Microsoft Defender for Cloud)",
       resourceUrl: "https://learn.microsoft.com/azure/defender-for-cloud/defender-for-containers-introduction",
       keywords: ["image hardening", "distroless", "non-root", "secrets"],
@@ -136,15 +185,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does registry vulnerability scanning do?",
+      question_he: "מה עושה סריקת פגיעויות (vulnerability scanning) ב-registry?",
       options: [
         "Analyzes image layers against CVE databases and reports vulnerable packages — e.g. Defender for Cloud with ACR, ECR scanning, Artifact Analysis in GCP",
         "Tests your application's business logic",
         "Blocks all images from public registries",
         "Encrypts images at rest",
       ],
+      options_he: [
+        "מנתחת שכבות image מול מסדי נתוני CVE ומדווחת על חבילות פגיעות — למשל Defender for Cloud עם ACR, סריקת ECR, Artifact Analysis ב-GCP",
+        "בודקת את הלוגיקה העסקית של האפליקציה שלכם",
+        "חוסמת את כל ה-images מ-registries ציבוריים",
+        "מצפינה images במנוחה (at rest)",
+      ],
       correctAnswer: 0,
       explanation:
         "Scanners decompose the image into its packages and match versions against vulnerability feeds, flagging 'openssl 1.1.1k → CVE-XXXX critical' on push and on a schedule (yesterday's clean image can be vulnerable today). All three clouds integrate this into their registries. It finds known CVEs — logic flaws and zero-days stay out of scope, and unpatched findings still require someone to rebuild and redeploy.",
+      explanation_he:
+        "סורקים מפרקים את ה-image לחבילות שבו ומשווים גרסאות מול feeds של פגיעויות, ומסמנים 'openssl 1.1.1k → CVE-XXXX קריטי' בעת push ולפי לוח זמנים (image נקי מאתמול יכול להיות פגיע היום). שלושת העננים משלבים זאת ב-registries שלהם. הסריקה מוצאת CVEs ידועים — פגמי לוגיקה ופרצות zero-day נשארים מחוץ לתחום, וממצאים שלא תוקנו עדיין דורשים שמישהו יבנה מחדש ויפרוס מחדש.",
       resourceTitle: "Scan images in Amazon ECR",
       resourceUrl: "https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html",
       keywords: ["vulnerability scanning", "cve", "registry"],
@@ -157,15 +215,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What does signing container images (e.g. with cosign or Notation) add on top of digests?",
+      question_he: "מה חתימה (signing) על container images (למשל עם cosign או Notation) מוסיפה מעבר ל-digests?",
       options: [
         "A verifiable statement of WHO produced the image — clusters can then admit only images signed by trusted identities",
         "Compression of image layers",
         "Faster pulls from the registry",
         "Automatic CVE patching",
       ],
+      options_he: [
+        "הצהרה ניתנת לאימות על מי הפיק את ה-image — clusters יכולים אז לאשר רק images החתומים על ידי זהויות מהימנות",
+        "דחיסה של שכבות image",
+        "pulls מהירים יותר מה-registry",
+        "תיקון אוטומטי של CVEs",
+      ],
       correctAnswer: 0,
       explanation:
         "A digest proves integrity (these exact bytes) but says nothing about origin; a signature binds the digest to a publisher's key or OIDC identity, so admission controllers can enforce 'only images signed by our CI pipeline run here'. That closes the 'attacker pushes a well-formed malicious image to our registry' path and underpins supply-chain frameworks (SLSA, attestations). Signing is provenance; scanning is content health — you want both.",
+      explanation_he:
+        "digest מוכיח שלמות (בדיוק הבייטים האלה) אך לא אומר דבר על מקור; חתימה קושרת את ה-digest למפתח של המפרסם או לזהות OIDC, כך ש-admission controllers יכולים לאכוף 'רק images חתומים על ידי ה-CI pipeline שלנו רצים כאן'. זה סוגר את הנתיב של 'תוקף דוחף image זדוני תקין-פורמט ל-registry שלנו' ותומך במסגרות שרשרת אספקה (SLSA, attestations). חתימה היא provenance; סריקה היא בריאות תוכן — רוצים את שניהם.",
       resourceTitle: "Sigstore cosign",
       resourceUrl: "https://docs.sigstore.dev/cosign/signing/overview/",
       keywords: ["image signing", "cosign", "provenance", "admission"],
@@ -178,15 +245,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is the sidecar pattern?",
+      question_he: "מהו ה-sidecar pattern?",
       options: [
         "A helper container running in the same Pod as the app, sharing its network/volumes — e.g. a log shipper or proxy",
         "A backup Pod on another node",
         "A container that runs before the app starts and then exits",
         "A second replica of the application",
       ],
+      options_he: [
+        "container עזר הרץ באותו Pod כמו האפליקציה, וחולק את הרשת/volumes שלה — למשל log shipper או proxy",
+        "Pod גיבוי בצומת (node) אחר",
+        "container שרץ לפני שהאפליקציה מתחילה ואז יוצא",
+        "רפליקה שנייה של האפליקציה",
+      ],
       correctAnswer: 0,
       explanation:
         "Because Pod containers share localhost and volumes, a sidecar can transparently add capabilities the app never implemented: shipping its logs, terminating mTLS, proxying its traffic, refreshing secrets. The run-then-exit variant is an init container, and replicas are horizontal scaling — different tools. Sidecars are how service meshes attach to workloads without touching application code.",
+      explanation_he:
+        "מכיוון ש-containers ב-Pod חולקים localhost ו-volumes, sidecar יכול להוסיף בשקיפות יכולות שהאפליקציה מעולם לא ממשה: שילוח (shipping) הלוגים שלה, סיום mTLS, proxying לתעבורה שלה, רענון secrets. הגרסה שרצה-ואז-יוצאת היא init container, ורפליקות הן scaling אופקי — כלים שונים. sidecars הם האופן שבו service meshes מתחברים לעומסי עבודה בלי לגעת בקוד האפליקציה.",
       resourceTitle: "Sidecar containers (Kubernetes)",
       resourceUrl: "https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/",
       keywords: ["sidecar", "helper container", "pod pattern"],
@@ -199,15 +275,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What does a service mesh (Istio, Linkerd) provide?",
+      question_he: "מה מספק service mesh (Istio, Linkerd)?",
       options: [
         "A proxy layer alongside each workload delivering mTLS between services, traffic control and telemetry — without application code changes",
         "A physical network of dedicated cables",
         "A replacement for Kubernetes itself",
         "A container image build system",
       ],
+      options_he: [
+        "שכבת proxy לצד כל עומס עבודה המספקת mTLS בין שירותים, בקרת תעבורה וטלמטריה — ללא שינויי קוד באפליקציה",
+        "רשת פיזית של כבלים ייעודיים",
+        "תחליף ל-Kubernetes עצמו",
+        "מערכת בנייה של container images",
+      ],
       correctAnswer: 0,
       explanation:
         "The mesh injects a proxy next to every service instance and routes traffic through it, so encryption-with-identity (mTLS), retries, canary splits, and uniform metrics/traces become platform features instead of per-app libraries. The security headline is zero-trust service-to-service auth: every call is encrypted and mutually authenticated. Costs are real too — resource overhead and operational complexity — so meshes earn their keep at scale, not on three services.",
+      explanation_he:
+        "ה-mesh מזריק proxy לצד כל מופע שירות ומנתב תעבורה דרכו, כך שהצפנה-עם-זהות (mTLS), retries, פיצולי canary, ומדדים/traces אחידים הופכים לתכונות פלטפורמה במקום ספריות per-app. הכותרת הראשית באבטחה היא אימות zero-trust בין שירותים: כל קריאה מוצפנת ומאומתת הדדית. גם העלויות אמיתיות — עומס משאבים ומורכבות תפעולית — כך שmeshes מרוויחים את מקומם בקנה מידה גדול, לא על שלושה שירותים.",
       resourceTitle: "The Istio service mesh",
       resourceUrl: "https://istio.io/latest/about/service-mesh/",
       keywords: ["service mesh", "mtls", "istio", "traffic management"],
@@ -220,10 +305,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "true-false",
       question: "Deploying an image by its digest guarantees the exact same bytes run every time, wherever it is pulled.",
+      question_he: "פריסת image לפי ה-digest שלו מבטיחה שאותם בייטים בדיוק ירוצו בכל פעם, בכל מקום שממנו הוא נמשך (pull).",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "The digest IS the content — SHA-256 over the manifest — so any registry serving that digest serves those bytes or fails verification; nothing can be swapped underneath you. This is the reproducibility anchor for audits ('prove what ran in production in March') and incident response alike. The honest caveat: identical bytes, not identical behavior — the same image can still act differently under different configs, mounts and environments.",
+      explanation_he:
+        "ה-digest הוא התוכן עצמו — SHA-256 מעל ה-manifest — כך שכל registry שמגיש את ה-digest הזה מגיש את אותם בייטים או נכשל באימות; שום דבר לא יכול להתחלף מתחתיכם. זה עוגן השחזוריות (reproducibility) לביקורות ('הוכיחו מה רץ בפרודקשן במרץ') ולתגובת אירועים כאחד. ההסתייגות ההוגנת: בייטים זהים, לא בהכרח התנהגות זהה — אותו image עדיין יכול לפעול אחרת תחת configs, mounts וסביבות שונים.",
       resourceTitle: "Content addressability (OCI image spec)",
       resourceUrl: "https://github.com/opencontainers/image-spec/blob/main/descriptor.md",
       keywords: ["digest", "content addressable", "reproducibility"],
@@ -236,15 +325,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is the most secure way for a cloud Kubernetes cluster to pull images from its registry?",
+      question_he: "מהי הדרך המאובטחת ביותר עבור cluster Kubernetes בענן למשוך images מה-registry שלו?",
       options: [
         "Workload/managed identity for registry auth (no stored credentials) plus a private endpoint so pulls never traverse public networks",
         "A shared admin password stored in a ConfigMap",
         "Making the registry public so no auth is needed",
         "Copying images to every node manually over SSH",
       ],
+      options_he: [
+        "זהות workload/managed identity לאימות מול ה-registry (ללא credentials מאוחסנים) בתוספת private endpoint כך שה-pulls אף פעם לא עוברים דרך רשתות ציבוריות",
+        "סיסמת admin משותפת המאוחסנת ב-ConfigMap",
+        "הפיכת ה-registry לציבורי כך שאין צורך באימות",
+        "העתקת images לכל node ידנית דרך SSH",
+      ],
       correctAnswer: 0,
       explanation:
         "Both halves matter: the cluster's platform identity (AKS kubelet identity → ACR, EKS node/pod roles → ECR, GKE workload identity → Artifact Registry) authenticates without any secret to leak or rotate, and a private endpoint keeps the pull path off the internet entirely. A ConfigMap is plaintext to anyone with namespace read; a public registry donates your images — and their vulnerabilities — to the world.",
+      explanation_he:
+        "שני החצאים חשובים: הזהות הפלטפורמית של ה-cluster (AKS kubelet identity → ACR, EKS node/pod roles → ECR, GKE workload identity → Artifact Registry) מאמתת ללא כל סוד שיכול לדלוף או להתחלף, ו-private endpoint שומר על נתיב ה-pull מחוץ לאינטרנט לגמרי. ConfigMap הוא טקסט גלוי לכל מי שיש לו הרשאת קריאה ל-namespace; registry ציבורי תורם את ה-images שלכם — ואת הפגיעויות שלהן — לעולם.",
       resourceTitle: "Authenticate with ACR from AKS",
       resourceUrl: "https://learn.microsoft.com/azure/aks/cluster-container-registry-integration",
       keywords: ["registry auth", "workload identity", "private endpoint", "image pull"],

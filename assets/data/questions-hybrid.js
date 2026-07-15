@@ -15,15 +15,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is a site-to-site VPN in a cloud context?",
+      question_he: "מה זה site-to-site VPN בהקשר ענן?",
       options: [
         "An encrypted IPsec tunnel over the internet connecting your on-premises network to your cloud virtual network",
         "A faster type of internet connection",
         "A VPN client installed on every server",
         "A private fiber cable to the cloud provider",
       ],
+      options_he: [
+        "מנהרת IPsec מוצפנת מעל האינטרנט שמחברת את הרשת המקומית (on-premises) שלכם לרשת הווירטואלית בענן",
+        "סוג מהיר יותר של חיבור אינטרנט",
+        "לקוח VPN שמותקן על כל שרת",
+        "כבל סיבים אופטיים פרטי לספק הענן",
+      ],
       correctAnswer: 0,
       explanation:
         "Site-to-site means network-to-network: a VPN gateway in the cloud and a device on-premises maintain an IPsec tunnel, and hosts on both sides route to each other over private addresses — no per-machine clients. It rides the public internet (encrypted), so bandwidth and latency vary; that's the trade against dedicated circuits. It's the standard first step of every hybrid architecture.",
+      explanation_he:
+        "Site-to-site משמעו חיבור בין רשת לרשת: VPN Gateway בענן והתקן מקומי (on-premises) מקיימים מנהרת IPsec, ומארחים משני הצדדים מנתבים זה לזה דרך כתובות פרטיות — בלי צורך בלקוח VPN על כל מכונה. החיבור עובר על גבי האינטרנט הציבורי (בצורה מוצפנת), ולכן רוחב הפס וזמן ההשהיה משתנים; זהו הפשרה מול מעגלים ייעודיים. זהו הצעד הראשון הסטנדרטי בכל ארכיטקטורת hybrid.",
       resourceTitle: "Azure VPN Gateway overview",
       resourceUrl: "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways",
       keywords: ["site-to-site", "ipsec", "vpn gateway"],
@@ -36,7 +45,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "Which row matches each cloud's dedicated private connection service?",
+      question_he: "איזו שורה מתאימה נכון לשירות החיבור הפרטי הייעודי של כל ענן?",
       options: [
+        "Azure ExpressRoute — AWS Direct Connect — GCP Cloud Interconnect",
+        "Azure Bastion — AWS CloudShell — GCP Cloud Shell",
+        "Azure Front Door — Amazon CloudFront — Cloud CDN",
+        "Azure Firewall — AWS Network Firewall — Cloud Armor",
+      ],
+      options_he: [
         "Azure ExpressRoute — AWS Direct Connect — GCP Cloud Interconnect",
         "Azure Bastion — AWS CloudShell — GCP Cloud Shell",
         "Azure Front Door — Amazon CloudFront — Cloud CDN",
@@ -45,6 +61,8 @@ CQA.data.registerPack({
       correctAnswer: 0,
       explanation:
         "These three provision physical circuits (typically via a colocation/connectivity partner) between your network and the cloud edge — guaranteed bandwidth, consistent latency, traffic off the public internet. The other rows are admin access, CDNs and firewalls. Enterprises running latency-sensitive or high-volume hybrid workloads graduate from VPN to these circuits.",
+      explanation_he:
+        "שלושת השירותים הללו מספקים מעגלים פיזיים (בדרך כלל דרך שותף colocation/קישוריות) בין הרשת שלכם לקצה הענן — רוחב פס מובטח, זמן השהיה יציב, ותעבורה שלא עוברת דרך האינטרנט הציבורי. השורות האחרות הן גישת ניהול, CDN וחומות אש. ארגונים המריצים עומסי עבודה היברידיים רגישים לזמן השהיה או בעלי נפח גבוה, עוברים מ-VPN למעגלים הללו.",
       resourceTitle: "What is Azure ExpressRoute?",
       resourceUrl: "https://learn.microsoft.com/azure/expressroute/expressroute-introduction",
       keywords: ["expressroute", "direct connect", "interconnect"],
@@ -57,15 +75,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "When does a VPN make more sense than a dedicated circuit?",
+      question_he: "מתי VPN הגיוני יותר ממעגל ייעודי?",
       options: [
         "For modest bandwidth needs, tolerance for internet-grade latency, quick setup, or as a backup path — circuits cost more and take weeks to provision",
         "A VPN is always the better choice",
         "When you need guaranteed sub-millisecond latency",
         "When traffic must never be encrypted",
       ],
+      options_he: [
+        "כאשר צורכי רוחב הפס מתונים, יש סבילות לזמן השהיה ברמת אינטרנט, נדרשת הקמה מהירה, או כמסלול גיבוי — מעגלים עולים יותר ולוקח שבועות להקים אותם",
+        "VPN הוא תמיד הבחירה הטובה יותר",
+        "כאשר נדרש זמן השהיה מובטח מתחת למילישנייה",
+        "כאשר התעבורה חייבת שלא להיות מוצפנת לעולם",
+      ],
       correctAnswer: 0,
       explanation:
         "The decision is economics and requirements: a VPN stands up in hours at gateway-hour prices and encrypts by default; a circuit needs contracts, cross-connects and weeks, in exchange for guaranteed capacity and steady latency. The mature pattern is both — circuit primary, VPN as automatic failover. Needing guaranteed latency is an argument FOR the circuit, not the VPN.",
+      explanation_he:
+        "ההחלטה היא שאלה של כלכלה ודרישות: VPN עולה לאוויר תוך שעות במחיר לפי שעת gateway ומצפין כברירת מחדל; מעגל דורש חוזים, cross-connects ושבועות, בתמורה לקיבולת מובטחת וזמן השהיה יציב. הדפוס הבשל הוא לשלב את שניהם — מעגל כראשי ו-VPN כ-failover אוטומטי. הצורך בזמן השהיה מובטח הוא דווקא טיעון בעד המעגל, לא בעד ה-VPN.",
       resourceTitle: "ExpressRoute vs VPN (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/expressroute/expressroute-faqs",
       keywords: ["vpn vs circuit", "cost", "failover"],
@@ -78,10 +105,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "Traffic over ExpressRoute and Direct Connect is private but NOT encrypted by default.",
+      question_he: "התעבורה מעל ExpressRoute ו-Direct Connect היא פרטית אך אינה מוצפנת כברירת מחדל.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Private circuit ≠ encrypted circuit: the traffic avoids the public internet, but it crosses provider and partner equipment in the clear unless you add encryption — IPsec over the circuit, MACsec at the port (both clouds offer it), or TLS at the application layer. Compliance regimes that mandate encryption in transit are not satisfied by 'it's a private line'. Assess the threat model, then layer crypto deliberately.",
+      explanation_he:
+        "מעגל פרטי ≠ מעגל מוצפן: התעבורה נמנעת מהאינטרנט הציבורי, אך היא עוברת דרך ציוד של הספק והשותף בצורה גלויה אלא אם מוסיפים הצפנה — IPsec מעל המעגל, MACsec ברמת הפורט (שני העננים מציעים זאת), או TLS ברמת האפליקציה. תקנות ציות שמחייבות הצפנה בתעבורה לא מתקיימות רק בגלל ש'זה קו פרטי'. יש להעריך את מודל האיום, ואז להוסיף שכבות הצפנה במכוון.",
       resourceTitle: "ExpressRoute encryption options",
       resourceUrl: "https://learn.microsoft.com/azure/expressroute/expressroute-about-encryption",
       keywords: ["circuit encryption", "macsec", "ipsec"],
@@ -94,15 +125,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What is a point-to-site VPN for?",
+      question_he: "למה משמש point-to-site VPN?",
       options: [
         "Connecting individual devices (a developer's laptop) to the cloud network, each running a VPN client",
         "Connecting two datacenters",
         "Connecting two cloud regions",
         "Replacing DNS resolution",
       ],
+      options_he: [
+        "חיבור התקנים בודדים (למשל מחשב נייד של מפתח) לרשת הענן, כאשר כל אחד מריץ לקוח VPN",
+        "חיבור בין שני מרכזי נתונים",
+        "חיבור בין שני אזורי ענן (regions)",
+        "החלפת פענוח DNS",
+      ],
       correctAnswer: 0,
       explanation:
         "Point-to-site is the per-person flavor: each client authenticates (certificates or, better, Entra ID/IdP with MFA) and gets a tunnel into the VNet — right for remote developers and small teams where site-to-site has no 'site' to connect. At org scale it competes with newer patterns: managed bastions for admin access and Zero-Trust/ZTNA products that broker per-app access instead of whole-network reachability.",
+      explanation_he:
+        "Point-to-site הוא הגרסה לפי משתמש בודד: כל לקוח מבצע אימות (תעודות, או עדיף באמצעות Entra ID/IdP עם MFA) ומקבל מנהרה אל ה-VNet — מתאים למפתחים מרוחקים ולצוותים קטנים שבהם אין 'אתר' מולו לחבר site-to-site. בקנה מידה ארגוני זה מתחרה בדפוסים חדשים יותר: Bastion מנוהל לגישת ניהול, ומוצרי Zero-Trust/ZTNA שמתווכים גישה לפי אפליקציה במקום נגישות לרשת שלמה.",
       resourceTitle: "About Point-to-Site VPN (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/vpn-gateway/point-to-site-about",
       keywords: ["point-to-site", "client vpn", "remote access"],
@@ -115,15 +155,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What role does BGP play in hybrid connectivity?",
+      question_he: "איזה תפקיד ממלא BGP בקישוריות היברידית?",
       options: [
         "It exchanges routes dynamically between your on-premises network and the cloud, so reachability updates and failover happen without manual route edits",
         "It encrypts the VPN tunnel",
         "It compresses traffic over the circuit",
         "It is only used by internet service providers",
       ],
+      options_he: [
+        "הוא מחליף מסלולים (routes) באופן דינמי בין הרשת המקומית לענן, כך שעדכוני נגישות ו-failover מתרחשים ללא עריכה ידנית של מסלולים",
+        "הוא מצפין את מנהרת ה-VPN",
+        "הוא דוחס תעבורה מעל המעגל",
+        "הוא משמש רק את ספקיות האינטרנט",
+      ],
       correctAnswer: 0,
       explanation:
         "BGP lets each side advertise its prefixes and learn the other's: add a subnet on-premises and the cloud learns the route automatically; drop a tunnel and traffic shifts to the surviving path because its routes vanish. ExpressRoute requires BGP, and VPN gateways support it for exactly this failover behavior. Static routes work at toy scale — dynamic routing is what makes hybrid operationally survivable.",
+      explanation_he:
+        "BGP מאפשר לכל צד לפרסם את הפריפיקסים (prefixes) שלו וללמוד את אלה של הצד השני: מוסיפים subnet מקומי והענן לומד את המסלול אוטומטית; מנהרה נופלת והתעבורה עוברת למסלול שנותר כי המסלולים שלו נעלמים. ExpressRoute דורש BGP, ו-VPN Gateway תומך בו בדיוק בשביל התנהגות ה-failover הזו. מסלולים סטטיים עובדים בקנה מידה של דוגמה בלבד — ניתוב דינמי הוא מה שהופך את ה-hybrid לבר-קיימא מבחינה תפעולית.",
       resourceTitle: "BGP with Azure VPN Gateway",
       resourceUrl: "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-bgp-overview",
       keywords: ["bgp", "dynamic routing", "route exchange", "failover"],
@@ -136,15 +185,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "How is DNS typically handled between on-premises and cloud networks?",
+      question_he: "כיצד בדרך כלל מטפלים ב-DNS בין רשתות מקומיות (on-premises) לרשתות ענן?",
       options: [
         "Conditional forwarding: each side's resolvers forward queries for the other side's zones to resolvers that can answer them",
         "Both sides must share one DNS server",
         "Hybrid environments cannot resolve each other's names",
         "By editing hosts files on every machine",
       ],
+      options_he: [
+        "העברה מותנית (conditional forwarding): הרזולברים של כל צד מעבירים שאילתות עבור האזורים (zones) של הצד השני לרזולברים שמסוגלים לענות עליהן",
+        "שני הצדדים חייבים לשתף שרת DNS אחד",
+        "סביבות hybrid לא יכולות לפענח את השמות זו של זו",
+        "על ידי עריכת קבצי hosts בכל מכונה",
+      ],
       correctAnswer: 0,
       explanation:
         "Two authoritative worlds need bridging: on-prem DNS forwards corp-cloud zones (including privatelink zones for private endpoints) to cloud resolvers — Azure Private Resolver, Route 53 Resolver inbound endpoints, GCP DNS forwarding — while the cloud forwards corp.local queries back. Get this wrong and you get the classic hybrid failure: connectivity is perfect, but nothing resolves, or private endpoints resolve to public IPs from on-prem.",
+      explanation_he:
+        "יש לגשר בין שני עולמות סמכותיים (authoritative): ה-DNS המקומי מעביר אזורי corp-cloud (כולל אזורי privatelink עבור Private Endpoint) לרזולברים בענן — Azure Private Resolver, Route 53 Resolver inbound endpoints, GCP DNS forwarding — בעוד הענן מעביר בחזרה שאילתות corp.local. כשמפספסים את זה מקבלים את הכשל ההיברידי הקלאסי: הקישוריות מושלמת, אבל שום דבר לא מתפענח, או ש-Private Endpoint מתפענח לכתובות IP ציבוריות מהצד המקומי.",
       resourceTitle: "Azure DNS Private Resolver",
       resourceUrl: "https://learn.microsoft.com/azure/dns/dns-private-resolver-overview",
       keywords: ["hybrid dns", "conditional forwarding", "resolver"],
@@ -157,15 +215,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "How can on-premises systems reach cloud managed services (storage, databases) without any public endpoint exposure?",
+      question_he: "כיצד מערכות מקומיות (on-premises) יכולות להגיע לשירותים מנוהלים בענן (אחסון, מסדי נתונים) בלי כל חשיפה של נקודת קצה ציבורית?",
       options: [
         "Private endpoints for the services, routed over the VPN/circuit, with DNS resolving the service names to private IPs from on-premises",
         "It is impossible — managed services are public-only",
         "By whitelisting the entire on-premises IP range on the public endpoint",
         "By copying data through a jump box manually",
       ],
+      options_he: [
+        "Private Endpoint לשירותים, מנותב מעל VPN/מעגל, כאשר DNS מפענח את שמות השירותים לכתובות IP פרטיות מהצד המקומי",
+        "זה בלתי אפשרי — שירותים מנוהלים הם ציבוריים בלבד",
+        "על ידי הוספה לרשימה הלבנה (whitelist) של כל טווח ה-IP המקומי בנקודת הקצה הציבורית",
+        "על ידי העתקת נתונים ידנית דרך jump box",
+      ],
       correctAnswer: 0,
       explanation:
         "Chain three pieces: a private endpoint gives the PaaS service a private address in the VNet/VPC; the hybrid link (ExpressRoute/DX/Interconnect or VPN) routes on-prem traffic to that address; hybrid DNS makes the service's name resolve privately from on-prem. Then the public endpoint can be disabled outright. IP-whitelisting the public endpoint still leaves it internet-facing — a weaker posture that audits increasingly reject.",
+      explanation_he:
+        "משרשרים שלושה חלקים: Private Endpoint נותן לשירות ה-PaaS כתובת פרטית בתוך ה-VNet/VPC; קישור ה-hybrid (ExpressRoute/DX/Interconnect או VPN) מנתב תעבורה מקומית לאותה כתובת; DNS היברידי גורם לשם השירות להתפענח באופן פרטי מהצד המקומי. לאחר מכן ניתן לבטל את נקודת הקצה הציבורית לגמרי. הוספה ל-whitelist של נקודת הקצה הציבורית עדיין משאירה אותה חשופה לאינטרנט — עמדה חלשה יותר שביקורות (audits) דוחות יותר ויותר.",
       resourceTitle: "Private endpoints and on-premises connectivity (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/private-link/private-endpoint-overview",
       keywords: ["private access", "paas from on-prem", "no public endpoint"],
@@ -178,15 +245,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multi-select",
       question: "Which security practices apply to hybrid connections? (Select all that apply.)",
+      question_he: "אילו נהלי אבטחה חלים על חיבורים היברידיים? (בחרו את כל האפשרויות הרלוונטיות.)",
       options: [
         "Segment and firewall traffic crossing the link — don't flat-bridge the networks",
         "Monitor cross-boundary flows; the link is a lateral-movement highway in both directions",
         "Encrypt sensitive traffic even on private circuits",
         "Skip controls on the link since both ends are trusted internal networks",
       ],
+      options_he: [
+        "לפלח (segment) ולהגן בחומת אש על תעבורה שחוצה את הקישור — לא לגשר בין הרשתות בצורה שטוחה (flat)",
+        "לנטר זרימות שחוצות את הגבול; הקישור הוא כביש מהיר לתנועה רוחבית (lateral movement) בשני הכיוונים",
+        "להצפין תעבורה רגישה גם על גבי מעגלים פרטיים",
+        "לוותר על בקרות בקישור מכיוון ששני הקצוות הם רשתות פנימיות מהימנות",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "A hybrid link merges two blast radii: ransomware on-premises now has a route to cloud workloads and vice versa. Treat the boundary like any other — firewall it to required flows, log and alert on what crosses it, encrypt where the data warrants. 'Both sides are internal' is precisely the assumption Zero Trust exists to kill; the biggest hybrid incidents spread over exactly these trusted links.",
+      explanation_he:
+        "קישור hybrid ממזג שני 'רדיוסי פיצוץ' (blast radii): כופרה (ransomware) שפורצת בצד המקומי מקבלת כעת מסלול לעומסי עבודה בענן, ולהפך. יש להתייחס לגבול כמו לכל גבול אחר — להגן עליו בחומת אש שמאפשרת רק זרימות נדרשות, לתעד ולהתריע על מה שחוצה אותו, ולהצפין היכן שהנתונים מצדיקים זאת. ההנחה ש'שני הצדדים פנימיים' היא בדיוק ההנחה ש-Zero Trust נועד לבטל; התקריות ההיברידיות הגדולות ביותר התפשטו בדיוק דרך קישורים מהימנים כאלה.",
       resourceTitle: "Hybrid network security (Azure Well-Architected)",
       resourceUrl: "https://learn.microsoft.com/azure/well-architected/security/networking",
       keywords: ["hybrid security", "segmentation", "cross-boundary monitoring"],
@@ -199,10 +275,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "A cloud VPN gateway is the managed component that terminates IPsec tunnels from your on-premises VPN device.",
+      question_he: "VPN Gateway בענן הוא הרכיב המנוהל שמסיים (terminates) מנהרות IPsec מההתקן המקומי (on-premises) שלכם.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "The gateway (Azure VPN Gateway, AWS Virtual Private Gateway/Transit Gateway VPN, GCP Cloud VPN) is the cloud-side tunnel endpoint: it holds the public IPs, negotiates IPsec with your device, and injects learned routes into the virtual network. Sizing matters — gateways have throughput/tunnel-count SKUs — and HA variants (active-active, two on-prem devices) remove it as a single point of failure.",
+      explanation_he:
+        "ה-Gateway (Azure VPN Gateway, AWS Virtual Private Gateway/Transit Gateway VPN, GCP Cloud VPN) הוא נקודת הקצה של המנהרה בצד הענן: הוא מחזיק את כתובות ה-IP הציבוריות, מנהל משא ומתן על IPsec מול ההתקן שלכם, ומזריק את המסלולים שנלמדו לתוך הרשת הווירטואלית. הגודל (sizing) חשוב — ל-Gateway יש SKU-ים לפי תפוקה ומספר מנהרות — וגרסאות HA (active-active, שני התקנים מקומיים) מסירות אותו כנקודת כשל יחידה.",
       resourceTitle: "Cloud VPN overview (GCP)",
       resourceUrl: "https://cloud.google.com/network-connectivity/docs/vpn/concepts/overview",
       keywords: ["vpn gateway", "ipsec termination", "tunnels"],

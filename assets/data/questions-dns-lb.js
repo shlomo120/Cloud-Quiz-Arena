@@ -15,15 +15,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does a DNS A record do?",
+      question_he: "מה תפקידו של רשומת DNS מסוג A?",
       options: [
         "Maps a hostname to an IPv4 address",
         "Maps a hostname to another hostname",
         "Stores the mail server for a domain",
         "Verifies domain ownership",
       ],
+      options_he: [
+        "ממפה שם מארח לכתובת IPv4",
+        "ממפה שם מארח לשם מארח אחר",
+        "שומרת את שרת הדואר של הדומיין",
+        "מאמתת בעלות על הדומיין",
+      ],
       correctAnswer: 0,
       explanation:
         "The A record is DNS's core mapping: name → IPv4 (AAAA does the same for IPv6). CNAME aliases a name to another name, MX designates mail servers, and TXT records carry verification strings and policies like SPF. Reading a zone file fluently starts with knowing these four.",
+      explanation_he:
+        "רשומת A היא המיפוי הבסיסי של DNS: שם → IPv4 (רשומת AAAA עושה את אותו הדבר עבור IPv6). CNAME יוצרת כינוי משם אחד לשם אחר, MX מגדירה את שרתי הדואר, ורשומות TXT נושאות מחרוזות אימות ומדיניות כמו SPF. קריאה שוטפת של קובץ zone מתחילה בהכרת ארבע הרשומות הללו.",
       resourceTitle: "DNS record types (Cloudflare Learning)",
       resourceUrl: "https://www.cloudflare.com/learning/dns/dns-records/",
       keywords: ["a record", "dns records", "ipv4"],
@@ -36,15 +45,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is the difference between a public and a private DNS zone in the cloud?",
+      question_he: "מה ההבדל בין zone ציבורי לבין zone פרטי ב-DNS בענן?",
       options: [
         "Public zones resolve on the internet; private zones resolve only inside the virtual networks linked to them",
         "Private zones are encrypted, public zones are not",
         "Public zones are free, private zones are paid",
         "There is no difference",
       ],
+      options_he: [
+        "zone ציבורי נפתר באינטרנט; zone פרטי נפתר רק בתוך הרשתות הווירטואליות המקושרות אליו",
+        "zone פרטי מוצפן, zone ציבורי אינו מוצפן",
+        "zone ציבורי חינמי, zone פרטי בתשלום",
+        "אין הבדל",
+      ],
       correctAnswer: 0,
       explanation:
         "A public zone answers queries from anyone on the internet — it's how your domain is found. A private zone (Azure Private DNS, Route 53 private hosted zones, Cloud DNS private zones) answers only within linked VNets/VPCs, letting internal services use clean names — including resolving a service's name to its private endpoint IP instead of the public one, the linchpin of private connectivity designs.",
+      explanation_he:
+        "zone ציבורי עונה לשאילתות מכל גורם באינטרנט — כך הדומיין שלך נמצא. zone פרטי (Azure Private DNS, אזורי hosted פרטיים ב-Route 53, אזורים פרטיים ב-Cloud DNS) עונה רק בתוך VNet/VPC המקושרים אליו, ומאפשר לשירותים פנימיים להשתמש בשמות נקיים — כולל פענוח שם השירות לכתובת ה-private endpoint שלו במקום לכתובת הציבורית, שהוא לב הליבה של עיצובי קישוריות פרטית.",
       resourceTitle: "Azure Private DNS overview",
       resourceUrl: "https://learn.microsoft.com/azure/dns/private-dns-overview",
       keywords: ["private dns", "public zone", "split resolution"],
@@ -57,10 +75,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "true-false",
       question: "A CNAME record points one hostname at another hostname rather than at an IP address.",
+      question_he: "רשומת CNAME מפנה שם מארח אחד לשם מארח אחר, ולא לכתובת IP.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "CNAME says 'this name is an alias for that name' — www.example.com → example-lb.cloudapp.net — and resolution continues at the target. The classic constraints: a CNAME cannot coexist with other records at the same name, and zone apexes (example.com itself) traditionally can't be CNAMEs, which is why clouds invented alias records (Route 53 Alias, Azure alias records) to point apexes at load balancers.",
+      explanation_he:
+        "CNAME אומרת 'השם הזה הוא כינוי לשם ההוא' — www.example.com → example-lb.cloudapp.net — והפענוח ממשיך ביעד. המגבלות הקלאסיות: CNAME לא יכולה להתקיים לצד רשומות אחרות באותו שם, ו-zone apex (example.com עצמו) באופן מסורתי לא יכול להיות CNAME, ולכן הענן המציא רשומות alias (Route 53 Alias, רשומות alias של Azure) כדי להפנות apex ישירות ל-Load Balancer.",
       resourceTitle: "CNAME record (Cloudflare Learning)",
       resourceUrl: "https://www.cloudflare.com/learning/dns/dns-records/dns-cname-record/",
       keywords: ["cname", "alias", "apex"],
@@ -73,15 +95,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "How does a DNS record's TTL affect failover speed?",
+      question_he: "כיצד ה-TTL של רשומת DNS משפיע על מהירות ה-failover?",
       options: [
         "It doesn't — DNS changes are instant",
         "Resolvers cache answers for the TTL, so a 1-hour TTL can mean up to an hour of clients using the dead address after you switch",
         "Higher TTL means faster failover",
         "TTL only affects billing",
       ],
+      options_he: [
+        "הוא לא משפיע — שינויי DNS הם מיידיים",
+        "resolvers שומרים את התשובות במטמון למשך ה-TTL, כך ש-TTL של שעה אחת יכול לגרום לכך שלקוחות ימשיכו להשתמש בכתובת המתה עד שעה לאחר המעבר",
+        "TTL גבוה יותר משמעו failover מהיר יותר",
+        "TTL משפיע רק על החיוב",
+      ],
       correctAnswer: 1,
       explanation:
         "DNS scale comes from caching, and caching means your change propagates only as caches expire. DR plans that rely on DNS switching therefore pre-lower TTLs (e.g. 60s) on the records involved — trading more query load for fast cutover. The residual gotcha: some resolvers and applications ignore TTLs, so DNS failover is 'most clients quickly', never 'all clients instantly'.",
+      explanation_he:
+        "יכולת ההתרחבות של DNS מגיעה מהשמירה במטמון, ומשמעות השמירה במטמון היא שהשינוי שלך מתפשט רק ככל שהמטמונים פגי תוקף. לכן תוכניות DR שמסתמכות על מעבר DNS מקדימות ומורידות את ה-TTL (לדוגמה ל-60 שניות) ברשומות הרלוונטיות — במחיר של יותר עומס שאילתות, לטובת מעבר מהיר. הבעיה שנותרת: חלק מה-resolvers והאפליקציות מתעלמים מ-TTL, כך שה-failover ב-DNS הוא 'רוב הלקוחות במהירות', ולא 'כל הלקוחות באופן מיידי'.",
       resourceTitle: "DNS TTL best practices (AWS Route 53)",
       resourceUrl: "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-values-basic.html",
       keywords: ["ttl", "caching", "failover", "propagation"],
@@ -94,15 +125,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Your service speaks raw TCP (a database protocol). Which load balancer tier must you use?",
+      question_he: "השירות שלך מדבר TCP גולמי (פרוטוקול מסד נתונים). באיזו שכבת Load Balancer עליך להשתמש?",
       options: [
         "Layer 7 — all modern balancers require HTTP",
         "Layer 4 — it forwards TCP/UDP flows without needing to understand the application protocol",
         "A WAF",
         "DNS round robin is the only option",
       ],
+      options_he: [
+        "Layer 7 — כל האיזונים המודרניים דורשים HTTP",
+        "Layer 4 — הוא מעביר זרימות TCP/UDP מבלי צורך להבין את פרוטוקול האפליקציה",
+        "WAF",
+        "DNS round robin היא האפשרות היחידה",
+      ],
       correctAnswer: 1,
       explanation:
         "L7 balancers parse HTTP; hand them a Postgres wire protocol and they have nothing to parse. L4 balancers forward byte streams by IP/port — protocol-agnostic, lower latency, exactly right for databases, MQTT, game servers. This is the practical reason both tiers exist in every cloud (NLB vs ALB, Azure LB vs App Gateway, GCP network vs application LBs).",
+      explanation_he:
+        "מאזני Layer 7 מפרשים HTTP; אם נותנים להם את פרוטוקול ה-wire של Postgres, אין להם מה לפרש. מאזני Layer 4 מעבירים זרמי בייטים לפי IP/פורט — ללא תלות בפרוטוקול, עם השהיה נמוכה יותר, בדיוק מה שמתאים למסדי נתונים, MQTT ושרתי משחקים. זו הסיבה המעשית לכך ששתי השכבות קיימות בכל ענן (NLB מול ALB, Azure LB מול Application Gateway, ומאזני network מול application ב-GCP).",
       resourceTitle: "Network Load Balancer (AWS)",
       resourceUrl: "https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html",
       keywords: ["layer 4", "tcp", "load balancer choice"],
@@ -115,15 +155,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What role do health checks play in load balancing?",
+      question_he: "איזה תפקיד ממלאים health checks באיזון עומסים?",
       options: [
         "They continuously probe backends and remove failing ones from rotation, so clients only reach healthy instances",
         "They measure how fast users' browsers are",
         "They restart crashed VMs",
         "They are optional cosmetic monitoring",
       ],
+      options_he: [
+        "הם בודקים ברציפות את ה-backends ומסירים את הכושלים מהרוטציה, כך שלקוחות מגיעים רק למופעים תקינים",
+        "הם מודדים כמה מהר הדפדפנים של המשתמשים פועלים",
+        "הם מפעילים מחדש VM-ים שקרסו",
+        "הם ניטור קוסמטי אופציונלי",
+      ],
       correctAnswer: 0,
       explanation:
         "Without health checks a balancer keeps sending every Nth request into a dead backend. Probes (TCP connect or an HTTP path returning 200) gate membership in the pool — fail thresholds eject an instance, recovery re-admits it. Design detail that bites: the probe endpoint should verify real readiness (dependencies reachable) without being so heavy it becomes the outage. Restarting instances is auto-scaling/auto-healing's job, triggered separately.",
+      explanation_he:
+        "ללא health checks, ה-Load Balancer ימשיך לשלוח כל בקשה N-ית ל-backend מת. הבדיקות (חיבור TCP או נתיב HTTP שמחזיר 200) קובעות את החברות ב-pool — חציית סף כשלים מוציאה מופע מהרוטציה, והתאוששות מחזירה אותו. פרט עיצוב שנוטה להכשיל: נקודת הבדיקה צריכה לוודא נכונות אמיתית (שהתלויות זמינות) בלי להיות כה כבדה עד שהיא עצמה הופכת לתקלה. הפעלה מחדש של מופעים היא תפקידם של auto-scaling ו-auto-healing, המופעלים בנפרד.",
       resourceTitle: "Load Balancer health probes (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/load-balancer/load-balancer-custom-probe-overview",
       keywords: ["health checks", "probes", "rotation"],
@@ -136,15 +185,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multi-select",
       question: "What does terminating TLS at the load balancer provide? (Select all that apply.)",
+      question_he: "מה מספק TLS Termination ב-Load Balancer? (בחר את כל התשובות הנכונות.)",
       options: [
         "Backends are relieved of TLS handshake/crypto work",
         "The balancer can read HTTP content — enabling path routing and WAF inspection",
         "Certificates are managed in one place instead of on every server",
         "Traffic from the balancer to backends is automatically encrypted",
       ],
+      options_he: [
+        "ה-backends משוחררים מעבודת ה-handshake וההצפנה של TLS",
+        "ה-Load Balancer יכול לקרוא את תוכן ה-HTTP — מה שמאפשר ניתוב לפי נתיב ובדיקת WAF",
+        "התעודות מנוהלות במקום אחד במקום בכל שרת בנפרד",
+        "התעבורה מה-Load Balancer ל-backends מוצפנת אוטומטית",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Termination decrypts at the edge: cheaper backends, L7 features unlocked, one certificate lifecycle to manage (often with automatic renewal). What it does NOT do is encrypt the second hop — balancer-to-backend traffic is plaintext unless you deliberately re-encrypt (end-to-end TLS), which compliance regimes often require. Knowing where plaintext exists in the path is the whole game.",
+      explanation_he:
+        "TLS Termination מפענח את התעבורה בקצה: backends זולים יותר, פתיחת יכולות Layer 7, וניהול מחזור חיים אחד של תעודות (לרוב עם חידוש אוטומטי). מה שהוא לא עושה הוא להצפין את הקפיצה השנייה — התעבורה מה-Load Balancer אל ה-backends נשלחת כטקסט גלוי אלא אם בוחרים במפורש להצפין מחדש (end-to-end TLS), דבר שמשטרי תאימות רבים מחייבים. הידיעה היכן בדיוק קיים טקסט גלוי לאורך הנתיב היא כל העניין.",
       resourceTitle: "TLS termination (Azure Application Gateway)",
       resourceUrl: "https://learn.microsoft.com/azure/application-gateway/ssl-overview",
       keywords: ["tls termination", "offload", "re-encryption"],
@@ -157,15 +215,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What are the two main techniques for steering users across multi-region deployments?",
+      question_he: "מהן שתי הטכניקות העיקריות לניתוב משתמשים בפריסות רב-אזוריות?",
       options: [
         "DNS-based routing (geo/latency/failover policies) and anycast (one IP announced from many locations)",
         "Bigger VMs and more RAM",
         "Copying DNS zones between regions",
         "There is no way to steer global traffic",
       ],
+      options_he: [
+        "ניתוב מבוסס DNS (מדיניות geo/latency/failover) ו-anycast (כתובת IP אחת שמוכרזת ממספר מיקומים)",
+        "VM-ים גדולים יותר וזיכרון RAM נוסף",
+        "העתקת zones של DNS בין אזורים",
+        "אין דרך לנתב תעבורה גלובלית",
+      ],
       correctAnswer: 0,
       explanation:
         "DNS steering (Route 53 policies, Azure Traffic Manager) answers each resolver with the best region — simple and universal, but bounded by TTL caching. Anycast (GCP's global LB, Azure Front Door, CloudFront) announces one IP everywhere and lets internet routing deliver users to the nearest edge — instant failover, no cache lag, more infrastructure behind it. Big architectures often layer both.",
+      explanation_he:
+        "ניתוב מבוסס DNS (מדיניות Route 53, Azure Traffic Manager) עונה לכל resolver עם האזור הטוב ביותר — פשוט ואוניברסלי, אך מוגבל על ידי השמירה במטמון לפי TTL. Anycast (ה-Load Balancer הגלובלי של GCP, Azure Front Door, CloudFront) מכריז על כתובת IP אחת בכל מקום ומאפשר לניתוב האינטרנט להביא משתמשים לקצה הקרוב ביותר — failover מיידי, ללא עיכוב מטמון, אך עם תשתית מורכבת יותר מאחוריו. ארכיטקטורות גדולות לרוב משלבות את שתי הטכניקות יחד.",
       resourceTitle: "Traffic Manager routing methods (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-routing-methods",
       keywords: ["gslb", "anycast", "geo routing", "multi-region"],
@@ -178,15 +245,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is split-horizon DNS?",
+      question_he: "מהו split-horizon DNS?",
       options: [
         "Serving different answers for the same name depending on where the query comes from — e.g. a private IP internally, a public IP externally",
         "Splitting one domain across two registrars",
         "A DNS attack technique",
         "Using two TTLs on one record",
       ],
+      options_he: [
+        "מתן תשובות שונות לאותו שם בהתאם למקור השאילתה — לדוגמה כתובת IP פרטית פנימית, וכתובת IP ציבורית חיצונית",
+        "פיצול דומיין אחד בין שני registrars",
+        "טכניקת תקיפה על DNS",
+        "שימוש בשני ערכי TTL על אותה רשומה",
+      ],
       correctAnswer: 0,
       explanation:
         "Split-horizon lets app.example.com resolve to 10.1.2.3 for internal clients and 203.0.113.9 for the internet — same name, audience-appropriate answer. In clouds it's implemented by pairing a private zone with the public one; it's also exactly how private endpoints work (storage account name → private IP inside the VNet). The operational risk is drift between the two views, so treat both zones as one managed artifact.",
+      explanation_he:
+        "split-horizon מאפשר ל-app.example.com להיפתר ל-10.1.2.3 עבור לקוחות פנימיים ול-203.0.113.9 עבור האינטרנט — אותו שם, תשובה מותאמת לקהל. בענן זה מיושם על ידי צימוד zone פרטי עם ה-zone הציבורי; וכך בדיוק פועלים גם private endpoints (שם חשבון האחסון → IP פרטי בתוך ה-VNet). הסיכון התפעולי הוא סטייה (drift) בין שני התצוגות, לכן כדאי להתייחס לשני ה-zones כאל מרכיב מנוהל אחד.",
       resourceTitle: "Private DNS zone scenarios (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/dns/private-dns-scenarios",
       keywords: ["split horizon", "internal external", "private zone"],
@@ -199,15 +275,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is the trade-off of enabling session affinity (sticky sessions) on a load balancer?",
+      question_he: "מהו הפשרה (trade-off) בהפעלת session affinity (sticky sessions) ב-Load Balancer?",
       options: [
         "Users keep hitting the same backend (good for in-memory session state) but load skews and that backend's failure logs those users out",
         "It doubles throughput with no downside",
         "It encrypts sessions",
         "It only works with UDP",
       ],
+      options_he: [
+        "משתמשים ממשיכים לפגוע באותו backend (טוב עבור מצב session שנשמר בזיכרון), אך העומס נהיה לא מאוזן וכשל של אותו backend מנתק את אותם משתמשים",
+        "היא מכפילה את התפוקה ללא כל חיסרון",
+        "היא מצפינה sessions",
+        "היא עובדת רק עם UDP",
+      ],
       correctAnswer: 0,
       explanation:
         "Affinity (cookie- or IP-hash-based) pins a client to one backend so locally-stored session state keeps working. The costs: hot backends while others idle, and every backend failure or scale-in becomes user-visible. The architectural fix is externalizing session state (Redis, a database) so any backend can serve any request — then affinity becomes unnecessary and the fleet is truly interchangeable.",
+      explanation_he:
+        "Affinity (מבוסס cookie או IP-hash) מצמיד לקוח ל-backend אחד כדי שמצב session השמור מקומית ימשיך לעבוד. העלויות: backends עמוסים בזמן שאחרים בטלים, וכל כשל של backend או scale-in הופך לגלוי למשתמש. הפתרון הארכיטקטוני הוא הוצאת מצב ה-session החוצה (Redis, מסד נתונים) כך שכל backend יכול לשרת כל בקשה — ואז ה-affinity הופך למיותר והצי כולו הופך להיות אכן ניתן להחלפה.",
       resourceTitle: "Sticky sessions (AWS ALB)",
       resourceUrl: "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/sticky-sessions.html",
       keywords: ["session affinity", "sticky sessions", "state"],
@@ -220,10 +305,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "true-false",
       question: "After you change a DNS record, all clients worldwide see the new value immediately.",
+      question_he: "לאחר שינוי רשומת DNS, כל הלקוחות ברחבי העולם רואים את הערך החדש מיידית.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: false,
       explanation:
         "Resolvers, operating systems and even applications cache answers up to the TTL (and occasionally beyond), so a change ripples out over minutes to hours rather than instantly — 'DNS propagation' is really just caches expiring at different times. Plan migrations accordingly: lower TTLs in advance, keep the old endpoint alive during the overlap window, and verify with direct authoritative queries rather than your own cached view.",
+      explanation_he:
+        "resolvers, מערכות הפעלה ואפילו אפליקציות שומרות תשובות במטמון עד תום ה-TTL (ולעיתים אף מעבר לכך), כך שהשינוי מתפשט על פני דקות עד שעות ולא באופן מיידי — 'הפצת DNS' היא בעצם רק פקיעת מטמונים בזמנים שונים. לכן יש לתכנן מעברים בהתאם: להוריד את ה-TTL מראש, לשמור על נקודת הקצה הישנה פעילה בזמן חלון החפיפה, ולוודא באמצעות שאילתות ישירות מול השרת הסמכותי ולא מתוך המטמון שלך.",
       resourceTitle: "How DNS caching works (Cloudflare Learning)",
       resourceUrl: "https://www.cloudflare.com/learning/dns/what-is-dns/",
       keywords: ["propagation", "caching", "ttl"],
@@ -236,15 +325,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "You add a Private Endpoint for an Azure storage account. Why must DNS also be configured?",
+      question_he: "הוספת Private Endpoint לחשבון אחסון ב-Azure. מדוע יש לקבוע גם הגדרות DNS?",
       options: [
         "Clients still resolve the storage account's name to its public IP unless a private DNS zone maps it to the endpoint's private IP",
         "Private Endpoints replace DNS entirely",
         "DNS configuration is only needed for VMs running Windows",
         "It isn't — Azure rewrites all DNS automatically in every scenario",
       ],
+      options_he: [
+        "לקוחות עדיין יפענחו את שם חשבון האחסון לכתובת ה-IP הציבורית שלו, אלא אם zone פרטי של DNS ממפה אותו לכתובת ה-IP הפרטית של ה-endpoint",
+        "Private Endpoints מחליפים את ה-DNS לחלוטין",
+        "הגדרת DNS נחוצה רק עבור VM-ים המריצים Windows",
+        "אין צורך — Azure כותב מחדש את כל ה-DNS אוטומטית בכל תרחיש",
+      ],
       correctAnswer: 0,
       explanation:
         "The endpoint gives the service a private IP, but applications connect by name — and the public DNS answer for account.blob.core.windows.net still points at the public endpoint. The standard fix links a privatelink.blob.core.windows.net private DNS zone to your VNets so internal resolution lands on the private IP. Forgetting this yields the classic symptom: the private endpoint exists, yet traffic (or failures, once you block public access) shows the public path.",
+      explanation_he:
+        "ה-endpoint מעניק לשירות כתובת IP פרטית, אך אפליקציות מתחברות לפי שם — ותשובת ה-DNS הציבורית עבור account.blob.core.windows.net עדיין מצביעה על נקודת הקצה הציבורית. הפתרון הסטנדרטי הוא לקשר zone פרטי בשם privatelink.blob.core.windows.net אל ה-VNets שלך, כך שהפענוח הפנימי יגיע לכתובת ה-IP הפרטית. שכחת שלב זה יוצרת את התסמין הקלאסי: ה-Private Endpoint קיים, אך התעבורה (או הכשלים, לאחר חסימת גישה ציבורית) עדיין עוברת דרך הנתיב הציבורי.",
       resourceTitle: "Private endpoint DNS configuration (Azure)",
       resourceUrl: "https://learn.microsoft.com/azure/private-link/private-endpoint-dns",
       keywords: ["private endpoint dns", "privatelink zone", "resolution"],

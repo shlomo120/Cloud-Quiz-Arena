@@ -16,15 +16,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "In AWS IAM policy evaluation, what happens when one policy allows an action and another explicitly denies it?",
+      question_he: "בהערכת מדיניות AWS IAM, מה קורה כאשר מדיניות אחת מתירה פעולה ומדיניות אחרת אוסרת אותה במפורש?",
       options: [
         "The allow wins because it was attached first",
         "The explicit deny always wins",
         "AWS asks the user to choose",
         "The most recently updated policy wins",
       ],
+      options_he: [
+        "ה-Allow מנצח משום שצורף ראשון",
+        "ה-Deny המפורש תמיד מנצח",
+        "AWS מבקש מהמשתמש לבחור",
+        "המדיניות שעודכנה לאחרונה מנצחת",
+      ],
       correctAnswer: 1,
       explanation:
         "IAM evaluation starts from implicit deny, looks for an applicable allow, and lets an explicit Deny override everything — no ordering, no recency, no exceptions. This is what makes deny statements reliable guardrails: an SCP or permission boundary that denies an action cannot be out-permissioned by any identity policy. When debugging 'access denied', hunt for the explicit deny first.",
+      explanation_he:
+        "הערכת IAM מתחילה מ-Deny מרומז, מחפשת Allow רלוונטי, ומאפשרת ל-Deny מפורש לגבור על הכול — בלי קשר לסדר צירוף או לעדכון אחרון, וללא יוצאים מן הכלל. זה מה שהופך הצהרות Deny לחומת הגנה אמינה: SCP או permission boundary שאוסרים פעולה לא ניתנים ל'עקיפה' על ידי אף מדיניות זהות. כשמנסים לפענח הודעת 'access denied', כדאי לחפש קודם כל את ה-Deny המפורש.",
       resourceTitle: "IAM policy evaluation logic",
       resourceUrl: "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html",
       keywords: ["policy evaluation", "explicit deny", "iam", "guardrails"],
@@ -38,10 +47,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "AWS IAM Identity Center provides centralized single sign-on for human users across multiple AWS accounts, and is recommended over creating IAM users in each account.",
+      question_he:
+        "IAM Identity Center של AWS מספק כניסה אחידה (SSO) מרכזית למשתמשים אנושיים על פני מספר חשבונות AWS, והשימוש בו מומלץ על פני יצירת משתמשי IAM בכל חשבון בנפרד.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "IAM Identity Center (formerly AWS SSO) connects your identity source (its own directory, Entra ID, Okta…) to all accounts in the organization: users sign in once and assume permission sets — roles provisioned into each account — with short-lived credentials. That replaces the anti-pattern of per-account IAM users with long-lived passwords and access keys. Workloads still use IAM roles; Identity Center is specifically the human-access layer.",
+      explanation_he:
+        "IAM Identity Center (לשעבר AWS SSO) מחבר את מקור הזהויות שלכם (ה-directory הפנימי שלו, Entra ID, Okta ועוד) לכל החשבונות בארגון: המשתמשים מתחברים פעם אחת ומקבלים permission sets - Role-ים המסופקים לכל חשבון - עם credentials זמניים וקצרי טווח. כך נמנעת התבנית הבעייתית של משתמשי IAM נפרדים בכל חשבון עם סיסמאות ומפתחות גישה ארוכי טווח. עומסי עבודה (workloads) ממשיכים להשתמש ב-IAM Role-ים; Identity Center הוא שכבת הגישה האנושית באופן ספציפי.",
       resourceTitle: "What is IAM Identity Center?",
       resourceUrl: "https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html",
       keywords: ["identity center", "sso", "permission sets", "multi-account"],
@@ -54,15 +68,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does an EC2 Auto Scaling group do?",
+      question_he: "מה עושה קבוצת Auto Scaling של EC2?",
       options: [
         "Maintains a desired number of instances, replaces unhealthy ones, and scales the fleet with demand",
         "Automatically upgrades instances to newer generations",
         "Backs up instance disks on a schedule",
         "Distributes traffic between instances",
       ],
+      options_he: [
+        "שומרת על מספר רצוי של instance-ים, מחליפה instance-ים לא תקינים, ומתאימה את גודל הצי (fleet) לפי הביקוש",
+        "משדרגת instance-ים אוטומטית לדורות חדשים יותר",
+        "מגבה את דיסקי ה-instance-ים לפי לוח זמנים",
+        "מחלקת תעבורה בין instance-ים",
+      ],
       correctAnswer: 0,
       explanation:
         "An Auto Scaling group launches instances from a template, keeps the fleet at the desired count (terminating and replacing instances that fail health checks), and adjusts capacity via scaling policies. Spreading the group across Availability Zones is the standard one-line high-availability pattern. Traffic distribution is the load balancer's job — the two are wired together, but they are different services.",
+      explanation_he:
+        "קבוצת Auto Scaling מפעילה instance-ים מתוך template, שומרת את הצי בכמות הרצויה (מסיימת instance-ים שנכשלים בבדיקות תקינות ומחליפה אותם), ומתאימה את הקיבולת באמצעות מדיניות scaling. פריסת הקבוצה על פני מספר Availability Zone-ים היא הדפוס הסטנדרטי להשגת זמינות גבוהה במאמץ מינימלי. חלוקת תעבורה היא תפקידו של ה-Load Balancer - שני השירותים מחוברים יחד, אך מדובר בשירותים שונים.",
       resourceTitle: "What is Amazon EC2 Auto Scaling?",
       resourceUrl: "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html",
       keywords: ["auto scaling", "fleet", "health checks", "elasticity"],
@@ -75,7 +98,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "Which AWS service provides managed Kubernetes?",
+      question_he: "איזה שירות AWS מספק Kubernetes מנוהל?",
       options: [
+        "Amazon ECS",
+        "AWS Lambda",
+        "Amazon EKS",
+        "Amazon Lightsail",
+      ],
+      options_he: [
         "Amazon ECS",
         "AWS Lambda",
         "Amazon EKS",
@@ -84,6 +114,8 @@ CQA.data.registerPack({
       correctAnswer: 2,
       explanation:
         "EKS runs the Kubernetes control plane for you; you bring worker nodes (EC2 or Fargate). The distractor to understand is ECS — also a container orchestrator, but AWS-proprietary rather than Kubernetes, simpler and deeply integrated with AWS. Choose EKS when you want Kubernetes portability and its ecosystem; ECS when you want less operational surface inside AWS only. Azure's AKS and GCP's GKE are the counterparts.",
+      explanation_he:
+        "EKS מריץ עבורכם את מישור הבקרה (control plane) של Kubernetes; אתם מספקים את ה-worker node-ים (EC2 או Fargate). הסחת הדעת שחשוב להבין היא ECS - גם הוא orchestrator לקונטיינרים, אך קנייני ל-AWS ולא Kubernetes, פשוט יותר ומשולב בעומק עם AWS. בחרו ב-EKS כשרוצים ניידות (portability) של Kubernetes ואת האקוסיסטם שלו; ב-ECS כשרוצים פחות משטח תפעולי בתוך AWS בלבד. AKS של Azure ו-GKE של GCP הם המקבילות.",
       resourceTitle: "What is Amazon EKS?",
       resourceUrl: "https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html",
       keywords: ["eks", "ecs", "kubernetes", "containers"],
@@ -96,15 +128,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multi-select",
       question: "Which statements about AWS Lambda are correct? (Select all that apply.)",
+      question_he: "אילו מהמשפטים הבאים על AWS Lambda נכונים? (בחרו את כל התשובות הנכונות.)",
       options: [
         "A single invocation can run for at most 15 minutes",
         "CPU power scales with the memory you allocate to the function",
         "Functions get ephemeral scratch space under /tmp",
         "A function can run indefinitely as long as it keeps receiving events",
       ],
+      options_he: [
+        "הפעלה (invocation) בודדת יכולה לרוץ למשך 15 דקות לכל היותר",
+        "עוצמת ה-CPU גדלה בהתאם לזיכרון שמוקצה לפונקציה",
+        "לפונקציות מוקצה שטח אחסון זמני (ephemeral) תחת /tmp",
+        "פונקציה יכולה לרוץ ללא הגבלת זמן כל עוד היא ממשיכה לקבל events",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Lambda's constraints shape what belongs there: 15 minutes is a hard per-invocation ceiling (longer jobs go to Step Functions, Batch or Fargate), CPU is not set directly but rides the memory slider — often making more memory cheaper because runs finish faster — and /tmp is per-instance scratch, not durable storage. Each event is still one bounded invocation; 'keeps receiving events' just means many separate invocations.",
+      explanation_he:
+        "המגבלות של Lambda מכתיבות מה מתאים לרוץ שם: 15 דקות הן תקרה קשיחה להפעלה בודדת (משימות ארוכות יותר עוברות ל-Step Functions, Batch או Fargate), ה-CPU לא נקבע ישירות אלא נגזר ממחוון הזיכרון - ולעיתים קרובות יותר זיכרון דווקא זול יותר כי ההרצה מסתיימת מהר יותר - ו-/tmp הוא שטח זמני per-instance, לא אחסון עמיד. כל event הוא עדיין הפעלה בודדת ומוגבלת; 'ממשיכה לקבל events' פירושו פשוט הרבה הפעלות נפרדות.",
       resourceTitle: "Lambda quotas",
       resourceUrl: "https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html",
       keywords: ["lambda limits", "timeout", "memory", "ephemeral storage"],
@@ -117,15 +158,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What makes a VPC subnet a \"public\" subnet?",
+      question_he: "מה הופך subnet ב-VPC ל-subnet \"ציבורי\"?",
       options: [
         "Its name contains the word public",
         "Its route table has a route to an Internet Gateway",
         "It uses a special public CIDR range",
         "AWS designates one public subnet per VPC automatically",
       ],
+      options_he: [
+        "השם שלו מכיל את המילה public",
+        "ל-route table שלו יש route ל-Internet Gateway",
+        "הוא משתמש בטווח CIDR ציבורי מיוחד",
+        "AWS מייעד subnet ציבורי אחד לכל VPC באופן אוטומטי",
+      ],
       correctAnswer: 1,
       explanation:
         "Public is a routing property, not a label: a subnet whose route table sends 0.0.0.0/0 to an Internet Gateway is public — its instances (with public IPs) can be reached from the internet. Remove that route and the same subnet is private. This mental model matters because misreading a subnet's route table, not its name, is how workloads end up unexpectedly exposed.",
+      explanation_he:
+        "'ציבורי' הוא מאפיין ניתובי, לא תווית: subnet שה-route table שלו שולח את 0.0.0.0/0 ל-Internet Gateway הוא ציבורי - ה-instance-ים שבו (עם IP-ים ציבוריים) נגישים מהאינטרנט. הסירו את ה-route הזה, ואותו subnet הופך לפרטי. המודל המנטלי הזה חשוב כי קריאה שגויה של ה-route table של subnet, לא של שמו, היא הדרך שבה עומסי עבודה נחשפים בטעות.",
       resourceTitle: "Enable internet access with an internet gateway",
       resourceUrl: "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html",
       keywords: ["public subnet", "internet gateway", "route table", "0.0.0.0/0"],
@@ -138,15 +188,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Why do you place a NAT gateway in front of private subnets?",
+      question_he: "מדוע ממקמים NAT gateway מול subnet-ים פרטיים?",
       options: [
         "To let private instances initiate outbound internet connections while remaining unreachable from the internet",
         "To load-balance inbound web traffic",
         "To encrypt traffic between subnets",
         "To assign public IPs to private instances",
       ],
+      options_he: [
+        "כדי לאפשר ל-instance-ים פרטיים ליזום חיבורי אינטרנט יוצאים, בעודם בלתי נגישים מהאינטרנט",
+        "כדי לאזן עומסים (load balance) על תעבורת web נכנסת",
+        "כדי להצפין תעבורה בין subnet-ים",
+        "כדי להקצות IP-ים ציבוריים ל-instance-ים פרטיים",
+      ],
       correctAnswer: 0,
       explanation:
         "A NAT gateway is a one-way door: private instances can reach out (OS updates, external APIs) through it, but nothing on the internet can initiate a connection back in — the address translation only exists for outbound flows. It's a managed, per-AZ service billed per hour and per GB, which is why cost-conscious designs place one per AZ and route through VPC endpoints for S3/DynamoDB instead. Azure NAT Gateway and GCP Cloud NAT are the same idea.",
+      explanation_he:
+        "NAT gateway הוא דלת חד-כיוונית: instance-ים פרטיים יכולים לפנות החוצה (עדכוני מערכת הפעלה, API-ים חיצוניים) דרכו, אך שום דבר מהאינטרנט לא יכול ליזום חיבור חזרה פנימה - תרגום הכתובות קיים רק עבור זרימות יוצאות. זהו שירות מנוהל, per-AZ, המחויב לפי שעה ולפי GB, ולכן עיצובים רגישים לעלות ממקמים אחד לכל AZ ומנתבים דרך VPC endpoints עבור S3/DynamoDB במקום. Azure NAT Gateway ו-GCP Cloud NAT הם אותו רעיון.",
       resourceTitle: "NAT gateways",
       resourceUrl: "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html",
       keywords: ["nat gateway", "private subnet", "outbound", "egress"],
@@ -159,15 +218,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "When does AWS Transit Gateway become the right choice over VPC peering?",
+      question_he: "מתי AWS Transit Gateway הופך לבחירה הנכונה על פני VPC peering?",
       options: [
         "When you need to connect exactly two VPCs",
         "When many VPCs (and on-premises networks) need interconnection — a hub replaces an unmanageable full mesh of peerings",
         "When you need lower latency than peering provides",
         "When VPCs are in the same account",
       ],
+      options_he: [
+        "כשצריך לחבר בדיוק שני VPC-ים",
+        "כשצריך לחבר בין הרבה VPC-ים (ורשתות on-premises) - hub מחליף רשת peering מלאה (full mesh) שאי אפשר לנהל",
+        "כשצריך latency נמוך יותר ממה ש-peering מספק",
+        "כשה-VPC-ים נמצאים באותו חשבון",
+      ],
       correctAnswer: 1,
       explanation:
         "Peering is point-to-point and non-transitive, so n VPCs need n(n−1)/2 peerings with per-pair route table entries — fine for a handful, unmanageable at scale. Transit Gateway is a regional router: every VPC and VPN/Direct Connect attaches once to the hub, and its route tables control who reaches whom. You pay per attachment and per GB for that manageability; for just two VPCs, plain peering stays cheaper and adds no latency-relevant hop.",
+      explanation_he:
+        "Peering הוא point-to-point ולא טרנזיטיבי, כך שעבור n VPC-ים נדרשים n(n-1)/2 חיבורי peering עם רשומות route table לכל זוג - סביר לכמה בודדים, בלתי ניתן לניהול בקנה מידה. Transit Gateway הוא router אזורי: כל VPC וכל חיבור VPN/Direct Connect מתחבר פעם אחת ל-hub, וה-route table-ים שלו קובעים מי מגיע למי. משלמים לפי חיבור (attachment) ולפי GB עבור יכולת הניהול הזו; עבור שני VPC-ים בלבד, peering רגיל נשאר זול יותר ולא מוסיף hop רלוונטי ל-latency.",
       resourceTitle: "What is a transit gateway?",
       resourceUrl: "https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html",
       keywords: ["transit gateway", "hub and spoke", "peering mesh", "multi-vpc"],
@@ -180,10 +248,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "true-false",
       question: "A VPC subnet can be associated with only one route table at a time, but one route table can serve many subnets.",
+      question_he: "subnet ב-VPC יכול להיות משויך ל-route table אחד בלבד בכל רגע נתון, אך route table אחד יכול לשרת subnet-ים רבים.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "The relationship is one-to-many: each subnet follows exactly one route table (the main route table by default, or an explicitly associated custom one), while a single route table can be shared by any number of subnets. This is why 'public' and 'private' subnets are typically implemented as two route tables — one with an Internet Gateway route, one without — each associated with the appropriate group of subnets.",
+      explanation_he:
+        "היחס הוא אחד-לרבים: כל subnet פועל לפי route table אחד בלבד (ברירת המחדל היא ה-main route table, או route table מותאם המשויך לו במפורש), בעוד ש-route table בודד יכול להיות משותף לכל מספר של subnet-ים. זו הסיבה שסובנטים 'ציבוריים' ו'פרטיים' מיושמים בדרך כלל כשני route table-ים - אחד עם route ל-Internet Gateway ואחד בלעדיו - כשכל אחד משויך לקבוצת ה-subnet-ים המתאימה.",
       resourceTitle: "Configure route tables",
       resourceUrl: "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html",
       keywords: ["route table", "subnet association", "main route table"],
@@ -196,15 +268,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does an S3 lifecycle configuration do?",
+      question_he: "מה עושה תצורת lifecycle של S3?",
       options: [
         "Automatically transitions objects to cheaper storage classes and/or expires them based on rules such as object age",
         "Restores accidentally deleted objects",
         "Compresses objects to reduce their size",
         "Replicates objects to another AWS account",
       ],
+      options_he: [
+        "מעבירה אובייקטים באופן אוטומטי למחלקות אחסון זולות יותר ו/או מפקיעה אותם על סמך כללים כגון גיל האובייקט",
+        "משחזרת אובייקטים שנמחקו בטעות",
+        "דוחסת אובייקטים כדי להקטין את גודלם",
+        "משכפלת אובייקטים לחשבון AWS אחר",
+      ],
       correctAnswer: 0,
       explanation:
         "Lifecycle rules automate the aging path of data: transition to Standard-IA after 30 days, to Glacier after 90, expire after 7 years — applied per bucket, optionally filtered by prefix or tags, including cleanup of incomplete multipart uploads (a classic hidden cost). Restoring deletions is versioning's territory, and cross-account copying is replication. Lifecycle policies are usually the first and biggest S3 cost win.",
+      explanation_he:
+        "כללי lifecycle מייתרים את מסלול ההזדקנות של הנתונים: מעבר ל-Standard-IA אחרי 30 יום, ל-Glacier אחרי 90, הפקעה אחרי 7 שנים - מיושם ברמת ה-bucket, עם אפשרות סינון לפי prefix או tags, כולל ניקוי של multipart uploads שלא הושלמו (עלות נסתרת קלאסית). שחזור מחיקות הוא תחום ה-versioning, והעתקה בין חשבונות היא replication. מדיניות lifecycle היא בדרך כלל הניצחון הראשון והגדול ביותר בהוזלת עלויות S3.",
       resourceTitle: "Managing your storage lifecycle",
       resourceUrl: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html",
       keywords: ["lifecycle", "storage classes", "transition", "expiration"],
@@ -217,15 +298,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is Amazon EBS?",
+      question_he: "מהו Amazon EBS?",
       options: [
         "Object storage for unstructured data",
         "Block storage volumes that attach to EC2 instances as disks",
         "A file share mountable by many servers over NFS",
         "A database backup service",
       ],
+      options_he: [
+        "אחסון object לנתונים לא מובנים",
+        "כרכי (volumes) אחסון block המצורפים ל-instance-ים של EC2 כדיסקים",
+        "שיתוף קבצים שניתן לעגן (mount) על ידי שרתים רבים דרך NFS",
+        "שירות גיבוי מסדי נתונים",
+      ],
       correctAnswer: 1,
       explanation:
         "EBS provides the virtual disks of EC2 — boot volumes and data volumes with chosen size and IOPS, living in a single Availability Zone and (normally) attached to one instance at a time. The trio to keep straight: EBS = block (disks), S3 = object (HTTP-addressed blobs), EFS = file (NFS shares for many clients). Snapshots to S3 are how EBS data escapes its zone.",
+      explanation_he:
+        "EBS מספק את הדיסקים הווירטואליים של EC2 - כרכי אתחול (boot) וכרכי נתונים בגודל וב-IOPS נבחרים, החיים ב-Availability Zone בודד ומצורפים (בדרך כלל) ל-instance אחד בכל פעם. השלישייה שכדאי לזכור: EBS = block (דיסקים), S3 = object (בלובים הנגישים דרך HTTP), EFS = file (שיתופי NFS למספר לקוחות). Snapshot-ים ל-S3 הם הדרך שבה נתוני EBS 'בורחים' מה-zone שלהם.",
       resourceTitle: "What is Amazon EBS?",
       resourceUrl: "https://docs.aws.amazon.com/ebs/latest/userguide/what-is-ebs.html",
       keywords: ["ebs", "block storage", "volumes", "snapshots"],
@@ -239,10 +329,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "With S3 Object Lock in compliance mode, a protected object version cannot be deleted or its retention shortened by anyone — including the root user — until the retention period ends.",
+      question_he:
+        "עם S3 Object Lock במצב compliance, לא ניתן למחוק גרסת אובייקט מוגנת או לקצר את תקופת השמירה שלה על ידי אף אחד - כולל משתמש ה-root - עד שתקופת השמירה מסתיימת.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Compliance mode is the strict WORM tier: once set, the retention clock is absolute — no identity, no matter how privileged, can override it, which is what regulators like SEC 17a-4 demand. Governance mode is the softer sibling where specifically-permissioned users can still bypass. Object Lock requires versioning and must be enabled at bucket creation; Azure immutable blobs and GCS Bucket Lock are the cross-cloud equivalents.",
+      explanation_he:
+        "מצב compliance הוא רמת ה-WORM המחמירה: ברגע שנקבע, שעון השמירה מוחלט - שום זהות, לא משנה כמה מורשית, לא יכולה לעקוף אותו, וזה בדיוק מה שרגולטורים כמו SEC 17a-4 דורשים. מצב governance הוא האח הרך יותר, שבו משתמשים בעלי הרשאה ספציפית עדיין יכולים לעקוף. Object Lock דורש versioning וחייב להיות מופעל בעת יצירת ה-bucket; immutable blobs של Azure ו-Bucket Lock של GCS הם המקבילות בין-ענניות.",
       resourceTitle: "Using S3 Object Lock",
       resourceUrl: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html",
       keywords: ["object lock", "worm", "compliance mode", "retention"],
@@ -255,15 +350,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "How does envelope encryption work with AWS KMS?",
+      question_he: "כיצד עובדת הצפנת מעטפה (envelope encryption) עם AWS KMS?",
       options: [
         "KMS encrypts all data directly with a single master key",
         "A data key encrypts the data; KMS encrypts (wraps) that data key with a KMS key that never leaves the service",
         "KMS stores your data and keys together for convenience",
         "Envelope encryption means TLS is used twice",
       ],
+      options_he: [
+        "KMS מצפין את כל הנתונים ישירות באמצעות מפתח מאסטר בודד",
+        "data key מצפין את הנתונים; KMS מצפין (עוטף) את ה-data key הזה באמצעות KMS key שלעולם לא יוצא מהשירות",
+        "KMS מאחסן את הנתונים והמפתחות שלכם יחד לנוחות",
+        "הצפנת מעטפה פירושה ש-TLS מופעל פעמיים",
+      ],
       correctAnswer: 1,
       explanation:
         "Sending gigabytes through KMS would be slow and expensive, so the pattern is indirection: generate a data key, encrypt your data locally with it, then store the data-key-encrypted-by-KMS alongside the ciphertext. Decryption asks KMS to unwrap the data key first. The KMS key itself never leaves KMS's HSM-backed boundary — which is exactly what makes key usage auditable via CloudTrail and revocable in one place.",
+      explanation_he:
+        "שליחת ג'יגה-בייטים דרך KMS הייתה איטית ויקרה, ולכן הדפוס מבוסס על עקיפה: מייצרים data key, מצפינים איתו את הנתונים באופן מקומי, ואז שומרים את ה-data key המוצפן על ידי KMS לצד הטקסט המוצפן (ciphertext). בפענוח פונים תחילה ל-KMS כדי לפרוץ (unwrap) את ה-data key. ה-KMS key עצמו לעולם לא יוצא מהגבול המוגן על ידי HSM של KMS - וזה בדיוק מה שהופך את השימוש במפתח לניתן לביקורת (audit) דרך CloudTrail ולניתן לביטול ממקום אחד.",
       resourceTitle: "AWS KMS concepts",
       resourceUrl: "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html",
       keywords: ["kms", "envelope encryption", "data key", "key management"],
@@ -276,15 +380,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multi-select",
       question: "Which statements about Amazon GuardDuty are correct? (Select all that apply.)",
+      question_he: "אילו מהמשפטים הבאים על Amazon GuardDuty נכונים? (בחרו את כל התשובות הנכונות.)",
       options: [
         "It analyzes CloudTrail events, VPC Flow Logs and DNS logs for threats",
         "It uses machine learning and threat intelligence to produce findings",
         "It requires no agents for its foundational data sources",
         "It sits inline and blocks malicious traffic before it reaches your VPC",
       ],
+      options_he: [
+        "הוא מנתח אירועי CloudTrail, VPC Flow Logs ולוגי DNS בחיפוש אחר איומים",
+        "הוא משתמש ב-machine learning ובמודיעין איומים (threat intelligence) כדי להפיק findings",
+        "הוא אינו דורש agents עבור מקורות הנתונים הבסיסיים שלו",
+        "הוא ממוקם inline וחוסם תעבורה זדונית לפני שהיא מגיעה ל-VPC שלכם",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "GuardDuty is detection, not prevention: it continuously mines the telemetry AWS already has — API activity, network flows, DNS queries — against threat intel and ML models, surfacing findings like credential exfiltration or crypto-mining. Nothing is deployed into your VPCs for those sources and no traffic passes through it, so it cannot block anything by itself; response comes from you or automation (EventBridge → Lambda) acting on findings.",
+      explanation_he:
+        "GuardDuty הוא כלי גילוי (detection), לא מניעה (prevention): הוא כורה באופן רציף את הטלמטריה שכבר קיימת ב-AWS - פעילות API, זרימות רשת, שאילתות DNS - מול מודיעין איומים ומודלי ML, ומעלה findings כמו הדלפת אישורים (credential exfiltration) או כרייה זדונית (crypto-mining). שום דבר לא נפרס בתוך ה-VPC-ים שלכם עבור המקורות הללו, ושום תעבורה לא עוברת דרכו, ולכן הוא לא יכול לחסום דבר בעצמו; התגובה מגיעה מכם או מאוטומציה (EventBridge → Lambda) הפועלת על סמך ה-findings.",
       resourceTitle: "What is Amazon GuardDuty?",
       resourceUrl: "https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html",
       keywords: ["guardduty", "threat detection", "findings", "ml"],
@@ -298,10 +411,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "Under the AWS shared responsibility model, AWS secures the underlying infrastructure while you remain responsible for securing your data, identities and configurations.",
+      question_he:
+        "לפי מודל האחריות המשותפת (shared responsibility model) של AWS, AWS מאבטחת את התשתית הבסיסית בעוד אתם נשארים אחראים על אבטחת הנתונים, הזהויות וההגדרות שלכם.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "AWS is responsible for security OF the cloud — facilities, hardware, hypervisor, managed-service internals; you are responsible for security IN the cloud — IAM, network rules, encryption choices, patching your EC2 OS, and everything about your data. The split shifts with the service model: more managed (Lambda, S3) means AWS covers more layers, but customer data and access control are always yours. Most real-world cloud breaches happen on the customer side of this line.",
+      explanation_he:
+        "AWS אחראית על האבטחה OF the cloud - מתקנים, חומרה, ה-hypervisor, הפנים הפנימיים של שירותים מנוהלים; אתם אחראים על האבטחה IN the cloud - IAM, כללי רשת, בחירות הצפנה, טלאים (patching) למערכת ההפעלה של ה-EC2 שלכם, וכל מה שקשור לנתונים שלכם. החלוקה משתנה לפי מודל השירות: ככל שהשירות מנוהל יותר (Lambda, S3), כך AWS מכסה יותר שכבות, אך נתוני הלקוח ובקרת הגישה תמיד נשארים באחריותכם. רוב פרצות האבטחה האמיתיות בענן קורות בצד הלקוח של הגבול הזה.",
       resourceTitle: "Shared Responsibility Model",
       resourceUrl: "https://aws.amazon.com/compliance/shared-responsibility-model/",
       keywords: ["shared responsibility", "security model", "compliance"],
@@ -314,15 +432,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does AWS Config do?",
+      question_he: "מה עושה AWS Config?",
       options: [
         "Records the configuration history of your resources and evaluates them against compliance rules",
         "Edits application configuration files on EC2 instances",
         "Configures the AWS CLI on developer machines",
         "Manages DNS configuration for your domains",
       ],
+      options_he: [
+        "מתעד את היסטוריית התצורה (configuration) של המשאבים שלכם ומעריך אותם מול כללי ציות (compliance)",
+        "עורך קבצי תצורה של אפליקציות ב-instance-ים של EC2",
+        "מגדיר את AWS CLI במחשבי המפתחים",
+        "מנהל את תצורת ה-DNS עבור הדומיינים שלכם",
+      ],
       correctAnswer: 0,
       explanation:
         "Config answers two questions CloudTrail alone can't: 'what does this resource look like now versus last Tuesday?' (configuration timeline) and 'does it comply with our rules?' (managed/custom rules, e.g. 's3-bucket-public-read-prohibited', with optional auto-remediation). CloudTrail records who called which API; Config records the resulting resource state over time. Together they reconstruct any change: who did it, and what it changed.",
+      explanation_he:
+        "Config עונה על שתי שאלות ש-CloudTrail לבדו לא יכול לענות עליהן: 'איך המשאב הזה נראה עכשיו לעומת יום שלישי שעבר?' (ציר זמן של תצורה) ו'האם הוא עומד בכללים שלנו?' (כללים מנוהלים או מותאמים אישית, למשל 's3-bucket-public-read-prohibited', עם אפשרות לתיקון אוטומטי - auto-remediation). CloudTrail מתעד מי קרא לאיזה API; Config מתעד את מצב המשאב שנוצר כתוצאה מכך לאורך זמן. יחד הם משחזרים כל שינוי: מי ביצע אותו, ומה הוא שינה.",
       resourceTitle: "What is AWS Config?",
       resourceUrl: "https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html",
       keywords: ["aws config", "compliance rules", "configuration history", "drift"],
@@ -335,15 +462,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "What is AWS Control Tower?",
+      question_he: "מהו AWS Control Tower?",
       options: [
         "A physical security service for AWS datacenters",
         "A service that sets up and governs a multi-account landing zone with preconfigured guardrails",
         "A network traffic control appliance",
         "A dashboard for EC2 instance health",
       ],
+      options_he: [
+        "שירות אבטחה פיזי עבור מרכזי הנתונים (datacenters) של AWS",
+        "שירות שמקים ומנהל landing zone רב-חשבונות עם guardrails מוגדרים מראש",
+        "מכשיר בקרת תעבורת רשת",
+        "דשבורד לבריאות instance-ים של EC2",
+      ],
       correctAnswer: 1,
       explanation:
         "Control Tower automates what platform teams used to hand-build: it creates an AWS Organizations structure with dedicated log-archive and audit accounts, an account factory for standardized new accounts, and guardrails — preventive ones implemented as SCPs and detective ones as Config rules. It's AWS's packaged 'landing zone', the counterpart of Azure landing zones built with management groups and Azure Policy.",
+      explanation_he:
+        "Control Tower מאוטמט את מה שצוותי פלטפורמה נהגו לבנות ידנית: הוא יוצר מבנה AWS Organizations עם חשבונות ייעודיים לארכיון לוגים ולביקורת (audit), account factory ליצירת חשבונות חדשים בסטנדרט אחיד, ו-guardrails - מניעתיים המיושמים כ-SCP-ים ובלשיים (detective) המיושמים ככללי Config. זהו ה'landing zone' הארוז של AWS, המקביל ל-landing zones של Azure הבנויים עם management groups ו-Azure Policy.",
       resourceTitle: "What is AWS Control Tower?",
       resourceUrl: "https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html",
       keywords: ["control tower", "landing zone", "guardrails", "multi-account"],
@@ -356,15 +492,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What is Amazon CloudWatch used for?",
+      question_he: "למה משמש Amazon CloudWatch?",
       options: [
         "Collecting metrics and logs, setting alarms, and building dashboards for AWS resources and applications",
         "Watching CloudFormation stacks deploy",
         "Recording who made API calls in your account",
         "Scanning your account for security vulnerabilities",
       ],
+      options_he: [
+        "איסוף metrics ולוגים, הגדרת alarms, ובניית dashboards עבור משאבים ואפליקציות של AWS",
+        "מעקב אחר פריסת (deploy) ה-stacks של CloudFormation",
+        "תיעוד מי ביצע קריאות API בחשבון שלכם",
+        "סריקת החשבון שלכם לאיתור פרצות אבטחה",
+      ],
       correctAnswer: 0,
       explanation:
         "CloudWatch is AWS's observability hub: services publish metrics automatically (CPU, queue depth, latency), the agent adds OS-level and custom metrics, CloudWatch Logs ingests application logs, and alarms turn thresholds into notifications or auto-scaling actions. The classic trap is answer three — recording API callers is CloudTrail. Azure Monitor and Google Cloud Monitoring play the same role in their clouds.",
+      explanation_he:
+        "CloudWatch הוא מרכז ה-observability של AWS: שירותים מפרסמים metrics באופן אוטומטי (CPU, עומק תור, latency), ה-agent מוסיף metrics ברמת מערכת ההפעלה ו-metrics מותאמים אישית, CloudWatch Logs קולט לוגים של אפליקציות, ו-alarms הופכים חציית ספים (thresholds) להתראות או לפעולות auto-scaling. המלכודת הקלאסית היא תשובה שלוש - תיעוד מי קרא ל-API הוא תפקידו של CloudTrail. Azure Monitor ו-Google Cloud Monitoring ממלאים תפקיד דומה בענן שלהם.",
       resourceTitle: "What is Amazon CloudWatch?",
       resourceUrl: "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html",
       keywords: ["cloudwatch", "metrics", "alarms", "dashboards"],
@@ -377,7 +522,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "A resource was modified unexpectedly at 3 AM. Which service tells you WHO made the change?",
+      question_he: "משאב שונה באופן בלתי צפוי בשעה 3 לפנות בוקר. איזה שירות יגיד לכם מי ביצע את השינוי?",
       options: [
+        "Amazon CloudWatch",
+        "AWS CloudTrail",
+        "AWS Trusted Advisor",
+        "Amazon Inspector",
+      ],
+      options_he: [
         "Amazon CloudWatch",
         "AWS CloudTrail",
         "AWS Trusted Advisor",
@@ -386,6 +538,8 @@ CQA.data.registerPack({
       correctAnswer: 1,
       explanation:
         "'Who did what, when, from where' is CloudTrail — it records the API call, the caller identity, source IP and parameters. CloudWatch would tell you how the resource performed at 3 AM, Trusted Advisor gives best-practice recommendations, and Inspector scans for vulnerabilities. The pairing to internalize: CloudWatch = performance telemetry, CloudTrail = audit trail; investigations usually need both.",
+      explanation_he:
+        "'מי עשה מה, מתי, ומאיפה' - זה CloudTrail; הוא מתעד את קריאת ה-API, את זהות המבצע, IP המקור והפרמטרים. CloudWatch היה מספר לכם איך המשאב התנהג בשעה 3 לפנות בוקר, Trusted Advisor נותן המלצות best-practice, ו-Inspector סורק לאיתור פרצות אבטחה. הצמד שכדאי להפנים: CloudWatch = טלמטריית ביצועים, CloudTrail = מסלול ביקורת (audit trail); חקירות בדרך כלל דורשות את שניהם.",
       resourceTitle: "What is AWS CloudTrail?",
       resourceUrl: "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html",
       keywords: ["cloudtrail", "audit", "who did what", "api history"],
@@ -398,15 +552,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multi-select",
       question: "Which statements about VPC Flow Logs are correct? (Select all that apply.)",
+      question_he: "אילו מהמשפטים הבאים על VPC Flow Logs נכונים? (בחרו את כל התשובות הנכונות.)",
       options: [
         "They capture metadata about IP traffic — source, destination, ports, action — not packet payloads",
         "They can be enabled at the VPC, subnet, or network interface level",
         "They can deliver to CloudWatch Logs or S3",
         "They record the full content of every packet for replay",
       ],
+      options_he: [
+        "הם לוכדים מטא-דאטה על תעבורת IP - מקור, יעד, פורטים, פעולה - לא את תוכן החבילות (payloads)",
+        "ניתן להפעיל אותם ברמת ה-VPC, ה-subnet, או ממשק הרשת (network interface)",
+        "הם יכולים להעביר נתונים ל-CloudWatch Logs או ל-S3",
+        "הם מתעדים את התוכן המלא של כל חבילה (packet) לצורך replay",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Flow logs are NetFlow-style records: per-flow 5-tuple, byte/packet counts, and whether security rules ACCEPTed or REJECTed it — enough to debug 'why can't A reach B' and to feed GuardDuty, at a fraction of packet-capture cost. Scope is flexible (whole VPC down to one ENI) and delivery goes to CloudWatch Logs or S3. Full payload capture requires VPC Traffic Mirroring, a different and much heavier tool.",
+      explanation_he:
+        "Flow logs הם רשומות בסגנון NetFlow: 5-tuple לכל flow, ספירת bytes/packets, והאם כללי אבטחה ביצעו ACCEPT או REJECT - די והותר כדי לבצע debug ל'למה A לא יכול להגיע ל-B' ולהזין את GuardDuty, בשבריר מעלות של packet-capture. ההיקף גמיש (מ-VPC שלם ועד ENI בודד) והעברת הנתונים מתבצעת ל-CloudWatch Logs או ל-S3. לכידת תוכן מלא דורשת VPC Traffic Mirroring, כלי שונה וכבד בהרבה.",
       resourceTitle: "Logging IP traffic using VPC Flow Logs",
       resourceUrl: "https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html",
       keywords: ["flow logs", "network monitoring", "reject", "5-tuple"],
@@ -419,15 +582,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "What does AWS Cost Explorer let you do?",
+      question_he: "מה AWS Cost Explorer מאפשר לכם לעשות?",
       options: [
         "Visualize and analyze your spending over time, filter by service or tag, and forecast future costs",
         "Automatically shut down expensive resources",
         "Negotiate custom pricing with AWS",
         "Transfer costs to another AWS account",
       ],
+      options_he: [
+        "להמחיש ולנתח את ההוצאות שלכם לאורך זמן, לסנן לפי שירות או tag, ולחזות עלויות עתידיות",
+        "לכבות אוטומטית משאבים יקרים",
+        "לנהל משא ומתן על תמחור מותאם אישית מול AWS",
+        "להעביר עלויות לחשבון AWS אחר",
+      ],
       correctAnswer: 0,
       explanation:
         "Cost Explorer is the analysis surface of AWS billing: daily/monthly granularity, grouping by service, account, region or cost-allocation tag, plus a short-term forecast and rightsizing/commitment recommendations. It only informs — pairing it with AWS Budgets adds the alerting when actual or forecasted spend crosses a threshold. Azure Cost Management and GCP Billing reports are the counterparts.",
+      explanation_he:
+        "Cost Explorer הוא משטח הניתוח של חיוב AWS: פירוט יומי/חודשי, קיבוץ לפי שירות, חשבון, region או cost-allocation tag, בתוספת תחזית לטווח קצר והמלצות rightsizing/commitment. הוא רק מספק מידע - שילובו עם AWS Budgets מוסיף את ההתראות כשההוצאה בפועל או החזויה חוצה סף מסוים. Azure Cost Management ו-דוחות החיוב של GCP הם המקבילות.",
       resourceTitle: "What is AWS Cost Explorer?",
       resourceUrl: "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html",
       keywords: ["cost explorer", "spending analysis", "forecast", "budgets"],
@@ -440,15 +612,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "How do Compute Savings Plans differ from Standard Reserved Instances?",
+      question_he: "במה נבדלים Compute Savings Plans מ-Standard Reserved Instances?",
       options: [
         "Savings Plans are free while Reserved Instances cost money upfront",
         "Savings Plans commit to a dollar-per-hour spend and apply flexibly across instance families, sizes and regions; Standard RIs lock to specific instance attributes",
         "Reserved Instances offer bigger discounts in every scenario",
         "Savings Plans only apply to S3 storage",
       ],
+      options_he: [
+        "Savings Plans הם חינמיים בעוד ש-Reserved Instances עולים כסף מראש",
+        "Savings Plans מתחייבים להוצאה במונחי דולר לשעה, וחלים באופן גמיש על פני משפחות instance-ים, גדלים ו-region-ים שונים; Standard RIs נעולים למאפייני instance ספציפיים",
+        "Reserved Instances מציעים הנחות גדולות יותר בכל תרחיש",
+        "Savings Plans חלים רק על אחסון S3",
+      ],
       correctAnswer: 1,
       explanation:
         "Both trade a 1- or 3-year commitment for a discount; the difference is what you commit to. A Compute Savings Plan commits to $X/hour of compute and automatically covers whatever EC2 (any family/region), Fargate or Lambda you run. A Standard RI commits to a specific instance family in a specific region — slightly deeper discount, far less flexibility. Modern guidance defaults to Savings Plans unless your footprint is truly static.",
+      explanation_he:
+        "שניהם מחליפים התחייבות ל-1 או 3 שנים בהנחה; ההבדל הוא במה בדיוק אתם מתחייבים. Compute Savings Plan מתחייב ל-X$ לשעה של compute ומכסה אוטומטית כל EC2 (כל משפחה/region), Fargate או Lambda שאתם מריצים. Standard RI מתחייב למשפחת instance ספציפית ב-region ספציפי - הנחה מעט גדולה יותר, אך הרבה פחות גמישות. ההנחיה המודרנית ברירת המחדל היא Savings Plans, אלא אם טביעת הרגל שלכם קבועה לחלוטין.",
       resourceTitle: "What are Savings Plans?",
       resourceUrl: "https://docs.aws.amazon.com/savingsplans/latest/userguide/what-is-savings-plans.html",
       keywords: ["savings plans", "reserved instances", "commitment", "discount"],
@@ -462,10 +643,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "EC2 Spot Instances can be up to ~90% cheaper than On-Demand, and AWS gives a two-minute interruption notice before reclaiming one.",
+      question_he:
+        "EC2 Spot Instances יכולים להיות זולים ב-90%~ לעומת On-Demand, ו-AWS נותנת התראת הפסקה (interruption notice) של שתי דקות לפני שהיא לוקחת בחזרה instance כזה.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Spot sells spare EC2 capacity at steep, market-driven discounts; the contract is that AWS may take it back with a two-minute warning delivered via instance metadata and EventBridge. Well-built Spot workloads listen for that signal, checkpoint, and drain gracefully — fleets diversify across instance types and AZs to reduce simultaneous interruptions. Azure Spot VMs (30-second notice) and GCP Spot VMs follow the same model.",
+      explanation_he:
+        "Spot מוכר קיבולת עודפת של EC2 בהנחות תלולות המונעות על ידי השוק; ההסכם הוא ש-AWS עשויה לקחת אותה בחזרה עם אזהרה של שתי דקות שמועברת דרך instance metadata ו-EventBridge. עומסי עבודה בנויים היטב עבור Spot מאזינים לאותו אות, שומרים checkpoint, ומתנקזים (drain) בעדינות - צי (fleet) מגוון על פני סוגי instance-ים ו-AZ-ים שונים מפחית הפסקות בו-זמניות. Azure Spot VMs (התראה של 30 שניות) ו-GCP Spot VMs פועלים לפי אותו מודל.",
       resourceTitle: "Spot Instances",
       resourceUrl: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html",
       keywords: ["spot instances", "interruption notice", "discount", "spare capacity"],
@@ -478,15 +664,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "What does enabling Multi-AZ on an Amazon RDS instance give you?",
+      question_he: "מה מקבלים כשמפעילים Multi-AZ על instance של Amazon RDS?",
       options: [
         "A read replica that speeds up read-heavy queries",
         "A synchronously replicated standby in another Availability Zone with automatic failover",
         "Twice the storage capacity",
         "Cross-region disaster recovery",
       ],
+      options_he: [
+        "read replica שמאיץ שאילתות עתירות קריאה",
+        "standby המשוכפל באופן סינכרוני ב-Availability Zone אחר, עם failover אוטומטי",
+        "כפול מקיבולת האחסון",
+        "התאוששות מאסון (disaster recovery) בין regions",
+      ],
       correctAnswer: 1,
       explanation:
         "Multi-AZ is about availability, not performance: writes commit synchronously to a standby in a second AZ, and if the primary fails, RDS flips the DNS endpoint to the standby automatically — typically a minute or two of disruption instead of hours. The standby serves no traffic, which is exactly how it differs from read replicas (asynchronous, readable, also usable cross-region for DR). Distinct tools for distinct failure modes.",
+      explanation_he:
+        "Multi-AZ עוסק בזמינות, לא בביצועים: כתיבות מבוצעות (commit) באופן סינכרוני ל-standby ב-AZ שני, ואם ה-primary נכשל, RDS מחליף את endpoint ה-DNS ל-standby באופן אוטומטי - בדרך כלל דקה-שתיים של שיבוש במקום שעות. ה-standby לא משרת שום תעבורה, וזה בדיוק ההבדל מ-read replicas (אסינכרוני, ניתן לקריאה, ניתן לשימוש גם בין regions לצורך DR). כלים שונים עבור מצבי כשל שונים.",
       resourceTitle: "Multi-AZ deployments for Amazon RDS",
       resourceUrl: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html",
       keywords: ["multi-az", "rds", "failover", "synchronous replication"],
@@ -499,15 +694,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "How does Route 53 support a multi-region failover architecture?",
+      question_he: "כיצד Route 53 תומך בארכיטקטורת failover בין regions?",
       options: [
         "It replicates your application code between regions",
         "Health checks monitor the primary endpoint, and failover routing shifts DNS answers to the secondary region when the primary becomes unhealthy",
         "It provides a VPN between the two regions",
         "It caches your website so regions are unnecessary",
       ],
+      options_he: [
+        "הוא משכפל את קוד האפליקציה שלכם בין regions",
+        "health checks מנטרים את ה-endpoint הראשי, ומדיניות ניתוב failover מעבירה את תשובות ה-DNS ל-region המשני כשה-endpoint הראשי מפסיק להיות תקין",
+        "הוא מספק VPN בין שני ה-regions",
+        "הוא שומר במטמון (cache) את האתר שלכם כך שאין צורך ב-regions נוספים",
+      ],
       correctAnswer: 1,
       explanation:
         "DNS is the classic global traffic steering layer: Route 53 health checks probe your primary endpoint, and a failover routing policy serves the secondary region's records once the primary fails checks. Recovery time is bounded by TTLs and health-check intervals, so both are tuned deliberately. Route 53 moves the traffic — replicating data and standing up capacity in the second region remain your architecture's job. Azure Traffic Manager and GCP's global load balancing solve the same problem differently.",
+      explanation_he:
+        "DNS הוא שכבת ההכוונה הגלובלית הקלאסית לתעבורה: health checks של Route 53 בודקים את ה-endpoint הראשי שלכם, ומדיניות ניתוב failover מגישה את הרשומות של ה-region המשני ברגע שה-endpoint הראשי נכשל בבדיקות. זמן ההתאוששות מוגבל על ידי ה-TTL-ים ומרווחי health-check, ולכן שניהם מכוונים בכוונה תחילה. Route 53 מזיז את התעבורה - שכפול הנתונים והקמת קיבולת ב-region השני נשארים באחריות הארכיטקטורה שלכם. Azure Traffic Manager וה-global load balancing של GCP פותרים את אותה בעיה בדרך שונה.",
       resourceTitle: "DNS failover with Route 53",
       resourceUrl: "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html",
       keywords: ["route 53", "failover routing", "health checks", "multi-region"],

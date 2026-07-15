@@ -16,7 +16,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "Which row correctly matches each cloud's managed Kubernetes service?",
+      question_he: "איזו שורה מתאימה נכון לשירות ה-Kubernetes המנוהל של כל ענן?",
       options: [
+        "Azure: AKS — AWS: EKS — GCP: GKE",
+        "Azure: ACI — AWS: ECS — GCP: Cloud Run",
+        "Azure: AKS — AWS: Lambda — GCP: App Engine",
+        "Azure: Batch — AWS: EKS — GCP: Compute Engine",
+      ],
+      options_he: [
         "Azure: AKS — AWS: EKS — GCP: GKE",
         "Azure: ACI — AWS: ECS — GCP: Cloud Run",
         "Azure: AKS — AWS: Lambda — GCP: App Engine",
@@ -25,6 +32,8 @@ CQA.data.registerPack({
       correctAnswer: 0,
       explanation:
         "AKS, EKS and GKE all run the Kubernetes control plane as a managed service. The wrong rows mix in proprietary container services (ACI, ECS), FaaS (Lambda) and PaaS (App Engine) — related, but not Kubernetes. GKE is generally considered the most mature, unsurprisingly, since Kubernetes originated at Google.",
+      explanation_he:
+        "AKS, EKS ו-GKE מריצים את מישור הבקרה (control plane) של Kubernetes כשירות מנוהל. השורות השגויות מערבבות שירותי קונטיינרים קנייניים (ACI, ECS), FaaS (Lambda) ו-PaaS (App Engine) — קשורים, אך לא Kubernetes. GKE נחשב בדרך כלל לבשל ביותר, לא במפתיע, מכיוון ש-Kubernetes נולד ב-Google.",
       resourceTitle: "Compare AWS and Azure compute services",
       resourceUrl: "https://learn.microsoft.com/azure/architecture/aws-professional/compute",
       keywords: ["aks", "eks", "gke", "managed kubernetes"],
@@ -37,7 +46,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Which services let you run containers serverlessly, without managing nodes or clusters yourself?",
+      question_he: "אילו שירותים מאפשרים להריץ קונטיינרים בצורה serverless, מבלי לנהל בעצמכם nodes או clusters?",
       options: [
+        "Azure Container Apps, AWS Fargate/App Runner, Google Cloud Run",
+        "Azure VMs, Amazon EC2, Compute Engine",
+        "AKS Standard, self-managed EKS nodes, GKE Standard",
+        "Azure Files, Amazon EFS, Filestore",
+      ],
+      options_he: [
         "Azure Container Apps, AWS Fargate/App Runner, Google Cloud Run",
         "Azure VMs, Amazon EC2, Compute Engine",
         "AKS Standard, self-managed EKS nodes, GKE Standard",
@@ -46,6 +62,8 @@ CQA.data.registerPack({
       correctAnswer: 0,
       explanation:
         "These are the 'just run my container' tier: you supply an image, the platform supplies (and hides) the infrastructure, scaling and billing granularity. VM services are the opposite end of the responsibility spectrum, node-managed Kubernetes sits in between, and the last row is file storage. Choosing the right tier is choosing how much infrastructure you want to own.",
+      explanation_he:
+        "אלו הן שירותי השכבה 'פשוט תריצו לי את הקונטיינר': אתם מספקים image, והפלטפורמה מספקת (ומסתירה) את התשתית, ה-scaling וגרנולריות החיוב. שירותי VM נמצאים בקצה הנגדי של ספקטרום האחריות, Kubernetes מנוהל-nodes נמצא באמצע, והשורה האחרונה היא אחסון קבצים. בחירת השכבה הנכונה היא בחירה כמה תשתית אתם רוצים להחזיק בבעלותכם.",
       resourceTitle: "What is Cloud Run?",
       resourceUrl: "https://cloud.google.com/run/docs/overview/what-is-cloud-run",
       keywords: ["serverless containers", "fargate", "cloud run", "container apps"],
@@ -58,15 +76,24 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "Azure NAT Gateway, AWS NAT Gateway and GCP Cloud NAT all exist to solve which problem?",
+      question_he: "Azure NAT Gateway, AWS NAT Gateway ו-GCP Cloud NAT קיימים כולם כדי לפתור איזו בעיה?",
       options: [
         "Letting internet users reach private VMs",
         "Giving VMs without public IPs outbound internet access while keeping them unreachable from outside",
         "Encrypting traffic between subnets",
         "Load balancing between regions",
       ],
+      options_he: [
+        "לאפשר למשתמשי אינטרנט להגיע ל-VM-ים פרטיים",
+        "לתת ל-VM-ים ללא כתובות IP ציבוריות גישת יציאה (outbound) לאינטרנט, תוך שמירה על כך שלא ניתן להגיע אליהם מבחוץ",
+        "להצפין תעבורה בין subnets",
+        "לאזן עומסים (load balancing) בין regions",
+      ],
       correctAnswer: 1,
       explanation:
         "All three are managed egress-only translation services: private workloads can reach out for updates and APIs, but no inbound connection can be initiated from the internet. That one-way property is why 'private subnet + NAT' is the default posture for backends in every cloud. Inbound exposure is the job of load balancers — deliberately, and only where intended.",
+      explanation_he:
+        "שלושתם הם שירותי תרגום יציאה-בלבד (egress-only) מנוהלים: עומסי עבודה פרטיים יכולים לצאת כדי לקבל עדכונים ולגשת ל-APIs, אך לא ניתן ליזום שום חיבור נכנס מהאינטרנט. אותה תכונה חד-כיוונית היא הסיבה ש'subnet פרטי + NAT' היא ברירת המחדל עבור backends בכל ענן. חשיפה נכנסת היא תפקידם של load balancers — במכוון, ורק היכן שמיועד.",
       resourceTitle: "Cloud NAT overview",
       resourceUrl: "https://cloud.google.com/nat/docs/overview",
       keywords: ["nat", "egress", "private subnet", "equivalents"],
@@ -79,7 +106,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Which row correctly matches each cloud's layer-7 (HTTP-aware) load balancer?",
+      question_he: "איזו שורה מתאימה נכון ל-load balancer בשכבה 7 (המודע ל-HTTP) של כל ענן?",
       options: [
+        "Azure Application Gateway — AWS Application Load Balancer — GCP external Application Load Balancer",
+        "Azure Load Balancer — AWS Network Load Balancer — GCP passthrough Network LB",
+        "Azure Front Door — AWS Direct Connect — GCP Cloud NAT",
+        "Azure Traffic Manager — AWS Route 53 — GCP Cloud DNS",
+      ],
+      options_he: [
         "Azure Application Gateway — AWS Application Load Balancer — GCP external Application Load Balancer",
         "Azure Load Balancer — AWS Network Load Balancer — GCP passthrough Network LB",
         "Azure Front Door — AWS Direct Connect — GCP Cloud NAT",
@@ -88,6 +122,8 @@ CQA.data.registerPack({
       correctAnswer: 0,
       explanation:
         "The first row lists the L7 balancers — they understand HTTP, so they can route by path/host, terminate TLS and host a WAF. The second row is their L4 counterparts (fast, protocol-blind), and the last row is DNS-based global steering, a different layer entirely. One key asymmetry: GCP's Application LB is global by default; Azure's and AWS's are regional.",
+      explanation_he:
+        "השורה הראשונה מפרטת את מאזני העומסים בשכבה L7 — הם מבינים HTTP, כך שהם יכולים לנתב לפי path/host, לבצע TLS termination ולארח WAF. השורה השנייה היא המקבילות שלהם בשכבה L4 (מהירות, עיוורות לפרוטוקול), והשורה האחרונה היא ניתוב גלובלי מבוסס DNS, שכבה שונה לגמרי. אסימטריה מרכזית אחת: ה-Application LB של GCP הוא גלובלי כברירת מחדל; אלו של Azure ושל AWS הם אזוריים (regional).",
       resourceTitle: "Azure and AWS networking comparison",
       resourceUrl: "https://learn.microsoft.com/azure/architecture/aws-professional/networking",
       keywords: ["layer 7", "application load balancer", "equivalents"],
@@ -100,7 +136,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Which row matches each cloud's dedicated private circuit to on-premises?",
+      question_he: "איזו שורה מתאימה למעגל הפרטי הייעודי (dedicated private circuit) של כל ענן אל on-premises?",
       options: [
+        "Azure VPN Gateway — AWS Client VPN — GCP Cloud VPN",
+        "Azure ExpressRoute — AWS Direct Connect — GCP Cloud Interconnect",
+        "Azure Front Door — AWS CloudFront — GCP Cloud CDN",
+        "Azure Bastion — AWS Session Manager — GCP IAP",
+      ],
+      options_he: [
         "Azure VPN Gateway — AWS Client VPN — GCP Cloud VPN",
         "Azure ExpressRoute — AWS Direct Connect — GCP Cloud Interconnect",
         "Azure Front Door — AWS CloudFront — GCP Cloud CDN",
@@ -109,6 +152,8 @@ CQA.data.registerPack({
       correctAnswer: 1,
       explanation:
         "ExpressRoute, Direct Connect and Cloud Interconnect are physical private circuits through connectivity providers — predictable bandwidth and latency, traffic off the public internet (though not encrypted by default). The first row is the IPsec-over-internet alternative, cheaper and faster to set up; the others are CDNs and admin-access services. Most enterprises start with VPN and graduate to a circuit.",
+      explanation_he:
+        "ExpressRoute, Direct Connect ו-Cloud Interconnect הם מעגלים פרטיים פיזיים דרך ספקי קישוריות — רוחב פס וזמן תגובה צפויים, תעבורה מחוץ לאינטרנט הציבורי (אם כי לא מוצפנת כברירת מחדל). השורה הראשונה היא החלופה של IPsec-over-internet, זולה יותר ומהירה יותר להקמה; האחרות הן שירותי CDN וגישת ניהול. רוב הארגונים הגדולים מתחילים עם VPN ועוברים בהמשך למעגל ייעודי.",
       resourceTitle: "Cloud Interconnect overview",
       resourceUrl: "https://cloud.google.com/network-connectivity/docs/interconnect",
       keywords: ["expressroute", "direct connect", "interconnect", "private circuit"],
@@ -121,7 +166,14 @@ CQA.data.registerPack({
       difficulty: "beginner",
       type: "multiple-choice",
       question: "Which row matches each cloud's managed DNS service?",
+      question_he: "איזו שורה מתאימה לשירות ה-DNS המנוהל של כל ענן?",
       options: [
+        "Azure DNS — Amazon Route 53 — Google Cloud DNS",
+        "Azure Firewall — AWS WAF — Cloud Armor",
+        "Azure Monitor — CloudWatch — Cloud Monitoring",
+        "Azure Files — Amazon S3 — Cloud Storage",
+      ],
+      options_he: [
         "Azure DNS — Amazon Route 53 — Google Cloud DNS",
         "Azure Firewall — AWS WAF — Cloud Armor",
         "Azure Monitor — CloudWatch — Cloud Monitoring",
@@ -130,6 +182,8 @@ CQA.data.registerPack({
       correctAnswer: 0,
       explanation:
         "All three host public and private DNS zones on globally distributed, SLA-backed name servers. Route 53 stands out by bundling routing policies (weighted, latency, geolocation, failover with health checks) into DNS itself; Azure splits that role into Traffic Manager, and GCP mostly leans on its global load balancer instead. The other rows are firewalls, monitoring and storage.",
+      explanation_he:
+        "שלושתם מארחים zones של DNS ציבוריים ופרטיים על שרתי שמות מבוזרים גלובלית ומגובי SLA. Route 53 בולט בכך שהוא משלב מדיניות ניתוב (weighted, latency, geolocation, failover עם health checks) בתוך ה-DNS עצמו; Azure מפצל את התפקיד הזה ל-Traffic Manager, ו-GCP נשען בעיקר על ה-load balancer הגלובלי שלו במקום זאת. השורות האחרות הן firewalls, ניטור ואחסון.",
       resourceTitle: "What is Amazon Route 53?",
       resourceUrl: "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html",
       keywords: ["dns", "route 53", "cloud dns", "azure dns"],
@@ -143,10 +197,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "In AWS a subnet is confined to a single Availability Zone, while Azure subnets span zones within their region and GCP subnets span their whole region.",
+      question_he:
+        "ב-AWS subnet מוגבל לאזור זמינות (Availability Zone) בודד, בעוד ש-subnets ב-Azure משתרעים על פני zones בתוך ה-region שלהם ו-subnets ב-GCP משתרעים על פני כל ה-region שלהם.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Subnet scope quietly shapes HA design: AWS forces one subnet per AZ, so multi-AZ apps need parallel subnet sets; in Azure a single subnet can hold VMs from different zones; in GCP a subnet covers every zone of its region. Same word, three blast-radius models — a classic source of confusion when porting architectures between clouds.",
+      explanation_he:
+        "היקף ה-subnet מעצב בשקט את עיצוב ה-HA: AWS כופה subnet אחד לכל AZ, כך שאפליקציות multi-AZ זקוקות לסטים מקבילים של subnets; ב-Azure subnet בודד יכול להכיל VM-ים מ-zones שונים; ב-GCP subnet מכסה כל zone באזור. אותה מילה, שלושה מודלים שונים של רדיוס נזק (blast radius) — מקור קלאסי לבלבול כאשר מעבירים ארכיטקטורות בין ענן לענן.",
       resourceTitle: "Subnets for your VPC",
       resourceUrl: "https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html",
       keywords: ["subnet scope", "availability zone", "regional", "comparison"],
@@ -159,15 +218,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Which statement about the three clouds' IAM models is correct?",
+      question_he: "איזו טענה לגבי מודלי ה-IAM של שלושת העננים היא הנכונה?",
       options: [
         "All three attach individual permissions directly to users",
         "AWS policies list individual API actions; Azure RBAC and GCP IAM grant access only through roles",
         "GCP is the only cloud with roles",
         "Azure has no authorization model for resources",
       ],
+      options_he: [
+        "כל שלושת העננים מצרפים הרשאות פרטניות ישירות למשתמשים",
+        "מדיניות (policies) של AWS מפרטות פעולות API בודדות; Azure RBAC ו-GCP IAM מעניקים גישה רק דרך roles",
+        "GCP הוא הענן היחיד עם roles",
+        "ל-Azure אין מודל הרשאות (authorization) למשאבים",
+      ],
       correctAnswer: 1,
       explanation:
         "AWS IAM is policy-document-centric: JSON listing actions, resources and conditions, attachable to identities or resources. Azure RBAC and GCP IAM are role-centric: permissions live only inside roles, which are bound to identities at a scope in the hierarchy. Neither model is 'better' — but tooling, auditing and least-privilege workflows differ enough that the distinction matters daily in multi-cloud shops.",
+      explanation_he:
+        "AWS IAM מתמקד במסמכי מדיניות (policy documents): JSON המפרט פעולות, משאבים ותנאים, שניתן לצרף לזהויות או למשאבים. Azure RBAC ו-GCP IAM מתמקדים ב-roles: הרשאות קיימות רק בתוך roles, אשר משויכים לזהויות ב-scope מסוים בתוך ההיררכיה. אף מודל אינו 'טוב יותר' — אך הכלים, הביקורת (auditing) ותהליכי ה-least-privilege שונים מספיק כדי שההבחנה תהיה משמעותית מדי יום בארגונים multi-cloud.",
       resourceTitle: "IAM overview (GCP)",
       resourceUrl: "https://cloud.google.com/iam/docs/overview",
       keywords: ["iam models", "policies", "roles", "comparison"],
@@ -181,10 +249,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "Azure managed identities, AWS IAM roles and GCP service accounts all implement the same security pattern: platform-issued short-lived credentials for workloads instead of stored secrets.",
+      question_he:
+        "Azure managed identities, AWS IAM roles ו-GCP service accounts מיישמים כולם את אותו דפוס אבטחה: אישורים (credentials) קצרי-טווח שמונפקים על ידי הפלטפורמה עבור עומסי עבודה, במקום סודות מאוחסנים.",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "All three deliver credentials through a local metadata endpoint that only the workload can reach, rotated automatically and never written to config or code. The names and mechanics differ (an assumed role vs a run-as identity), but the security property is identical — and so is the anti-pattern each replaces: long-lived keys in environment variables, the root cause of countless breaches.",
+      explanation_he:
+        "שלושתם מספקים אישורים דרך נקודת קצה מקומית של metadata שרק עומס העבודה יכול להגיע אליה, מתחלפים אוטומטית ולעולם לא נכתבים לקונפיגורציה או לקוד. השמות והמנגנונים שונים (assumed role לעומת run-as identity), אך תכונת האבטחה זהה — וכך גם האנטי-פאטרן שכל אחד מהם מחליף: מפתחות ארוכי-טווח במשתני סביבה, שהם המקור לאינספור פרצות אבטחה.",
       resourceTitle: "Managed identities for Azure resources",
       resourceUrl: "https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview",
       keywords: ["workload identity", "credential-less", "metadata endpoint"],
@@ -197,15 +270,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multi-select",
       question: "Which statements about default inbound traffic behavior are correct? (Select all that apply.)",
+      question_he: "אילו מהטענות הבאות לגבי התנהגות ברירת המחדל של תעבורה נכנסת נכונות? (בחרו את כל התשובות הרלוונטיות.)",
       options: [
         "Azure NSG default rules deny unsolicited inbound traffic from the internet",
         "AWS security groups implicitly deny all inbound traffic unless a rule allows it",
         "GCP VPC networks have an implied deny-ingress rule",
         "All three clouds require you to write explicit deny rules to block internet traffic",
       ],
+      options_he: [
+        "כללי ברירת המחדל של Azure NSG חוסמים תעבורה נכנסת בלתי-מבוקשת מהאינטרנט",
+        "Security Groups של AWS חוסמים באופן משתמע כל תעבורה נכנסת אלא אם כלל מתיר אותה",
+        "לרשתות VPC של GCP יש כלל implied deny-ingress",
+        "כל שלושת העננים דורשים ממכם לכתוב כללי חסימה מפורשים כדי לחסום תעבורת אינטרנט",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Default-deny inbound is universal: Azure ships DenyAllInBound as the lowest-priority NSG rule, AWS security groups have no allow so nothing enters, and GCP's implied ingress-deny does the same. The fourth option inverts reality — you write ALLOW rules to open things, which is exactly the right security posture: exposure is always a deliberate act.",
+      explanation_he:
+        "חסימת ברירת מחדל לתעבורה נכנסת (default-deny inbound) היא אוניברסלית: Azure מספק את הכלל DenyAllInBound כחוק NSG בעדיפות הנמוכה ביותר, ל-Security Groups של AWS אין כלל allow כך שדבר לא נכנס, וה-implied ingress-deny של GCP עושה את אותו הדבר. האפשרות הרביעית הופכת את המציאות — כותבים כללי ALLOW כדי לפתוח דברים, וזו בדיוק העמדה הנכונה מבחינת אבטחה: חשיפה היא תמיד מעשה מכוון.",
       resourceTitle: "VPC firewall rules (GCP)",
       resourceUrl: "https://cloud.google.com/firewall/docs/firewalls",
       keywords: ["default deny", "inbound", "firewall defaults"],
@@ -218,7 +300,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Which row matches each cloud's key management service?",
+      question_he: "איזו שורה מתאימה לשירות ניהול המפתחות של כל ענן?",
       options: [
+        "Azure Key Vault — AWS KMS — Google Cloud KMS",
+        "Azure Sentinel — Amazon GuardDuty — Security Command Center",
+        "Azure Policy — AWS Config — Organization Policy",
+        "Azure Bastion — AWS Systems Manager — Cloud Shell",
+      ],
+      options_he: [
         "Azure Key Vault — AWS KMS — Google Cloud KMS",
         "Azure Sentinel — Amazon GuardDuty — Security Command Center",
         "Azure Policy — AWS Config — Organization Policy",
@@ -227,6 +316,8 @@ CQA.data.registerPack({
       correctAnswer: 0,
       explanation:
         "Key Vault, AWS KMS and Cloud KMS all store and manage cryptographic keys (HSM-backed options included), power customer-managed-key encryption for other services, and audit every key use. One structural difference: Key Vault also stores secrets and certificates, while AWS and GCP split those into Secrets Manager / Secret Manager. The other rows are SIEM/threat detection, guardrails, and admin access.",
+      explanation_he:
+        "Key Vault, AWS KMS ו-Cloud KMS כולם מאחסנים ומנהלים מפתחות קריפטוגרפיים (כולל אפשרויות מגובות HSM), מפעילים הצפנה עם מפתחות בניהול הלקוח (customer-managed keys) עבור שירותים אחרים, ומבצעים ביקורת (audit) על כל שימוש במפתח. הבדל מבני אחד: Key Vault מאחסן גם secrets ותעודות, בעוד AWS ו-GCP מפצלים אותם ל-Secrets Manager / Secret Manager. השורות האחרות הן SIEM/גילוי איומים, guardrails וגישת ניהול.",
       resourceTitle: "About Azure Key Vault",
       resourceUrl: "https://learn.microsoft.com/azure/key-vault/general/overview",
       keywords: ["key management", "kms", "key vault", "cmek"],
@@ -239,7 +330,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Which row correctly matches each cloud's organization-wide guardrail mechanism?",
+      question_he: "איזו שורה מתאימה נכון למנגנון ה-guardrail הארגוני-רחב של כל ענן?",
       options: [
+        "Azure Policy — AWS Service Control Policies — GCP Organization Policy",
+        "Azure RBAC — AWS IAM — GCP IAM",
+        "Azure Monitor — CloudWatch — Cloud Monitoring",
+        "Azure Blueprints — CloudFormation — Terraform",
+      ],
+      options_he: [
         "Azure Policy — AWS Service Control Policies — GCP Organization Policy",
         "Azure RBAC — AWS IAM — GCP IAM",
         "Azure Monitor — CloudWatch — Cloud Monitoring",
@@ -248,6 +346,8 @@ CQA.data.registerPack({
       correctAnswer: 0,
       explanation:
         "All three guardrail systems constrain what can exist or be done — allowed regions, forbidden services, required configurations — and inherit down the management hierarchy, binding even administrators. The second row is authorization (who can act), not guardrails (what is permissible at all); rows three and four are monitoring and infrastructure-as-code. Guardrails restrict; IAM grants — every cloud keeps those separate.",
+      explanation_he:
+        "כל שלוש מערכות ה-guardrail מגבילות מה יכול להתקיים או להיעשות — regions מותרים, שירותים אסורים, קונפיגורציות נדרשות — ויורשות במורד ההיררכיה הניהולית, ומחייבות אפילו מנהלי מערכת. השורה השנייה היא הרשאה (מי יכול לפעול), לא guardrails (מה מותר בכלל); השורות השלישית והרביעית הן ניטור ו-infrastructure-as-code. guardrails מגבילים; IAM מעניק — כל ענן שומר על ההפרדה הזו.",
       resourceTitle: "What is Azure Policy?",
       resourceUrl: "https://learn.microsoft.com/azure/governance/policy/overview",
       keywords: ["guardrails", "scp", "organization policy", "azure policy"],
@@ -260,7 +360,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Which row matches each cloud's core metrics and alerting platform?",
+      question_he: "איזו שורה מתאימה לפלטפורמת המדדים וההתראות המרכזית של כל ענן?",
       options: [
+        "Azure Monitor — Amazon CloudWatch — Google Cloud Monitoring",
+        "Azure Sentinel — AWS CloudTrail — Cloud Audit Logs",
+        "Log Analytics — S3 — BigQuery",
+        "Application Insights — X-Ray — Cloud Trace",
+      ],
+      options_he: [
         "Azure Monitor — Amazon CloudWatch — Google Cloud Monitoring",
         "Azure Sentinel — AWS CloudTrail — Cloud Audit Logs",
         "Log Analytics — S3 — BigQuery",
@@ -269,6 +376,8 @@ CQA.data.registerPack({
       correctAnswer: 0,
       explanation:
         "Azure Monitor, CloudWatch and Cloud Monitoring are the platforms that collect resource metrics, evaluate alert rules and drive dashboards. The second row mixes a SIEM with audit logs, the third is log/data storage, and the fourth is the distributed-tracing tier (real services, narrower purpose). Knowing the observability stack of each cloud makes runbooks portable.",
+      explanation_he:
+        "Azure Monitor, CloudWatch ו-Cloud Monitoring הן הפלטפורמות שאוספות מדדי משאבים, מעריכות כללי התראה (alert rules) ומניעות דשבורדים. השורה השנייה מערבבת SIEM עם audit logs, השלישית היא אחסון לוגים/נתונים, והרביעית היא שכבת ה-distributed tracing (שירותים אמיתיים, מטרה מצומצמת יותר). היכרות עם מחסנית ה-observability של כל ענן הופכת runbooks לניידים (portable).",
       resourceTitle: "What is Amazon CloudWatch?",
       resourceUrl: "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html",
       keywords: ["monitoring platforms", "metrics", "alerting", "equivalents"],
@@ -281,7 +390,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Which row matches each cloud's control-plane audit trail — the record of who changed what?",
+      question_he: "איזו שורה מתאימה למסלול הביקורת (audit trail) של ה-control plane של כל ענן — הרישום של מי שינה מה?",
       options: [
+        "Azure Activity Log — AWS CloudTrail — GCP Cloud Audit Logs",
+        "Azure Monitor metrics — CloudWatch metrics — Cloud Monitoring metrics",
+        "NSG flow logs — VPC Flow Logs — VPC Flow Logs",
+        "Log Analytics — CloudWatch Logs — Cloud Logging",
+      ],
+      options_he: [
         "Azure Activity Log — AWS CloudTrail — GCP Cloud Audit Logs",
         "Azure Monitor metrics — CloudWatch metrics — Cloud Monitoring metrics",
         "NSG flow logs — VPC Flow Logs — VPC Flow Logs",
@@ -290,6 +406,8 @@ CQA.data.registerPack({
       correctAnswer: 0,
       explanation:
         "These three answer the incident-response question 'who did this?': every management operation with caller, time and source. The others are performance metrics, network flow records, and general log stores — valuable, but none of them attribute control-plane changes. In every cloud, this audit trail is also the primary log source a SIEM ingests first.",
+      explanation_he:
+        "שלושת אלו עונים על שאלת תגובת האירועים 'מי עשה את זה?': כל פעולת ניהול עם מבצע, זמן ומקור. האחרים הם מדדי ביצועים, רשומות flow ברשת, ומאגרי לוגים כלליים — בעלי ערך, אך אף אחד מהם אינו מייחס שינויים ב-control plane. בכל ענן, מסלול הביקורת הזה הוא גם מקור הלוגים הראשי ש-SIEM קולט תחילה.",
       resourceTitle: "Azure Monitor activity log",
       resourceUrl: "https://learn.microsoft.com/azure/azure-monitor/essentials/activity-log",
       keywords: ["audit trail", "cloudtrail", "activity log", "audit logs"],
@@ -302,15 +420,24 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multi-select",
       question: "Which statements about network flow logs across the three clouds are correct? (Select all that apply.)",
+      question_he: "אילו מהטענות הבאות לגבי flow logs של רשת בשלושת הענן נכונות? (בחרו את כל התשובות הרלוונטיות.)",
       options: [
         "All three record flow metadata (addresses, ports, bytes), not packet payloads",
         "Azure offers flow logs for network security groups / VNets",
         "AWS and GCP both call the feature VPC Flow Logs",
         "Flow logs capture the full content of every packet for replay",
       ],
+      options_he: [
+        "כל שלושת הענן רושמים metadata של flow (כתובות, פורטים, בייטים), לא את תוכן החבילות (payloads)",
+        "Azure מציע flow logs עבור network security groups / VNets",
+        "AWS ו-GCP קוראים לפיצ'ר הזה VPC Flow Logs",
+        "flow logs לוכדים את כל תוכן החבילה של כל packet לצורך replay",
+      ],
       correctAnswer: [0, 1, 2],
       explanation:
         "Flow logs are the universal 'who talked to whom' record: 5-tuple metadata cheap enough to keep always-on, feeding both troubleshooting and threat detection. Azure attaches them to NSGs/VNets, AWS and GCP to VPC scopes. None of them capture payloads — that requires packet mirroring features, a different cost class and privacy conversation entirely.",
+      explanation_he:
+        "flow logs הם הרישום האוניברסלי של 'מי דיבר עם מי': metadata של 5-tuple, זולה מספיק כדי להישאר פעילה תמיד, ומזינה גם פתרון תקלות וגם גילוי איומים. Azure מצרף אותם ל-NSGs/VNets, ו-AWS ו-GCP ל-scopes של VPC. אף אחד מהם לא לוכד payloads — לשם כך דרושים פיצ'רי packet mirroring, מחלקת עלות ושיחת פרטיות שונה לגמרי.",
       resourceTitle: "VPC Flow Logs (AWS)",
       resourceUrl: "https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html",
       keywords: ["flow logs", "network telemetry", "comparison"],
@@ -323,15 +450,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multi-select",
       question: "Which statements about object storage lifecycle policies are correct? (Select all that apply.)",
+      question_he: "אילו מהטענות הבאות לגבי מדיניות lifecycle של אחסון אובייקטים נכונות? (בחרו את כל התשובות הרלוונטיות.)",
       options: [
         "All three object stores can automatically move aging objects to cheaper storage classes",
         "All three can automatically delete objects after a defined period",
         "Only AWS supports lifecycle management",
         "Lifecycle rules can help cap the cost of versioned buckets",
       ],
+      options_he: [
+        "בכל שלושת מאגרי האובייקטים ניתן להעביר אוטומטית אובייקטים מיושנים למחלקות אחסון זולות יותר",
+        "בכל שלושתם ניתן למחוק אובייקטים אוטומטית לאחר פרק זמן מוגדר",
+        "רק AWS תומך בניהול lifecycle",
+        "כללי lifecycle יכולים לסייע בריסון עלות ה-buckets המשוחזרים (versioned)",
+      ],
       correctAnswer: [0, 1, 3],
       explanation:
         "S3 lifecycle configurations, Azure Blob lifecycle policies and GCS Object Lifecycle Management are feature-for-feature siblings: age-based class transitions, expiration, and version-count rules that stop versioned buckets growing forever. Lifecycle automation is the highest-leverage storage cost control in every cloud — data ages predictably, and hand-tiering never happens in practice.",
+      explanation_he:
+        "S3 lifecycle configurations, Azure Blob lifecycle policies ו-GCS Object Lifecycle Management הם אחים תכונה-מול-תכונה: מעברי מחלקה מבוססי-גיל, תפוגה (expiration), וכללי ספירת גרסאות שעוצרים את הגדילה האינסופית של buckets משוחזרים. אוטומציית lifecycle היא כלי בקרת העלות בעל המינוף הגבוה ביותר באחסון בכל ענן — הנתונים מתיישנים בצורה צפויה, ותיוג ידני (hand-tiering) כמעט אף פעם לא קורה בפועל.",
       resourceTitle: "Object Lifecycle Management (GCP)",
       resourceUrl: "https://cloud.google.com/storage/docs/lifecycle",
       keywords: ["lifecycle", "object storage", "tiering", "cost"],
@@ -344,7 +480,14 @@ CQA.data.registerPack({
       difficulty: "advanced",
       type: "multiple-choice",
       question: "Which row matches each cloud's WORM (write-once-read-many) immutability feature for object storage?",
+      question_he: "איזו שורה מתאימה לתכונת האי-שינוי (immutability) מסוג WORM (write-once-read-many) של אחסון אובייקטים בכל ענן?",
       options: [
+        "Azure immutable blob storage — S3 Object Lock — GCS Bucket Lock",
+        "Azure soft delete — S3 versioning — GCS versioning",
+        "Azure snapshots — EBS snapshots — PD snapshots",
+        "Azure archive tier — S3 Glacier — GCS Archive",
+      ],
+      options_he: [
         "Azure immutable blob storage — S3 Object Lock — GCS Bucket Lock",
         "Azure soft delete — S3 versioning — GCS versioning",
         "Azure snapshots — EBS snapshots — PD snapshots",
@@ -353,6 +496,8 @@ CQA.data.registerPack({
       correctAnswer: 0,
       explanation:
         "All three enforce retention that even the account's owner cannot shorten once locked — the property regulators require for records retention. The distractors are recoverability features (soft delete, versioning — protect against deletion but don't forbid it), backups, and cold tiers (cheap, but perfectly deletable). Immutability is a legal guarantee, not a durability feature.",
+      explanation_he:
+        "שלושתם אוכפים שמירת נתונים (retention) שאפילו בעל החשבון עצמו אינו יכול לקצר לאחר הנעילה — התכונה שגופי רגולציה דורשים לשמירת רשומות. הסחות הדעת הן תכונות שחזור (soft delete, versioning — מגנות מפני מחיקה אך אינן אוסרות אותה), גיבויים, וטבעות (tiers) קרות (זולות, אך ניתנות למחיקה לחלוטין). אי-שינוי (immutability) הוא ערובה משפטית, לא תכונת עמידות (durability).",
       resourceTitle: "S3 Object Lock",
       resourceUrl: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html",
       keywords: ["worm", "immutability", "retention", "comparison"],
@@ -365,7 +510,14 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Which row matches each cloud's commitment-based discount program?",
+      question_he: "איזו שורה מתאימה לתוכנית ההנחה מבוססת-ההתחייבות (commitment) של כל ענן?",
       options: [
+        "Azure Reservations — AWS Reserved Instances / Savings Plans — GCP Committed Use Discounts",
+        "Azure Spot VMs — EC2 Spot — GCP Spot VMs",
+        "Azure Hybrid Benefit — AWS Free Tier — GCP Free Tier",
+        "Azure Dev/Test pricing — AWS Credits — GCP Sustained Use",
+      ],
+      options_he: [
         "Azure Reservations — AWS Reserved Instances / Savings Plans — GCP Committed Use Discounts",
         "Azure Spot VMs — EC2 Spot — GCP Spot VMs",
         "Azure Hybrid Benefit — AWS Free Tier — GCP Free Tier",
@@ -374,6 +526,8 @@ CQA.data.registerPack({
       correctAnswer: 0,
       explanation:
         "The first row is the 'commit 1–3 years, save 30–70%' family for steady workloads. The second row is the interruptible-capacity family — deep discounts, no commitment, no availability guarantee. GCP adds one oddity nobody else has: sustained use discounts apply automatically with zero commitment. A mature FinOps practice layers all of these deliberately.",
+      explanation_he:
+        "השורה הראשונה היא משפחת 'התחייבו ל-1–3 שנים, חסכו 30–70%' עבור עומסי עבודה יציבים. השורה השנייה היא משפחת הקיבולת הניתנת-להפרעה (interruptible) — הנחות עמוקות, ללא התחייבות, ללא ערובת זמינות. GCP מוסיף חריגה שאין לאף אחד אחר: הנחות sustained use חלות אוטומטית ללא כל התחייבות. פרקטיקת FinOps בשלה משלבת את כל אלו במכוון.",
       resourceTitle: "Committed use discounts (GCP)",
       resourceUrl: "https://cloud.google.com/compute/docs/instances/committed-use-discounts-overview",
       keywords: ["commitment discounts", "reservations", "savings plans", "cud"],
@@ -387,10 +541,15 @@ CQA.data.registerPack({
       type: "true-false",
       question:
         "All three clouds sell steeply discounted spare compute capacity that can be reclaimed at short notice (Azure Spot VMs, EC2 Spot Instances, GCP Spot VMs).",
+      question_he:
+        "כל שלושת הענן מוכרים קיבולת מחשוב עודפת בהנחה תלולה, שניתן לקחת בחזרה בהתראה קצרה (Azure Spot VMs, EC2 Spot Instances, GCP Spot VMs).",
       options: ["True", "False"],
+      options_he: ["נכון", "לא נכון"],
       correctAnswer: true,
       explanation:
         "Spot capacity is the same bargain everywhere: 60–90% off in exchange for accepting interruption — 30 seconds' notice on Azure and GCP, two minutes on AWS. It suits batch, CI, rendering and stateless fleets that checkpoint and recover; it never suits single-instance stateful services. Interruption handling is the design requirement, not an edge case.",
+      explanation_he:
+        "קיבולת Spot היא אותה עסקה בכל מקום: הנחה של 60–90% תמורת קבלת אפשרות להפרעה (interruption) — התראה של 30 שניות ב-Azure וב-GCP, שתי דקות ב-AWS. היא מתאימה ל-batch, CI, רינדור וצי מכונות (fleet) stateless שמבצעות checkpoint ומתאוששות; היא לעולם אינה מתאימה לשירותי stateful במופע (instance) בודד. טיפול בהפרעות הוא דרישת עיצוב, לא מקרה קצה.",
       resourceTitle: "Use Azure Spot Virtual Machines",
       resourceUrl: "https://learn.microsoft.com/azure/virtual-machines/spot-vms",
       keywords: ["spot", "interruptible", "discount"],
@@ -403,15 +562,24 @@ CQA.data.registerPack({
       difficulty: "intermediate",
       type: "multiple-choice",
       question: "Which statement about Availability Zones across the three clouds is correct?",
+      question_he: "איזו טענה לגבי Availability Zones בשלושת הענן היא הנכונה?",
       options: [
         "Zones are separate regions on different continents",
         "All three clouds group physically isolated zones within a region; spreading workloads across zones survives a datacenter-level failure",
         "Zones share the same power and cooling to reduce cost",
         "Only AWS has the concept of zones",
       ],
+      options_he: [
+        "zones הם regions נפרדים ביבשות שונות",
+        "כל שלושת העננים מקבצים zones מבודדים פיזית בתוך region; פיזור עומסי עבודה בין zones שורד כשל ברמת מרכז נתונים (datacenter)",
+        "zones חולקים אספקת חשמל וקירור זהים כדי להוזיל עלויות",
+        "רק ל-AWS יש את מושג ה-zones",
+      ],
       correctAnswer: 1,
       explanation:
         "The zone model is cloud-universal: a region contains multiple zones with independent power, cooling and networking, close enough for synchronous replication but isolated enough that one failing doesn't take the others. Multi-zone deployment is the standard answer to datacenter failure; multi-region is the (much more expensive) answer to regional disaster. Every HA conversation starts by picking which of those two you're defending against.",
+      explanation_he:
+        "מודל ה-zones הוא אוניברסלי לכל ענן: region מכיל מספר zones עם אספקת חשמל, קירור ורשת עצמאיים, קרובים מספיק לשם שכפול סינכרוני אך מבודדים מספיק כך שכשל באחד אינו מפיל את האחרים. פריסה על פני מספר zones היא התשובה הסטנדרטית לכשל מרכז נתונים; פריסה על פני מספר regions היא התשובה (היקרה בהרבה) לאסון אזורי. כל שיחת HA מתחילה בבחירה מפני איזה משני אלו אתם מתגוננים.",
       resourceTitle: "Regions and Availability Zones (AWS)",
       resourceUrl: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html",
       keywords: ["availability zones", "high availability", "comparison"],
