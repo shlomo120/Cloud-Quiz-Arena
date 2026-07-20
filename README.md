@@ -36,7 +36,7 @@ step, no sign-up: open `index.html` in a browser and start quizzing.
 ## Getting started
 
 No install, no dependencies.
-Online Access: `https://shlomo120.github.io/Cloud-Quiz-Arena/`
+Online Access: https://shlomo120.github.io/Cloud-Quiz-Arena/
 
 Either:
 
