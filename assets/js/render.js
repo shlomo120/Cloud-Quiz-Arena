@@ -27,6 +27,7 @@ CQA.render = (function () {
   "use strict";
 
   const THEME_STORAGE_KEY = "cqa-theme";
+  const MODE_STORAGE_KEY = "cqa-mode";
 
   /** Cached references to the mount points defined in index.html. */
   const el = {};
@@ -43,7 +44,8 @@ CQA.render = (function () {
       "btn-start", "btn-daily", "btn-reset", "btn-review",
       "theme-picker", "theme-picker-toggle", "theme-picker-menu",
       "theme-picker-swatch", "theme-picker-label",
-      "not-sure-toggle",
+      "theme-mode-dark", "theme-mode-light", "phase-pill",
+      "not-sure-toggle", "question-progress-fill",
       "scoreboard-container", "active-providers", "progress-container",
       "quiz-placeholder", "quiz-placeholder-note", "quiz-placeholder-summary", "btn-start-panel",
       "question-container", "question-provider-badge", "question-progress",
@@ -65,13 +67,18 @@ CQA.render = (function () {
      ====================================================================== */
 
   /**
-   * Available theme presets — must match [data-theme] blocks in tokens.css.
-   * The first four are the ecosystem-inspired presets (Phase 16); the rest
-   * are the original neutral/graphite/light options, kept as-is.
+   * Available palette presets — must match [data-theme] blocks in tokens.css.
+   * The first four are the ecosystem-inspired presets (Phase 16); "dark" is
+   * the Default palette; slate/amber are the original neutral/graphite ones.
+   * Phase 22: palette and light/dark MODE are separate state values —
+   * every palette has a light variant, applied via [data-mode] on <html>.
+   * (The old standalone "light" theme is migrated in loadSavedTheme.)
    */
-  const THEMES = ["azure", "aws", "gcp", "k8s", "dark", "slate", "amber", "light"];
+  const THEMES = ["azure", "aws", "gcp", "k8s", "dark", "slate", "amber"];
+  const MODES = ["dark", "light"];
 
   let activeTheme = "dark";
+  let activeMode = "dark";
 
   /** Set the picker toggle's own mini swatch + label to reflect `theme`. */
   function syncThemePickerToggle(theme) {
@@ -86,6 +93,11 @@ CQA.render = (function () {
     });
   }
 
+  /**
+   * Apply a PALETTE. Deliberately never touches the light/dark mode —
+   * palette and mode are independent so switching palettes (or any other
+   * control) can't reset the user's chosen mode.
+   */
   function applyTheme(theme) {
     if (!THEMES.includes(theme)) theme = "dark";
     activeTheme = theme;
@@ -99,17 +111,47 @@ CQA.render = (function () {
     }
   }
 
+  /** Mark the active mode button in the theme picker's Light/Dark row. */
+  function syncModeButtons() {
+    MODES.forEach(function (mode) {
+      const btn = el["theme-mode-" + mode];
+      if (!btn) return;
+      btn.classList.toggle("is-active", activeMode === mode);
+      btn.setAttribute("aria-pressed", String(activeMode === mode));
+    });
+  }
+
+  /** Apply the light/dark MODE for the current palette. Never touches the palette. */
+  function applyMode(mode) {
+    if (!MODES.includes(mode)) mode = "dark";
+    activeMode = mode;
+    document.documentElement.setAttribute("data-mode", mode);
+    syncModeButtons();
+    try {
+      localStorage.setItem(MODE_STORAGE_KEY, mode);
+    } catch (e) { /* ignore */ }
+  }
+
   /** Re-apply the active theme's translated label after a language switch. */
   function refreshThemeLabel() {
     syncThemePickerToggle(activeTheme);
   }
 
   function loadSavedTheme() {
-    let saved = null;
+    let savedTheme = null;
+    let savedMode = null;
     try {
-      saved = localStorage.getItem(THEME_STORAGE_KEY);
+      savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+      savedMode = localStorage.getItem(MODE_STORAGE_KEY);
     } catch (e) { /* ignore */ }
-    applyTheme(THEMES.includes(saved) ? saved : "dark");
+    // Migration: "light" was a standalone theme before the palette/mode
+    // split — it maps to the Default palette in light mode.
+    if (savedTheme === "light") {
+      savedTheme = "dark";
+      if (!MODES.includes(savedMode)) savedMode = "light";
+    }
+    applyTheme(THEMES.includes(savedTheme) ? savedTheme : "dark");
+    applyMode(MODES.includes(savedMode) ? savedMode : "dark");
   }
 
   /* ----- Theme picker popover open/close ----- */
@@ -314,6 +356,7 @@ CQA.render = (function () {
     renderSetupWarning(showRest);
     syncStartButtons();
     renderPlaceholderSummary();
+    syncPhasePill(); // keeps the header pill localized after language switches
   }
 
   /**
@@ -577,11 +620,35 @@ CQA.render = (function () {
      Quiz area views
      ====================================================================== */
 
+  /**
+   * Header phase pill: mirrors whichever quiz-area view is visible —
+   * setup label, in-quiz progress counter, or completion. Re-run on view
+   * switches and language changes (via updateSetupFlow / renderQuestion).
+   */
+  function syncPhasePill() {
+    const pill = el["phase-pill"];
+    if (!pill) return;
+    const session = CQA.state.get().session;
+    if (!el["question-container"].classList.contains("is-hidden") && session.active) {
+      pill.dataset.phase = "quiz";
+      pill.textContent = CQA.i18n.t("phase.progress", {
+        index: session.currentIndex + 1, total: session.questions.length,
+      });
+    } else if (!el["summary-container"].classList.contains("is-hidden")) {
+      pill.dataset.phase = "summary";
+      pill.textContent = CQA.i18n.t("phase.complete");
+    } else {
+      pill.dataset.phase = "setup";
+      pill.textContent = CQA.i18n.t("phase.setup");
+    }
+  }
+
   /** Show exactly one of the quiz area views: placeholder | question | summary. */
   function showView(view) {
     el["quiz-placeholder"].classList.toggle("is-hidden", view !== "placeholder");
     el["question-container"].classList.toggle("is-hidden", view !== "question");
     el["summary-container"].classList.toggle("is-hidden", view !== "summary");
+    syncPhasePill();
   }
 
   /** Show the pre-quiz placeholder, optionally with a status message. */
@@ -712,8 +779,14 @@ CQA.render = (function () {
     }
   }
 
-  /** Build one selectable answer option row. */
-  function buildAnswerOption(question, optionText, index) {
+  const OPTION_LETTERS = ["A", "B", "C", "D", "E", "F"];
+
+  /**
+   * Build one selectable answer option row. `displayPos` is the option's
+   * position in the shuffled DISPLAY order (drives the A/B/C key badge);
+   * `index` stays the ORIGINAL option index used for validation.
+   */
+  function buildAnswerOption(question, optionText, index, displayPos) {
     const isMulti = question.type === CQA.data.questionModes.MULTI_SELECT;
     const label = document.createElement("label");
     label.className = "answer-option";
@@ -723,6 +796,12 @@ CQA.render = (function () {
     input.name = "answer";
     input.value = String(index);
     label.appendChild(input);
+
+    const key = document.createElement("span");
+    key.className = "answer-option-key";
+    key.setAttribute("aria-hidden", "true");
+    key.textContent = OPTION_LETTERS[displayPos] || "";
+    label.appendChild(key);
 
     const text = document.createElement("span");
     text.className = "answer-option-text";
@@ -740,6 +819,11 @@ CQA.render = (function () {
     renderProviderBadge(question);
     renderQuestionId(question);
     el["question-progress"].textContent = CQA.i18n.t("question.progress", { index: index + 1, total: total });
+    // Progress track fills with COMPLETED questions (index of the current
+    // one), matching the redesign's semantics — empty at Q1, full only
+    // once the last question is answered and the summary appears.
+    el["question-progress-fill"].style.width =
+      (total > 0 ? Math.round((index / total) * 100) : 0) + "%";
 
     // Fresh per-question timer display; main.js starts the actual countdown
     // right after this render call. The timeout note/lock from a previous
@@ -760,8 +844,8 @@ CQA.render = (function () {
     const displayOrder = CQA.state.get().session.optionOrders[question.id] ||
       question.options.map(function (_, i) { return i; });
     el["answer-options"].replaceChildren(
-      ...displayOrder.map(function (originalIndex) {
-        return buildAnswerOption(question, localized.options[originalIndex], originalIndex);
+      ...displayOrder.map(function (originalIndex, displayPos) {
+        return buildAnswerOption(question, localized.options[originalIndex], originalIndex, displayPos);
       })
     );
     el["answer-options"].setAttribute("aria-label", typeInstruction(question.type));
@@ -1226,6 +1310,7 @@ CQA.render = (function () {
     el,
     loadSavedTheme,
     applyTheme,
+    applyMode,
     refreshThemeLabel,
     isThemeMenuOpen,
     openThemeMenu,

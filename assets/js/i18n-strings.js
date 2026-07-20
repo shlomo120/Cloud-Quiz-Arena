@@ -18,8 +18,8 @@
 CQA.i18n.register({
   en: {
     /* ---------- App shell ---------- */
-    "app.title": "☁️ Cloud Quiz Arena",
-    "app.subtitle": "Test your cloud knowledge — Azure, AWS & GCP",
+    "app.title": "Cloud Quiz Arena",
+    "app.subtitle": "Cloud · AI · Security · Infra",
     "badge.mode.title": "Runs entirely in your browser — no backend, no login",
     "badge.mode.text": "Static / Local mode",
     "nav.glossary": "📖 Glossary",
@@ -27,14 +27,19 @@ CQA.i18n.register({
     "lang.label": "Language",
     "theme.select.aria": "Color theme",
     "theme.label.title": "Choose color theme",
-    "theme.dark": "Dark",
+    "theme.dark": "Default",
     "theme.slate": "Slate Blue",
     "theme.amber": "Amber Graphite",
-    "theme.light": "Soft Light",
     "theme.azure": "Azure Blue",
     "theme.aws": "AWS Ember",
     "theme.gcp": "GCP Spectrum",
     "theme.k8s": "K8s Blue",
+    "theme.mode.aria": "Light or dark mode",
+    "theme.mode.dark": "Dark",
+    "theme.mode.light": "Light",
+    "phase.setup": "Setup",
+    "phase.complete": "Complete",
+    "phase.progress": "{index} / {total}",
     "footer.text": "Runs 100% in your browser — no backend, no login, no tracking.",
 
     /* ---------- Setup panel ---------- */
@@ -268,8 +273,8 @@ CQA.i18n.register({
 
   he: {
     /* ---------- App shell ---------- */
-    "app.title": "☁️ זירת חידוני הענן",
-    "app.subtitle": "בחנו את הידע שלכם בענן — Azure, AWS ו-GCP",
+    "app.title": "Cloud Quiz Arena",
+    "app.subtitle": "ענן · AI · אבטחה · תשתית",
     "badge.mode.title": "פועל כולו בדפדפן שלכם — ללא שרת, ללא התחברות",
     "badge.mode.text": "מצב סטטי / מקומי",
     "nav.glossary": "📖 מילון מונחים",
@@ -277,14 +282,19 @@ CQA.i18n.register({
     "lang.label": "שפה",
     "theme.select.aria": "ערכת נושא",
     "theme.label.title": "בחרו ערכת נושא",
-    "theme.dark": "כהה",
+    "theme.dark": "ברירת מחדל",
     "theme.slate": "כחול צפחה",
     "theme.amber": "גרפיט ענברי",
-    "theme.light": "בהיר רך",
     "theme.azure": "כחול Azure",
     "theme.aws": "ענבר AWS",
     "theme.gcp": "ספקטרום GCP",
     "theme.k8s": "כחול K8s",
+    "theme.mode.aria": "מצב בהיר או כהה",
+    "theme.mode.dark": "כהה",
+    "theme.mode.light": "בהיר",
+    "phase.setup": "הגדרה",
+    "phase.complete": "הושלם",
+    "phase.progress": "{index} / {total}",
     "footer.text": "פועל 100% בדפדפן שלכם — ללא שרת, ללא התחברות, ללא מעקב.",
 
     /* ---------- Setup panel ---------- */

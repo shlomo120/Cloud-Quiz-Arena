@@ -1,32 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" data-theme="dark" data-mode="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cloud Quiz Arena</title>
   <meta name="description" content="A static, client-side quiz platform for cloud technologies (Azure, AWS, GCP)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Heebo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/tokens.css" />
   <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 <body>
 
-  <!-- ============ Header ============ -->
+  <!-- Ambient background layers (decorative, behind everything) -->
+  <div class="bg-gridlayer" aria-hidden="true"></div>
+  <div class="bg-glowdot" aria-hidden="true"></div>
+
+  <!-- ============ Command bar ============ -->
   <header class="app-header">
     <div class="header-brand">
-      <h1 class="app-title" data-i18n="app.title">☁️ Cloud Quiz Arena</h1>
-      <p class="app-subtitle" data-i18n="app.subtitle">Test your cloud knowledge — Azure, AWS &amp; GCP</p>
+      <div class="brand-orbit" aria-hidden="true">
+        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" class="brand-orbit-ring">
+          <polygon points="19,3 33,11 33,27 19,35 5,27 5,11" stroke="var(--color-accent)" stroke-width="1.4" fill="var(--color-accent-soft)"></polygon>
+          <circle cx="19" cy="3" r="2.4" fill="var(--color-accent)"></circle>
+          <circle cx="33" cy="27" r="2" fill="var(--color-accent-hover)"></circle>
+          <circle cx="5" cy="11" r="1.6" fill="var(--color-text-muted)"></circle>
+        </svg>
+        <span class="brand-orbit-core"></span>
+      </div>
+      <div class="brand-text">
+        <h1 class="app-title" data-i18n="app.title">Cloud Quiz Arena</h1>
+        <p class="app-subtitle" data-i18n="app.subtitle">Test your cloud knowledge — Azure, AWS &amp; GCP</p>
+      </div>
+      <span class="phase-pill" id="phase-pill" data-phase="setup"></span>
     </div>
     <div class="header-actions">
 
       <button type="button" class="btn btn-compact" id="glossary-btn"
               data-i18n="nav.glossary" data-i18n-title="nav.glossary.title"
               title="Browse all cloud terms">📖 Glossary</button>
-      <select id="lang-select" class="select select-compact"
-              data-i18n-aria-label="lang.label" data-i18n-title="lang.label"
-              aria-label="Language" title="Language">
-        <option value="en">English</option>
-        <option value="he">עברית</option>
-      </select>
+      <div class="lang-switch" id="lang-switch" role="group"
+           data-i18n-aria-label="lang.label" aria-label="Language">
+        <button type="button" class="lang-option" id="lang-en" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-option" id="lang-he" data-lang="he" aria-pressed="false">עב</button>
+      </div>
       <div class="theme-picker" id="theme-picker">
         <button type="button" class="theme-picker-toggle" id="theme-picker-toggle"
                 aria-haspopup="listbox" aria-expanded="false" aria-controls="theme-picker-menu"
@@ -76,11 +94,16 @@
             <span class="theme-option-label" data-i18n="theme.amber">Amber Graphite</span>
             <span class="theme-option-check" aria-hidden="true">✓</span>
           </button>
-          <button type="button" class="theme-option" role="option" data-theme="light" aria-selected="false">
-            <span class="theme-swatch" data-swatch-theme="light" aria-hidden="true"><span></span><span></span><span></span></span>
-            <span class="theme-option-label" data-i18n="theme.light">Soft Light</span>
-            <span class="theme-option-check" aria-hidden="true">✓</span>
-          </button>
+          <div class="theme-picker-divider" role="separator"></div>
+          <div class="theme-mode-row" role="group"
+               data-i18n-aria-label="theme.mode.aria" aria-label="Light or dark mode">
+            <button type="button" class="theme-mode-option" id="theme-mode-dark" data-mode="dark" aria-pressed="true">
+              <span aria-hidden="true">🌙</span> <span data-i18n="theme.mode.dark">Dark</span>
+            </button>
+            <button type="button" class="theme-mode-option" id="theme-mode-light" data-mode="light" aria-pressed="false">
+              <span aria-hidden="true">☀️</span> <span data-i18n="theme.mode.light">Light</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -232,7 +255,14 @@
 
         <!-- Placeholder shown before a quiz starts -->
         <div class="quiz-placeholder" id="quiz-placeholder">
-          <div class="quiz-placeholder-icon" aria-hidden="true">🎯</div>
+          <div class="quiz-placeholder-icon" aria-hidden="true">
+            <span class="placeholder-ring placeholder-ring-outer"></span>
+            <span class="placeholder-ring placeholder-ring-inner"></span>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"></path>
+            </svg>
+          </div>
           <h2 class="quiz-placeholder-title" data-i18n="placeholder.title">Ready when you are</h2>
           <p class="quiz-placeholder-text">
             <span data-i18n="placeholder.instructionPrefix">Pick your track, scope and difficulty on the left, then press</span>
@@ -250,6 +280,12 @@
 
         <!-- Active question (hidden until the engine phase) -->
         <article class="question-card is-hidden" id="question-container">
+          <div class="question-progress-row">
+            <div class="question-progress-track" aria-hidden="true">
+              <div class="question-progress-fill" id="question-progress-fill"></div>
+            </div>
+            <span class="question-progress" id="question-progress"></span>
+          </div>
           <header class="question-meta">
             <span class="badge" id="question-provider-badge"></span>
             <span class="question-meta-end">
@@ -257,7 +293,6 @@
                 <span data-i18n="question.id.label">ID</span>
                 <span class="question-id-value" id="question-id-value"></span>
               </button>
-              <span class="question-progress" id="question-progress"></span>
             </span>
           </header>
           <div class="question-timers" id="question-timers">

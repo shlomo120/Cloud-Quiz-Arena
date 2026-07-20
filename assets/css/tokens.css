@@ -1,9 +1,16 @@
 /* ==========================================================================
    Cloud Quiz Arena — Design Tokens
    Single source of truth for colors, spacing, typography, radii, shadows.
-   Dark is the default theme (:root); other presets override color tokens
-   under [data-theme="azure" | "aws" | "gcp" | "k8s" | "slate" | "amber" |
-   "light"], set on <html> by render.js via the header theme picker.
+
+   Theme model (Phase 22 — redesign integration):
+     - PALETTE  via [data-theme="dark" | "azure" | "aws" | "gcp" | "k8s" |
+                     "slate" | "amber"] on <html> ("dark" is the Default
+                     palette and the :root fallback).
+     - MODE     via [data-mode="dark" | "light"] on <html>.
+   Palette and mode are independent state values (two localStorage keys,
+   see render.js). Every palette defines its own light variant below so
+   each ecosystem keeps its accent identity on a tinted light ground.
+
    The four ecosystem presets (azure/aws/gcp/k8s) are color-direction
    inspired by their namesakes' public brand palettes — not literal
    reproductions — filtered through this app's own token structure so
@@ -12,43 +19,52 @@
    ========================================================================== */
 
 :root {
-  /* ----- Color: surfaces ----- */
-  --color-bg:            #0f1420;   /* page background */
-  --color-surface:       #1a2130;   /* panels, cards */
-  --color-surface-raised:#232c3f;   /* hovered / elevated cards */
-  --color-border:        #2e3950;
+  /* ----- Color: surfaces (Default palette, dark mode) ----- */
+  --color-bg:            #080b12;   /* page background */
+  --color-bg2:           #0d121c;   /* gradient partner / header scrim */
+  --color-surface:       #111826;   /* panels, cards */
+  --color-surface-raised:#161f30;   /* hovered / elevated cards, controls */
+  --color-surface-inset: #1d2739;   /* chip/segment/tile inner surfaces */
+  --color-border:        #242f45;
+  --color-border-strong: #31405c;   /* popovers, modal edges */
 
   /* ----- Color: text ----- */
-  --color-text:          #e8ecf4;
-  --color-text-muted:    #9aa5bb;
-  --color-text-faint:    #67718a;
+  --color-text:          #e8edf7;
+  --color-text-muted:    #93a1bd;
+  --color-text-faint:    #5d6a85;
 
   /* ----- Color: brand & accents ----- */
   --color-accent:        #4f8cff;   /* primary actions */
   --color-accent-hover:  #6ea1ff;
-  --color-accent-contrast: #0b1020; /* text on accent */
+  --color-accent-contrast: #06101f; /* text on accent */
   --color-accent-soft:   rgba(79, 140, 255, 0.14);
+  --color-glow:          rgba(79, 140, 255, 0.5);
 
   /* ----- Color: semantic feedback ----- */
-  --color-correct:       #3ecf8e;
-  --color-correct-bg:    rgba(62, 207, 142, 0.12);
+  --color-correct:       #35d69a;
+  --color-correct-bg:    rgba(53, 214, 154, 0.13);
   --color-incorrect:     #ff6b6b;
-  --color-incorrect-bg:  rgba(255, 107, 107, 0.12);
+  --color-incorrect-bg:  rgba(255, 107, 107, 0.13);
   --color-warning:       #ffc857;
   --color-warning-soft:  rgba(255, 200, 87, 0.14);
 
   /* ----- Color: provider identities ----- */
-  --color-azure:         #338fef;
+  --color-azure:         #3aa0ff;
   --color-aws:           #ff9900;
   --color-gcp:           #34a853;
-  --color-neutral:       #94a3b8;   /* provider-neutral fundamentals */
+  --color-neutral:       #8aa0c0;   /* provider-neutral fundamentals */
 
-  /* ----- Typography ----- */
-  --font-family-base:    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-family-mono:    ui-monospace, "Cascadia Code", Consolas, monospace;
+  /* ----- Typography -----
+     Latin display + body pair with Hebrew companions: Space Grotesk falls
+     back to Heebo for Hebrew glyphs, IBM Plex Sans to IBM Plex Sans Hebrew.
+     JetBrains Mono has no Hebrew set — IBM Plex Sans Hebrew fills in so
+     mixed technical strings stay natural in RTL. */
+  --font-family-base:    "IBM Plex Sans", "IBM Plex Sans Hebrew", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family-display: "Space Grotesk", "Heebo", "IBM Plex Sans", "IBM Plex Sans Hebrew", system-ui, sans-serif;
+  --font-family-mono:    "JetBrains Mono", "IBM Plex Sans Hebrew", ui-monospace, "Cascadia Code", Consolas, monospace;
   --font-size-xs:        0.75rem;
   --font-size-sm:        0.85rem;
-  --font-size-base:      1rem;
+  --font-size-base:      0.95rem;
   --font-size-lg:        1.25rem;
   --font-size-xl:        1.6rem;
   --font-size-2xl:       2rem;
@@ -62,32 +78,43 @@
   --space-xl:            2.5rem;
 
   /* ----- Radii & shadows ----- */
-  --radius-sm:           6px;
+  --radius-sm:           7px;
   --radius-md:           10px;
   --radius-lg:           16px;
+  --radius-xl:           20px;
   --radius-pill:         999px;
-  --shadow-panel:        0 4px 18px rgba(0, 0, 0, 0.35);
+  --shadow-panel:        0 12px 34px rgba(0, 0, 0, 0.32);
+  --shadow-stage:        0 16px 44px rgba(0, 0, 0, 0.36);
+  --shadow-popover:      0 18px 50px rgba(0, 0, 0, 0.55);
   --shadow-focus:        0 0 0 3px rgba(79, 140, 255, 0.4);
 
   /* ----- Motion ----- */
-  --transition-fast:     120ms ease;
-  --transition-base:     200ms ease;
+  --transition-fast:     150ms ease;
+  --transition-base:     220ms cubic-bezier(0.2, 0.7, 0.2, 1);
 
   /* ----- Layout ----- */
-  --content-max-width:   1200px;
-  --sidebar-width:       340px;
+  --content-max-width:   1280px;
+  --sidebar-width:       350px;
 
   /* ----- Stacking order ----- */
+  --z-header:            40;
   --z-tooltip:           900;
   --z-modal:             1000;
 }
 
+/* ==========================================================================
+   Palettes — dark mode (the default mode)
+   ========================================================================== */
+
 /* ----- Azure Blue: deep blue-navy base, bright confident enterprise-blue accent ----- */
 [data-theme="azure"] {
-  --color-bg:            #0c1a2e;
-  --color-surface:       #122544;
-  --color-surface-raised:#1a3358;
-  --color-border:        #2c4b74;
+  --color-bg:            #07152a;
+  --color-bg2:           #0a1c38;
+  --color-surface:       #0f2544;
+  --color-surface-raised:#153057;
+  --color-surface-inset: #1c3d6e;
+  --color-border:        #254a76;
+  --color-border-strong: #2f5b90;
 
   --color-text:          #e7edf7;
   --color-text-muted:    #9db4d4;
@@ -97,6 +124,7 @@
   --color-accent-hover:  #62b4ff;
   --color-accent-contrast: #06111f;
   --color-accent-soft:   rgba(58, 160, 255, 0.16);
+  --color-glow:          rgba(58, 160, 255, 0.55);
 
   --color-correct:       #3ecf8e;
   --color-correct-bg:    rgba(62, 207, 142, 0.13);
@@ -105,25 +133,28 @@
   --color-warning:       #f5c04a;
   --color-warning-soft:  rgba(245, 192, 74, 0.15);
 
-  --shadow-panel:        0 4px 18px rgba(0, 0, 0, 0.4);
   --shadow-focus:        0 0 0 3px rgba(58, 160, 255, 0.4);
 }
 
 /* ----- AWS Ember: deep charcoal/graphite base, restrained orange accent ----- */
 [data-theme="aws"] {
-  --color-bg:            #15181c;
-  --color-surface:       #1d2126;
-  --color-surface-raised:#272c32;
-  --color-border:        #3c434b;
+  --color-bg:            #101216;
+  --color-bg2:           #15181c;
+  --color-surface:       #1b1f25;
+  --color-surface-raised:#22272f;
+  --color-surface-inset: #2b323c;
+  --color-border:        #3a424d;
+  --color-border-strong: #4a545f;
 
   --color-text:          #ece9e3;
   --color-text-muted:    #aba497;
   --color-text-faint:    #7a7468;
 
-  --color-accent:        #e8890c;
-  --color-accent-hover:  #f5a233;
+  --color-accent:        #ff9100;
+  --color-accent-hover:  #ffab33;
   --color-accent-contrast: #1c1206;
-  --color-accent-soft:   rgba(232, 137, 12, 0.15);
+  --color-accent-soft:   rgba(255, 145, 0, 0.15);
+  --color-glow:          rgba(255, 145, 0, 0.42);
 
   --color-correct:       #4bc98f;
   --color-correct-bg:    rgba(75, 201, 143, 0.13);
@@ -132,18 +163,20 @@
   --color-warning:       #e8c25a;
   --color-warning-soft:  rgba(232, 194, 90, 0.15);
 
-  --shadow-panel:        0 4px 18px rgba(0, 0, 0, 0.45);
-  --shadow-focus:        0 0 0 3px rgba(232, 137, 12, 0.35);
+  --shadow-focus:        0 0 0 3px rgba(255, 145, 0, 0.35);
 }
 
 /* ----- GCP Spectrum: balanced dark-neutral base, controlled blue accent with
    Google's red/green/yellow reserved for semantic feedback (correct/incorrect/
    warning) rather than decoration — restrained, not a rainbow ----- */
 [data-theme="gcp"] {
-  --color-bg:            #14171c;
-  --color-surface:       #1b1f26;
-  --color-surface-raised:#242a33;
-  --color-border:        #383f4a;
+  --color-bg:            #0d1015;
+  --color-bg2:           #12161c;
+  --color-surface:       #181d25;
+  --color-surface-raised:#20262f;
+  --color-surface-inset: #29313c;
+  --color-border:        #38414d;
+  --color-border-strong: #48525f;
 
   --color-text:          #e9ebef;
   --color-text-muted:    #a7aebb;
@@ -153,6 +186,7 @@
   --color-accent-hover:  #669df6;
   --color-accent-contrast: #0c1420;
   --color-accent-soft:   rgba(66, 133, 244, 0.16);
+  --color-glow:          rgba(66, 133, 244, 0.48);
 
   --color-correct:       #34a853;
   --color-correct-bg:    rgba(52, 168, 83, 0.14);
@@ -161,17 +195,19 @@
   --color-warning:       #fbbc05;
   --color-warning-soft:  rgba(251, 188, 5, 0.16);
 
-  --shadow-panel:        0 4px 18px rgba(0, 0, 0, 0.42);
   --shadow-focus:        0 0 0 3px rgba(66, 133, 244, 0.38);
 }
 
 /* ----- K8s Blue: cool dark infra base, Kubernetes-blue accent — a platform/
    control-plane feel distinct from Azure Blue's brighter sky tone ----- */
 [data-theme="k8s"] {
-  --color-bg:            #0f1720;
-  --color-surface:       #16202b;
-  --color-surface-raised:#1f2c39;
-  --color-border:        #2e3d4d;
+  --color-bg:            #080f18;
+  --color-bg2:           #0d1622;
+  --color-surface:       #121e2d;
+  --color-surface-raised:#182839;
+  --color-surface-inset: #20344a;
+  --color-border:        #2b4059;
+  --color-border-strong: #375275;
 
   --color-text:          #e4ecf3;
   --color-text-muted:    #98abbe;
@@ -181,6 +217,7 @@
   --color-accent-hover:  #5789ec;
   --color-accent-contrast: #07101d;
   --color-accent-soft:   rgba(50, 108, 229, 0.16);
+  --color-glow:          rgba(50, 108, 229, 0.55);
 
   --color-correct:       #3fcf95;
   --color-correct-bg:    rgba(63, 207, 149, 0.13);
@@ -189,16 +226,18 @@
   --color-warning:       #e0b64c;
   --color-warning-soft:  rgba(224, 182, 76, 0.15);
 
-  --shadow-panel:        0 4px 18px rgba(0, 0, 0, 0.42);
   --shadow-focus:        0 0 0 3px rgba(50, 108, 229, 0.4);
 }
 
 /* ----- Slate Blue: dark slate surfaces, restrained steel-blue accent ----- */
 [data-theme="slate"] {
-  --color-bg:            #151a22;
+  --color-bg:            #12161e;
+  --color-bg2:           #171c26;
   --color-surface:       #1d242f;
-  --color-surface-raised:#27303d;
+  --color-surface-raised:#242c39;
+  --color-surface-inset: #2c3646;
   --color-border:        #364152;
+  --color-border-strong: #445168;
 
   --color-text:          #e3e9f2;
   --color-text-muted:    #9aa8bc;
@@ -208,6 +247,7 @@
   --color-accent-hover:  #93b5e0;
   --color-accent-contrast: #0e1521;
   --color-accent-soft:   rgba(122, 162, 212, 0.14);
+  --color-glow:          rgba(122, 162, 212, 0.4);
 
   --color-correct:       #4cc38a;
   --color-correct-bg:    rgba(76, 195, 138, 0.12);
@@ -216,16 +256,18 @@
   --color-warning:       #d9b45b;
   --color-warning-soft:  rgba(217, 180, 91, 0.14);
 
-  --shadow-panel:        0 4px 18px rgba(0, 0, 0, 0.4);
   --shadow-focus:        0 0 0 3px rgba(122, 162, 212, 0.35);
 }
 
 /* ----- Amber Graphite: warm neutral graphite, subtle amber accent ----- */
 [data-theme="amber"] {
-  --color-bg:            #171511;
+  --color-bg:            #14120e;
+  --color-bg2:           #191612;
   --color-surface:       #201d18;
-  --color-surface-raised:#2a2620;
+  --color-surface-raised:#28241d;
+  --color-surface-inset: #322d24;
   --color-border:        #3b352b;
+  --color-border-strong: #4c4436;
 
   --color-text:          #ece7dd;
   --color-text-muted:    #ada590;
@@ -235,6 +277,7 @@
   --color-accent-hover:  #e5b55e;
   --color-accent-contrast: #201a0c;
   --color-accent-soft:   rgba(217, 164, 65, 0.13);
+  --color-glow:          rgba(217, 164, 65, 0.38);
 
   --color-correct:       #6fbf73;
   --color-correct-bg:    rgba(111, 191, 115, 0.12);
@@ -243,33 +286,211 @@
   --color-warning:       #e8c268;
   --color-warning-soft:  rgba(232, 194, 104, 0.15);
 
-  --shadow-panel:        0 4px 18px rgba(0, 0, 0, 0.42);
   --shadow-focus:        0 0 0 3px rgba(217, 164, 65, 0.35);
 }
 
-/* ----- Soft Light: warm off-white surfaces, no pure white, no glare ----- */
-[data-theme="light"] {
-  --color-bg:            #eceae4;
-  --color-surface:       #f6f4ee;
-  --color-surface-raised:#eeebe3;
-  --color-border:        #d8d3c6;
+/* ==========================================================================
+   Palettes — light mode
+   Each palette keeps its accent identity on a tinted light ground.
+   Semantic colors are darkened for readable text on light surfaces.
+   Shared light-mode shadow/scrim softening comes first, then per-palette
+   surface/accent tints.
+   ========================================================================== */
 
-  --color-text:          #2b2822;
-  --color-text-muted:    #5f594c;
-  --color-text-faint:    #8d8778;
+[data-mode="light"] {
+  --shadow-panel:        0 8px 24px rgba(30, 45, 80, 0.09);
+  --shadow-stage:        0 12px 32px rgba(30, 45, 80, 0.11);
+  --shadow-popover:      0 18px 50px rgba(30, 45, 80, 0.22);
 
-  --color-accent:        #2a5fc4;   /* deeper so it doesn't wash out on light */
-  --color-accent-hover:  #1f4fae;
+  --color-correct:       #0f9d63;
+  --color-correct-bg:    rgba(15, 157, 99, 0.12);
+  --color-incorrect:     #d23b36;
+  --color-incorrect-bg:  rgba(210, 59, 54, 0.10);
+  --color-warning:       #9a6b0a;
+  --color-warning-soft:  rgba(154, 107, 10, 0.13);
+}
+
+/* ----- Default palette, light ----- */
+[data-mode="light"],
+[data-theme="dark"][data-mode="light"] {
+  --color-bg:            #eaeef4;
+  --color-bg2:           #e2e7f0;
+  --color-surface:       #f8fafc;
+  --color-surface-raised:#eef2f8;
+  --color-surface-inset: #e4e9f2;
+  --color-border:        #d2dae7;
+  --color-border-strong: #bcc7d9;
+
+  --color-text:          #16203a;
+  --color-text-muted:    #4c5872;
+  --color-text-faint:    #7c88a2;
+
+  --color-accent:        #2f6bff;
+  --color-accent-hover:  #1f54d6;
   --color-accent-contrast: #ffffff;
-  --color-accent-soft:   rgba(42, 95, 196, 0.10);
+  --color-accent-soft:   rgba(47, 107, 255, 0.10);
+  --color-glow:          rgba(47, 107, 255, 0.22);
 
-  --color-correct:       #1e7d55;
-  --color-correct-bg:    rgba(30, 125, 85, 0.10);
-  --color-incorrect:     #bd4040;
-  --color-incorrect-bg:  rgba(189, 64, 64, 0.10);
-  --color-warning:       #9a6b0a;   /* darkened for readable text on light */
-  --color-warning-soft:  rgba(154, 107, 10, 0.12);
+  --shadow-focus:        0 0 0 3px rgba(47, 107, 255, 0.30);
+}
 
-  --shadow-panel:        0 3px 12px rgba(60, 52, 38, 0.10);
-  --shadow-focus:        0 0 0 3px rgba(42, 95, 196, 0.30);
+[data-theme="azure"][data-mode="light"] {
+  --color-bg:            #e9f2fc;
+  --color-bg2:           #dfeafa;
+  --color-surface:       #f6faff;
+  --color-surface-raised:#e9f3fe;
+  --color-surface-inset: #dcebfc;
+  --color-border:        #c4dcf6;
+  --color-border-strong: #a7cbef;
+
+  --color-text:          #0c2647;
+  --color-text-muted:    #3f5f88;
+  --color-text-faint:    #7089ac;
+
+  --color-accent:        #1877e0;
+  --color-accent-hover:  #0f62c4;
+  --color-accent-contrast: #ffffff;
+  --color-accent-soft:   rgba(24, 119, 224, 0.10);
+  --color-glow:          rgba(24, 119, 224, 0.24);
+
+  --color-incorrect:     #cf3a35;
+  --color-incorrect-bg:  rgba(207, 58, 53, 0.10);
+
+  --shadow-focus:        0 0 0 3px rgba(24, 119, 224, 0.30);
+}
+
+[data-theme="aws"][data-mode="light"] {
+  --color-bg:            #f4efe7;
+  --color-bg2:           #ede6da;
+  --color-surface:       #fbf8f2;
+  --color-surface-raised:#f2ece2;
+  --color-surface-inset: #e9e1d3;
+  --color-border:        #dacfbb;
+  --color-border-strong: #c8bba2;
+
+  --color-text:          #2a2115;
+  --color-text-muted:    #6b5c45;
+  --color-text-faint:    #94856b;
+
+  --color-accent:        #c96a08;
+  --color-accent-hover:  #a85807;
+  --color-accent-contrast: #ffffff;
+  --color-accent-soft:   rgba(201, 106, 8, 0.10);
+  --color-glow:          rgba(201, 106, 8, 0.22);
+
+  --color-correct:       #0f8f5c;
+  --color-correct-bg:    rgba(15, 143, 92, 0.12);
+  --color-incorrect:     #c23a2f;
+  --color-incorrect-bg:  rgba(194, 58, 47, 0.10);
+  --color-warning:       #8a6008;
+  --color-warning-soft:  rgba(138, 96, 8, 0.14);
+
+  --shadow-focus:        0 0 0 3px rgba(201, 106, 8, 0.28);
+}
+
+[data-theme="gcp"][data-mode="light"] {
+  --color-bg:            #eaeef5;
+  --color-bg2:           #e2e8f1;
+  --color-surface:       #f8fafc;
+  --color-surface-raised:#eef2f8;
+  --color-surface-inset: #e3e9f1;
+  --color-border:        #d1d9e6;
+  --color-border-strong: #bec8d9;
+
+  --color-text:          #1a2230;
+  --color-text-muted:    #4d5766;
+  --color-text-faint:    #808a9a;
+
+  --color-accent:        #1a73e8;
+  --color-accent-hover:  #1465cf;
+  --color-accent-contrast: #ffffff;
+  --color-accent-soft:   rgba(26, 115, 232, 0.10);
+  --color-glow:          rgba(26, 115, 232, 0.22);
+
+  --color-correct:       #137a44;
+  --color-correct-bg:    rgba(19, 122, 68, 0.12);
+  --color-incorrect:     #c5342a;
+  --color-incorrect-bg:  rgba(197, 52, 42, 0.10);
+  --color-warning:       #8a6407;
+  --color-warning-soft:  rgba(138, 100, 7, 0.13);
+
+  --shadow-focus:        0 0 0 3px rgba(26, 115, 232, 0.30);
+}
+
+[data-theme="k8s"][data-mode="light"] {
+  --color-bg:            #e7eef7;
+  --color-bg2:           #dee8f3;
+  --color-surface:       #f6f9fd;
+  --color-surface-raised:#e8f0f9;
+  --color-surface-inset: #dce7f4;
+  --color-border:        #c6d6ea;
+  --color-border-strong: #aac3e0;
+
+  --color-text:          #0e2136;
+  --color-text-muted:    #3d5573;
+  --color-text-faint:    #6e849f;
+
+  --color-accent:        #2f5fd6;
+  --color-accent-hover:  #2450bb;
+  --color-accent-contrast: #ffffff;
+  --color-accent-soft:   rgba(47, 95, 214, 0.10);
+  --color-glow:          rgba(47, 95, 214, 0.24);
+
+  --color-incorrect:     #cf3a35;
+  --color-incorrect-bg:  rgba(207, 58, 53, 0.10);
+  --color-warning:       #8a6008;
+  --color-warning-soft:  rgba(138, 96, 8, 0.14);
+
+  --shadow-focus:        0 0 0 3px rgba(47, 95, 214, 0.30);
+}
+
+[data-theme="slate"][data-mode="light"] {
+  --color-bg:            #ebeef3;
+  --color-bg2:           #e3e7ee;
+  --color-surface:       #f7f9fb;
+  --color-surface-raised:#edf1f6;
+  --color-surface-inset: #e2e8f0;
+  --color-border:        #d3dae4;
+  --color-border-strong: #bfc9d7;
+
+  --color-text:          #1c2634;
+  --color-text-muted:    #4e5b6e;
+  --color-text-faint:    #7f8b9d;
+
+  --color-accent:        #3d6cae;
+  --color-accent-hover:  #305a95;
+  --color-accent-contrast: #ffffff;
+  --color-accent-soft:   rgba(61, 108, 174, 0.10);
+  --color-glow:          rgba(61, 108, 174, 0.22);
+
+  --shadow-focus:        0 0 0 3px rgba(61, 108, 174, 0.28);
+}
+
+[data-theme="amber"][data-mode="light"] {
+  --color-bg:            #f2ede3;
+  --color-bg2:           #ebe4d6;
+  --color-surface:       #faf7f0;
+  --color-surface-raised:#f0eadd;
+  --color-surface-inset: #e7dfcd;
+  --color-border:        #d8cdb6;
+  --color-border-strong: #c5b79c;
+
+  --color-text:          #2b2418;
+  --color-text-muted:    #6a5d45;
+  --color-text-faint:    #93866c;
+
+  --color-accent:        #a8761a;
+  --color-accent-hover:  #8d6214;
+  --color-accent-contrast: #ffffff;
+  --color-accent-soft:   rgba(168, 118, 26, 0.10);
+  --color-glow:          rgba(168, 118, 26, 0.20);
+
+  --color-correct:       #0f8f5c;
+  --color-correct-bg:    rgba(15, 143, 92, 0.12);
+  --color-incorrect:     #c23a2f;
+  --color-incorrect-bg:  rgba(194, 58, 47, 0.10);
+  --color-warning:       #8a6008;
+  --color-warning-soft:  rgba(138, 96, 8, 0.14);
+
+  --shadow-focus:        0 0 0 3px rgba(168, 118, 26, 0.28);
 }

@@ -45,6 +45,7 @@ CQA.certificate = (function () {
 
   function init() {
     buildOverlay();
+    injectPaperStyleTag();
 
     // Capture-phase Escape: close this modal unless a tooltip is open
     // above it (mirrors the pattern used by the review/glossary modals).
@@ -54,6 +55,59 @@ CQA.certificate = (function () {
       event.stopPropagation();
       close();
     }, true);
+  }
+
+  /* ======================================================================
+     Shared "paper" styling — single source of truth for both browser
+     print output and the downloaded standalone HTML, so the two can never
+     visually diverge from each other, and both stay class-compatible with
+     the live in-app certificate markup (same selectors, same structure —
+     only the light/portable palette differs from the on-screen theme,
+     deliberately, the same way this app's print output has always forced
+     a light palette regardless of the active on-screen theme).
+     ====================================================================== */
+
+  function certificatePaperCss() {
+    return (
+      ".certificate-view{position:relative;overflow:hidden;border:2px solid #d8d3c6;border-radius:14px;" +
+      "background:#f6f4ee;color:#2b2822;padding:2.5rem 2rem;text-align:center;display:flex;" +
+      "flex-direction:column;align-items:center;gap:0.4rem;" +
+      "font-family:'IBM Plex Sans','IBM Plex Sans Hebrew',system-ui,sans-serif;}" +
+      ".certificate-view *{color:#2b2822;}" +
+      ".certificate-view::before{display:none;}" + /* no glow crest on paper */
+      ".certificate-brand{font-family:'JetBrains Mono','IBM Plex Sans Hebrew',monospace;font-size:0.75rem;" +
+      "color:#5f594c;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1rem;}" +
+      ".certificate-title{font-family:'Space Grotesk','Heebo',sans-serif;font-size:1.6rem;font-weight:700;margin:0;}" +
+      ".certificate-subtitle{color:#5f594c;margin:0 0 0.5rem;}" +
+      ".certificate-badge{display:inline-block;padding:0.3rem 1rem;border-radius:999px;font-weight:700;" +
+      "font-size:0.85rem;margin-bottom:1rem;border:1px solid;}" +
+      ".certificate-badge-pass,.certificate-badge-excellent{background:#e6f4ec;color:#1e7d55;border-color:#1e7d55;}" +
+      ".certificate-badge-neutral{background:#fbeed2;color:#9a6b0a;border-color:#9a6b0a;}" +
+      ".certificate-recipient-label{color:#8d8778;font-size:0.85rem;margin:0;}" +
+      ".certificate-recipient{font-family:'Space Grotesk','Heebo',sans-serif;font-size:1.6rem;font-weight:700;" +
+      "margin:0.2rem 0 1rem;overflow-wrap:anywhere;}" +
+      ".certificate-body-text{max-width:30rem;color:#2b2822;margin:0 0 1rem;overflow-wrap:anywhere;}" +
+      ".certificate-stats{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-bottom:1rem;}" +
+      ".certificate-stat-value{font-family:'Space Grotesk','Heebo',sans-serif;font-size:1.25rem;font-weight:700;}" +
+      ".certificate-stat-label{font-size:0.75rem;color:#8d8778;text-transform:uppercase;letter-spacing:0.05em;}" +
+      ".certificate-date{color:#5f594c;font-size:0.85rem;margin:0;}" +
+      ".certificate-badge-note{color:#9a6b0a;font-size:0.85rem;margin:0.25rem 0 0;}" +
+      ".certificate-footer{margin-top:1.5rem;font-size:0.75rem;color:#8d8778;border-top:1px solid #d8d3c6;" +
+      "padding-top:0.75rem;width:100%;}"
+    );
+  }
+
+  /**
+   * Add the shared paper CSS to the document, scoped to print media only —
+   * it never affects the on-screen (themed) certificate. Runs once at
+   * bootstrap; main.css's own @media print block (structural: hiding the
+   * rest of the page, sizing/fragmentation) supplies everything else.
+   */
+  function injectPaperStyleTag() {
+    const style = document.createElement("style");
+    style.media = "print";
+    style.textContent = certificatePaperCss();
+    document.head.appendChild(style);
   }
 
   /* ======================================================================
@@ -382,53 +436,45 @@ CQA.certificate = (function () {
     return div.innerHTML;
   }
 
-  /** Build a standalone, self-styled HTML document from the current certificate. */
+  /** Google Fonts <link> tags — same families the live app uses, so the
+   * downloaded file's typography matches even though it can't reach
+   * tokens.css/main.css (it has to be fully self-contained). */
+  const FONT_LINKS =
+    "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">" +
+    "<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>" +
+    "<link href=\"https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Heebo:wght@600;700;800&family=JetBrains+Mono:wght@500;600&display=swap\" rel=\"stylesheet\">";
+
+  /**
+   * Build a standalone, self-contained HTML document for the current
+   * certificate. Rather than hand-reconstructing the content into a
+   * separate, parallel markup structure (which is what previously caused
+   * the download to visually diverge from the in-app certificate), this
+   * clones the SAME .certificate-view element the live modal and the
+   * print output render — identical structure, identical text, only the
+   * class names' meaning is redefined by certificatePaperCss() (the same
+   * paper CSS used for print) since the exported file can't load the
+   * app's own stylesheets.
+   */
   function buildStandaloneHtml(record, name) {
-    const badge = computeBadge(record);
+    renderView(record, name); // ensure el.view reflects this exact name/record
     const isExam = record.mode === "exam";
-    const displayName = name.trim() || CQA.i18n.t("certificate.recipientPlaceholder");
     const title = CQA.i18n.t(isExam ? "certificate.title.exam" : "certificate.title.practice");
     const lang = CQA.i18n.getLang();
     const dir = CQA.i18n.isRtl() ? "rtl" : "ltr";
 
     return "<!DOCTYPE html>\n<html lang=\"" + lang + "\" dir=\"" + dir + "\"><head><meta charset=\"UTF-8\">" +
+      "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">" +
       "<title>" + escapeHtml(title) + " — " + escapeHtml(CQA.i18n.t("certificate.brand")) + "</title>" +
+      FONT_LINKS +
       "<style>" +
-      "body{font-family:Georgia,serif;background:#eceae4;margin:0;padding:2.5rem;color:#2b2822;}" +
-      ".cert{max-width:640px;margin:0 auto;background:#f6f4ee;border:2px solid #d8d3c6;border-radius:12px;" +
-      "padding:3rem 2.5rem;text-align:center;}" +
-      ".brand{font-size:1rem;color:#5f594c;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.5rem;}" +
-      "h1{font-size:1.8rem;margin:0 0 0.25rem;}" +
-      ".subtitle{color:#5f594c;margin:0 0 1rem;}" +
-      ".badge{display:inline-block;padding:0.3rem 1rem;border-radius:999px;font-weight:700;margin-bottom:1.5rem;" +
-      "background:#e6f4ec;color:#1e7d55;border:1px solid #1e7d55;}" +
-      ".recipient-label{color:#8d8778;margin:0;font-size:0.9rem;}" +
-      ".recipient{font-size:1.6rem;font-weight:700;margin:0.25rem 0 1rem;}" +
-      ".body{margin:0 0 1.5rem;}" +
-      ".stats{display:flex;justify-content:center;gap:2rem;margin-bottom:1.5rem;flex-wrap:wrap;}" +
-      ".stat-value{font-size:1.3rem;font-weight:700;}" +
-      ".stat-label{font-size:0.8rem;color:#8d8778;text-transform:uppercase;}" +
-      ".date{color:#5f594c;}" +
-      ".footer{margin-top:2rem;font-size:0.8rem;color:#8d8778;border-top:1px solid #d8d3c6;padding-top:1rem;}" +
+      "*,*::before,*::after{box-sizing:border-box}" +
+      "body{margin:0;padding:2.5rem 1rem;background:#eceae4;" +
+      "font-family:'IBM Plex Sans','IBM Plex Sans Hebrew',system-ui,sans-serif;}" +
+      ".certificate-view{max-width:640px;margin:0 auto;}" +
+      certificatePaperCss() +
       "</style></head><body>" +
-      "<div class=\"cert\">" +
-      "<div class=\"brand\">" + escapeHtml(CQA.i18n.t("certificate.brand")) + "</div>" +
-      "<h1>" + escapeHtml(title) + "</h1>" +
-      "<p class=\"subtitle\">" + escapeHtml(CQA.i18n.t(isExam ? "certificate.subtitle.exam" : "certificate.subtitle.practice")) + "</p>" +
-      "<div class=\"badge\">" + escapeHtml(CQA.i18n.t(badge.labelKey)) + "</div>" +
-      "<p class=\"recipient-label\">" + escapeHtml(CQA.i18n.t("certificate.recipientLabel")) + "</p>" +
-      "<p class=\"recipient\">" + escapeHtml(displayName) + "</p>" +
-      "<p class=\"body\">" + escapeHtml(bodyText(record, badge, describeScope(record))) + "</p>" +
-      "<div class=\"stats\">" +
-      "<div><div class=\"stat-value\">" + record.summary.accuracy + "%</div><div class=\"stat-label\">" + escapeHtml(CQA.i18n.t("certificate.stat.score")) + "</div></div>" +
-      "<div><div class=\"stat-value\">" + record.summary.correct + " / " + record.summary.answered + "</div><div class=\"stat-label\">" + escapeHtml(CQA.i18n.t("certificate.stat.correct")) + "</div></div>" +
-      "<div><div class=\"stat-value\">" + escapeHtml(CQA.i18n.label("difficulty", record.difficulty, record.difficulty)) + "</div><div class=\"stat-label\">" + escapeHtml(CQA.i18n.t("certificate.stat.difficulty")) + "</div></div>" +
-      "<div><div class=\"stat-value\">" + record.questionCount + "</div><div class=\"stat-label\">" + escapeHtml(CQA.i18n.t("certificate.stat.questions")) + "</div></div>" +
-      "</div>" +
-      "<p class=\"date\">" + escapeHtml(CQA.i18n.t("certificate.dateLine", { date: formatDate(record.completedAt) })) + "</p>" +
-      (badge.note ? "<p style=\"color:#9a6b0a;\">" + escapeHtml(badge.note) + "</p>" : "") +
-      "<p class=\"footer\">" + escapeHtml(CQA.i18n.t("certificate.footer")) + "</p>" +
-      "</div></body></html>";
+      el.view.outerHTML +
+      "</body></html>";
   }
 
   function downloadHtml() {

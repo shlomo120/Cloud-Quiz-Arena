@@ -319,14 +319,25 @@
         el["theme-picker-toggle"].focus();
       });
     });
+    // Light/Dark mode buttons inside the picker — mode is independent of
+    // the palette, and picking a mode keeps the menu open for previewing.
+    el["theme-mode-dark"].addEventListener("click", function () {
+      CQA.render.applyMode("dark");
+    });
+    el["theme-mode-light"].addEventListener("click", function () {
+      CQA.render.applyMode("light");
+    });
     // Outside click closes the popover without touching the theme.
     document.addEventListener("click", function (event) {
       if (!CQA.render.isThemeMenuOpen()) return;
       if (el["theme-picker"].contains(event.target)) return;
       CQA.render.closeThemeMenu();
     });
-    document.getElementById("lang-select").addEventListener("change", function (event) {
-      CQA.i18n.setLang(event.target.value);
+    // Segmented EN / עב language switch.
+    document.querySelectorAll("#lang-switch .lang-option").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        CQA.i18n.setLang(btn.dataset.lang);
+      });
     });
     el["setup-toggle"].addEventListener("click", CQA.render.toggleSetupCollapsed);
     document.getElementById("glossary-btn")
@@ -391,7 +402,12 @@
    */
   function onLanguageChange() {
     const el = CQA.render.el;
-    document.getElementById("lang-select").value = CQA.i18n.getLang();
+    const lang = CQA.i18n.getLang();
+    document.querySelectorAll("#lang-switch .lang-option").forEach(function (btn) {
+      const active = btn.dataset.lang === lang;
+      btn.classList.toggle("is-active", active);
+      btn.setAttribute("aria-pressed", String(active));
+    });
     CQA.render.refreshThemeLabel(); // theme option text is data-i18n; only the toggle's own label needs a manual refresh
 
     CQA.render.renderSetup(); // rebuilds all setup chips/segments + summary + warning
